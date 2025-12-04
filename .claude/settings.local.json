@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(cat:*)",
+      "Bash(npx create-next-app:*)",
+      "Bash(npx create-next-app@latest significanz-temp --typescript --tailwind --eslint --app --src-dir=false --import-alias=\"@/*\" --use-npm --yes)",
+      "Bash(npm install:*)",
+      "WebFetch(domain:www.significanz.dk)",
+      "Bash(npm run build)",
+      "Bash(tree:*)",
+      "Bash(ls:*)",
+      "Bash(curl:*)",
+      "Bash(for:*)",
+      "Bash(do curl -sL -o \"$i.jpg\" \"https://picsum.photos/600\")",
+      "Bash(done)",
+      "Bash(npm run dev:*)",
+      "WebSearch",
+      "WebFetch(domain:www.awwwards.com)",
+      "WebFetch(domain:kijo.london)",
+      "Bash(npx next dev:*)",
+      "WebFetch(domain:goodcompany-cph.dk)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
