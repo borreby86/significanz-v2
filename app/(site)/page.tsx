@@ -1,164 +1,98 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 import Link from "next/link";
-import { motion, useInView, AnimatePresence } from "motion/react";
+import Image from "next/image";
+import { motion, useInView } from "motion/react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { useTranslation } from "@/lib/i18n";
 
-// Organic blob shapes component - Significanz palette
-function OrganicBlobs() {
-  return (
-    <>
-      {/* Champagne Gold blob - left */}
-      <motion.div
-        className="absolute left-0 top-1/4 w-64 md:w-80 lg:w-96"
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, delay: 0.3 }}
-      >
-        <svg viewBox="0 0 200 300" className="w-full h-auto">
-          <path
-            d="M50,20 Q120,0 150,80 Q180,160 140,220 Q100,280 50,250 Q0,220 10,140 Q20,60 50,20"
-            fill="#BFA27A"
-            opacity="0.9"
-          />
-        </svg>
-      </motion.div>
-
-      {/* Nordic Berry blob - right */}
-      <motion.div
-        className="absolute right-0 top-1/4 w-48 md:w-64 lg:w-80"
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 1, delay: 0.4 }}
-      >
-        <svg viewBox="0 0 200 200" className="w-full h-auto">
-          <path
-            d="M100,10 Q180,30 180,100 Q180,170 100,190 Q20,170 20,100 Q20,30 100,10"
-            fill="#A12F63"
-            opacity="0.9"
-          />
-        </svg>
-      </motion.div>
-
-      {/* Deep Mulberry blob - bottom left */}
-      <motion.div
-        className="absolute left-1/4 bottom-10 w-40 md:w-56 lg:w-64"
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1, delay: 0.5 }}
-      >
-        <svg viewBox="0 0 200 150" className="w-full h-auto">
-          <path
-            d="M30,50 Q80,0 150,30 Q200,60 180,100 Q160,140 100,130 Q40,120 20,90 Q0,60 30,50"
-            fill="#5A1735"
-            opacity="0.9"
-          />
-        </svg>
-      </motion.div>
-
-      {/* Warm Mist accent - center right */}
-      <motion.div
-        className="absolute right-1/3 top-1/2 w-32 md:w-40"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1, delay: 0.6 }}
-      >
-        <svg viewBox="0 0 150 80" className="w-full h-auto">
-          <path
-            d="M10,40 Q40,10 80,20 Q120,30 140,50 Q120,70 80,65 Q40,60 10,40"
-            fill="#EFEDEA"
-            opacity="0.9"
-          />
-        </svg>
-      </motion.div>
-
-      {/* Soft White decorative line */}
-      <motion.div
-        className="absolute left-1/3 top-1/3 w-24 md:w-32"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.7 }}
-      >
-        <svg viewBox="0 0 100 150" className="w-full h-auto">
-          <path
-            d="M50,0 Q30,50 50,100 Q70,150 50,150"
-            fill="none"
-            stroke="#F7F6F5"
-            strokeWidth="3"
-            opacity="0.6"
-          />
-        </svg>
-      </motion.div>
-    </>
-  );
-}
-
-// Hero with rotating words (Good Company style)
+// Hero with full-width photo
 function Hero() {
-  const { t } = useTranslation();
-  const words = ["Leadership", "Growth", "Impact", "Change", "Purpose"];
-  const [currentWord, setCurrentWord] = useState(0);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentWord((prev) => (prev + 1) % words.length);
-    }, 2500);
-    return () => clearInterval(interval);
-  }, [words.length]);
-
   return (
-    <section className="min-h-screen relative overflow-hidden bg-[#34323A] flex items-center justify-center">
-      {/* Organic blob shapes */}
-      <OrganicBlobs />
+    <section className="min-h-screen relative overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/hero/hero-office.png"
+          alt="Office environment with Copenhagen lakes view"
+          fill
+          className="object-cover"
+          priority
+        />
+        {/* Subtle overlay for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
+      </div>
 
-      {/* Main content */}
-      <div className="relative z-10 text-center px-4">
+      {/* Content */}
+      <div className="relative z-10 min-h-screen flex flex-col">
+        {/* Logo at top */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          className="pt-8 md:pt-12 px-6 md:px-12"
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="font-[family-name:var(--font-playfair)] text-white">
-            <span className="block text-7xl md:text-8xl lg:text-9xl leading-[0.9]">
-              Significanz
-            </span>
-            <AnimatePresence mode="wait">
-              <motion.span
-                key={currentWord}
-                className="block text-7xl md:text-8xl lg:text-9xl leading-[0.9] italic mt-2"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.5 }}
+          <Image
+            src="/images/logo/logo.avif"
+            alt="Significanz"
+            width={200}
+            height={60}
+            className="h-12 md:h-16 w-auto brightness-0 invert"
+          />
+        </motion.div>
+
+        {/* Main content - centered */}
+        <div className="flex-1 flex items-center justify-center px-6">
+          <motion.div
+            className="text-center max-w-4xl"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <h1 className="font-[family-name:var(--font-playfair)] text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] tracking-tight">
+              Creating lasting change through{" "}
+              <span className="italic">leadership development</span>
+            </h1>
+            <p className="mt-8 text-white/80 text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">
+              We are coaches, facilitators, and leadership developers dedicated to sustainable transformation.
+            </p>
+            <motion.div
+              className="mt-10"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+            >
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-[#34323A] font-medium hover:bg-[#EFEDEA] transition-colors"
               >
-                {words[currentWord]}
-              </motion.span>
-            </AnimatePresence>
-          </h1>
+                Get in touch
+                <span className="text-xl">→</span>
+              </Link>
+            </motion.div>
+          </motion.div>
+        </div>
+
+        {/* Scroll indicator */}
+        <motion.div
+          className="pb-8 flex justify-center"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+        >
+          <motion.div
+            className="w-px h-16 bg-white/40"
+            animate={{ scaleY: [1, 0.5, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          />
         </motion.div>
       </div>
-
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-      >
-        <motion.div
-          className="w-px h-16 bg-white/30"
-          animate={{ scaleY: [1, 0.5, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        />
-      </motion.div>
     </section>
   );
 }
 
-// Who We Are + Services Section (Good Company style)
+// Who We Are + Services Section
 function WhoWeAreAndServices() {
   const { t } = useTranslation();
   const ref = useRef<HTMLElement>(null);
@@ -168,20 +102,20 @@ function WhoWeAreAndServices() {
     {
       title: t.services.items.executiveCoaching.title,
       icon: (
-        <svg viewBox="0 0 64 64" className="w-16 h-16">
-          <circle cx="32" cy="20" r="10" fill="none" stroke="currentColor" strokeWidth="2"/>
-          <path d="M16 52c0-12 8-18 16-18s16 6 16 18" fill="none" stroke="currentColor" strokeWidth="2"/>
-          <path d="M44 24l8-8M52 24l-8-8" stroke="currentColor" strokeWidth="2"/>
+        <svg viewBox="0 0 64 64" className="w-14 h-14">
+          <circle cx="32" cy="20" r="10" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M16 52c0-12 8-18 16-18s16 6 16 18" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M44 24l8-8M52 24l-8-8" stroke="currentColor" strokeWidth="1.5"/>
         </svg>
       )
     },
     {
       title: t.services.items.teamCoaching.title,
       icon: (
-        <svg viewBox="0 0 64 64" className="w-16 h-16">
-          <circle cx="20" cy="24" r="8" fill="none" stroke="currentColor" strokeWidth="2"/>
-          <circle cx="44" cy="24" r="8" fill="none" stroke="currentColor" strokeWidth="2"/>
-          <circle cx="32" cy="44" r="8" fill="none" stroke="currentColor" strokeWidth="2"/>
+        <svg viewBox="0 0 64 64" className="w-14 h-14">
+          <circle cx="20" cy="24" r="8" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <circle cx="44" cy="24" r="8" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <circle cx="32" cy="44" r="8" fill="none" stroke="currentColor" strokeWidth="1.5"/>
           <path d="M26 28l6 10M38 28l-6 10" stroke="currentColor" strokeWidth="1.5"/>
         </svg>
       )
@@ -189,25 +123,25 @@ function WhoWeAreAndServices() {
     {
       title: t.services.items.leadershipDevelopment.title,
       icon: (
-        <svg viewBox="0 0 64 64" className="w-16 h-16">
-          <path d="M12 52L32 12L52 52H12Z" fill="none" stroke="currentColor" strokeWidth="2"/>
-          <circle cx="32" cy="36" r="6" fill="none" stroke="currentColor" strokeWidth="2"/>
+        <svg viewBox="0 0 64 64" className="w-14 h-14">
+          <path d="M12 52L32 12L52 52H12Z" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <circle cx="32" cy="36" r="6" fill="none" stroke="currentColor" strokeWidth="1.5"/>
         </svg>
       )
     },
     {
       title: t.services.items.outdoorCoaching.title,
       icon: (
-        <svg viewBox="0 0 64 64" className="w-16 h-16">
-          <path d="M8 52L24 20L36 40L44 28L56 52H8Z" fill="none" stroke="currentColor" strokeWidth="2"/>
-          <circle cx="48" cy="16" r="6" fill="none" stroke="currentColor" strokeWidth="2"/>
+        <svg viewBox="0 0 64 64" className="w-14 h-14">
+          <path d="M8 52L24 20L36 40L44 28L56 52H8Z" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <circle cx="48" cy="16" r="6" fill="none" stroke="currentColor" strokeWidth="1.5"/>
         </svg>
       )
     },
   ];
 
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-white">
+    <section ref={ref} className="py-24 md:py-32 bg-[#F7F6F5]">
       <Container size="wide">
         {/* Top section - Who are we? */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-24">
@@ -217,7 +151,7 @@ function WhoWeAreAndServices() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-black italic">
+            <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#34323A] italic">
               Who are we?
             </h2>
           </motion.div>
@@ -228,17 +162,17 @@ function WhoWeAreAndServices() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <p className="text-xl md:text-2xl text-black leading-relaxed font-medium">
+            <p className="text-xl md:text-2xl text-[#34323A] leading-relaxed font-medium">
               We are coaches, facilitators, and leadership developers at heart.
             </p>
-            <p className="mt-6 text-xl md:text-2xl text-black leading-relaxed">
+            <p className="mt-6 text-xl md:text-2xl text-[#34323A]/70 leading-relaxed">
               We create sustainable change for the benefit of leaders, teams, and organizations.
             </p>
           </motion.div>
         </div>
 
         {/* Bottom section - Services grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
@@ -248,15 +182,15 @@ function WhoWeAreAndServices() {
             >
               <Link href="/4d" className="group flex items-center gap-6">
                 {/* Icon */}
-                <div className="text-black flex-shrink-0">
+                <div className="text-[#34323A] flex-shrink-0">
                   {service.icon}
                 </div>
 
                 {/* Vertical line */}
-                <div className="w-px h-16 bg-gray-300 flex-shrink-0" />
+                <div className="w-px h-14 bg-[#34323A]/20 flex-shrink-0" />
 
                 {/* Title */}
-                <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-black group-hover:text-red transition-colors leading-tight">
+                <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#34323A] group-hover:text-[#A12F63] transition-colors leading-tight">
                   {service.title}
                 </h3>
               </Link>
@@ -268,7 +202,7 @@ function WhoWeAreAndServices() {
   );
 }
 
-// Be Inspired Section (Good Company style - colored cards)
+// Be Inspired Section - More neutral with accent touches
 function BeInspired() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
@@ -277,9 +211,9 @@ function BeInspired() {
     <section ref={ref} className="py-24 md:py-32 bg-white">
       <Container size="wide">
         {/* Header row */}
-        <div className="flex justify-between items-end mb-16">
+        <div className="flex flex-col md:flex-row justify-between md:items-end gap-6 mb-16">
           <motion.h2
-            className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-black italic"
+            className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#34323A] italic"
             initial={{ opacity: 0, x: -30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
@@ -292,16 +226,16 @@ function BeInspired() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <Link href="/4d" className="text-[#A12F63] hover:text-[#5A1735] transition-colors flex items-center gap-2 text-lg">
+            <Link href="/4d" className="text-[#34323A] hover:text-[#A12F63] transition-colors flex items-center gap-2 text-lg">
               See all content
               <span className="text-2xl">→</span>
             </Link>
           </motion.div>
         </div>
 
-        {/* Cards grid */}
+        {/* Cards grid - more neutral, subtle accent */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1 - The 4D Model (Champagne Gold) */}
+          {/* Card 1 - The 4D Model */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -309,30 +243,22 @@ function BeInspired() {
             className="group"
           >
             <Link href="/4d">
-              <div className="bg-[#BFA27A] p-8 aspect-square flex flex-col">
-                <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-[#34323A] mb-2">
+              <div className="bg-[#EFEDEA] p-8 aspect-square flex flex-col hover:bg-[#E5E3E0] transition-colors">
+                <span className="text-[#A12F63] text-sm font-medium uppercase tracking-wider">Framework</span>
+                <h3 className="mt-2 font-[family-name:var(--font-playfair)] text-3xl text-[#34323A]">
                   The 4D Model
                 </h3>
-                <p className="text-[#34323A]/80 mb-auto">
+                <p className="mt-3 text-[#34323A]/70">
                   Our proven framework for lasting transformation
                 </p>
-                {/* Illustration */}
-                <div className="mt-6 flex justify-center">
-                  <svg viewBox="0 0 120 100" className="w-32 h-auto">
-                    <rect x="10" y="10" width="40" height="50" fill="#F7F6F5" stroke="#34323A" strokeWidth="2" transform="rotate(-10 30 35)"/>
-                    <rect x="70" y="20" width="40" height="50" fill="#F7F6F5" stroke="#34323A" strokeWidth="2" transform="rotate(10 90 45)"/>
-                    <circle cx="30" cy="30" r="8" fill="#34323A"/>
-                    <path d="M85 35 L95 50 L75 50 Z" fill="#34323A"/>
-                  </svg>
+                <div className="mt-auto pt-8 flex justify-end">
+                  <span className="text-[#34323A] group-hover:text-[#A12F63] transition-colors text-2xl">→</span>
                 </div>
               </div>
-              <p className="mt-4 text-sm text-gray-600">
-                Discover → Define → Design → Deploy
-              </p>
             </Link>
           </motion.div>
 
-          {/* Card 2 - Client Voices (Nordic Berry) */}
+          {/* Card 2 - Client Voices */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -340,29 +266,22 @@ function BeInspired() {
             className="group"
           >
             <Link href="/client-voices">
-              <div className="bg-[#A12F63] p-8 aspect-square flex flex-col">
-                <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-[#F7F6F5] mb-auto">
+              <div className="bg-[#34323A] p-8 aspect-square flex flex-col hover:bg-[#4A484F] transition-colors">
+                <span className="text-[#BFA27A] text-sm font-medium uppercase tracking-wider">Testimonials</span>
+                <h3 className="mt-2 font-[family-name:var(--font-playfair)] text-3xl text-[#F7F6F5]">
                   Client Voices
                 </h3>
-                {/* Illustration */}
-                <div className="flex justify-center">
-                  <svg viewBox="0 0 100 100" className="w-28 h-auto">
-                    <circle cx="50" cy="40" r="25" fill="#F7F6F5" stroke="#34323A" strokeWidth="2"/>
-                    <circle cx="42" cy="35" r="3" fill="#34323A"/>
-                    <circle cx="58" cy="35" r="3" fill="#34323A"/>
-                    <path d="M40 48 Q50 55 60 48" fill="none" stroke="#34323A" strokeWidth="2"/>
-                    <path d="M50 65 L50 85 M35 75 L65 75" stroke="#34323A" strokeWidth="2"/>
-                  </svg>
+                <p className="mt-3 text-[#F7F6F5]/70">
+                  Hear from leaders who have transformed
+                </p>
+                <div className="mt-auto pt-8 flex justify-end">
+                  <span className="text-[#F7F6F5] group-hover:text-[#BFA27A] transition-colors text-2xl">→</span>
                 </div>
               </div>
-              <p className="mt-4 text-[#A12F63] text-sm font-medium">Featured story:</p>
-              <p className="mt-1 font-[family-name:var(--font-playfair)] text-xl text-[#34323A]">
-                Leadership transformation at scale
-              </p>
             </Link>
           </motion.div>
 
-          {/* Card 3 - Gallery (Deep Mulberry) */}
+          {/* Card 3 - Gallery */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -370,24 +289,18 @@ function BeInspired() {
             className="group"
           >
             <Link href="/gallery">
-              <div className="bg-[#5A1735] p-8 aspect-square flex flex-col">
-                <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-[#F7F6F5] mb-auto">
-                  Gallery
+              <div className="bg-[#EFEDEA] p-8 aspect-square flex flex-col hover:bg-[#E5E3E0] transition-colors">
+                <span className="text-[#A12F63] text-sm font-medium uppercase tracking-wider">Gallery</span>
+                <h3 className="mt-2 font-[family-name:var(--font-playfair)] text-3xl text-[#34323A]">
+                  Our Sessions
                 </h3>
-                {/* Illustration */}
-                <div className="flex justify-center">
-                  <svg viewBox="0 0 100 100" className="w-28 h-auto">
-                    <rect x="20" y="30" width="60" height="45" rx="3" fill="#F7F6F5" stroke="#34323A" strokeWidth="2"/>
-                    <circle cx="35" cy="45" r="8" fill="#34323A"/>
-                    <path d="M25 70 L45 50 L60 60 L75 45 L75 70 Z" fill="#34323A" opacity="0.3"/>
-                    <circle cx="65" cy="40" r="5" fill="#BFA27A"/>
-                  </svg>
+                <p className="mt-3 text-[#34323A]/70">
+                  Moments from coaching and development sessions
+                </p>
+                <div className="mt-auto pt-8 flex justify-end">
+                  <span className="text-[#34323A] group-hover:text-[#A12F63] transition-colors text-2xl">→</span>
                 </div>
               </div>
-              <p className="mt-4 text-[#A12F63] text-sm font-medium">Explore:</p>
-              <p className="mt-1 font-[family-name:var(--font-playfair)] text-xl text-[#34323A]">
-                Moments from our sessions
-              </p>
             </Link>
           </motion.div>
         </div>
@@ -396,13 +309,13 @@ function BeInspired() {
   );
 }
 
-// Get in Touch CTA (Good Company style - Champagne Gold background)
+// Get in Touch CTA - Clean and professional
 function GetInTouch() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section ref={ref} className="bg-[#BFA27A] py-20 md:py-32">
+    <section ref={ref} className="bg-[#34323A] py-24 md:py-32">
       <Container size="wide">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left - Text */}
@@ -411,55 +324,53 @@ function GetInTouch() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#34323A] italic">
+            <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#F7F6F5] italic">
               Get in touch
             </h2>
-            <p className="mt-6 text-xl md:text-2xl text-[#34323A]/80 leading-relaxed max-w-md">
+            <p className="mt-6 text-xl md:text-2xl text-[#F7F6F5]/70 leading-relaxed max-w-md">
               Contact us if you want to know more about our coaching and leadership development.
             </p>
-            <Link
-              href="/contact"
-              className="mt-8 inline-flex items-center gap-2 text-[#34323A] hover:text-[#5A1735] transition-colors text-lg font-medium"
-            >
-              See more
-              <span className="text-xl">→</span>
-            </Link>
+            <div className="mt-10 flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#F7F6F5] text-[#34323A] font-medium hover:bg-[#EFEDEA] transition-colors"
+              >
+                Contact us
+                <span className="text-xl">→</span>
+              </Link>
+              <Link
+                href="/about"
+                className="inline-flex items-center gap-3 px-8 py-4 border border-[#F7F6F5]/30 text-[#F7F6F5] font-medium hover:bg-[#F7F6F5]/10 transition-colors"
+              >
+                About us
+              </Link>
+            </div>
           </motion.div>
 
-          {/* Right - Image placeholder (silhouette style) */}
+          {/* Right - Contact info */}
           <motion.div
-            className="relative h-[400px] md:h-[500px] flex items-end justify-center"
+            className="lg:text-right"
             initial={{ opacity: 0, x: 30 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Stylized illustration of people - using Warm Charcoal and Deep Mulberry */}
-            <svg viewBox="0 0 400 350" className="w-full h-auto max-w-md">
-              {/* Person 1 */}
-              <g transform="translate(40, 50)">
-                <ellipse cx="40" cy="25" rx="25" ry="28" fill="#34323A"/>
-                <path d="M10 180 Q20 80 40 70 Q60 80 70 180 Z" fill="#34323A"/>
-                <rect x="15" y="180" width="50" height="100" fill="#34323A"/>
-              </g>
-              {/* Person 2 */}
-              <g transform="translate(130, 30)">
-                <ellipse cx="45" cy="28" rx="28" ry="30" fill="#5A1735"/>
-                <path d="M10 200 Q25 90 45 80 Q65 90 80 200 Z" fill="#5A1735"/>
-                <rect x="15" y="200" width="60" height="90" fill="#5A1735"/>
-              </g>
-              {/* Person 3 */}
-              <g transform="translate(240, 40)">
-                <ellipse cx="40" cy="25" rx="25" ry="28" fill="#34323A"/>
-                <path d="M10 190 Q20 80 40 70 Q60 80 70 190 Z" fill="#34323A"/>
-                <rect x="15" y="190" width="50" height="95" fill="#34323A"/>
-              </g>
-              {/* Person 4 */}
-              <g transform="translate(320, 60)">
-                <ellipse cx="35" cy="22" rx="22" ry="25" fill="#5A1735"/>
-                <path d="M8 170 Q18 70 35 60 Q52 70 62 170 Z" fill="#5A1735"/>
-                <rect x="12" y="170" width="46" height="85" fill="#5A1735"/>
-              </g>
-            </svg>
+            <div className="space-y-6">
+              <div>
+                <p className="text-[#BFA27A] text-sm font-medium uppercase tracking-wider mb-2">Email</p>
+                <a
+                  href="mailto:contact@significanz.dk"
+                  className="text-2xl md:text-3xl text-[#F7F6F5] hover:text-[#BFA27A] transition-colors font-[family-name:var(--font-playfair)]"
+                >
+                  contact@significanz.dk
+                </a>
+              </div>
+              <div>
+                <p className="text-[#BFA27A] text-sm font-medium uppercase tracking-wider mb-2">Location</p>
+                <p className="text-2xl md:text-3xl text-[#F7F6F5] font-[family-name:var(--font-playfair)]">
+                  Copenhagen, Denmark
+                </p>
+              </div>
+            </div>
           </motion.div>
         </div>
       </Container>
