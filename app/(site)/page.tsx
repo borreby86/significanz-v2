@@ -1,14 +1,30 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, useInView } from "motion/react";
+import { motion, useInView, AnimatePresence } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { useTranslation } from "@/lib/i18n";
 
-// Hero with full-width photo
+// Hero with full-width photo and rotating words with brand colors
 function Hero() {
+  const words = [
+    { text: "Leadership", color: "#BFA27A" },  // Champagne Gold
+    { text: "Growth", color: "#A12F63" },      // Nordic Berry
+    { text: "Impact", color: "#EFEDEA" },      // Warm Mist
+    { text: "Change", color: "#BFA27A" },      // Champagne Gold
+    { text: "Purpose", color: "#A12F63" },     // Nordic Berry
+  ];
+  const [currentWord, setCurrentWord] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentWord((prev) => (prev + 1) % words.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [words.length]);
+
   return (
     <section className="min-h-screen relative overflow-hidden">
       {/* Background Image */}
@@ -21,7 +37,7 @@ function Hero() {
           priority
         />
         {/* Subtle overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/20 to-black/40" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
       </div>
 
       {/* Content */}
@@ -45,32 +61,32 @@ function Hero() {
         {/* Main content - centered */}
         <div className="flex-1 flex items-center justify-center px-6">
           <motion.div
-            className="text-center max-w-4xl"
+            className="text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            <h1 className="font-[family-name:var(--font-playfair)] text-white text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[1.1] tracking-tight">
-              Creating lasting change through{" "}
-              <span className="italic">leadership development</span>
+            <h1 className="font-[family-name:var(--font-playfair)] text-white">
+              <span className="block text-7xl md:text-8xl lg:text-9xl leading-[0.9]">
+                Significanz
+              </span>
+              <AnimatePresence mode="wait">
+                <motion.span
+                  key={currentWord}
+                  className="block text-7xl md:text-8xl lg:text-9xl leading-[0.9] italic mt-2"
+                  style={{ color: words[currentWord].color }}
+                  initial={{ opacity: 0, y: 40, filter: "blur(10px)", scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+                  exit={{ opacity: 0, y: -40, filter: "blur(10px)", scale: 0.95 }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  {words[currentWord].text}
+                </motion.span>
+              </AnimatePresence>
             </h1>
-            <p className="mt-8 text-white/80 text-xl md:text-2xl max-w-2xl mx-auto leading-relaxed">
-              We are coaches, facilitators, and leadership developers dedicated to sustainable transformation.
-            </p>
-            <motion.div
-              className="mt-10"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.8 }}
-            >
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-white text-[#34323A] font-medium hover:bg-[#EFEDEA] transition-colors"
-              >
-                Get in touch
-                <span className="text-xl">→</span>
-              </Link>
-            </motion.div>
           </motion.div>
         </div>
 
