@@ -2,26 +2,34 @@
 
 /* Design System - Significanz */
 @theme inline {
+  /* Brand Colors - Significanz Palette */
+  --color-charcoal: #34323A;
+  --color-soft-white: #F7F6F5;
+  --color-warm-mist: #EFEDEA;
+  --color-champagne: #BFA27A;
+  --color-berry: #A12F63;
+  --color-mulberry: #5A1735;
+
   /* Colors - Black */
-  --color-black: #0A0A0A;
-  --color-black-soft: #1A1A1A;
-  --color-black-muted: #2A2A2A;
+  --color-black: #34323A;
+  --color-black-soft: #34323A;
+  --color-black-muted: #4A484F;
 
   /* Colors - White */
   --color-white: #FFFFFF;
-  --color-white-soft: #FAFAFA;
-  --color-white-warm: #F5F5F3;
+  --color-white-soft: #F7F6F5;
+  --color-white-warm: #EFEDEA;
 
-  /* Colors - Warm (new) */
-  --color-cream: #FDF8F3;
-  --color-peach: #FFEEE6;
-  --color-warm-gray: #F7F5F3;
-  --color-warm-gray-dark: #E8E4E0;
+  /* Colors - Warm */
+  --color-cream: #F7F6F5;
+  --color-peach: #EFEDEA;
+  --color-warm-gray: #EFEDEA;
+  --color-warm-gray-dark: #E5E3E0;
 
-  /* Colors - Red (used sparingly) */
-  --color-red: #C41E3A;
-  --color-red-light: #E8354D;
-  --color-red-dark: #9A1830;
+  /* Colors - Accent (Nordic Berry) */
+  --color-red: #A12F63;
+  --color-red-light: #B84575;
+  --color-red-dark: #5A1735;
 
   /* Colors - Gray */
   --color-gray-50: #FAFAFA;

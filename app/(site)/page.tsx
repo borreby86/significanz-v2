@@ -7,11 +7,11 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { useTranslation } from "@/lib/i18n";
 
-// Organic blob shapes component
+// Organic blob shapes component - Significanz palette
 function OrganicBlobs() {
   return (
     <>
-      {/* Sage green blob - left */}
+      {/* Champagne Gold blob - left */}
       <motion.div
         className="absolute left-0 top-1/4 w-64 md:w-80 lg:w-96"
         initial={{ opacity: 0, x: -50 }}
@@ -21,13 +21,13 @@ function OrganicBlobs() {
         <svg viewBox="0 0 200 300" className="w-full h-auto">
           <path
             d="M50,20 Q120,0 150,80 Q180,160 140,220 Q100,280 50,250 Q0,220 10,140 Q20,60 50,20"
-            fill="#8B9D83"
+            fill="#BFA27A"
             opacity="0.9"
           />
         </svg>
       </motion.div>
 
-      {/* Pink blob - right */}
+      {/* Nordic Berry blob - right */}
       <motion.div
         className="absolute right-0 top-1/4 w-48 md:w-64 lg:w-80"
         initial={{ opacity: 0, x: 50 }}
@@ -37,13 +37,13 @@ function OrganicBlobs() {
         <svg viewBox="0 0 200 200" className="w-full h-auto">
           <path
             d="M100,10 Q180,30 180,100 Q180,170 100,190 Q20,170 20,100 Q20,30 100,10"
-            fill="#E8C4C4"
+            fill="#A12F63"
             opacity="0.9"
           />
         </svg>
       </motion.div>
 
-      {/* Blue blob - bottom left */}
+      {/* Deep Mulberry blob - bottom left */}
       <motion.div
         className="absolute left-1/4 bottom-10 w-40 md:w-56 lg:w-64"
         initial={{ opacity: 0, y: 50 }}
@@ -53,13 +53,13 @@ function OrganicBlobs() {
         <svg viewBox="0 0 200 150" className="w-full h-auto">
           <path
             d="M30,50 Q80,0 150,30 Q200,60 180,100 Q160,140 100,130 Q40,120 20,90 Q0,60 30,50"
-            fill="#7BA3B5"
+            fill="#5A1735"
             opacity="0.9"
           />
         </svg>
       </motion.div>
 
-      {/* Gold/tan accent - center right */}
+      {/* Warm Mist accent - center right */}
       <motion.div
         className="absolute right-1/3 top-1/2 w-32 md:w-40"
         initial={{ opacity: 0, scale: 0.8 }}
@@ -69,13 +69,13 @@ function OrganicBlobs() {
         <svg viewBox="0 0 150 80" className="w-full h-auto">
           <path
             d="M10,40 Q40,10 80,20 Q120,30 140,50 Q120,70 80,65 Q40,60 10,40"
-            fill="#C9A76C"
+            fill="#EFEDEA"
             opacity="0.9"
           />
         </svg>
       </motion.div>
 
-      {/* White decorative line */}
+      {/* Soft White decorative line */}
       <motion.div
         className="absolute left-1/3 top-1/3 w-24 md:w-32"
         initial={{ opacity: 0 }}
@@ -86,7 +86,7 @@ function OrganicBlobs() {
           <path
             d="M50,0 Q30,50 50,100 Q70,150 50,150"
             fill="none"
-            stroke="white"
+            stroke="#F7F6F5"
             strokeWidth="3"
             opacity="0.6"
           />
@@ -110,7 +110,7 @@ function Hero() {
   }, [words.length]);
 
   return (
-    <section className="min-h-screen relative overflow-hidden bg-[#2D4A4A] flex items-center justify-center">
+    <section className="min-h-screen relative overflow-hidden bg-[#34323A] flex items-center justify-center">
       {/* Organic blob shapes */}
       <OrganicBlobs />
 
@@ -292,7 +292,7 @@ function BeInspired() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <Link href="/4d" className="text-red hover:text-red-dark transition-colors flex items-center gap-2 text-lg">
+            <Link href="/4d" className="text-[#A12F63] hover:text-[#5A1735] transition-colors flex items-center gap-2 text-lg">
               See all content
               <span className="text-2xl">→</span>
             </Link>
@@ -301,7 +301,7 @@ function BeInspired() {
 
         {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1 - The 4D Model (Sage green) */}
+          {/* Card 1 - The 4D Model (Champagne Gold) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -309,20 +309,20 @@ function BeInspired() {
             className="group"
           >
             <Link href="/4d">
-              <div className="bg-[#8B9D83] p-8 aspect-square flex flex-col">
-                <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-black mb-2">
+              <div className="bg-[#BFA27A] p-8 aspect-square flex flex-col">
+                <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-[#34323A] mb-2">
                   The 4D Model
                 </h3>
-                <p className="text-black/80 mb-auto">
+                <p className="text-[#34323A]/80 mb-auto">
                   Our proven framework for lasting transformation
                 </p>
                 {/* Illustration */}
                 <div className="mt-6 flex justify-center">
                   <svg viewBox="0 0 120 100" className="w-32 h-auto">
-                    <rect x="10" y="10" width="40" height="50" fill="white" stroke="black" strokeWidth="2" transform="rotate(-10 30 35)"/>
-                    <rect x="70" y="20" width="40" height="50" fill="white" stroke="black" strokeWidth="2" transform="rotate(10 90 45)"/>
-                    <circle cx="30" cy="30" r="8" fill="black"/>
-                    <path d="M85 35 L95 50 L75 50 Z" fill="black"/>
+                    <rect x="10" y="10" width="40" height="50" fill="#F7F6F5" stroke="#34323A" strokeWidth="2" transform="rotate(-10 30 35)"/>
+                    <rect x="70" y="20" width="40" height="50" fill="#F7F6F5" stroke="#34323A" strokeWidth="2" transform="rotate(10 90 45)"/>
+                    <circle cx="30" cy="30" r="8" fill="#34323A"/>
+                    <path d="M85 35 L95 50 L75 50 Z" fill="#34323A"/>
                   </svg>
                 </div>
               </div>
@@ -332,7 +332,7 @@ function BeInspired() {
             </Link>
           </motion.div>
 
-          {/* Card 2 - Client Voices (Pink) */}
+          {/* Card 2 - Client Voices (Nordic Berry) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -340,29 +340,29 @@ function BeInspired() {
             className="group"
           >
             <Link href="/client-voices">
-              <div className="bg-[#E8C4C4] p-8 aspect-square flex flex-col">
-                <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-black mb-auto">
+              <div className="bg-[#A12F63] p-8 aspect-square flex flex-col">
+                <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-[#F7F6F5] mb-auto">
                   Client Voices
                 </h3>
                 {/* Illustration */}
                 <div className="flex justify-center">
                   <svg viewBox="0 0 100 100" className="w-28 h-auto">
-                    <circle cx="50" cy="40" r="25" fill="white" stroke="black" strokeWidth="2"/>
-                    <circle cx="42" cy="35" r="3" fill="black"/>
-                    <circle cx="58" cy="35" r="3" fill="black"/>
-                    <path d="M40 48 Q50 55 60 48" fill="none" stroke="black" strokeWidth="2"/>
-                    <path d="M50 65 L50 85 M35 75 L65 75" stroke="black" strokeWidth="2"/>
+                    <circle cx="50" cy="40" r="25" fill="#F7F6F5" stroke="#34323A" strokeWidth="2"/>
+                    <circle cx="42" cy="35" r="3" fill="#34323A"/>
+                    <circle cx="58" cy="35" r="3" fill="#34323A"/>
+                    <path d="M40 48 Q50 55 60 48" fill="none" stroke="#34323A" strokeWidth="2"/>
+                    <path d="M50 65 L50 85 M35 75 L65 75" stroke="#34323A" strokeWidth="2"/>
                   </svg>
                 </div>
               </div>
-              <p className="mt-4 text-red text-sm font-medium">Featured story:</p>
-              <p className="mt-1 font-[family-name:var(--font-playfair)] text-xl text-black">
+              <p className="mt-4 text-[#A12F63] text-sm font-medium">Featured story:</p>
+              <p className="mt-1 font-[family-name:var(--font-playfair)] text-xl text-[#34323A]">
                 Leadership transformation at scale
               </p>
             </Link>
           </motion.div>
 
-          {/* Card 3 - Gallery (Blue) */}
+          {/* Card 3 - Gallery (Deep Mulberry) */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -370,22 +370,22 @@ function BeInspired() {
             className="group"
           >
             <Link href="/gallery">
-              <div className="bg-[#7BA3B5] p-8 aspect-square flex flex-col">
-                <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-white mb-auto">
+              <div className="bg-[#5A1735] p-8 aspect-square flex flex-col">
+                <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-[#F7F6F5] mb-auto">
                   Gallery
                 </h3>
                 {/* Illustration */}
                 <div className="flex justify-center">
                   <svg viewBox="0 0 100 100" className="w-28 h-auto">
-                    <rect x="20" y="30" width="60" height="45" rx="3" fill="white" stroke="black" strokeWidth="2"/>
-                    <circle cx="35" cy="45" r="8" fill="black"/>
-                    <path d="M25 70 L45 50 L60 60 L75 45 L75 70 Z" fill="black" opacity="0.3"/>
-                    <circle cx="65" cy="40" r="5" fill="#C9A76C"/>
+                    <rect x="20" y="30" width="60" height="45" rx="3" fill="#F7F6F5" stroke="#34323A" strokeWidth="2"/>
+                    <circle cx="35" cy="45" r="8" fill="#34323A"/>
+                    <path d="M25 70 L45 50 L60 60 L75 45 L75 70 Z" fill="#34323A" opacity="0.3"/>
+                    <circle cx="65" cy="40" r="5" fill="#BFA27A"/>
                   </svg>
                 </div>
               </div>
-              <p className="mt-4 text-red text-sm font-medium">Explore:</p>
-              <p className="mt-1 font-[family-name:var(--font-playfair)] text-xl text-black">
+              <p className="mt-4 text-[#A12F63] text-sm font-medium">Explore:</p>
+              <p className="mt-1 font-[family-name:var(--font-playfair)] text-xl text-[#34323A]">
                 Moments from our sessions
               </p>
             </Link>
@@ -396,13 +396,13 @@ function BeInspired() {
   );
 }
 
-// Get in Touch CTA (Good Company style)
+// Get in Touch CTA (Good Company style - Champagne Gold background)
 function GetInTouch() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section ref={ref} className="bg-[#7BA3B5] py-20 md:py-32">
+    <section ref={ref} className="bg-[#BFA27A] py-20 md:py-32">
       <Container size="wide">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left - Text */}
@@ -411,15 +411,15 @@ function GetInTouch() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-black italic">
+            <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#34323A] italic">
               Get in touch
             </h2>
-            <p className="mt-6 text-xl md:text-2xl text-black/80 leading-relaxed max-w-md">
+            <p className="mt-6 text-xl md:text-2xl text-[#34323A]/80 leading-relaxed max-w-md">
               Contact us if you want to know more about our coaching and leadership development.
             </p>
             <Link
               href="/contact"
-              className="mt-8 inline-flex items-center gap-2 text-black hover:text-white transition-colors text-lg font-medium"
+              className="mt-8 inline-flex items-center gap-2 text-[#34323A] hover:text-[#5A1735] transition-colors text-lg font-medium"
             >
               See more
               <span className="text-xl">→</span>
@@ -433,31 +433,31 @@ function GetInTouch() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            {/* Stylized illustration of people */}
+            {/* Stylized illustration of people - using Warm Charcoal and Deep Mulberry */}
             <svg viewBox="0 0 400 350" className="w-full h-auto max-w-md">
               {/* Person 1 */}
               <g transform="translate(40, 50)">
-                <ellipse cx="40" cy="25" rx="25" ry="28" fill="#2D4A4A"/>
-                <path d="M10 180 Q20 80 40 70 Q60 80 70 180 Z" fill="#2D4A4A"/>
-                <rect x="15" y="180" width="50" height="100" fill="#2D4A4A"/>
+                <ellipse cx="40" cy="25" rx="25" ry="28" fill="#34323A"/>
+                <path d="M10 180 Q20 80 40 70 Q60 80 70 180 Z" fill="#34323A"/>
+                <rect x="15" y="180" width="50" height="100" fill="#34323A"/>
               </g>
               {/* Person 2 */}
               <g transform="translate(130, 30)">
-                <ellipse cx="45" cy="28" rx="28" ry="30" fill="#1a1a1a"/>
-                <path d="M10 200 Q25 90 45 80 Q65 90 80 200 Z" fill="#1a1a1a"/>
-                <rect x="15" y="200" width="60" height="90" fill="#1a1a1a"/>
+                <ellipse cx="45" cy="28" rx="28" ry="30" fill="#5A1735"/>
+                <path d="M10 200 Q25 90 45 80 Q65 90 80 200 Z" fill="#5A1735"/>
+                <rect x="15" y="200" width="60" height="90" fill="#5A1735"/>
               </g>
               {/* Person 3 */}
               <g transform="translate(240, 40)">
-                <ellipse cx="40" cy="25" rx="25" ry="28" fill="#2D4A4A"/>
-                <path d="M10 190 Q20 80 40 70 Q60 80 70 190 Z" fill="#2D4A4A"/>
-                <rect x="15" y="190" width="50" height="95" fill="#2D4A4A"/>
+                <ellipse cx="40" cy="25" rx="25" ry="28" fill="#34323A"/>
+                <path d="M10 190 Q20 80 40 70 Q60 80 70 190 Z" fill="#34323A"/>
+                <rect x="15" y="190" width="50" height="95" fill="#34323A"/>
               </g>
               {/* Person 4 */}
               <g transform="translate(320, 60)">
-                <ellipse cx="35" cy="22" rx="22" ry="25" fill="#1a1a1a"/>
-                <path d="M8 170 Q18 70 35 60 Q52 70 62 170 Z" fill="#1a1a1a"/>
-                <rect x="12" y="170" width="46" height="85" fill="#1a1a1a"/>
+                <ellipse cx="35" cy="22" rx="22" ry="25" fill="#5A1735"/>
+                <path d="M8 170 Q18 70 35 60 Q52 70 62 170 Z" fill="#5A1735"/>
+                <rect x="12" y="170" width="46" height="85" fill="#5A1735"/>
               </g>
             </svg>
           </motion.div>
