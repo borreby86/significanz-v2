@@ -75,13 +75,10 @@ function Hero() {
                   key={currentWord}
                   className="block text-7xl md:text-8xl lg:text-9xl leading-[0.9] italic mt-2"
                   style={{ color: words[currentWord].color }}
-                  initial={{ opacity: 0, y: 40, filter: "blur(10px)", scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
-                  exit={{ opacity: 0, y: -40, filter: "blur(10px)", scale: 0.95 }}
-                  transition={{
-                    duration: 0.6,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
                 >
                   {words[currentWord].text}
                 </motion.span>
