@@ -5,9 +5,10 @@ import { cn } from '@/lib/utils';
 
 interface LanguageToggleProps {
   className?: string;
+  scrolled?: boolean;
 }
 
-export function LanguageToggle({ className }: LanguageToggleProps) {
+export function LanguageToggle({ className, scrolled = true }: LanguageToggleProps) {
   const { language, setLanguage } = useLanguage();
 
   return (
@@ -17,22 +18,22 @@ export function LanguageToggle({ className }: LanguageToggleProps) {
         className={cn(
           'px-2 py-1 transition-colors duration-300',
           language === 'en'
-            ? 'text-black font-medium'
-            : 'text-gray-400 hover:text-gray-600'
+            ? scrolled ? 'text-black font-medium' : 'text-white font-medium'
+            : scrolled ? 'text-gray-400 hover:text-gray-600' : 'text-white/50 hover:text-white/80'
         )}
         aria-pressed={language === 'en'}
         aria-label="Switch to English"
       >
         EN
       </button>
-      <span className="text-gray-300">|</span>
+      <span className={scrolled ? 'text-gray-300' : 'text-white/30'}>|</span>
       <button
         onClick={() => setLanguage('da')}
         className={cn(
           'px-2 py-1 transition-colors duration-300',
           language === 'da'
-            ? 'text-black font-medium'
-            : 'text-gray-400 hover:text-gray-600'
+            ? scrolled ? 'text-black font-medium' : 'text-white font-medium'
+            : scrolled ? 'text-gray-400 hover:text-gray-600' : 'text-white/50 hover:text-white/80'
         )}
         aria-pressed={language === 'da'}
         aria-label="Switch to Danish"

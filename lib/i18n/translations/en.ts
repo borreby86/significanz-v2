@@ -26,8 +26,8 @@ export const en: TranslationKeys = {
         description: 'Clarity and courage.',
       },
       outdoorCoaching: {
-        title: 'Outdoor Coaching',
-        description: 'Reflection in nature.',
+        title: 'Key Notes',
+        description: 'Inspiring keynote presentations.',
       },
       teamCoaching: {
         title: 'Team Coaching',

@@ -21,7 +21,12 @@
       "Bash(npx next dev:*)",
       "WebFetch(domain:goodcompany-cph.dk)",
       "Bash(git add:*)",
-      "Bash(git commit:*)"
+      "Bash(git commit:*)",
+      "Bash(git remote:*)",
+      "Bash(git remote add:*)",
+      "Bash(git push:*)",
+      "WebFetch(domain:unsplash.com)",
+      "Bash(do curl -sL -o \"$i.jpg\" \"https://picsum.photos/seed/corporate$i/600/600\")"
     ],
     "deny": [],
     "ask": []

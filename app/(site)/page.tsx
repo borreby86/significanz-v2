@@ -6,6 +6,7 @@ import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { useTranslation } from "@/lib/i18n";
+import { Header } from "@/components/layout/Header";
 
 // Hero with full-width photo and rotating words with brand colors
 function Hero() {
@@ -30,10 +31,10 @@ function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero/hero-office.png"
+          src="/images/hero/hero-office-new.jpg"
           alt="Office environment with Copenhagen lakes view"
           fill
-          className="object-cover"
+          className="object-cover grayscale"
           priority
         />
         {/* Subtle overlay for text readability */}
@@ -42,22 +43,6 @@ function Hero() {
 
       {/* Content */}
       <div className="relative z-10 min-h-screen flex flex-col">
-        {/* Logo at top */}
-        <motion.div
-          className="pt-8 md:pt-12 px-6 md:px-12"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-        >
-          <Image
-            src="/images/logo/logo.avif"
-            alt="Significanz"
-            width={200}
-            height={60}
-            className="h-12 md:h-16 w-auto brightness-0 invert"
-          />
-        </motion.div>
-
         {/* Main content - centered */}
         <div className="flex-1 flex items-center justify-center px-6">
           <motion.div
@@ -146,8 +131,10 @@ function WhoWeAreAndServices() {
       title: t.services.items.outdoorCoaching.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          <path d="M8 52L24 20L36 40L44 28L56 52H8Z" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-          <circle cx="48" cy="16" r="6" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <circle cx="32" cy="20" r="10" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M22 20c0-6 4-10 10-10s10 4 10 10" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <rect x="28" y="30" width="8" height="16" rx="2" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M32 46v8M24 54h16" stroke="currentColor" strokeWidth="1.5"/>
         </svg>
       )
     },

@@ -24,7 +24,7 @@ export default function GalleryPage() {
                 src="/images/gallery/featured.jpg"
                 alt={t.galleryPage.featuredAlt}
                 fill
-                className="object-cover"
+                className="object-cover grayscale"
                 sizes="100vw"
                 priority
               />
@@ -45,7 +45,7 @@ export default function GalleryPage() {
                       src={image.src}
                       alt={`${t.galleryPage.photoAlt} ${image.id}`}
                       fill
-                      className="object-cover"
+                      className="object-cover grayscale"
                       sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 20vw"
                     />
                   </div>
