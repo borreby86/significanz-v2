@@ -15,22 +15,22 @@ export function Services() {
 
   const services = [
     {
-      title: t.services.items.executiveCoaching.title,
-      description: t.services.items.executiveCoaching.description,
+      title: t.services.items.meaningfulAction.title,
+      description: t.services.items.meaningfulAction.description,
       href: "/4d",
       number: "01",
       image: "/images/services/executive.jpg",
     },
     {
-      title: t.services.items.outdoorCoaching.title,
-      description: t.services.items.outdoorCoaching.description,
+      title: t.services.items.actAbility.title,
+      description: t.services.items.actAbility.description,
       href: "/4d",
       number: "02",
       image: "/images/services/outdoor.jpg",
     },
     {
-      title: t.services.items.teamCoaching.title,
-      description: t.services.items.teamCoaching.description,
+      title: t.services.items.executiveCoaching.title,
+      description: t.services.items.executiveCoaching.description,
       href: "/4d",
       number: "03",
       image: "/images/services/team.jpg",
@@ -43,11 +43,18 @@ export function Services() {
       image: "/images/services/leadership.jpg",
     },
     {
-      title: t.services.items.crossCulture.title,
-      description: t.services.items.crossCulture.description,
+      title: t.services.items.keynotes.title,
+      description: t.services.items.keynotes.description,
       href: "/4d",
       number: "05",
       image: "/images/services/culture.jpg",
+    },
+    {
+      title: t.services.items.teamTransformation.title,
+      description: t.services.items.teamTransformation.description,
+      href: "/4d",
+      number: "06",
+      image: "/images/services/executive.jpg",
     },
   ];
 

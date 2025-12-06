@@ -22,25 +22,29 @@ export const en: TranslationKeys = {
     subtitle: 'For leaders who want more.',
     readMore: 'Read more',
     items: {
+      meaningfulAction: {
+        title: 'Meaningful Action',
+        description: 'Purpose-driven impact.',
+      },
+      actAbility: {
+        title: 'Act-ability',
+        description: 'From insight to action.',
+      },
       executiveCoaching: {
         title: 'Executive Coaching',
         description: 'Clarity and courage.',
-      },
-      outdoorCoaching: {
-        title: 'Key Notes',
-        description: 'Inspiring keynote presentations.',
-      },
-      teamCoaching: {
-        title: 'Team Coaching',
-        description: 'High-performing teams.',
       },
       leadershipDevelopment: {
         title: 'Leadership Development',
         description: 'Growth programs.',
       },
-      crossCulture: {
-        title: 'Cross-Culture',
-        description: 'International leadership.',
+      keynotes: {
+        title: 'Keynotes',
+        description: 'Inspiring presentations.',
+      },
+      teamTransformation: {
+        title: 'Team Transformation',
+        description: 'High-performing teams.',
       },
     },
   },

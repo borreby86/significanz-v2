@@ -98,23 +98,36 @@ function WhoWeAreAndServices() {
 
   const services = [
     {
-      title: t.services.items.executiveCoaching.title,
+      title: t.services.items.meaningfulAction.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          <circle cx="32" cy="20" r="10" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M16 52c0-12 8-18 16-18s16 6 16 18" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M44 24l8-8M52 24l-8-8" stroke="currentColor" strokeWidth="1.5"/>
+          {/* Heart with upward arrow - meaningful purpose-driven action */}
+          <path d="M32 52l-16-16c-4-4-4-10 0-14s10-4 14 0l2 2 2-2c4-4 10-4 14 0s4 10 0 14L32 52z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+          <path d="M32 38V18M26 24l6-6 6 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       )
     },
     {
-      title: t.services.items.teamCoaching.title,
+      title: t.services.items.actAbility.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          <circle cx="20" cy="24" r="8" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-          <circle cx="44" cy="24" r="8" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-          <circle cx="32" cy="44" r="8" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M26 28l6 10M38 28l-6 10" stroke="currentColor" strokeWidth="1.5"/>
+          {/* Person with gear - ability to take action */}
+          <circle cx="24" cy="18" r="8" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M10 52c0-10 6-16 14-16s14 6 14 16" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <circle cx="46" cy="38" r="10" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <circle cx="46" cy="38" r="4" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M46 26v4M46 46v4M34 38h4M54 38h4M37 29l3 3M52 44l3 3M37 47l3-3M52 32l3-3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      )
+    },
+    {
+      title: t.services.items.executiveCoaching.title,
+      icon: (
+        <svg viewBox="0 0 64 64" className="w-14 h-14">
+          {/* Person with diamond/star above - executive excellence */}
+          <circle cx="32" cy="28" r="9" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M16 56c0-11 7-17 16-17s16 6 16 17" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M32 6l3 6 6 1-4 4 1 6-6-3-6 3 1-6-4-4 6-1 3-6z" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
         </svg>
       )
     },
@@ -122,19 +135,42 @@ function WhoWeAreAndServices() {
       title: t.services.items.leadershipDevelopment.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          <path d="M12 52L32 12L52 52H12Z" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-          <circle cx="32" cy="36" r="6" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          {/* Ascending stairs with flag - growth journey */}
+          <path d="M8 52h12v-10h12v-10h12v-10h12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinejoin="round"/>
+          <path d="M52 22v30M52 22l-8-10 8-4" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <circle cx="14" cy="46" r="2" fill="currentColor"/>
+          <circle cx="26" cy="36" r="2" fill="currentColor"/>
+          <circle cx="38" cy="26" r="2" fill="currentColor"/>
         </svg>
       )
     },
     {
-      title: t.services.items.outdoorCoaching.title,
+      title: t.services.items.keynotes.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          <circle cx="32" cy="20" r="10" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M22 20c0-6 4-10 10-10s10 4 10 10" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-          <rect x="28" y="30" width="8" height="16" rx="2" fill="none" stroke="currentColor" strokeWidth="1.5"/>
-          <path d="M32 46v8M24 54h16" stroke="currentColor" strokeWidth="1.5"/>
+          {/* Podium with sound waves - inspiring presentations */}
+          <rect x="20" y="28" width="24" height="28" rx="2" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M24 28v-6a8 8 0 1 1 16 0v6" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <circle cx="32" cy="16" r="4" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M48 20c3 3 5 7 5 12s-2 9-5 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M54 14c5 5 8 12 8 18s-3 13-8 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M16 20c-3 3-5 7-5 12s2 9 5 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M10 14c-5 5-8 12-8 18s3 13 8 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+        </svg>
+      )
+    },
+    {
+      title: t.services.items.teamTransformation.title,
+      icon: (
+        <svg viewBox="0 0 64 64" className="w-14 h-14">
+          {/* Multiple people with circular transformation arrows */}
+          <circle cx="20" cy="20" r="6" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <circle cx="44" cy="20" r="6" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <circle cx="32" cy="44" r="6" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <path d="M26 18h12M26 22h12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M24 28l6 10M40 28l-6 10" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M14 32c-4 6-2 14 4 18M50 32c4 6 2 14-4 18" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+          <path d="M12 36l2-4-4-1M52 36l-2-4 4-1" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       )
     },
@@ -172,7 +208,7 @@ function WhoWeAreAndServices() {
         </div>
 
         {/* Bottom section - Services grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-10">
           {services.map((service, index) => (
             <motion.div
               key={service.title}

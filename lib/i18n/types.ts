@@ -25,11 +25,12 @@ export interface TranslationKeys {
     subtitle: string;
     readMore: string;
     items: {
+      meaningfulAction: { title: string; description: string };
+      actAbility: { title: string; description: string };
       executiveCoaching: { title: string; description: string };
-      outdoorCoaching: { title: string; description: string };
-      teamCoaching: { title: string; description: string };
       leadershipDevelopment: { title: string; description: string };
-      crossCulture: { title: string; description: string };
+      keynotes: { title: string; description: string };
+      teamTransformation: { title: string; description: string };
     };
   };
 

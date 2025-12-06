@@ -22,25 +22,29 @@ export const da: TranslationKeys = {
     subtitle: 'For ledere der vil mere.',
     readMore: 'Læs mere',
     items: {
+      meaningfulAction: {
+        title: 'Meningsfuld Handling',
+        description: 'Formålsdrevet impact.',
+      },
+      actAbility: {
+        title: 'Handlekraft',
+        description: 'Fra indsigt til handling.',
+      },
       executiveCoaching: {
         title: 'Executive Coaching',
         description: 'Klarhed og mod.',
-      },
-      outdoorCoaching: {
-        title: 'Key Notes',
-        description: 'Inspirerende keynote-præsentationer.',
-      },
-      teamCoaching: {
-        title: 'Team Coaching',
-        description: 'Højtydende teams.',
       },
       leadershipDevelopment: {
         title: 'Ledelsesudvikling',
         description: 'Udviklingsforløb.',
       },
-      crossCulture: {
-        title: 'Cross-Culture',
-        description: 'International ledelse.',
+      keynotes: {
+        title: 'Keynotes',
+        description: 'Inspirerende præsentationer.',
+      },
+      teamTransformation: {
+        title: 'Team Transformation',
+        description: 'Højtydende teams.',
       },
     },
   },
