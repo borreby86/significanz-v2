@@ -35,23 +35,49 @@ export function Header() {
       )}
     >
       <Container size="full">
-        <nav className="flex items-center justify-between h-20">
-          {/* Logo */}
-          <Link href="/" className="relative">
-            <Image
-              src="/images/logo/icon.avif"
-              alt="Significanz"
-              width={40}
-              height={40}
-              className={cn(
-                "h-10 w-auto transition-all duration-300",
-                scrolled ? "" : "brightness-0 invert"
+        <nav className="relative flex items-center justify-between h-20">
+          {/* Logo - switches from full logo to icon on scroll */}
+          <Link href="/" className="relative flex items-center w-[210px]">
+            <AnimatePresence mode="popLayout">
+              {!scrolled ? (
+                <motion.div
+                  key="full-logo"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Image
+                    src="/images/logo/significanz navnetræk - champagne gold.png"
+                    alt="Significanz"
+                    width={300}
+                    height={80}
+                    className="h-14 w-auto"
+                    priority
+                  />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="icon-logo"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <Image
+                    src="/images/logo/significanz bomærke - champagne gold.png"
+                    alt="Significanz"
+                    width={56}
+                    height={56}
+                    className="h-14 w-auto"
+                  />
+                </motion.div>
               )}
-            />
+            </AnimatePresence>
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-10">
+          <ul className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-10">
             {navigation.map((item) => (
               <li key={item.name}>
                 <Link

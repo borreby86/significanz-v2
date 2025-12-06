@@ -31,7 +31,7 @@ function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="/images/hero/hero-office-new.jpg"
+          src="/images/hero/hero new.jpg"
           alt="Office environment with Copenhagen lakes view"
           fill
           className="object-cover grayscale"

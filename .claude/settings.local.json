@@ -26,7 +26,9 @@
       "Bash(git remote add:*)",
       "Bash(git push:*)",
       "WebFetch(domain:unsplash.com)",
-      "Bash(do curl -sL -o \"$i.jpg\" \"https://picsum.photos/seed/corporate$i/600/600\")"
+      "Bash(do curl -sL -o \"$i.jpg\" \"https://picsum.photos/seed/corporate$i/600/600\")",
+      "Bash(taskkill:*)",
+      "Bash(powershell:*)"
     ],
     "deny": [],
     "ask": []

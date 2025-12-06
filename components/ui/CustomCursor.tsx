@@ -17,9 +17,9 @@ export function CustomCursor() {
     text: null,
   });
 
-  // Raw mouse position
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
+  // Raw mouse position - start off-screen
+  const mouseX = useMotionValue(-100);
+  const mouseY = useMotionValue(-100);
 
   // Smoothed cursor position with spring physics
   const springConfig = { damping: 25, stiffness: 400, mass: 0.5 };
