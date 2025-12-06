@@ -28,7 +28,8 @@
       "WebFetch(domain:unsplash.com)",
       "Bash(do curl -sL -o \"$i.jpg\" \"https://picsum.photos/seed/corporate$i/600/600\")",
       "Bash(taskkill:*)",
-      "Bash(powershell:*)"
+      "Bash(powershell:*)",
+      "Bash(git config:*)"
     ],
     "deny": [],
     "ask": []
