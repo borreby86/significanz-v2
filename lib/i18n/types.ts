@@ -4,6 +4,7 @@ export interface TranslationKeys {
   // Navigation
   nav: {
     about: string;
+    howWeWork: string;
     fourD: string;
     gallery: string;
     clientVoices: string;
@@ -76,6 +77,10 @@ export interface TranslationKeys {
     ctaTitle: string;
     ctaButton: string;
     contactTitle: string;
+    workWithUs: string;
+    location: string;
+    privacyPolicy: string;
+    followUs: string;
   };
 
   // Contact Form
@@ -104,6 +109,13 @@ export interface TranslationKeys {
     subtitle: string;
     preferEmail: string;
     reachUs: string;
+    getInTouch: string;
+    sendMessage: string;
+    startConversation: string;
+    respondTime: string;
+    directContact: string;
+    learnAboutUs: string;
+    exploreFramework: string;
   };
 
   // 4D Page
@@ -113,6 +125,9 @@ export interface TranslationKeys {
     ourMethod: string;
     methodDescription: string;
     keyOutcomes: string;
+    phase: string;
+    fourPhases: string;
+    aboutUs: string;
     steps: {
       discover: { name: string; tagline: string; description: string; outcomes: string[] };
       define: { name: string; tagline: string; description: string; outcomes: string[] };
@@ -143,12 +158,138 @@ export interface TranslationKeys {
   aboutPage: {
     title: string;
     subtitle: string;
+    label: string;
+    heroTitle: string;
+    heroDescription: string;
+    scrollToExplore: string;
+    imageAlt: string;
+    ourPurpose: string;
+    purposeTitle: string;
+    purposeDescription: string;
+    ourPhilosophy: string;
+    philosophyTitle: string;
+    philosophyDescription: string;
+    ability: string;
+    willingness: string;
+    meaningfulImpact: string;
+    enablementDescription: string;
+    quote: string;
+    quoteAuthor: string;
+    whatWeBelieve: string;
+    ourLogicTitle: string;
+    logic: {
+      peopleContribute: { title: string; description: string; label: string };
+      bothAnd: { title: string; description: string; label: string };
+      integratedSelf: { title: string; description: string; label: string };
+    };
+    ourFramework: string;
+    fivePsTitle: string;
+    fivePsDescription: string;
+    fivePs: {
+      professional: { name: string; description: string };
+      personal: { name: string; description: string };
+      private: { name: string; description: string };
+      purpose: { name: string; description: string };
+      practice: { name: string; description: string };
+    };
+    ourEdge: string;
+    differentiatorTitle: string;
+    differentiators: {
+      instantOutcomes: { title: string; description: string };
+      creatingEnablement: { title: string; description: string };
+      techForward: { title: string; description: string };
+      trustedPartner: { title: string; description: string };
+    };
+    workingTogether: string;
+    clientExperienceTitle: string;
+    clientExperienceSubtitle: string;
+    clientExperience: {
+      evidenceBased: { title: string; description: string };
+      visibleProgress: { title: string; description: string };
+      safetyFirst: { title: string; description: string };
+      coCreation: { title: string; description: string };
+    };
+    startConversation: string;
+  };
+
+  // How We Work Page
+  howWeWorkPage: {
+    title: string;
+    subtitle: string;
+    ourApproach: string;
+    theModel: string;
+    modelTitle: string;
+    modelDescription: string;
+    fourDimensions: string;
+    dimensionsTitle: string;
+    dimensionsSubtitle: string;
+    readyToBegin: string;
+    discoverPurpose: string;
+    ctaDescription: string;
+    startConversation: string;
+    segments: {
+      professional: { title: string; description: string };
+      private: { title: string; description: string };
+      personal: { title: string; description: string };
+      practice: { title: string; description: string };
+    };
   };
 
   // Client Voices Page
   clientVoicesPage: {
     title: string;
     subtitle: string;
+    impactDescription: string;
+    ctaTitle: string;
+    ctaDescription: string;
+    ctaButton: string;
+    testimonials: Array<{
+      quote: string;
+      author: string;
+      role: string;
+      company: string;
+    }>;
+  };
+
+  // Homepage sections
+  homepage: {
+    whoAreWe: string;
+    weAreCoaches: string;
+    weCreateChange: string;
+    beInspired: string;
+    seeAllContent: string;
+    framework: string;
+    the4DModel: string;
+    frameworkDescription: string;
+    testimonials: string;
+    clientVoices: string;
+    testimonialsDescription: string;
+    gallery: string;
+    ourSessions: string;
+    galleryDescription: string;
+    getInTouch: string;
+    contactDescription: string;
+    contactUs: string;
+    aboutUs: string;
+    email: string;
+    location: string;
+    locationValue: string;
+  };
+
+  // Testimonials
+  testimonials: {
+    items: Array<{
+      quote: string;
+      author: string;
+      role: string;
+      company: string;
+    }>;
+  };
+
+  // Cursor
+  cursor: {
+    view: string;
+    explore: string;
   };
 }
 

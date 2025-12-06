@@ -2,20 +2,27 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { motion, useMotionValue, useSpring } from "motion/react";
+import { useTranslation } from "@/lib/i18n";
 
 interface CursorState {
   isHovering: boolean;
   isPointer: boolean;
-  text: string | null;
+  textType: "view" | "explore" | null;
 }
 
 export function CustomCursor() {
+  const { t } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const [cursorState, setCursorState] = useState<CursorState>({
     isHovering: false,
     isPointer: false,
-    text: null,
+    textType: null,
   });
+
+  // Get translated text based on textType
+  const cursorText = cursorState.textType
+    ? cursorState.textType === "view" ? t.cursor.view : t.cursor.explore
+    : null;
 
   // Raw mouse position - start off-screen
   const mouseX = useMotionValue(-100);
@@ -79,10 +86,10 @@ export function CustomCursor() {
 
       viewElements.forEach((el) => {
         el.addEventListener("mouseenter", () => {
-          setCursorState({ isHovering: true, isPointer: true, text: "View" });
+          setCursorState({ isHovering: true, isPointer: true, textType: "view" });
         });
         el.addEventListener("mouseleave", () => {
-          setCursorState({ isHovering: false, isPointer: false, text: null });
+          setCursorState({ isHovering: false, isPointer: false, textType: null });
         });
       });
 
@@ -91,11 +98,11 @@ export function CustomCursor() {
           setCursorState({
             isHovering: true,
             isPointer: true,
-            text: "Explore",
+            textType: "explore",
           });
         });
         el.addEventListener("mouseleave", () => {
-          setCursorState({ isHovering: false, isPointer: false, text: null });
+          setCursorState({ isHovering: false, isPointer: false, textType: null });
         });
       });
     };
@@ -152,14 +159,14 @@ export function CustomCursor() {
             ${cursorState.isHovering ? "bg-white/10" : "bg-transparent"}
           `}
         >
-          {cursorState.text && (
+          {cursorText && (
             <motion.span
               initial={{ opacity: 0, scale: 0.5 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.5 }}
               className="text-[10px] font-medium text-white uppercase tracking-wider"
             >
-              {cursorState.text}
+              {cursorText}
             </motion.span>
           )}
         </div>

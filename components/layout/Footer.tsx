@@ -14,7 +14,7 @@ export function Footer() {
           {/* Left - Contact info */}
           <div>
             <h3 className="font-medium text-white mb-6">
-              Work with us
+              {t.footer.workWithUs}
             </h3>
             <div className="space-y-2 text-gray-400 text-sm">
               <a
@@ -23,12 +23,12 @@ export function Footer() {
               >
                 contact@significanz.dk
               </a>
-              <p>Copenhagen, Denmark</p>
+              <p>{t.footer.location}</p>
               <Link
                 href="/contact"
                 className="block hover:text-white transition-colors mt-4"
               >
-                Privacy Policy
+                {t.footer.privacyPolicy}
               </Link>
             </div>
           </div>
@@ -46,7 +46,7 @@ export function Footer() {
           {/* Right - Social */}
           <div className="md:text-right">
             <h3 className="font-medium text-white mb-6">
-              Follow us
+              {t.footer.followUs}
             </h3>
             <div className="flex gap-3 md:justify-end">
               {/* LinkedIn */}

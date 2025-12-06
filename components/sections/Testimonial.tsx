@@ -20,39 +20,18 @@ interface TestimonialProps {
   interval?: number;
 }
 
-const defaultTestimonials: TestimonialItem[] = [
-  {
-    quote:
-      "Stinne har en unik evne til at skabe et trygt rum for refleksion. Hendes coaching har givet mig nye perspektiver på mit lederskab og hjulpet mig med at finde min autentiske ledelsesstil.",
-    author: "Marie Jensen",
-    role: "CEO",
-    company: "TechStartup Danmark",
-    image: "/images/testimonials/client-2.jpg",
-  },
-  {
-    quote:
-      "Outdoor coaching med Stinne var en transformativ oplevelse. Naturen gav rum til dybere samtaler og indsigter, som jeg aldrig ville have nået i et traditionelt mødelokale.",
-    author: "Lars Andersen",
-    role: "Direktør",
-    company: "Nordic Solutions",
-    image: "/images/testimonials/client-1.jpg",
-  },
-  {
-    quote:
-      "4D-modellen gav mig et klart framework til at arbejde med min personlige udvikling. Stinne formåede at gøre komplekse processer tilgængelige og handlingsorienterede.",
-    author: "Sofie Nielsen",
-    role: "HR Chef",
-    company: "Danish Innovation",
-    image: "/images/testimonials/client-3.jpg",
-  },
-];
-
 export function Testimonial({
-  testimonials = defaultTestimonials,
+  testimonials,
   autoPlay = true,
   interval = 6000,
 }: TestimonialProps) {
   const { t } = useTranslation();
+
+  // Use translated testimonials if none provided
+  const displayTestimonials = testimonials ?? t.testimonials.items.map((item, index) => ({
+    ...item,
+    image: `/images/testimonials/client-${index + 1}.jpg`,
+  }));
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const sectionRef = useRef<HTMLElement>(null);
@@ -64,11 +43,11 @@ export function Testimonial({
 
     const timer = setInterval(() => {
       setDirection(1);
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+      setCurrentIndex((prev) => (prev + 1) % displayTestimonials.length);
     }, interval);
 
     return () => clearInterval(timer);
-  }, [autoPlay, interval, testimonials.length]);
+  }, [autoPlay, interval, displayTestimonials.length]);
 
   const goToSlide = (index: number) => {
     setDirection(index > currentIndex ? 1 : -1);
@@ -144,7 +123,7 @@ export function Testimonial({
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.2 }}
                 >
-                  &ldquo;{testimonials[currentIndex].quote}&rdquo;
+                  &ldquo;{displayTestimonials[currentIndex].quote}&rdquo;
                 </motion.p>
 
                 {/* Author info with photo */}
@@ -163,8 +142,8 @@ export function Testimonial({
                       transition={{ duration: 0.4, delay: 0.5 }}
                     >
                       <Image
-                        src={testimonials[currentIndex].image}
-                        alt={testimonials[currentIndex].author}
+                        src={displayTestimonials[currentIndex].image}
+                        alt={displayTestimonials[currentIndex].author}
                         fill
                         className="object-cover"
                         sizes="56px"
@@ -172,11 +151,11 @@ export function Testimonial({
                     </motion.div>
                     <div className="text-left">
                       <p className="text-black font-medium">
-                        {testimonials[currentIndex].author}
+                        {displayTestimonials[currentIndex].author}
                       </p>
                       <p className="text-gray-500 text-sm">
-                        {testimonials[currentIndex].role},{" "}
-                        {testimonials[currentIndex].company}
+                        {displayTestimonials[currentIndex].role},{" "}
+                        {displayTestimonials[currentIndex].company}
                       </p>
                     </div>
                   </div>
@@ -186,14 +165,14 @@ export function Testimonial({
           </div>
 
           {/* Navigation dots */}
-          {testimonials.length > 1 && (
+          {displayTestimonials.length > 1 && (
             <motion.div
               className="flex justify-center gap-3 mt-12"
               initial={{ opacity: 0, y: 20 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
             >
-              {testimonials.map((_, index) => (
+              {displayTestimonials.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => goToSlide(index)}
@@ -223,7 +202,7 @@ export function Testimonial({
           )}
 
           {/* Progress bar */}
-          {autoPlay && testimonials.length > 1 && (
+          {autoPlay && displayTestimonials.length > 1 && (
             <motion.div
               className="mt-8 max-w-xs mx-auto h-0.5 bg-gray-200 rounded-full overflow-hidden"
               initial={{ opacity: 0 }}

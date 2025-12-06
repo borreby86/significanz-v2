@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { useTranslation } from "@/lib/i18n";
 
 interface CTAProps {
   title?: string;
@@ -13,26 +14,30 @@ interface CTAProps {
 }
 
 export function CTA({
-  title = "Klar til at tage næste skridt?",
-  subtitle = "Book en uforpligtende samtale og lad os tale om dine mål og hvordan coaching kan hjælpe dig.",
-  buttonText = "Book en samtale",
-  buttonHref = "/book",
+  title,
+  subtitle,
+  buttonText,
+  buttonHref = "/contact",
 }: CTAProps) {
+  const { t } = useTranslation();
+  const displayTitle = title ?? t.cta.title;
+  const displaySubtitle = subtitle ?? t.cta.subtitle;
+  const displayButtonText = buttonText ?? t.cta.buttonText;
   return (
     <section className="py-24 md:py-32 bg-black text-white">
       <Container size="default">
         <FadeIn>
           <div className="text-center">
             <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl tracking-tight">
-              {title}
+              {displayTitle}
             </h2>
             <p className="mt-6 text-lg text-gray-400 max-w-xl mx-auto">
-              {subtitle}
+              {displaySubtitle}
             </p>
             <div className="mt-10">
               <Link href={buttonHref}>
                 <Button variant="accent" size="lg">
-                  {buttonText}
+                  {displayButtonText}
                 </Button>
               </Link>
             </div>

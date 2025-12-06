@@ -236,6 +236,7 @@ function Hero4D() {
 
 // Phase Card Component
 function PhaseCard({ phase, index }: { phase: typeof phases[0]; index: number }) {
+  const { t } = useTranslation();
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
@@ -251,7 +252,7 @@ function PhaseCard({ phase, index }: { phase: typeof phases[0]; index: number })
     >
       {/* Phase number */}
       <span className="text-[#F7F6F5]/60 text-sm font-medium tracking-wider">
-        Phase {phase.number}
+        {t.fourDPage.phase} {phase.number}
       </span>
 
       {/* Phase name */}
@@ -271,7 +272,7 @@ function PhaseCard({ phase, index }: { phase: typeof phases[0]; index: number })
 
       {/* Outcomes */}
       <div className="mt-8 pt-6 border-t border-[#F7F6F5]/20">
-        <span className="text-[#F7F6F5]/50 text-xs uppercase tracking-wider">Key Outcomes</span>
+        <span className="text-[#F7F6F5]/50 text-xs uppercase tracking-wider">{t.fourDPage.keyOutcomes}</span>
         <div className="mt-3 flex flex-wrap gap-2">
           {phase.outcomes.map((outcome) => (
             <span
@@ -289,6 +290,7 @@ function PhaseCard({ phase, index }: { phase: typeof phases[0]; index: number })
 
 // Phases Grid Section
 function PhasesSection() {
+  const { t } = useTranslation();
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
@@ -303,7 +305,7 @@ function PhasesSection() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            The four phases
+            {t.fourDPage.fourPhases}
           </motion.h2>
         </div>
 
@@ -413,7 +415,7 @@ function CTASection() {
                 href="/about"
                 className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#34323A] text-[#34323A] font-medium hover:bg-[#34323A] hover:text-[#F7F6F5] transition-colors"
               >
-                About Us
+                {t.fourDPage.aboutUs}
               </Link>
             </div>
           </motion.div>

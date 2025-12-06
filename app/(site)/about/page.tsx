@@ -9,76 +9,31 @@ import { motion, useScroll, useTransform, useInView } from "motion/react";
 import { SplitText } from "@/components/animations/SplitText";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { GradientDivider } from "@/components/ui/SectionDivider";
-
-// export const metadata: Metadata = {
-//   title: "About",
-//   description:
-//     "Significanz helps leaders and organizations create meaningful impact through interactions that matter.",
-// };
-
-const logic = [
-  {
-    title: "People want to contribute",
-    description: "Everyone has the potential to make a meaningful difference.",
-    icon: "01",
-  },
-  {
-    title: "BothAnd thinking",
-    description: "Embrace complexity. Move beyond either/or.",
-    icon: "02",
-  },
-  {
-    title: "Integrated self-leadership",
-    description: "The 5P's framework for holistic growth.",
-    icon: "03",
-  },
-];
-
-const fivePs = [
-  { name: "Professional", description: "Role & performance", color: "bg-red" },
-  { name: "Personal", description: "Reflection & relations", color: "bg-black" },
-  { name: "Private", description: "Values & self-awareness", color: "bg-gray-700" },
-  { name: "Purpose", description: "Individual to common", color: "bg-red/80" },
-  { name: "Practice", description: "Consistent habits", color: "bg-black/80" },
-];
-
-const differentiators = [
-  {
-    title: "Instant outcomes",
-    description: "Results from day one through deep listening.",
-    number: "01",
-  },
-  {
-    title: "Creating Enablement",
-    description: "Self-sufficient clients who continue independently.",
-    number: "02",
-  },
-  {
-    title: "Tech-forward",
-    description: "AI-integrated discovery and deployment.",
-    number: "03",
-  },
-  {
-    title: "Trusted partner",
-    description: "Deep listening. Kind challenges.",
-    number: "04",
-  },
-];
-
-const clientExperience = [
-  { title: "Evidence-based", description: "Documented learning" },
-  { title: "Visible progress", description: "Clear metrics" },
-  { title: "Safety first", description: "Hard conversations with care" },
-  { title: "Co-creation", description: "Built with, not for" },
-];
+import { useTranslation } from "@/lib/i18n";
 
 // Sticky Card Section Component
 function StickyCards() {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
   });
+
+  const logic = [
+    {
+      id: "peopleContribute",
+      icon: "01",
+    },
+    {
+      id: "bothAnd",
+      icon: "02",
+    },
+    {
+      id: "integratedSelf",
+      icon: "03",
+    },
+  ] as const;
 
   return (
     <div ref={containerRef} className="relative">
@@ -86,7 +41,7 @@ function StickyCards() {
         const targetScale = 1 - (logic.length - 1 - index) * 0.05;
         return (
           <StickyCard
-            key={item.title}
+            key={item.id}
             item={item}
             index={index}
             progress={scrollYProgress}
@@ -106,14 +61,17 @@ function StickyCard({
   targetScale,
   range,
 }: {
-  item: typeof logic[0];
+  item: { id: "peopleContribute" | "bothAnd" | "integratedSelf"; icon: string };
   index: number;
   progress: ReturnType<typeof useScroll>["scrollYProgress"];
   targetScale: number;
   range: [number, number];
 }) {
+  const { t } = useTranslation();
   const cardRef = useRef<HTMLDivElement>(null);
   const scale = useTransform(progress, range, [1, targetScale]);
+
+  const logicItem = t.aboutPage.logic[item.id];
 
   return (
     <div
@@ -139,13 +97,13 @@ function StickyCard({
 
         <div className="relative z-10">
           <span className="text-red font-medium text-sm uppercase tracking-wider">
-            Our Logic — {item.icon}
+            {logicItem.label}
           </span>
           <h3 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
-            {item.title}
+            {logicItem.title}
           </h3>
           <p className="mt-6 text-xl text-gray-600 leading-relaxed max-w-2xl">
-            {item.description}
+            {logicItem.description}
           </p>
         </div>
 
@@ -158,8 +116,17 @@ function StickyCard({
 
 // 5P Interactive Wheel Component
 function FivePWheel() {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-20% 0px" });
+
+  const fivePs = [
+    { id: "professional", color: "bg-red" },
+    { id: "personal", color: "bg-black" },
+    { id: "private", color: "bg-gray-700" },
+    { id: "purpose", color: "bg-red/80" },
+    { id: "practice", color: "bg-black/80" },
+  ] as const;
 
   return (
     <section ref={sectionRef} className="py-24 md:py-32 bg-black relative overflow-hidden">
@@ -190,13 +157,13 @@ function FivePWheel() {
               transition={{ duration: 0.6 }}
             >
               <span className="text-red font-medium text-sm uppercase tracking-wider">
-                Our Framework
+                {t.aboutPage.ourFramework}
               </span>
             </motion.div>
 
             <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-white tracking-tight">
               <SplitText splitType="words" delay={0.2} staggerDelay={0.08}>
-                The 5P&apos;s of Integrated Self-Leadership
+                {t.aboutPage.fivePsTitle}
               </SplitText>
             </h2>
 
@@ -213,50 +180,53 @@ function FivePWheel() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
             >
-              Self-leadership is the foundation of meaningful impact.
+              {t.aboutPage.fivePsDescription}
             </motion.p>
           </div>
 
           {/* Right: Interactive 5P List */}
           <div className="space-y-4">
-            {fivePs.map((p, index) => (
-              <motion.div
-                key={p.name}
-                className="group relative"
-                initial={{ opacity: 0, x: 50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-              >
-                <div className="flex items-center gap-6 p-6 bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-red/30 transition-all duration-300 cursor-pointer">
-                  {/* Large P letter */}
-                  <motion.span
-                    className={`w-14 h-14 ${p.color} rounded-full flex items-center justify-center text-white text-xl font-[family-name:var(--font-playfair)]`}
-                    whileHover={{ scale: 1.1, rotate: 10 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {p.name.charAt(0)}
-                  </motion.span>
+            {fivePs.map((p, index) => {
+              const pData = t.aboutPage.fivePs[p.id];
+              return (
+                <motion.div
+                  key={p.id}
+                  className="group relative"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                >
+                  <div className="flex items-center gap-6 p-6 bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 hover:border-red/30 transition-all duration-300 cursor-pointer">
+                    {/* Large P letter */}
+                    <motion.span
+                      className={`w-14 h-14 ${p.color} rounded-full flex items-center justify-center text-white text-xl font-[family-name:var(--font-playfair)]`}
+                      whileHover={{ scale: 1.1, rotate: 10 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      {pData.name.charAt(0)}
+                    </motion.span>
 
-                  <div className="flex-1">
-                    <h3 className="text-white font-medium text-lg group-hover:text-red transition-colors duration-300">
-                      {p.name}
-                    </h3>
-                    <p className="mt-1 text-gray-500 text-sm group-hover:text-gray-400 transition-colors duration-300">
-                      {p.description}
-                    </p>
+                    <div className="flex-1">
+                      <h3 className="text-white font-medium text-lg group-hover:text-red transition-colors duration-300">
+                        {pData.name}
+                      </h3>
+                      <p className="mt-1 text-gray-500 text-sm group-hover:text-gray-400 transition-colors duration-300">
+                        {pData.description}
+                      </p>
+                    </div>
+
+                    {/* Arrow indicator */}
+                    <motion.span
+                      className="text-gray-600 group-hover:text-red transition-colors duration-300"
+                      initial={{ x: 0 }}
+                      whileHover={{ x: 5 }}
+                    >
+                      &rarr;
+                    </motion.span>
                   </div>
-
-                  {/* Arrow indicator */}
-                  <motion.span
-                    className="text-gray-600 group-hover:text-red transition-colors duration-300"
-                    initial={{ x: 0 }}
-                    whileHover={{ x: 5 }}
-                  >
-                    &rarr;
-                  </motion.span>
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </Container>
@@ -266,8 +236,16 @@ function FivePWheel() {
 
 // Differentiators Bento Grid
 function DifferentiatorsBento() {
+  const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
   const isInView = useInView(sectionRef, { once: true, margin: "-10% 0px" });
+
+  const differentiators = [
+    { id: "instantOutcomes", number: "01" },
+    { id: "creatingEnablement", number: "02" },
+    { id: "techForward", number: "03" },
+    { id: "trustedPartner", number: "04" },
+  ] as const;
 
   return (
     <section ref={sectionRef} className="py-24 md:py-32 bg-warm-gray relative overflow-hidden">
@@ -292,66 +270,69 @@ function DifferentiatorsBento() {
         <FadeIn>
           <div className="text-center max-w-2xl mx-auto">
             <span className="text-red font-medium text-sm uppercase tracking-wider">
-              Our Edge
+              {t.aboutPage.ourEdge}
             </span>
             <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
-              What sets us apart
+              {t.aboutPage.differentiatorTitle}
             </h2>
           </div>
         </FadeIn>
 
         {/* Bento Grid */}
         <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-          {differentiators.map((item, index) => (
-            <motion.div
-              key={item.title}
-              className={`group relative ${index === 0 ? 'md:col-span-2' : ''}`}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
-            >
+          {differentiators.map((item, index) => {
+            const diffData = t.aboutPage.differentiators[item.id];
+            return (
               <motion.div
-                className={`
+                key={item.id}
+                className={`group relative ${index === 0 ? 'md:col-span-2' : ''}`}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+              >
+                <motion.div
+                  className={`
                   relative p-8 md:p-10 bg-white border border-warm-gray-dark overflow-hidden
                   ${index === 0 ? 'md:flex md:items-center md:gap-12' : ''}
                   shadow-sm hover:shadow-xl transition-all duration-500
                 `}
-                whileHover={{ y: -5 }}
-              >
-                {/* Large number background */}
-                <span className={`
+                  whileHover={{ y: -5 }}
+                >
+                  {/* Large number background */}
+                  <span className={`
                   absolute font-[family-name:var(--font-playfair)] text-gray-100 leading-none select-none
                   ${index === 0 ? 'text-[200px] -top-16 -right-8' : 'text-[120px] -top-8 -right-4'}
                 `}>
-                  {item.number}
-                </span>
-
-                {/* Content */}
-                <div className={`relative z-10 ${index === 0 ? 'md:flex-1' : ''}`}>
-                  <span className="text-red font-medium text-sm">
                     {item.number}
                   </span>
-                  <h3 className={`
+
+                  {/* Content */}
+                  <div className={`relative z-10 ${index === 0 ? 'md:flex-1' : ''}`}>
+                    <span className="text-red font-medium text-sm">
+                      {item.number}
+                    </span>
+                    <h3 className={`
                     mt-3 font-[family-name:var(--font-playfair)] text-black tracking-tight
                     ${index === 0 ? 'text-2xl md:text-3xl' : 'text-xl md:text-2xl'}
                   `}>
-                    {item.title}
-                  </h3>
-                  <p className={`mt-4 text-gray-600 leading-relaxed ${index === 0 ? 'text-lg' : ''}`}>
-                    {item.description}
-                  </p>
-                </div>
+                      {diffData.title}
+                    </h3>
+                    <p className={`mt-4 text-gray-600 leading-relaxed ${index === 0 ? 'text-lg' : ''}`}>
+                      {diffData.description}
+                    </p>
+                  </div>
 
-                {/* Hover accent line */}
-                <motion.div
-                  className="absolute bottom-0 left-0 h-1 bg-red"
-                  initial={{ width: 0 }}
-                  whileHover={{ width: "100%" }}
-                  transition={{ duration: 0.4 }}
-                />
+                  {/* Hover accent line */}
+                  <motion.div
+                    className="absolute bottom-0 left-0 h-1 bg-red"
+                    initial={{ width: 0 }}
+                    whileHover={{ width: "100%" }}
+                    transition={{ duration: 0.4 }}
+                  />
+                </motion.div>
               </motion.div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
       </Container>
     </section>
@@ -359,6 +340,7 @@ function DifferentiatorsBento() {
 }
 
 export default function AboutPage() {
+  const { t } = useTranslation();
   const heroRef = useRef<HTMLElement>(null);
   const heroInView = useInView(heroRef, { once: true });
 
@@ -370,6 +352,13 @@ export default function AboutPage() {
   const heroImageY = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const heroImageScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+
+  const clientExperience = [
+    { id: "evidenceBased" },
+    { id: "visibleProgress" },
+    { id: "safetyFirst" },
+    { id: "coCreation" },
+  ] as const;
 
   return (
     <>
@@ -408,13 +397,13 @@ export default function AboutPage() {
                 transition={{ duration: 0.6 }}
               >
                 <span className="text-red font-medium text-sm uppercase tracking-wider">
-                  About Significanz
+                  {t.aboutPage.label}
                 </span>
               </motion.div>
 
               <h1 className="mt-4 font-[family-name:var(--font-playfair)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-black tracking-tight leading-[1.1]">
                 <SplitText splitType="words" delay={0.2} staggerDelay={0.1}>
-                  Creating meaningful impact
+                  {t.aboutPage.heroTitle}
                 </SplitText>
               </h1>
 
@@ -431,7 +420,7 @@ export default function AboutPage() {
                 animate={heroInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
               >
-                Helping leaders take meaningful action at the right time.
+                {t.aboutPage.heroDescription}
               </motion.p>
 
               {/* Scroll indicator */}
@@ -453,7 +442,7 @@ export default function AboutPage() {
                   />
                 </motion.div>
                 <span className="text-sm text-gray-400 uppercase tracking-wider">
-                  Scroll to explore
+                  {t.aboutPage.scrollToExplore}
                 </span>
               </motion.div>
             </motion.div>
@@ -469,7 +458,7 @@ export default function AboutPage() {
               >
                 <Image
                   src="/images/about/portrait.jpg"
-                  alt="Stinne Madsen - Executive Coach"
+                  alt={t.aboutPage.imageAlt}
                   fill
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
@@ -509,13 +498,13 @@ export default function AboutPage() {
           <FadeIn>
             <div className="text-center">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
-                Our Purpose
+                {t.aboutPage.ourPurpose}
               </span>
               <h2 className="mt-6 font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl text-black tracking-tight">
-                Interactions that matter
+                {t.aboutPage.purposeTitle}
               </h2>
               <p className="mt-8 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                Enabling the ability and willingness to create meaningful impact.
+                {t.aboutPage.purposeDescription}
               </p>
             </div>
           </FadeIn>
@@ -541,13 +530,13 @@ export default function AboutPage() {
           <FadeIn>
             <div className="text-center">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
-                Our Philosophy
+                {t.aboutPage.ourPhilosophy}
               </span>
               <h2 className="mt-6 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-white tracking-tight">
-                Meaningful Impact
+                {t.aboutPage.philosophyTitle}
               </h2>
               <p className="mt-6 text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                From &ldquo;Me to We&rdquo; — taking responsibility for the right actions.
+                {t.aboutPage.philosophyDescription}
               </p>
             </div>
           </FadeIn>
@@ -569,7 +558,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: 0.1 }}
                   viewport={{ once: true }}
                 >
-                  Ability
+                  {t.aboutPage.ability}
                 </motion.span>
                 <motion.span
                   className="text-gray-600"
@@ -587,7 +576,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: 0.4 }}
                   viewport={{ once: true }}
                 >
-                  Willingness
+                  {t.aboutPage.willingness}
                 </motion.span>
                 <motion.span
                   className="text-gray-600"
@@ -605,11 +594,11 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: 0.7 }}
                   viewport={{ once: true }}
                 >
-                  Meaningful Impact
+                  {t.aboutPage.meaningfulImpact}
                 </motion.span>
               </div>
               <p className="mt-10 text-gray-500 max-w-xl mx-auto">
-                Enablement is both our method and measure of success.
+                {t.aboutPage.enablementDescription}
               </p>
             </div>
           </FadeIn>
@@ -622,9 +611,9 @@ export default function AboutPage() {
                 &ldquo;
               </span>
               <p className="text-xl md:text-2xl text-gray-300 italic max-w-3xl mx-auto relative z-10">
-                &ldquo;Stop asking for permission. Start taking meaningful action.&rdquo;
+                &ldquo;{t.aboutPage.quote}&rdquo;
               </p>
-              <footer className="mt-6 text-red font-medium">— Stinne Madsen</footer>
+              <footer className="mt-6 text-red font-medium">— {t.aboutPage.quoteAuthor}</footer>
             </blockquote>
           </FadeIn>
         </Container>
@@ -639,10 +628,10 @@ export default function AboutPage() {
           <FadeIn>
             <div className="text-center pt-24 md:pt-32 pb-16">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
-                What We Believe
+                {t.aboutPage.whatWeBelieve}
               </span>
               <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
-                Our Logic
+                {t.aboutPage.ourLogicTitle}
               </h2>
             </div>
           </FadeIn>
@@ -677,48 +666,51 @@ export default function AboutPage() {
           <FadeIn>
             <div className="text-center">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
-                Working Together
+                {t.aboutPage.workingTogether}
               </span>
               <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
-                How clients experience us
+                {t.aboutPage.clientExperienceTitle}
               </h2>
               <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
-                Calm yet challenging. Structured yet fluid.
+                {t.aboutPage.clientExperienceSubtitle}
               </p>
             </div>
           </FadeIn>
 
           <FadeIn delay={0.2}>
             <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-6">
-              {clientExperience.map((item, index) => (
-                <motion.div
-                  key={item.title}
-                  className="group p-8 border border-warm-gray-dark bg-white hover:bg-cream transition-all duration-300 relative overflow-hidden"
-                  whileHover={{ y: -5 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  {/* Number decoration */}
-                  <span className="absolute top-4 right-4 text-4xl font-[family-name:var(--font-playfair)] text-gray-100">
-                    0{index + 1}
-                  </span>
-
-                  <h4 className="font-medium text-black text-lg group-hover:text-red transition-colors duration-300">
-                    {item.title}
-                  </h4>
-                  <p className="mt-2 text-gray-600">{item.description}</p>
-
-                  {/* Hover line */}
+              {clientExperience.map((item, index) => {
+                const expData = t.aboutPage.clientExperience[item.id];
+                return (
                   <motion.div
-                    className="absolute bottom-0 left-0 h-0.5 bg-red"
-                    initial={{ width: 0 }}
-                    whileHover={{ width: "100%" }}
-                    transition={{ duration: 0.3 }}
-                  />
-                </motion.div>
-              ))}
+                    key={item.id}
+                    className="group p-8 border border-warm-gray-dark bg-white hover:bg-cream transition-all duration-300 relative overflow-hidden"
+                    whileHover={{ y: -5 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                  >
+                    {/* Number decoration */}
+                    <span className="absolute top-4 right-4 text-4xl font-[family-name:var(--font-playfair)] text-gray-100">
+                      0{index + 1}
+                    </span>
+
+                    <h4 className="font-medium text-black text-lg group-hover:text-red transition-colors duration-300">
+                      {expData.title}
+                    </h4>
+                    <p className="mt-2 text-gray-600">{expData.description}</p>
+
+                    {/* Hover line */}
+                    <motion.div
+                      className="absolute bottom-0 left-0 h-0.5 bg-red"
+                      initial={{ width: 0 }}
+                      whileHover={{ width: "100%" }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </motion.div>
+                );
+              })}
             </div>
           </FadeIn>
 
@@ -727,7 +719,7 @@ export default function AboutPage() {
             <div className="mt-16 text-center">
               <Link href="/contact">
                 <Button variant="primary" size="lg" data-cursor="pointer">
-                  Start a conversation
+                  {t.aboutPage.startConversation}
                 </Button>
               </Link>
             </div>

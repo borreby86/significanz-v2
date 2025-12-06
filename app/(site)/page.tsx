@@ -152,7 +152,7 @@ function WhoWeAreAndServices() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#34323A] italic">
-              Who are we?
+              {t.homepage.whoAreWe}
             </h2>
           </motion.div>
 
@@ -163,10 +163,10 @@ function WhoWeAreAndServices() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <p className="text-xl md:text-2xl text-[#34323A] leading-relaxed font-medium">
-              We are coaches, facilitators, and leadership developers at heart.
+              {t.homepage.weAreCoaches}
             </p>
             <p className="mt-6 text-xl md:text-2xl text-[#34323A]/70 leading-relaxed">
-              We create sustainable change for the benefit of leaders, teams, and organizations.
+              {t.homepage.weCreateChange}
             </p>
           </motion.div>
         </div>
@@ -204,6 +204,7 @@ function WhoWeAreAndServices() {
 
 // Be Inspired Section - More neutral with accent touches
 function BeInspired() {
+  const { t } = useTranslation();
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
@@ -218,7 +219,7 @@ function BeInspired() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            Be inspired
+            {t.homepage.beInspired}
           </motion.h2>
 
           <motion.div
@@ -227,7 +228,7 @@ function BeInspired() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <Link href="/4d" className="text-[#34323A] hover:text-[#A12F63] transition-colors flex items-center gap-2 text-lg">
-              See all content
+              {t.homepage.seeAllContent}
               <span className="text-2xl">→</span>
             </Link>
           </motion.div>
@@ -244,12 +245,12 @@ function BeInspired() {
           >
             <Link href="/4d">
               <div className="bg-[#EFEDEA] p-8 aspect-square flex flex-col hover:bg-[#E5E3E0] transition-colors">
-                <span className="text-[#A12F63] text-sm font-medium uppercase tracking-wider">Framework</span>
+                <span className="text-[#A12F63] text-sm font-medium uppercase tracking-wider">{t.homepage.framework}</span>
                 <h3 className="mt-2 font-[family-name:var(--font-playfair)] text-3xl text-[#34323A]">
-                  The 4D Model
+                  {t.homepage.the4DModel}
                 </h3>
                 <p className="mt-3 text-[#34323A]/70">
-                  Our proven framework for lasting transformation
+                  {t.homepage.frameworkDescription}
                 </p>
                 <div className="mt-auto pt-8 flex justify-end">
                   <span className="text-[#34323A] group-hover:text-[#A12F63] transition-colors text-2xl">→</span>
@@ -267,12 +268,12 @@ function BeInspired() {
           >
             <Link href="/client-voices">
               <div className="bg-[#34323A] p-8 aspect-square flex flex-col hover:bg-[#4A484F] transition-colors">
-                <span className="text-[#BFA27A] text-sm font-medium uppercase tracking-wider">Testimonials</span>
+                <span className="text-[#BFA27A] text-sm font-medium uppercase tracking-wider">{t.homepage.testimonials}</span>
                 <h3 className="mt-2 font-[family-name:var(--font-playfair)] text-3xl text-[#F7F6F5]">
-                  Client Voices
+                  {t.homepage.clientVoices}
                 </h3>
                 <p className="mt-3 text-[#F7F6F5]/70">
-                  Hear from leaders who have transformed
+                  {t.homepage.testimonialsDescription}
                 </p>
                 <div className="mt-auto pt-8 flex justify-end">
                   <span className="text-[#F7F6F5] group-hover:text-[#BFA27A] transition-colors text-2xl">→</span>
@@ -290,12 +291,12 @@ function BeInspired() {
           >
             <Link href="/gallery">
               <div className="bg-[#EFEDEA] p-8 aspect-square flex flex-col hover:bg-[#E5E3E0] transition-colors">
-                <span className="text-[#A12F63] text-sm font-medium uppercase tracking-wider">Gallery</span>
+                <span className="text-[#A12F63] text-sm font-medium uppercase tracking-wider">{t.homepage.gallery}</span>
                 <h3 className="mt-2 font-[family-name:var(--font-playfair)] text-3xl text-[#34323A]">
-                  Our Sessions
+                  {t.homepage.ourSessions}
                 </h3>
                 <p className="mt-3 text-[#34323A]/70">
-                  Moments from coaching and development sessions
+                  {t.homepage.galleryDescription}
                 </p>
                 <div className="mt-auto pt-8 flex justify-end">
                   <span className="text-[#34323A] group-hover:text-[#A12F63] transition-colors text-2xl">→</span>
@@ -311,6 +312,7 @@ function BeInspired() {
 
 // Get in Touch CTA - Clean and professional
 function GetInTouch() {
+  const { t } = useTranslation();
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
@@ -325,24 +327,24 @@ function GetInTouch() {
             transition={{ duration: 0.8 }}
           >
             <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#F7F6F5] italic">
-              Get in touch
+              {t.homepage.getInTouch}
             </h2>
             <p className="mt-6 text-xl md:text-2xl text-[#F7F6F5]/70 leading-relaxed max-w-md">
-              Contact us if you want to know more about our coaching and leadership development.
+              {t.homepage.contactDescription}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-3 px-8 py-4 bg-[#F7F6F5] text-[#34323A] font-medium hover:bg-[#EFEDEA] transition-colors"
               >
-                Contact us
+                {t.homepage.contactUs}
                 <span className="text-xl">→</span>
               </Link>
               <Link
                 href="/about"
                 className="inline-flex items-center gap-3 px-8 py-4 border border-[#F7F6F5]/30 text-[#F7F6F5] font-medium hover:bg-[#F7F6F5]/10 transition-colors"
               >
-                About us
+                {t.homepage.aboutUs}
               </Link>
             </div>
           </motion.div>
@@ -356,7 +358,7 @@ function GetInTouch() {
           >
             <div className="space-y-6">
               <div>
-                <p className="text-[#BFA27A] text-sm font-medium uppercase tracking-wider mb-2">Email</p>
+                <p className="text-[#BFA27A] text-sm font-medium uppercase tracking-wider mb-2">{t.homepage.email}</p>
                 <a
                   href="mailto:contact@significanz.dk"
                   className="text-2xl md:text-3xl text-[#F7F6F5] hover:text-[#BFA27A] transition-colors font-[family-name:var(--font-playfair)]"
@@ -365,9 +367,9 @@ function GetInTouch() {
                 </a>
               </div>
               <div>
-                <p className="text-[#BFA27A] text-sm font-medium uppercase tracking-wider mb-2">Location</p>
+                <p className="text-[#BFA27A] text-sm font-medium uppercase tracking-wider mb-2">{t.homepage.location}</p>
                 <p className="text-2xl md:text-3xl text-[#F7F6F5] font-[family-name:var(--font-playfair)]">
-                  Copenhagen, Denmark
+                  {t.homepage.locationValue}
                 </p>
               </div>
             </div>

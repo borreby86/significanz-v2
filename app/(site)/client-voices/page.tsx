@@ -1,45 +1,13 @@
-import { Metadata } from "next";
+"use client";
+
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/animations/FadeIn";
-
-export const metadata: Metadata = {
-  title: "Client Voices",
-  description: "What our clients say about working with Significanz.",
-};
-
-const testimonials = [
-  {
-    quote:
-      "Stinne is a gifted facilitator of life-changing conversations. She has a unique balance between empathy and results-orientation — creating a psychologically safe and energetic space that transforms both thinking and behaviour.",
-    author: "Christina Juel Hegaard",
-    role: "Global Head of Change Leadership & D&I",
-    company: "Arla",
-  },
-  {
-    quote:
-      "In working with Stinne, I've discovered how she combines professional insight, business understanding, and curiosity for technology. She has helped move me and my department — both humanly and professionally. It's always a pleasure being in her presence: good energy, humour, and high competence.",
-    author: "Michael Warrer",
-    role: "CIO",
-    company: "NRGi",
-  },
-  {
-    quote:
-      "Stinne Enemærke Madsen draws on a vast background in psychology, psychotherapy, leadership, HR, and tech. She weaves these perspectives into forward-looking coaching that puts personal and professional development at the centre. You feel in competent hands.",
-    author: "Katja Iversen",
-    role: "CEO",
-    company: "UN Live",
-  },
-  {
-    quote:
-      "We have worked with Significanz through several long-term programmes. Stinne's coaching has been precise, efficient, and has truly moved us forward as an organisation. I can only give Significanz my strongest recommendation.",
-    author: "Thomas Højlt",
-    role: "Deputy Director",
-    company: "City of Copenhagen",
-  },
-];
+import { useTranslation } from "@/lib/i18n";
 
 export default function ClientVoicesPage() {
+  const { t } = useTranslation();
+
   return (
     <>
       {/* Hero */}
@@ -47,11 +15,10 @@ export default function ClientVoicesPage() {
         <Container size="default">
           <FadeIn>
             <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl text-black tracking-tight text-center">
-              Client Voices
+              {t.clientVoicesPage.title}
             </h1>
             <p className="mt-6 text-lg text-gray-600 text-center max-w-2xl mx-auto">
-              The impact of our work, in the words of those who have
-              experienced it.
+              {t.clientVoicesPage.impactDescription}
             </p>
           </FadeIn>
         </Container>
@@ -61,7 +28,7 @@ export default function ClientVoicesPage() {
       <section className="pb-24 md:pb-32">
         <Container size="wide">
           <div className="space-y-16 md:space-y-24">
-            {testimonials.map((testimonial, index) => (
+            {t.clientVoicesPage.testimonials.map((testimonial, index) => (
               <FadeIn key={testimonial.author} delay={index * 0.1}>
                 <blockquote
                   className={`grid grid-cols-1 lg:grid-cols-12 gap-8 items-start ${
@@ -109,16 +76,15 @@ export default function ClientVoicesPage() {
           <FadeIn>
             <div className="text-center">
               <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl tracking-tight">
-                Ready to write your story?
+                {t.clientVoicesPage.ctaTitle}
               </h2>
               <p className="mt-6 text-lg text-gray-400 max-w-xl mx-auto">
-                Let&apos;s explore how Significanz can create meaningful impact
-                for you and your organization.
+                {t.clientVoicesPage.ctaDescription}
               </p>
               <div className="mt-10">
                 <a href="mailto:contact@significanz.dk">
                   <Button variant="accent" size="lg">
-                    Get in touch
+                    {t.clientVoicesPage.ctaButton}
                   </Button>
                 </a>
               </div>

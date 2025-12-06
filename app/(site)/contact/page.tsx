@@ -89,7 +89,7 @@ export default function ContactPage() {
                 transition={{ duration: 0.6 }}
               >
                 <span className="text-red font-medium text-sm uppercase tracking-wider">
-                  Get in Touch
+                  {t.contactPage.getInTouch}
                 </span>
               </motion.div>
 
@@ -240,13 +240,13 @@ export default function ContactPage() {
           <FadeIn>
             <div className="text-center mb-12">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
-                Send a Message
+                {t.contactPage.sendMessage}
               </span>
               <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl text-black tracking-tight">
-                Start the Conversation
+                {t.contactPage.startConversation}
               </h2>
               <p className="mt-4 text-gray-600 max-w-lg mx-auto">
-                We respond within 24 hours.
+                {t.contactPage.respondTime}
               </p>
             </div>
           </FadeIn>
@@ -289,7 +289,7 @@ export default function ContactPage() {
           <FadeIn>
             <div className="text-center">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
-                Direct Contact
+                {t.contactPage.directContact}
               </span>
               <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-white tracking-tight">
                 {t.contactPage.preferEmail}
@@ -317,13 +317,13 @@ export default function ContactPage() {
                   href="/about"
                   className="text-gray-400 hover:text-red transition-colors duration-300"
                 >
-                  Learn about us &rarr;
+                  {t.contactPage.learnAboutUs}
                 </Link>
                 <Link
                   href="/4d"
                   className="text-gray-400 hover:text-red transition-colors duration-300"
                 >
-                  Explore our framework &rarr;
+                  {t.contactPage.exploreFramework}
                 </Link>
               </div>
             </div>

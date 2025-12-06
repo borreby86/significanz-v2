@@ -29,7 +29,8 @@
       "Bash(do curl -sL -o \"$i.jpg\" \"https://picsum.photos/seed/corporate$i/600/600\")",
       "Bash(taskkill:*)",
       "Bash(powershell:*)",
-      "Bash(git config:*)"
+      "Bash(git config:*)",
+      "Bash(npx tsc:*)"
     ],
     "deny": [],
     "ask": []
