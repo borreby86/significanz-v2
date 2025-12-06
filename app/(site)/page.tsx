@@ -101,10 +101,10 @@ function WhoWeAreAndServices() {
       title: t.services.items.meaningfulAction.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          {/* Elegant diamond with upward motion - meaningful action */}
-          <path d="M32 8L52 32L32 56L12 32L32 8Z" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round"/>
-          <path d="M32 20V44" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-          <path d="M24 32L32 24L40 32" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          {/* Ripple/impact circles with heart center - meaningful impact */}
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#A12F63" strokeWidth="2" opacity="0.3"/>
+          <circle cx="32" cy="32" r="16" fill="none" stroke="#A12F63" strokeWidth="2" opacity="0.6"/>
+          <circle cx="32" cy="32" r="8" fill="#A12F63"/>
         </svg>
       )
     },
@@ -112,13 +112,10 @@ function WhoWeAreAndServices() {
       title: t.services.items.actAbility.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          {/* Abstract connecting nodes - ability to act */}
-          <circle cx="16" cy="32" r="8" fill="none" stroke="currentColor" strokeWidth="2.5"/>
-          <circle cx="48" cy="32" r="8" fill="none" stroke="currentColor" strokeWidth="2.5"/>
-          <circle cx="32" cy="14" r="6" fill="none" stroke="currentColor" strokeWidth="2.5"/>
-          <circle cx="32" cy="50" r="6" fill="none" stroke="currentColor" strokeWidth="2.5"/>
-          <path d="M24 32H40" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-          <path d="M32 20V44" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+          {/* Hand/power symbol - ability to act */}
+          <circle cx="32" cy="32" r="22" fill="none" stroke="#34323A" strokeWidth="2.5"/>
+          <path d="M32 18V32L42 42" fill="none" stroke="#A12F63" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+          <circle cx="32" cy="32" r="4" fill="#A12F63"/>
         </svg>
       )
     },
@@ -126,10 +123,10 @@ function WhoWeAreAndServices() {
       title: t.services.items.executiveCoaching.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          {/* Refined person silhouette with accent */}
-          <circle cx="32" cy="18" r="10" fill="none" stroke="currentColor" strokeWidth="2.5"/>
-          <path d="M14 56C14 42 22 34 32 34C42 34 50 42 50 56" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-          <path d="M32 6V10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+          {/* Person with guiding hand - coaching */}
+          <circle cx="32" cy="20" r="10" fill="none" stroke="#34323A" strokeWidth="2.5"/>
+          <path d="M16 54C16 42 23 36 32 36C41 36 48 42 48 54" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round"/>
+          <circle cx="32" cy="20" r="4" fill="#A12F63"/>
         </svg>
       )
     },
@@ -137,12 +134,11 @@ function WhoWeAreAndServices() {
       title: t.services.items.leadershipDevelopment.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          {/* Elegant ascending path - growth */}
-          <path d="M8 56L24 40L40 48L56 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <path d="M44 24H56V36" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <circle cx="8" cy="56" r="3" fill="currentColor"/>
-          <circle cx="24" cy="40" r="3" fill="currentColor"/>
-          <circle cx="40" cy="48" r="3" fill="currentColor"/>
+          {/* Rising bar chart - growth/development */}
+          <rect x="8" y="40" width="10" height="16" rx="2" fill="#34323A" opacity="0.4"/>
+          <rect x="22" y="30" width="10" height="26" rx="2" fill="#34323A" opacity="0.6"/>
+          <rect x="36" y="20" width="10" height="36" rx="2" fill="#34323A" opacity="0.8"/>
+          <rect x="50" y="10" width="10" height="46" rx="2" fill="#A12F63"/>
         </svg>
       )
     },
@@ -150,11 +146,11 @@ function WhoWeAreAndServices() {
       title: t.services.items.keynotes.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          {/* Modern microphone/podium - keynotes */}
-          <rect x="24" y="8" width="16" height="32" rx="8" fill="none" stroke="currentColor" strokeWidth="2.5"/>
-          <path d="M32 40V52" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-          <path d="M20 52H44" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-          <path d="M16 24C16 24 16 36 32 36C48 36 48 24 48 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+          {/* Speech bubble - keynotes/speaking */}
+          <path d="M12 14C12 10.7 14.7 8 18 8H46C49.3 8 52 10.7 52 14V34C52 37.3 49.3 40 46 40H28L18 50V40H18C14.7 40 12 37.3 12 34V14Z" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinejoin="round"/>
+          <circle cx="24" cy="24" r="3" fill="#A12F63"/>
+          <circle cx="32" cy="24" r="3" fill="#A12F63"/>
+          <circle cx="40" cy="24" r="3" fill="#A12F63"/>
         </svg>
       )
     },
@@ -162,13 +158,12 @@ function WhoWeAreAndServices() {
       title: t.services.items.teamTransformation.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          {/* Three connected circles - team unity */}
-          <circle cx="32" cy="16" r="10" fill="none" stroke="currentColor" strokeWidth="2.5"/>
-          <circle cx="16" cy="48" r="10" fill="none" stroke="currentColor" strokeWidth="2.5"/>
-          <circle cx="48" cy="48" r="10" fill="none" stroke="currentColor" strokeWidth="2.5"/>
-          <path d="M26 24L20 40" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-          <path d="M38 24L44 40" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
-          <path d="M26 48H38" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"/>
+          {/* Three people in circle - team */}
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#34323A" strokeWidth="2" opacity="0.3"/>
+          <circle cx="32" cy="16" r="6" fill="#A12F63"/>
+          <circle cx="18" cy="44" r="6" fill="#34323A"/>
+          <circle cx="46" cy="44" r="6" fill="#34323A"/>
+          <path d="M26 20L22 38M38 20L42 38M24 44H40" stroke="#34323A" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
         </svg>
       )
     },
