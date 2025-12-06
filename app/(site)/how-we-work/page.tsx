@@ -1,39 +1,33 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { motion, useScroll, useTransform, useInView } from "motion/react";
+import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence, useInView } from "motion/react";
 import { SplitText } from "@/components/animations/SplitText";
-import { FadeIn } from "@/components/animations/FadeIn";
-import { PurposeModel } from "@/components/diagrams/PurposeModel";
+import { PurposeModel, segments } from "@/components/diagrams/PurposeModel";
 import { useTranslation } from "@/lib/i18n";
+
+const segmentOrder = ["professional", "private", "personal", "practice"] as const;
 
 export default function HowWeWorkPage() {
   const { t } = useTranslation();
   const heroRef = useRef<HTMLElement>(null);
   const heroInView = useInView(heroRef, { once: true });
 
-  const { scrollYProgress } = useScroll({
+  const { scrollYProgress: heroScrollProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
   });
 
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-  const heroY = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95]);
-
-  const segments = [
-    { id: "professional", letter: "P", color: "bg-black" },
-    { id: "private", letter: "P", color: "bg-gray-700" },
-    { id: "personal", letter: "P", color: "bg-gray-500" },
-    { id: "practice", letter: "P", color: "bg-gray-300" },
-  ] as const;
+  const heroOpacity = useTransform(heroScrollProgress, [0, 0.5], [1, 0]);
+  const heroY = useTransform(heroScrollProgress, [0, 1], [0, 150]);
+  const heroScale = useTransform(heroScrollProgress, [0, 0.5], [1, 0.95]);
 
   return (
     <>
-      {/* Hero Section - Full immersive centered */}
+      {/* Hero Section */}
       <section
         ref={heroRef}
         className="min-h-screen flex items-center justify-center pt-20 relative overflow-hidden"
@@ -70,16 +64,6 @@ export default function HowWeWorkPage() {
           animate={{ scale: [1, 1.3, 1], opacity: [0.3, 0.6, 0.3] }}
           transition={{ duration: 5, repeat: Infinity }}
         />
-        <motion.div
-          className="absolute bottom-[30%] right-[8%] w-3 h-3 bg-red/40 rounded-full"
-          animate={{ y: [0, -20, 0], scale: [1, 1.5, 1] }}
-          transition={{ duration: 3, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute top-[60%] left-[5%] w-2 h-2 bg-gray-300 rounded-full"
-          animate={{ y: [0, -15, 0] }}
-          transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-        />
 
         {/* Large ambient blobs */}
         <motion.div
@@ -91,11 +75,6 @@ export default function HowWeWorkPage() {
           className="absolute -bottom-60 -right-60 w-[800px] h-[800px] rounded-full bg-gradient-to-tl from-cream/40 to-transparent blur-[120px]"
           animate={{ scale: [1.1, 1, 1.1], opacity: [0.4, 0.2, 0.4] }}
           transition={{ duration: 15, repeat: Infinity }}
-        />
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-red/[0.02] blur-[80px]"
-          animate={{ scale: [0.8, 1.2, 0.8] }}
-          transition={{ duration: 10, repeat: Infinity }}
         />
 
         <Container size="wide" className="relative z-10">
@@ -127,7 +106,7 @@ export default function HowWeWorkPage() {
               />
             </motion.div>
 
-            {/* Main heading with character animation */}
+            {/* Main heading */}
             <h1 className="mt-10 font-[family-name:var(--font-playfair)] text-5xl sm:text-6xl md:text-7xl lg:text-[6rem] xl:text-[7rem] text-black tracking-tight leading-[1]">
               <SplitText splitType="chars" delay={0.4} staggerDelay={0.025}>
                 {t.howWeWorkPage.title}
@@ -171,7 +150,7 @@ export default function HowWeWorkPage() {
               {t.howWeWorkPage.subtitle}
             </motion.p>
 
-            {/* Premium scroll indicator */}
+            {/* Scroll indicator */}
             <motion.div
               className="mt-24 flex flex-col items-center"
               initial={{ opacity: 0 }}
@@ -199,11 +178,11 @@ export default function HowWeWorkPage() {
         </Container>
       </section>
 
-      {/* The Model Section - Premium immersive */}
-      <ModelSection />
+      {/* Sticky Scroll Section - Each dimension revealed as user scrolls */}
+      <StickyScrollSection />
 
-      {/* Segment Details Section */}
-      <SegmentDetailsSection segments={segments} />
+      {/* Interactive Final Section - Hover to explore */}
+      <InteractiveModelSection />
 
       {/* CTA Section */}
       <CTASection />
@@ -211,273 +190,365 @@ export default function HowWeWorkPage() {
   );
 }
 
-function ModelSection() {
+function StickyScrollSection() {
   const { t } = useTranslation();
-  const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-10% 0px" });
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [currentSegmentIndex, setCurrentSegmentIndex] = useState(0);
 
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"],
+    target: containerRef,
+    offset: ["start start", "end end"],
   });
 
-  const modelY = useTransform(scrollYProgress, [0, 1], [80, -80]);
-  const modelScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.95, 1, 0.95]);
+  // Update current segment based on scroll progress
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    const index = Math.min(Math.floor(latest * 4), 3);
+    setCurrentSegmentIndex(index);
+  });
+
+  const currentSegmentId = segmentOrder[currentSegmentIndex];
+  const currentSegment = segments.find((s) => s.id === currentSegmentId);
+  const segmentTranslation = t.howWeWorkPage.segments[currentSegmentId];
+
+  // Transform values for smooth animations
+  const contentOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.05, 0.23, 0.25, 0.28, 0.48, 0.5, 0.53, 0.73, 0.75, 0.78, 0.95, 1],
+    [0, 1, 1, 0.3, 1, 1, 0.3, 1, 1, 0.3, 1, 1, 1]
+  );
+
+  const progressWidth = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
     <section
-      ref={sectionRef}
-      className="py-40 md:py-56 bg-cream relative overflow-hidden"
+      ref={containerRef}
+      className="relative h-[400vh]" // 4x viewport height for 4 segments
     >
-      {/* Animated dot pattern */}
-      <div className="absolute inset-0 bg-dots opacity-30" />
-
-      {/* Decorative elements */}
-      <motion.div
-        className="absolute top-32 left-16 w-72 h-72 rounded-full bg-gradient-to-br from-red/5 to-transparent blur-[80px]"
-        animate={{ scale: [1, 1.3, 1], x: [0, 30, 0] }}
-        transition={{ duration: 10, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute bottom-32 right-16 w-96 h-96 rounded-full bg-gradient-to-tl from-peach/50 to-transparent blur-[100px]"
-        animate={{ scale: [1.1, 1, 1.1], y: [0, -40, 0] }}
-        transition={{ duration: 12, repeat: Infinity }}
-      />
-
-      {/* Corner accents */}
-      <motion.div
-        className="absolute top-24 right-24 w-40 h-40 border-t border-r border-red/10"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 1.2, delay: 0.3 }}
-      />
-      <motion.div
-        className="absolute bottom-24 left-24 w-40 h-40 border-b border-l border-red/10"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={isInView ? { opacity: 1, scale: 1 } : {}}
-        transition={{ duration: 1.2, delay: 0.4 }}
-      />
-
-      {/* Floating particles */}
-      {[...Array(5)].map((_, i) => (
+      {/* Sticky inner container */}
+      <div className="sticky top-0 h-screen overflow-hidden bg-cream">
+        {/* Background decorations */}
+        <div className="absolute inset-0 bg-dots opacity-20" />
         <motion.div
-          key={i}
-          className="absolute w-1.5 h-1.5 rounded-full bg-red/20"
-          style={{
-            left: `${15 + i * 18}%`,
-            top: `${20 + (i % 3) * 25}%`,
-          }}
-          animate={{
-            y: [0, -30, 0],
-            opacity: [0.2, 0.5, 0.2],
-          }}
-          transition={{
-            duration: 4 + i,
-            repeat: Infinity,
-            delay: i * 0.5,
-          }}
+          className="absolute top-32 left-16 w-72 h-72 rounded-full bg-gradient-to-br from-red/5 to-transparent blur-[80px]"
+          animate={{ scale: [1, 1.3, 1], x: [0, 30, 0] }}
+          transition={{ duration: 10, repeat: Infinity }}
         />
-      ))}
-
-      <Container size="default" className="relative z-10">
-        {/* Section header */}
         <motion.div
-          className="text-center max-w-3xl mx-auto"
-          initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1 }}
-        >
+          className="absolute bottom-32 right-16 w-96 h-96 rounded-full bg-gradient-to-tl from-peach/50 to-transparent blur-[100px]"
+          animate={{ scale: [1.1, 1, 1.1], y: [0, -40, 0] }}
+          transition={{ duration: 12, repeat: Infinity }}
+        />
+
+        {/* Progress bar at top */}
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gray-200/50 z-50">
           <motion.div
-            className="flex items-center justify-center gap-4 mb-8"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.3 }}
+            className="h-full bg-red"
+            style={{ width: progressWidth }}
+          />
+        </div>
+
+        {/* Progress indicators */}
+        <div className="absolute top-8 left-1/2 -translate-x-1/2 flex gap-3 z-50">
+          {segmentOrder.map((id, index) => (
+            <motion.div
+              key={id}
+              className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                index === currentSegmentIndex ? "bg-red" : "bg-gray-300"
+              }`}
+              animate={{
+                scale: index === currentSegmentIndex ? 1.3 : 1,
+              }}
+              transition={{ duration: 0.3 }}
+            />
+          ))}
+        </div>
+
+        {/* Main content - split layout */}
+        <Container size="wide" className="h-full relative z-10">
+          <div className="h-full flex items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 w-full items-center">
+              {/* Left side - Text content */}
+              <motion.div
+                className="order-2 lg:order-1"
+                style={{ opacity: contentOpacity }}
+              >
+                {/* Phase indicator */}
+                <motion.div
+                  className="flex items-center gap-4 mb-6"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.5 }}
+                >
+                  <div className="w-12 h-[1px] bg-red/50" />
+                  <span className="text-red font-medium text-xs uppercase tracking-[0.25em]">
+                    {t.howWeWorkPage.fourDimensions} — {String(currentSegmentIndex + 1).padStart(2, "0")}
+                  </span>
+                </motion.div>
+
+                {/* Dimension title - animated on change */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentSegmentId}
+                    initial={{ opacity: 0, y: 40 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5, ease: "easeOut" }}
+                  >
+                    <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-black tracking-tight leading-[0.95]">
+                      {segmentTranslation.title}
+                    </h2>
+
+                    {/* Accent line */}
+                    <motion.div
+                      className="mt-8 w-20 h-[3px] bg-red"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                    />
+
+                    {/* Description */}
+                    <motion.p
+                      className="mt-8 text-xl md:text-2xl text-gray-500 leading-relaxed max-w-lg"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: 0.3 }}
+                    >
+                      {segmentTranslation.description}
+                    </motion.p>
+
+                    {/* Large letter decoration */}
+                    <motion.div
+                      className="absolute -bottom-20 -left-10 text-[300px] font-[family-name:var(--font-playfair)] text-gray-100/50 leading-none select-none pointer-events-none hidden lg:block"
+                      initial={{ opacity: 0, x: -50 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.8, delay: 0.4 }}
+                    >
+                      {segmentTranslation.title.charAt(0)}
+                    </motion.div>
+                  </motion.div>
+                </AnimatePresence>
+              </motion.div>
+
+              {/* Right side - Model with highlighted segment */}
+              <div className="order-1 lg:order-2 flex items-center justify-center">
+                <div className="relative w-full max-w-[450px]">
+                  <PurposeModel
+                    highlightedSegment={currentSegmentId}
+                    interactive={false}
+                    showDecorations={false}
+                    size="compact"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+
+        {/* Scroll hint at bottom */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
+          <motion.div
+            className="text-xs text-gray-400 uppercase tracking-widest mb-2"
+            animate={{ opacity: [0.4, 0.8, 0.4] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            {currentSegmentIndex < 3 ? "Scroll to continue" : "Almost there"}
+          </motion.div>
+          <motion.div
+            className="w-6 h-10 border border-gray-300 rounded-full flex items-start justify-center p-2"
+            animate={{ opacity: [0.5, 1, 0.5] }}
+            transition={{ duration: 2, repeat: Infinity }}
           >
             <motion.div
-              className="w-12 h-[1px] bg-gradient-to-r from-transparent to-red/50"
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            />
-            <span className="text-red font-medium text-xs uppercase tracking-[0.25em]">
-              {t.howWeWorkPage.theModel}
-            </span>
-            <motion.div
-              className="w-12 h-[1px] bg-gradient-to-l from-transparent to-red/50"
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
+              className="w-1 h-2 bg-red rounded-full"
+              animate={{ y: [0, 12, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
             />
           </motion.div>
-
-          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-black tracking-tight">
-            <SplitText splitType="words" delay={0.5} staggerDelay={0.1}>
-              {t.howWeWorkPage.modelTitle}
-            </SplitText>
-          </h2>
-
-          <motion.p
-            className="mt-8 text-lg md:text-xl text-gray-500 leading-relaxed"
-            initial={{ opacity: 0, y: 30 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.7 }}
-          >
-            {t.howWeWorkPage.modelDescription}
-          </motion.p>
-        </motion.div>
-
-        {/* The Interactive Diagram with parallax */}
-        <motion.div
-          className="mt-24 md:mt-32 relative"
-          style={{ y: modelY, scale: modelScale }}
-        >
-          <PurposeModel className="pb-32" />
-        </motion.div>
-      </Container>
+        </div>
+      </div>
     </section>
   );
 }
 
-function SegmentDetailsSection({ segments }: { segments: readonly { id: "professional" | "private" | "personal" | "practice"; letter: string; color: string }[] }) {
+function InteractiveModelSection() {
   const { t } = useTranslation();
   const sectionRef = useRef<HTMLElement>(null);
-  const isInView = useInView(sectionRef, { once: true, margin: "-5% 0px" });
+  const isInView = useInView(sectionRef, { once: true, margin: "-10% 0px" });
+  const [hoveredSegment, setHoveredSegment] = useState<string | null>(null);
+
+  const hoveredSegmentData = segments.find((s) => s.id === hoveredSegment);
+  const hoveredTranslation = hoveredSegment
+    ? t.howWeWorkPage.segments[hoveredSegment as keyof typeof t.howWeWorkPage.segments]
+    : null;
 
   return (
     <section
       ref={sectionRef}
-      className="py-40 md:py-56 bg-white relative overflow-hidden"
+      className="py-32 md:py-48 bg-white relative overflow-hidden"
     >
-      {/* Ambient background */}
+      {/* Background */}
       <motion.div
-        className="absolute -top-60 -right-60 w-[600px] h-[600px] rounded-full bg-cream/60 blur-[100px]"
+        className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full bg-cream/50 blur-[100px]"
         animate={{ scale: [1, 1.15, 1] }}
         transition={{ duration: 10, repeat: Infinity }}
       />
       <motion.div
-        className="absolute -bottom-60 -left-60 w-[500px] h-[500px] rounded-full bg-peach/40 blur-[100px]"
+        className="absolute bottom-0 left-0 w-[500px] h-[500px] rounded-full bg-peach/30 blur-[100px]"
         animate={{ scale: [1.1, 1, 1.1] }}
         transition={{ duration: 12, repeat: Infinity }}
       />
 
       <Container size="wide" className="relative z-10">
         {/* Section header */}
-        <FadeIn>
-          <div className="text-center max-w-3xl mx-auto mb-24">
-            <div className="flex items-center justify-center gap-4 mb-8">
-              <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-red/50" />
-              <span className="text-red font-medium text-xs uppercase tracking-[0.25em]">
-                {t.howWeWorkPage.fourDimensions}
-              </span>
-              <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-red/50" />
-            </div>
-            <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl text-black tracking-tight">
-              {t.howWeWorkPage.dimensionsTitle}
-            </h2>
-            <p className="mt-6 text-lg md:text-xl text-gray-500">
-              {t.howWeWorkPage.dimensionsSubtitle}
-            </p>
+        <motion.div
+          className="text-center max-w-3xl mx-auto mb-16 md:mb-24"
+          initial={{ opacity: 0, y: 40 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="w-12 h-[1px] bg-gradient-to-r from-transparent to-red/50" />
+            <span className="text-red font-medium text-xs uppercase tracking-[0.25em]">
+              {t.howWeWorkPage.theModel}
+            </span>
+            <div className="w-12 h-[1px] bg-gradient-to-l from-transparent to-red/50" />
           </div>
-        </FadeIn>
+          <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl text-black tracking-tight">
+            {t.howWeWorkPage.modelTitle}
+          </h2>
+          <p className="mt-6 text-lg md:text-xl text-gray-500">
+            {t.howWeWorkPage.modelDescription}
+          </p>
+        </motion.div>
 
-        {/* Premium staggered card grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16">
-          {segments.map((segment, index) => {
-            const segmentData = t.howWeWorkPage.segments[segment.id];
-            return (
-              <motion.div
-                key={segment.id}
-                className={`group relative ${index % 2 === 1 ? "md:mt-20" : ""}`}
-                initial={{ opacity: 0, y: 80 }}
-                animate={isInView ? { opacity: 1, y: 0 } : {}}
-                transition={{
-                  duration: 1,
-                  delay: 0.15 + index * 0.12,
-                  ease: [0.25, 0.1, 0.25, 1],
-                }}
-              >
-                <motion.div
-                  className="relative p-10 md:p-14 bg-white border border-gray-100 overflow-hidden transition-all duration-700 hover:border-red/20"
-                  whileHover={{
-                    y: -12,
-                    boxShadow: "0 40px 80px -20px rgba(0, 0, 0, 0.08)",
-                  }}
-                  transition={{ duration: 0.5 }}
-                >
-                  {/* Large background letter */}
-                  <motion.span
-                    className="absolute -top-10 -right-6 text-[220px] font-[family-name:var(--font-playfair)] text-gray-50 leading-none select-none"
-                    initial={{ opacity: 0, x: 30 }}
-                    animate={isInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.8, delay: 0.5 + index * 0.1 }}
-                  >
-                    {segment.letter}
-                  </motion.span>
+        {/* Interactive Model Area */}
+        <div className="relative max-w-5xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[500px]">
+            {/* Model - animates left when card appears */}
+            <motion.div
+              className="relative flex justify-center"
+              animate={{
+                x: hoveredSegment ? -20 : 0,
+                scale: hoveredSegment ? 0.95 : 1,
+              }}
+              transition={{ duration: 0.4, ease: "easeOut" }}
+            >
+              <div className="w-full max-w-[450px]">
+                <PurposeModel
+                  interactive={true}
+                  showDecorations={true}
+                  onSegmentHover={setHoveredSegment}
+                />
+              </div>
+            </motion.div>
 
-                  {/* Index number */}
+            {/* Card area - slides in from right on hover */}
+            <div className="relative h-[400px] flex items-center">
+              <AnimatePresence mode="wait">
+                {hoveredSegmentData && hoveredTranslation ? (
                   <motion.div
-                    className="absolute top-8 right-8 text-[10px] text-gray-300 font-medium tracking-[0.2em]"
-                    initial={{ opacity: 0 }}
-                    animate={isInView ? { opacity: 1 } : {}}
-                    transition={{ delay: 0.8 + index * 0.1 }}
+                    key={hoveredSegment}
+                    initial={{ opacity: 0, x: 80, scale: 0.95 }}
+                    animate={{ opacity: 1, x: 0, scale: 1 }}
+                    exit={{ opacity: 0, x: 40, scale: 0.98 }}
+                    transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+                    className="absolute inset-0 flex items-center"
                   >
-                    0{index + 1}
-                  </motion.div>
-
-                  {/* Content */}
-                  <div className="relative z-10">
-                    {/* Icon with glow effect */}
-                    <motion.div
-                      className={`w-18 h-18 ${segment.color} rounded-full flex items-center justify-center shadow-xl relative`}
-                      style={{ width: "4.5rem", height: "4.5rem" }}
-                      whileHover={{ scale: 1.1, rotate: 8 }}
-                      transition={{ duration: 0.4 }}
-                    >
+                    <div className="w-full bg-white shadow-2xl border border-gray-100 p-10 md:p-14 relative overflow-hidden">
+                      {/* Decorative accent */}
                       <motion.div
-                        className="absolute inset-0 rounded-full bg-red/20 blur-xl"
-                        initial={{ opacity: 0 }}
-                        whileHover={{ opacity: 1 }}
-                        transition={{ duration: 0.3 }}
+                        className="absolute top-0 left-0 bottom-0 w-1.5 bg-red"
+                        initial={{ scaleY: 0 }}
+                        animate={{ scaleY: 1 }}
+                        transition={{ duration: 0.4 }}
                       />
-                      <span className="relative text-white text-2xl font-[family-name:var(--font-playfair)]">
-                        {segment.letter}
-                      </span>
-                    </motion.div>
 
-                    <h3 className="mt-10 font-[family-name:var(--font-playfair)] text-2xl md:text-3xl lg:text-4xl text-black tracking-tight group-hover:text-red transition-colors duration-500">
-                      {segmentData.title}
-                    </h3>
+                      {/* Large background letter */}
+                      <motion.span
+                        className="absolute -top-10 -right-6 text-[200px] font-[family-name:var(--font-playfair)] text-gray-50 leading-none select-none"
+                        initial={{ opacity: 0, x: 30 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.1 }}
+                      >
+                        {hoveredTranslation.title.charAt(0)}
+                      </motion.span>
 
-                    {/* Animated accent line */}
-                    <motion.div
-                      className="mt-5 w-14 h-[2px] bg-gradient-to-r from-red to-red/50 origin-left"
-                      initial={{ scaleX: 0 }}
-                      whileInView={{ scaleX: 1 }}
-                      transition={{ duration: 0.8, delay: 0.4 }}
-                      viewport={{ once: true }}
-                    />
+                      {/* Content */}
+                      <div className="relative z-10">
+                        <motion.span
+                          className="text-red font-medium text-xs uppercase tracking-[0.2em]"
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.1 }}
+                        >
+                          Dimension
+                        </motion.span>
 
-                    <p className="mt-6 text-gray-500 leading-relaxed text-lg md:text-xl">
-                      {segmentData.description}
+                        <motion.h3
+                          className="mt-4 font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-black tracking-tight"
+                          initial={{ opacity: 0, y: 15 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.15 }}
+                        >
+                          {hoveredTranslation.title}
+                        </motion.h3>
+
+                        <motion.div
+                          className="mt-6 w-16 h-[3px] bg-red"
+                          initial={{ scaleX: 0 }}
+                          animate={{ scaleX: 1 }}
+                          transition={{ duration: 0.5, delay: 0.2 }}
+                        />
+
+                        <motion.p
+                          className="mt-6 text-gray-600 text-lg leading-relaxed"
+                          initial={{ opacity: 0, y: 15 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ delay: 0.25 }}
+                        >
+                          {hoveredTranslation.description}
+                        </motion.p>
+                      </div>
+
+                      {/* Corner accents */}
+                      <motion.div
+                        className="absolute bottom-6 right-6 w-12 h-12 border-b border-r border-red/20"
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.3 }}
+                      />
+                    </div>
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    className="w-full text-center p-10"
+                  >
+                    <div className="w-16 h-16 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-6">
+                      <motion.svg
+                        className="w-8 h-8 text-gray-400"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        animate={{ rotate: [0, 10, -10, 0] }}
+                        transition={{ duration: 2, repeat: Infinity, repeatDelay: 1 }}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
+                      </motion.svg>
+                    </div>
+                    <p className="text-gray-500 text-lg">
+                      Hover over the model to explore each dimension
                     </p>
-                  </div>
-
-                  {/* Bottom accent line */}
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-[3px] bg-gradient-to-r from-red via-red-light to-red origin-left"
-                    initial={{ scaleX: 0 }}
-                    whileHover={{ scaleX: 1 }}
-                    transition={{ duration: 0.5 }}
-                  />
-
-                  {/* Corner accent */}
-                  <motion.div
-                    className="absolute bottom-6 right-6 w-10 h-10 border-b border-r border-red/0 group-hover:border-red/20 transition-all duration-500"
-                  />
-                </motion.div>
-              </motion.div>
-            );
-          })}
+                    <p className="text-gray-400 text-sm mt-2">
+                      Each segment represents a key aspect of integrated leadership
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </div>
         </div>
       </Container>
     </section>

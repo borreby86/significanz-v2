@@ -1,1 +1,1 @@
-export { PurposeModel } from "./PurposeModel";
+export { PurposeModel, segments } from "./PurposeModel";
