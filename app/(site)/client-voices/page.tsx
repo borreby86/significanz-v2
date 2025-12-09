@@ -1,9 +1,124 @@
 "use client";
 
+import { useRef } from "react";
+import { motion, useInView } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { useTranslation } from "@/lib/i18n";
+
+// How Clients Experience Us Section
+function HowClientsExperienceUs() {
+  const { t } = useTranslation();
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
+
+  const experiences = [
+    {
+      title: "Calm, yet challenging",
+      description: "We create space for clarity — while still asking the questions that help progress happen.",
+      color: "#A12F63",
+    },
+    {
+      title: "Structured, yet flexible",
+      description: "Clear on process, adaptable to what shows up, and practical about what works in real life.",
+      color: "#BFA27A",
+    },
+    {
+      title: "Professional, yet personal",
+      description: "Building trust through consistency, discretion, and genuine presence.",
+      color: "#34323A",
+    },
+  ];
+
+  const anchors = [
+    {
+      title: t.aboutPage.clientExperience.evidenceBased.title,
+      description: "A documented learning path capturing insights, decisions, and outcomes.",
+    },
+    {
+      title: t.aboutPage.clientExperience.visibleProgress.title,
+      description: "Baselines and development metrics, so progress can be seen and tracked.",
+    },
+    {
+      title: t.aboutPage.clientExperience.safetyFirst.title,
+      description: "We facilitate hard conversations with care.",
+    },
+    {
+      title: t.aboutPage.clientExperience.coCreation.title,
+      description: "Agreements and artefacts built with clients, not for them.",
+    },
+  ];
+
+  return (
+    <section ref={ref} className="py-24 md:py-32 bg-[#F7F6F5]">
+      <Container size="wide">
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <span className="text-[#A12F63] text-sm font-medium uppercase tracking-wider">
+            {t.aboutPage.workingTogether}
+          </span>
+          <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl text-[#34323A] italic">
+            {t.aboutPage.clientExperienceTitle}
+          </h2>
+        </motion.div>
+
+        {/* Experience cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+          {experiences.map((exp, index) => (
+            <motion.div
+              key={exp.title}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+              className="bg-white p-8"
+            >
+              <div
+                className="w-12 h-1 mb-6"
+                style={{ backgroundColor: exp.color }}
+              />
+              <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-[#34323A] mb-4">
+                {exp.title}
+              </h3>
+              <p className="text-[#34323A]/70 leading-relaxed">
+                {exp.description}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Measurable anchors */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.5 }}
+          className="bg-white p-8 md:p-12"
+        >
+          <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-[#34323A] mb-8">
+            Each engagement is guided by measurable anchors
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {anchors.map((anchor, index) => (
+              <div key={anchor.title} className="flex gap-4">
+                <div className="w-8 h-8 rounded-full bg-[#A12F63]/10 flex items-center justify-center flex-shrink-0">
+                  <span className="text-[#A12F63] font-medium text-sm">{index + 1}</span>
+                </div>
+                <div>
+                  <h4 className="font-medium text-[#34323A] mb-1">{anchor.title}</h4>
+                  <p className="text-[#34323A]/60 text-sm">{anchor.description}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </motion.div>
+      </Container>
+    </section>
+  );
+}
 
 export default function ClientVoicesPage() {
   const { t } = useTranslation();
@@ -23,6 +138,9 @@ export default function ClientVoicesPage() {
           </FadeIn>
         </Container>
       </section>
+
+      {/* How Clients Experience Us */}
+      <HowClientsExperienceUs />
 
       {/* Testimonials */}
       <section className="pb-24 md:pb-32">
@@ -82,7 +200,7 @@ export default function ClientVoicesPage() {
                 {t.clientVoicesPage.ctaDescription}
               </p>
               <div className="mt-10">
-                <a href="mailto:contact@significanz.dk">
+                <a href="mailto:welcome@significanz.dk">
                   <Button variant="accent" size="lg">
                     {t.clientVoicesPage.ctaButton}
                   </Button>

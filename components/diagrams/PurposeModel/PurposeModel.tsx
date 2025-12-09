@@ -333,7 +333,7 @@ export function PurposeModel({
                     }
                     fontSize="13"
                     fontWeight="500"
-                    fontFamily="var(--font-dm-sans)"
+                    fontFamily="var(--font-din-alternate)"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{
                       opacity: highlightedSegment ? (isHighlighted ? 1 : 0.5) : 1,

@@ -8,6 +8,7 @@ export const da: TranslationKeys = {
     gallery: 'Galleri',
     clientVoices: 'Klientstemmer',
     contact: 'Kontakt',
+    collaborate: 'Samarbejd',
   },
 
   hero: {
@@ -426,5 +427,57 @@ export const da: TranslationKeys = {
   cursor: {
     view: 'Se',
     explore: 'Udforsk',
+  },
+
+  ourDNA: {
+    tagline: 'Inter-aktioner der betyder noget',
+    title: 'Vores DNA',
+    description1: 'Hos Significanz hjælper vi ledere og organisationer med at skabe reel impact — så de kan tage ansvar og handle rigtigt på det rigtige tidspunkt. I en verden der forandrer sig hurtigt, er gode intentioner eller en smart strategi ikke nok. Det der betyder noget er at kunne omsætte indsigt til handling.',
+    description2: 'Vi fokuserer på de øjeblikke der virkelig flytter tingene fremad: vigtige samtaler, beslutninger der skaber tillid, og handlinger der omsætter formål til fremskridt.',
+    abilityTitle: 'Evne',
+    abilityDescription: 'Klarhed, færdigheder, struktur og alignment.',
+    willingnessTitle: 'Vilje',
+    willingnessDescription: 'Ejerskab, motivation, psykologisk tryghed og selvtillid.',
+    closingStatement: 'Vi laver ikke one-size-fits-all løsninger. Vi arbejder med din virkelige kontekst og hjælper dig med at identificere hvad der betyder mest, blive enige om de næste skridt, og skabe momentum med handlinger folk kan stå bag.',
+  },
+
+  collaboratePage: {
+    title: 'Samarbejd med os',
+    subtitle: 'Vores leveringsmodel er både praktisk og strategisk.',
+    description: 'Den hjælper dig med at vælge det rigtige format — og viser hvordan udvikling kan skalere fra individet til hele organisationen.',
+    deliveryModel: 'Leveringsmodel',
+    individuals: {
+      scale: '1:1',
+      title: 'Individer',
+      description: 'For ledere der ønsker dybde, klarhed og modige handlinger i en fortrolig setting.',
+      services: ['Executive Coaching: et fortroligt rum for refleksion, klarhed og mod.', 'Tilpasset Strategisk Rådgivning: strategisk sparring i kompleksitet, transition eller beslutninger med høj indsats.'],
+    },
+    teamsGroups: {
+      scale: '1:Flere',
+      title: 'Teams & Grupper',
+      description: 'For ledelsesteams, bestyrelser og grupper der har brug for tillid, alignment og fælles retning.',
+      services: ['Executive Coaching (duoer/bestyrelser)', 'Tilpasset Strategisk Rådgivning (team/bestyrelse)', 'Signaturprogrammer: Act_Ability & Personal Imp_Act'],
+    },
+    organizations: {
+      scale: '1:Mange',
+      title: 'Organisationer',
+      description: 'For at opbygge fælles kapabilitet og retning på tværs af større dele af organisationen.',
+      services: ['Keynotes & Talks (AACC metode)', 'Signaturprogram: Personal Imp_Act'],
+    },
+    coherentEnablement: {
+      scale: '1:Alle',
+      title: 'Sammenhængende enablement i skala',
+      description: 'Når ambitionen er organisationsomfattende, forbinder vi niveauer til én samlet tilgang — så ledelse, samarbejde og kultur forstærker hinanden over tid.',
+    },
+    ctaTitle: 'Klar til at udforske?',
+    ctaButton: 'Kontakt os',
+  },
+
+  underConstruction: {
+    title: 'Kommer snart',
+    subtitle: 'Vi bygger noget meningsfuldt.',
+    description: 'Denne side er under opbygning. Kig forbi igen snart for opdateringer.',
+    backToHome: 'Tilbage til forsiden',
+    exploreCollaborate: 'Udforsk hvordan vi samarbejder',
   },
 };

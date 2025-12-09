@@ -16,8 +16,7 @@ export function Header() {
 
   const navigation = [
     { name: t.nav.about, href: "/about" },
-    { name: t.nav.howWeWork, href: "/how-we-work" },
-    { name: t.nav.fourD, href: "/4d" },
+    { name: t.nav.collaborate, href: "/collaborate" },
     { name: t.nav.gallery, href: "/gallery" },
     { name: t.nav.clientVoices, href: "/client-voices" },
   ];
@@ -49,7 +48,7 @@ export function Header() {
                   transition={{ duration: 0.3 }}
                 >
                   <Image
-                    src="/images/logo/significanz navnetræk - champagne gold.png"
+                    src="/images/logo/significanz navnetræk - warm charcoal.png"
                     alt="Significanz"
                     width={300}
                     height={80}
@@ -66,7 +65,7 @@ export function Header() {
                   transition={{ duration: 0.3 }}
                 >
                   <Image
-                    src="/images/logo/significanz bomærke - champagne gold.png"
+                    src="/images/logo/Icon significanz BLACK.png"
                     alt="Significanz"
                     width={56}
                     height={56}

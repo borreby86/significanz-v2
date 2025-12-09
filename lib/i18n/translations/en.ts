@@ -8,6 +8,7 @@ export const en: TranslationKeys = {
     gallery: 'Gallery',
     clientVoices: 'Client Voices',
     contact: 'Contact',
+    collaborate: 'Collaborate',
   },
 
   hero: {
@@ -426,5 +427,57 @@ export const en: TranslationKeys = {
   cursor: {
     view: 'View',
     explore: 'Explore',
+  },
+
+  ourDNA: {
+    tagline: 'Inter-actions that matter',
+    title: 'Our DNA',
+    description1: 'At Significanz, we help leaders and organizations create real impact — so they can take responsibility and take the right action at the right time. In a world that changes fast, it\'s not enough to have good intentions or a smart strategy. What matters is being able to turn insight into action.',
+    description2: 'We focus on the moments that truly move things forward: important conversations, decisions that build trust, and actions that turn purpose into progress.',
+    abilityTitle: 'Ability',
+    abilityDescription: 'Clarity, skills, structure, and alignment.',
+    willingnessTitle: 'Willingness',
+    willingnessDescription: 'Ownership, motivation, psychological safety, and confidence.',
+    closingStatement: 'We don\'t do one-size-fits-all solutions. We work with your real context and help you identify what matters most, agree on the next steps, and build momentum with actions people can stand behind.',
+  },
+
+  collaboratePage: {
+    title: 'Collaborate with us',
+    subtitle: 'Our delivery model is both practical and strategic.',
+    description: 'It helps you choose the right format — and it shows how development can scale from the individual to the whole organization.',
+    deliveryModel: 'Delivery Model',
+    individuals: {
+      scale: '1:1',
+      title: 'Individuals',
+      description: 'For leaders who want depth, clarity, and courageous action in a confidential setting.',
+      services: ['Executive Coaching: a confidential space for reflection, clarity, and courage.', 'Customized Strategy Advisory: strategic sparring in complexity, transition, or high-stakes decisions.'],
+    },
+    teamsGroups: {
+      scale: '1:More',
+      title: 'Teams & Groups',
+      description: 'For leadership teams, boards, and groups that need trust, alignment, and shared direction.',
+      services: ['Executive Coaching (duos/boards)', 'Customized Strategy Advisory (team/board)', 'Signature Programmes: Act_Ability & Personal Imp_Act'],
+    },
+    organizations: {
+      scale: '1:Many',
+      title: 'Organizations',
+      description: 'For building shared capability and direction across larger parts of the organization.',
+      services: ['Keynotes & Talks (AACC method)', 'Signature Programme: Personal Imp_Act'],
+    },
+    coherentEnablement: {
+      scale: '1:All',
+      title: 'Coherent enablement at scale',
+      description: 'When the ambition is organization-wide, we connect levels into one joined-up approach — so leadership, collaboration, and culture reinforce each other over time.',
+    },
+    ctaTitle: 'Ready to explore?',
+    ctaButton: 'Get in touch',
+  },
+
+  underConstruction: {
+    title: 'Coming Soon',
+    subtitle: 'We\'re building something meaningful.',
+    description: 'This page is currently under construction. Check back soon for updates.',
+    backToHome: 'Back to Home',
+    exploreCollaborate: 'Explore how we collaborate',
   },
 };

@@ -45,7 +45,7 @@
 
   /* Fonts */
   --font-heading: var(--font-playfair);
-  --font-body: var(--font-dm-sans);
+  --font-body: var(--font-din-alternate);
 }
 
 :root {

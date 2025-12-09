@@ -9,6 +9,7 @@ export interface TranslationKeys {
     gallery: string;
     clientVoices: string;
     contact: string;
+    collaborate: string;
   };
 
   // Hero section
@@ -291,6 +292,61 @@ export interface TranslationKeys {
   cursor: {
     view: string;
     explore: string;
+  };
+
+  // Our DNA Section (Homepage)
+  ourDNA: {
+    tagline: string;
+    title: string;
+    description1: string;
+    description2: string;
+    abilityTitle: string;
+    abilityDescription: string;
+    willingnessTitle: string;
+    willingnessDescription: string;
+    closingStatement: string;
+  };
+
+  // Collaborate Page
+  collaboratePage: {
+    title: string;
+    subtitle: string;
+    description: string;
+    deliveryModel: string;
+    individuals: {
+      scale: string;
+      title: string;
+      description: string;
+      services: string[];
+    };
+    teamsGroups: {
+      scale: string;
+      title: string;
+      description: string;
+      services: string[];
+    };
+    organizations: {
+      scale: string;
+      title: string;
+      description: string;
+      services: string[];
+    };
+    coherentEnablement: {
+      scale: string;
+      title: string;
+      description: string;
+    };
+    ctaTitle: string;
+    ctaButton: string;
+  };
+
+  // Under Construction Page
+  underConstruction: {
+    title: string;
+    subtitle: string;
+    description: string;
+    backToHome: string;
+    exploreCollaborate: string;
   };
 }
 

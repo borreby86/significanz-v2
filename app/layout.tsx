@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Playfair_Display, DM_Sans } from "next/font/google";
+import { Playfair_Display } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import { Providers } from "./providers";
 
@@ -9,9 +10,9 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
-const dmSans = DM_Sans({
-  variable: "--font-dm-sans",
-  subsets: ["latin"],
+const dinAlternate = localFont({
+  src: "../public/fonts/DINAlternate-Bold.ttf",
+  variable: "--font-din-alternate",
   display: "swap",
 });
 
@@ -63,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${playfair.variable} ${dmSans.variable}`}>
+    <html lang="en" className={`${playfair.variable} ${dinAlternate.variable}`}>
       <body className="antialiased">
         <Providers>{children}</Providers>
       </body>

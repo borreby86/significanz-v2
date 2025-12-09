@@ -90,6 +90,225 @@ function Hero() {
   );
 }
 
+// Our DNA Section
+function OurDNA() {
+  const { t } = useTranslation();
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
+
+  return (
+    <section ref={ref} className="py-24 md:py-32 bg-white overflow-hidden">
+      <Container size="wide">
+        {/* Header with tagline */}
+        <motion.div
+          className="mb-16"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-12 h-px bg-[#A12F63]" />
+            <span className="text-[#A12F63] text-sm font-medium uppercase tracking-[0.2em]">
+              {t.ourDNA.tagline}
+            </span>
+          </div>
+          <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#34323A] italic">
+            {t.ourDNA.title}
+          </h2>
+        </motion.div>
+
+        {/* Main content with image */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+          {/* Left - Image */}
+          <motion.div
+            className="lg:col-span-5 relative"
+            initial={{ opacity: 0, x: -50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            <div className="relative aspect-[4/5] overflow-hidden">
+              <Image
+                src="/images/services/coaching-1.jpg"
+                alt="Leadership coaching session"
+                fill
+                className="object-cover"
+              />
+              {/* Overlay gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#34323A]/20 to-transparent" />
+            </div>
+            {/* Decorative element */}
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#A12F63]/10 -z-10" />
+            <div className="absolute -top-6 -left-6 w-24 h-24 border border-[#BFA27A]/30 -z-10" />
+          </motion.div>
+
+          {/* Right - Content */}
+          <motion.div
+            className="lg:col-span-7 flex flex-col justify-center"
+            initial={{ opacity: 0, x: 50 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1, delay: 0.4 }}
+          >
+            <p className="text-xl md:text-2xl text-[#34323A] leading-relaxed">
+              {t.ourDNA.description1}
+            </p>
+            <p className="mt-6 text-lg text-[#34323A]/70 leading-relaxed">
+              {t.ourDNA.description2}
+            </p>
+
+            {/* Ability & Willingness - Inline */}
+            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {/* Ability */}
+              <div className="group">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-2xl text-[#A12F63]">◎</span>
+                  <h3 className="font-[family-name:var(--font-playfair)] text-xl text-[#34323A]">
+                    {t.ourDNA.abilityTitle}
+                  </h3>
+                </div>
+                <p className="text-[#34323A]/60 text-sm leading-relaxed">
+                  {t.ourDNA.abilityDescription}
+                </p>
+              </div>
+
+              {/* Willingness */}
+              <div className="group">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-2xl text-[#BFA27A]">♦</span>
+                  <h3 className="font-[family-name:var(--font-playfair)] text-xl text-[#34323A]">
+                    {t.ourDNA.willingnessTitle}
+                  </h3>
+                </div>
+                <p className="text-[#34323A]/60 text-sm leading-relaxed">
+                  {t.ourDNA.willingnessDescription}
+                </p>
+              </div>
+            </div>
+
+            {/* Closing statement */}
+            <div className="mt-12 pt-8 border-t border-[#34323A]/10">
+              <p className="text-lg text-[#34323A]/80 leading-relaxed italic">
+                &ldquo;{t.ourDNA.closingStatement}&rdquo;
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
+// About Us Section - Awwwards style
+function AboutUs() {
+  const { t } = useTranslation();
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-10%" });
+
+  return (
+    <section id="about" ref={ref} className="py-32 md:py-48 bg-[#F7F6F5] overflow-hidden">
+      <Container size="wide">
+        {/* Large statement with mixed typography */}
+        <div className="relative">
+          {/* Background year */}
+          <motion.div
+            className="absolute -top-20 -right-10 text-[20rem] md:text-[28rem] font-[family-name:var(--font-playfair)] text-[#34323A]/[0.03] leading-none select-none pointer-events-none"
+            initial={{ opacity: 0, x: 100 }}
+            animate={isInView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 1.2 }}
+          >
+            15
+          </motion.div>
+
+          {/* Main content */}
+          <div className="relative z-10">
+            {/* Label */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6 }}
+              className="flex items-center gap-4 mb-12"
+            >
+              <div className="w-12 h-px bg-[#A12F63]" />
+              <span className="text-[#A12F63] text-sm font-medium uppercase tracking-[0.2em]">
+                {t.homepage.aboutUs}
+              </span>
+            </motion.div>
+
+            {/* Big statement */}
+            <motion.h2
+              className="font-[family-name:var(--font-playfair)] text-[#34323A] max-w-5xl"
+              initial={{ opacity: 0, y: 40 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <span className="block text-4xl md:text-5xl lg:text-6xl leading-[1.1]">
+                A network of{" "}
+                <span className="italic text-[#A12F63]">professionals</span>
+              </span>
+              <span className="block text-4xl md:text-5xl lg:text-6xl leading-[1.1] mt-2">
+                transforming how leaders
+              </span>
+              <span className="block text-4xl md:text-5xl lg:text-6xl leading-[1.1] mt-2">
+                <span className="italic">think</span> and{" "}
+                <span className="italic text-[#BFA27A]">act</span>
+              </span>
+            </motion.h2>
+
+            {/* Stats row */}
+            <motion.div
+              className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12"
+              initial={{ opacity: 0, y: 30 }}
+              animate={isInView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              {[
+                { number: "2015", label: "Founded" },
+                { number: "100+", label: "Leaders coached" },
+                { number: "4D", label: "Framework" },
+                { number: "∞", label: "Possibilities" },
+              ].map((stat, index) => (
+                <motion.div
+                  key={stat.label}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={isInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
+                  className="group"
+                >
+                  <div className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-[#34323A] group-hover:text-[#A12F63] transition-colors">
+                    {stat.number}
+                  </div>
+                  <div className="mt-2 text-sm text-[#34323A]/60 uppercase tracking-wider">
+                    {stat.label}
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* CTA */}
+            <motion.div
+              className="mt-16"
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.8, delay: 0.8 }}
+            >
+              <Link
+                href="/about"
+                className="group inline-flex items-center gap-4"
+              >
+                <span className="text-[#34323A] group-hover:text-[#A12F63] transition-colors">
+                  Discover our story
+                </span>
+                <span className="w-12 h-12 rounded-full border border-[#34323A]/20 flex items-center justify-center group-hover:bg-[#A12F63] group-hover:border-[#A12F63] transition-all">
+                  <span className="text-[#34323A] group-hover:text-white transition-colors">→</span>
+                </span>
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+      </Container>
+    </section>
+  );
+}
+
 // Who We Are + Services Section
 function WhoWeAreAndServices() {
   const { t } = useTranslation();
@@ -101,10 +320,10 @@ function WhoWeAreAndServices() {
       title: t.services.items.meaningfulAction.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          {/* Ripple/impact circles with heart center - meaningful impact */}
-          <circle cx="32" cy="32" r="24" fill="none" stroke="#A12F63" strokeWidth="2" opacity="0.3"/>
-          <circle cx="32" cy="32" r="16" fill="none" stroke="#A12F63" strokeWidth="2" opacity="0.6"/>
-          <circle cx="32" cy="32" r="8" fill="#A12F63"/>
+          {/* Circle with target dot and arrow breaking out - meaningful action */}
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round"/>
+          <circle cx="32" cy="32" r="4" fill="none" stroke="#34323A" strokeWidth="2.5"/>
+          <path d="M32 8V2M32 2L27 7M32 2L37 7" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
         </svg>
       )
     },
@@ -112,10 +331,10 @@ function WhoWeAreAndServices() {
       title: t.services.items.actAbility.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          {/* Hand/power symbol - ability to act */}
-          <circle cx="32" cy="32" r="22" fill="none" stroke="#34323A" strokeWidth="2.5"/>
-          <path d="M32 18V32L42 42" fill="none" stroke="#A12F63" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-          <circle cx="32" cy="32" r="4" fill="#A12F63"/>
+          {/* Circular progress with emphasized arc - ability to act */}
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round" opacity="0.3"/>
+          <path d="M32 8A24 24 0 0 1 56 32" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round"/>
+          <circle cx="32" cy="32" r="6" fill="none" stroke="#34323A" strokeWidth="2.5"/>
         </svg>
       )
     },
@@ -123,10 +342,11 @@ function WhoWeAreAndServices() {
       title: t.services.items.executiveCoaching.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          {/* Person with guiding hand - coaching */}
-          <circle cx="32" cy="20" r="10" fill="none" stroke="#34323A" strokeWidth="2.5"/>
-          <path d="M16 54C16 42 23 36 32 36C41 36 48 42 48 54" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round"/>
-          <circle cx="32" cy="20" r="4" fill="#A12F63"/>
+          {/* Two abstract profiles facing each other with insight dot */}
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round"/>
+          <circle cx="22" cy="28" r="6" fill="none" stroke="#34323A" strokeWidth="2.5"/>
+          <circle cx="42" cy="28" r="6" fill="none" stroke="#34323A" strokeWidth="2.5"/>
+          <circle cx="32" cy="42" r="3" fill="none" stroke="#34323A" strokeWidth="2.5"/>
         </svg>
       )
     },
@@ -134,11 +354,11 @@ function WhoWeAreAndServices() {
       title: t.services.items.leadershipDevelopment.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          {/* Rising bar chart - growth/development */}
-          <rect x="8" y="40" width="10" height="16" rx="2" fill="#34323A" opacity="0.4"/>
-          <rect x="22" y="30" width="10" height="26" rx="2" fill="#34323A" opacity="0.6"/>
-          <rect x="36" y="20" width="10" height="36" rx="2" fill="#34323A" opacity="0.8"/>
-          <rect x="50" y="10" width="10" height="46" rx="2" fill="#A12F63"/>
+          {/* Three ascending rounded bars inside circle - growth */}
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round"/>
+          <path d="M18 44V38" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round"/>
+          <path d="M32 44V30" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round"/>
+          <path d="M46 44V20" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round"/>
         </svg>
       )
     },
@@ -146,11 +366,10 @@ function WhoWeAreAndServices() {
       title: t.services.items.keynotes.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          {/* Speech bubble - keynotes/speaking */}
-          <path d="M12 14C12 10.7 14.7 8 18 8H46C49.3 8 52 10.7 52 14V34C52 37.3 49.3 40 46 40H28L18 50V40H18C14.7 40 12 37.3 12 34V14Z" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinejoin="round"/>
-          <circle cx="24" cy="24" r="3" fill="#A12F63"/>
-          <circle cx="32" cy="24" r="3" fill="#A12F63"/>
-          <circle cx="40" cy="24" r="3" fill="#A12F63"/>
+          {/* Minimalist microphone in circle - keynote speaking */}
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round"/>
+          <circle cx="32" cy="26" r="8" fill="none" stroke="#34323A" strokeWidth="2.5"/>
+          <path d="M32 34V44M26 48H38" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round"/>
         </svg>
       )
     },
@@ -158,12 +377,12 @@ function WhoWeAreAndServices() {
       title: t.services.items.teamTransformation.title,
       icon: (
         <svg viewBox="0 0 64 64" className="w-14 h-14">
-          {/* Three people in circle - team */}
-          <circle cx="32" cy="32" r="24" fill="none" stroke="#34323A" strokeWidth="2" opacity="0.3"/>
-          <circle cx="32" cy="16" r="6" fill="#A12F63"/>
-          <circle cx="18" cy="44" r="6" fill="#34323A"/>
-          <circle cx="46" cy="44" r="6" fill="#34323A"/>
-          <path d="M26 20L22 38M38 20L42 38M24 44H40" stroke="#34323A" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
+          {/* Large circle with three smaller circles moving to center - unity */}
+          <circle cx="32" cy="32" r="24" fill="none" stroke="#34323A" strokeWidth="2.5" strokeLinecap="round"/>
+          <circle cx="32" cy="18" r="5" fill="none" stroke="#34323A" strokeWidth="2.5"/>
+          <circle cx="20" cy="42" r="5" fill="none" stroke="#34323A" strokeWidth="2.5"/>
+          <circle cx="44" cy="42" r="5" fill="none" stroke="#34323A" strokeWidth="2.5"/>
+          <circle cx="32" cy="32" r="3" fill="none" stroke="#34323A" strokeWidth="2.5"/>
         </svg>
       )
     },
@@ -209,7 +428,7 @@ function WhoWeAreAndServices() {
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
             >
-              <Link href="/4d" className="group flex items-center gap-6">
+              <Link href="/collaborate" className="group flex items-center gap-6">
                 {/* Icon */}
                 <div className="text-[#34323A] flex-shrink-0">
                   {service.icon}
@@ -389,10 +608,10 @@ function GetInTouch() {
               <div>
                 <p className="text-[#BFA27A] text-sm font-medium uppercase tracking-wider mb-2">{t.homepage.email}</p>
                 <a
-                  href="mailto:contact@significanz.dk"
+                  href="mailto:welcome@significanz.dk"
                   className="text-2xl md:text-3xl text-[#F7F6F5] hover:text-[#BFA27A] transition-colors font-[family-name:var(--font-playfair)]"
                 >
-                  contact@significanz.dk
+                  welcome@significanz.dk
                 </a>
               </div>
               <div>
@@ -413,6 +632,8 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <OurDNA />
+      <AboutUs />
       <WhoWeAreAndServices />
       <BeInspired />
       <GetInTouch />

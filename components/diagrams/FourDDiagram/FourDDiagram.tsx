@@ -168,7 +168,7 @@ export function FourDDiagram({
                 fill={isActive ? COLORS.red : COLORS.gray400}
                 fontSize={variant === 'full' ? 12 : 10}
                 fontWeight={500}
-                style={{ fontFamily: 'var(--font-dm-sans)' }}
+                style={{ fontFamily: 'var(--font-din-alternate)' }}
                 initial={{ opacity: 0, y: 10 }}
                 animate={hasAnimated ? { opacity: 1, y: 0 } : {}}
                 transition={{
@@ -208,7 +208,7 @@ export function FourDDiagram({
                   dominantBaseline="middle"
                   fill={isActive ? COLORS.red : COLORS.gray400}
                   fontSize={11}
-                  style={{ fontFamily: 'var(--font-dm-sans)' }}
+                  style={{ fontFamily: 'var(--font-din-alternate)' }}
                   initial={{ opacity: 0 }}
                   animate={hasAnimated ? { opacity: 1 } : {}}
                   transition={{
