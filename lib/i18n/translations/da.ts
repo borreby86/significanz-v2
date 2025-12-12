@@ -208,6 +208,13 @@ export const da: TranslationKeys = {
     heroDescription: 'Hjælper ledere med at handle meningsfuldt på det rigtige tidspunkt.',
     scrollToExplore: 'Scroll for at udforske',
     imageAlt: 'Stinne Madsen - Executive Coach',
+    aboutUsLabel: 'Om Os',
+    aboutUsTitle: 'Om os',
+    aboutUsParagraph1: 'Significanz blev grundlagt af Stinne Madsen i 2015. I dag er vi et netværk af fagfolk med en bred vifte af kompetencer og perspektiver. Det vi deler er stærk, hands-on erfaring inden for ledelse, organisationsdesign og transformation - med individer, teams og hele organisationer.',
+    aboutUsParagraph2: 'Vi er kendt for at skabe klarhed tidligt. Med vores 4D designramme og en fokuseret Discovery-fase lytter vi dybt, holder os tæt på vores kunders formål og omsætter det vi lærer til klar retning. Dette skaber ofte hurtig værdi: stærkere fokus, fælles forståelse og et konkret udgangspunkt.',
+    aboutUsParagraph3: 'Et centralt mål i vores arbejde er enablement. Vi ønsker at kunder er mere kapable når vi går - bedre rustet til at føre arbejdet videre og blive mere selvbærende.',
+    aboutUsParagraph4: 'Vi arbejder også på en teknologibaseret og fremtidsorienteret måde. Vi integrerer relevant teknologi i discovery og levering, og vi har AI\'s rolle i tankerne som en intern støtte til læring, beslutningstagning og eksekvering.',
+    aboutUsParagraph5: 'I hvert engagement agerer vi som en betroet sparringspartner - vi lytter dybt og udfordrer venligt.',
     ourPurpose: 'Vores Formål',
     purposeTitle: 'Interaktioner der betyder noget',
     purposeDescription: 'Muliggør evnen og viljen til at skabe meningsfuld impact.',
@@ -379,8 +386,8 @@ export const da: TranslationKeys = {
 
   homepage: {
     whoAreWe: 'Hvem er vi?',
-    weAreCoaches: 'Vi er coaches, facilitatorer og ledelsesudviklere af hjertet.',
-    weCreateChange: 'Vi skaber bæredygtig forandring til gavn for ledere, teams og organisationer.',
+    weAreCoaches: 'Hos Significanz hjælper vi ledere og organisationer med at skabe reel impact - så de kan tage ansvar og handle rigtigt på det rigtige tidspunkt.',
+    weCreateChange: '',
     beInspired: 'Bliv inspireret',
     seeAllContent: 'Se alt indhold',
     framework: 'Framework',
@@ -432,7 +439,7 @@ export const da: TranslationKeys = {
   ourDNA: {
     tagline: 'Inter-aktioner der betyder noget',
     title: 'Vores DNA',
-    description1: 'Hos Significanz hjælper vi ledere og organisationer med at skabe reel impact — så de kan tage ansvar og handle rigtigt på det rigtige tidspunkt. I en verden der forandrer sig hurtigt, er gode intentioner eller en smart strategi ikke nok. Det der betyder noget er at kunne omsætte indsigt til handling.',
+    description1: 'I en verden der forandrer sig hurtigt, er gode intentioner eller en smart strategi ikke nok. Det der betyder noget er at kunne omsætte indsigt til handling.',
     description2: 'Vi fokuserer på de øjeblikke der virkelig flytter tingene fremad: vigtige samtaler, beslutninger der skaber tillid, og handlinger der omsætter formål til fremskridt.',
     abilityTitle: 'Evne',
     abilityDescription: 'Klarhed, færdigheder, struktur og alignment.',

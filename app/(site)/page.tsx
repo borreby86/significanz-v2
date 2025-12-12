@@ -11,11 +11,11 @@ import { Header } from "@/components/layout/Header";
 // Hero with full-width photo and rotating words with brand colors
 function Hero() {
   const words = [
-    { text: "Leadership", color: "#BFA27A" },  // Champagne Gold
-    { text: "Growth", color: "#A12F63" },      // Nordic Berry
-    { text: "Impact", color: "#EFEDEA" },      // Warm Mist
-    { text: "Change", color: "#BFA27A" },      // Champagne Gold
-    { text: "Purpose", color: "#A12F63" },     // Nordic Berry
+    { text: "Leadership", color: "#A12F63" },  // Nordic Berry (Red)
+    { text: "Growth", color: "#34323A" },      // Warm Charcoal
+    { text: "Impact", color: "#A12F63" },      // Nordic Berry (Red)
+    { text: "Change", color: "#EFEDEA" },      // Warm Mist
+    { text: "Purpose", color: "#34323A" },     // Warm Charcoal
   ];
   const [currentWord, setCurrentWord] = useState(0);
 
@@ -126,19 +126,14 @@ function OurDNA() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            <div className="relative aspect-[4/5] overflow-hidden">
+            <div className="relative aspect-[3/4] overflow-hidden">
               <Image
-                src="/images/services/coaching-1.jpg"
-                alt="Leadership coaching session"
+                src="/images/gallery/OUR DNA.jpg"
+                alt="Our DNA"
                 fill
                 className="object-cover"
               />
-              {/* Overlay gradient */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#34323A]/20 to-transparent" />
             </div>
-            {/* Decorative element */}
-            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#A12F63]/10 -z-10" />
-            <div className="absolute -top-6 -left-6 w-24 h-24 border border-[#BFA27A]/30 -z-10" />
           </motion.div>
 
           {/* Right - Content */}
@@ -148,46 +143,40 @@ function OurDNA() {
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1, delay: 0.4 }}
           >
-            <p className="text-xl md:text-2xl text-[#34323A] leading-relaxed">
+            <p className="text-lg text-[#34323A] leading-relaxed">
               {t.ourDNA.description1}
             </p>
             <p className="mt-6 text-lg text-[#34323A]/70 leading-relaxed">
               {t.ourDNA.description2}
             </p>
 
-            {/* Ability & Willingness - Inline */}
-            <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {/* Ability & Willingness - Cards */}
+            <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Ability */}
-              <div className="group">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl text-[#A12F63]">◎</span>
-                  <h3 className="font-[family-name:var(--font-playfair)] text-xl text-[#34323A]">
-                    {t.ourDNA.abilityTitle}
-                  </h3>
-                </div>
-                <p className="text-[#34323A]/60 text-sm leading-relaxed">
+              <div className="bg-[#F7F6F5] p-6 border-l-4 border-[#A12F63]">
+                <h3 className="text-lg font-medium text-[#34323A] mb-2">
+                  {t.ourDNA.abilityTitle}
+                </h3>
+                <p className="text-base text-[#34323A]/70 leading-relaxed">
                   {t.ourDNA.abilityDescription}
                 </p>
               </div>
 
               {/* Willingness */}
-              <div className="group">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-2xl text-[#BFA27A]">♦</span>
-                  <h3 className="font-[family-name:var(--font-playfair)] text-xl text-[#34323A]">
-                    {t.ourDNA.willingnessTitle}
-                  </h3>
-                </div>
-                <p className="text-[#34323A]/60 text-sm leading-relaxed">
+              <div className="bg-[#F7F6F5] p-6 border-l-4 border-[#BFA27A]">
+                <h3 className="text-lg font-medium text-[#34323A] mb-2">
+                  {t.ourDNA.willingnessTitle}
+                </h3>
+                <p className="text-base text-[#34323A]/70 leading-relaxed">
                   {t.ourDNA.willingnessDescription}
                 </p>
               </div>
             </div>
 
             {/* Closing statement */}
-            <div className="mt-12 pt-8 border-t border-[#34323A]/10">
-              <p className="text-lg text-[#34323A]/80 leading-relaxed italic">
-                &ldquo;{t.ourDNA.closingStatement}&rdquo;
+            <div className="mt-10">
+              <p className="text-base text-[#34323A]/70 leading-relaxed">
+                {t.ourDNA.closingStatement}
               </p>
             </div>
           </motion.div>
@@ -413,9 +402,11 @@ function WhoWeAreAndServices() {
             <p className="text-xl md:text-2xl text-[#34323A] leading-relaxed font-medium">
               {t.homepage.weAreCoaches}
             </p>
-            <p className="mt-6 text-xl md:text-2xl text-[#34323A]/70 leading-relaxed">
-              {t.homepage.weCreateChange}
-            </p>
+            {t.homepage.weCreateChange && (
+              <p className="mt-6 text-xl md:text-2xl text-[#34323A]/70 leading-relaxed">
+                {t.homepage.weCreateChange}
+              </p>
+            )}
           </motion.div>
         </div>
 
@@ -632,9 +623,9 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <WhoWeAreAndServices />
       <OurDNA />
       <AboutUs />
-      <WhoWeAreAndServices />
       <BeInspired />
       <GetInTouch />
     </>

@@ -208,6 +208,13 @@ export const en: TranslationKeys = {
     heroDescription: 'Helping leaders take meaningful action at the right time.',
     scrollToExplore: 'Scroll to explore',
     imageAlt: 'Stinne Madsen - Executive Coach',
+    aboutUsLabel: 'About Us',
+    aboutUsTitle: 'About us',
+    aboutUsParagraph1: 'Significanz was founded by Stinne Madsen in 2015. Today, we are a network of professionals with a wide range of skills and perspectives. What we share is strong, hands-on experience in management, organizational design, and transformation - working with individuals, teams, and whole organizations.',
+    aboutUsParagraph2: 'We are known for creating clarity early. With our 4D design framework and a focused Discovery Phase, we listen deeply, stay close to our clients\' purpose, and translate what we learn into clear direction. This often creates quick value: stronger focus, shared understanding, and a concrete starting point.',
+    aboutUsParagraph3: 'A key goal in our work is enablement. We want clients to be more capable when we leave - better equipped to carry the work forward and become more self-sustaining.',
+    aboutUsParagraph4: 'We also work in a tech-based and future-oriented way. We integrate relevant technology in discovery and delivery, and we keep the role of AI in mind as an internal support for learning, decision-making, and execution.',
+    aboutUsParagraph5: 'In every engagement, we act as a trusted sparring partner - listening deeply and challenging kindly.',
     ourPurpose: 'Our Purpose',
     purposeTitle: 'Interactions that matter',
     purposeDescription: 'Enabling the ability and willingness to create meaningful impact.',
@@ -379,8 +386,8 @@ export const en: TranslationKeys = {
 
   homepage: {
     whoAreWe: 'Who are we?',
-    weAreCoaches: 'We are coaches, facilitators, and leadership developers at heart.',
-    weCreateChange: 'We create sustainable change for the benefit of leaders, teams, and organizations.',
+    weAreCoaches: 'At Significanz, we help leaders and organizations create real impact - so they can take responsibility and take the right action at the right time.',
+    weCreateChange: '',
     beInspired: 'Be inspired',
     seeAllContent: 'See all content',
     framework: 'Framework',
@@ -432,7 +439,7 @@ export const en: TranslationKeys = {
   ourDNA: {
     tagline: 'Inter-actions that matter',
     title: 'Our DNA',
-    description1: 'At Significanz, we help leaders and organizations create real impact — so they can take responsibility and take the right action at the right time. In a world that changes fast, it\'s not enough to have good intentions or a smart strategy. What matters is being able to turn insight into action.',
+    description1: 'In a world that changes fast, it\'s not enough to have good intentions or a smart strategy. What matters is being able to turn insight into action.',
     description2: 'We focus on the moments that truly move things forward: important conversations, decisions that build trust, and actions that turn purpose into progress.',
     abilityTitle: 'Ability',
     abilityDescription: 'Clarity, skills, structure, and alignment.',

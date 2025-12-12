@@ -7,9 +7,9 @@ import { useTranslation } from "@/lib/i18n";
 
 // New gallery images
 const galleryImages = [
+  "Otte Scharmer.jpg",
   "DTU.jpg",
   "export m viviant farve.jpg",
-  "export m viviant farve(1).jpg",
   "Hofor.jpg",
   "IMG_0225.jpg",
   "IMG_0569.jpg",
@@ -27,10 +27,6 @@ const galleryImages = [
   "IMG_9511.jpg",
   "IMG_9638.jpg",
   "IMG_9652.jpg",
-  "MM200841.jpg",
-  "MM200895.jpg",
-  "MM201085.jpg",
-  "Otte Scharmer.jpg",
 ].map((filename, i) => ({
   id: i + 1,
   src: `/images/gallery/${filename}`,
@@ -58,22 +54,22 @@ export default function GalleryPage() {
         </Container>
       </section>
 
-      {/* Gallery Grid - Color images, no border */}
+      {/* Gallery Grid - Postcard style */}
       <section className="pb-24 md:pb-32">
         <Container size="wide">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
             {galleryImages.map((image, index) => (
               <FadeIn key={image.id} delay={index * 0.03}>
-                <div className="aspect-square relative overflow-hidden group cursor-pointer">
-                  <Image
-                    src={image.src}
-                    alt={`${t.galleryPage.photoAlt} ${image.id}`}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
-                  />
-                  {/* Hover overlay */}
-                  <div className="absolute inset-0 bg-[#34323A]/0 group-hover:bg-[#34323A]/20 transition-colors duration-300" />
+                <div className="bg-white p-3 md:p-4 shadow-md hover:shadow-xl transition-shadow duration-300 group cursor-pointer">
+                  <div className="aspect-square relative overflow-hidden">
+                    <Image
+                      src={image.src}
+                      alt={`${t.galleryPage.photoAlt} ${image.id}`}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    />
+                  </div>
                 </div>
               </FadeIn>
             ))}

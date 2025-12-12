@@ -165,6 +165,13 @@ export interface TranslationKeys {
     heroDescription: string;
     scrollToExplore: string;
     imageAlt: string;
+    aboutUsLabel: string;
+    aboutUsTitle: string;
+    aboutUsParagraph1: string;
+    aboutUsParagraph2: string;
+    aboutUsParagraph3: string;
+    aboutUsParagraph4: string;
+    aboutUsParagraph5: string;
     ourPurpose: string;
     purposeTitle: string;
     purposeDescription: string;
