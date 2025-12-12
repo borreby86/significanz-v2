@@ -10,6 +10,18 @@ export interface TranslationKeys {
     clientVoices: string;
     contact: string;
     collaborate: string;
+    collaboration: string;
+    clients: string;
+    // About dropdown items
+    ourEdge: string;
+    valuesLogic: string;
+    enablingYou: string;
+    // Collaboration dropdown items
+    strategicAdvisory: string;
+    teamTransformation: string;
+    leadershipDevelopment: string;
+    executiveCoaching: string;
+    keynotes: string;
   };
 
   // Hero section

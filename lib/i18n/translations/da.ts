@@ -9,6 +9,18 @@ export const da: TranslationKeys = {
     clientVoices: 'Klientstemmer',
     contact: 'Kontakt',
     collaborate: 'Samarbejd',
+    collaboration: 'Samarbejde',
+    clients: 'Klienter',
+    // About dropdown items
+    ourEdge: 'Vores fordel',
+    valuesLogic: 'Værdier og logik',
+    enablingYou: 'Enabler dig',
+    // Collaboration dropdown items
+    strategicAdvisory: 'Strategisk rådgivning',
+    teamTransformation: 'Team transformation',
+    leadershipDevelopment: 'Ledelsesudvikling',
+    executiveCoaching: 'Executive Coaching',
+    keynotes: 'Keynotes',
   },
 
   hero: {

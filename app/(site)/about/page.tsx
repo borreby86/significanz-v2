@@ -126,8 +126,8 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* About Us Section */}
-      <section className="py-24 md:py-32 bg-white">
+      {/* About Us / Our Edge Section */}
+      <section id="our-edge" className="py-24 md:py-32 bg-white scroll-mt-20">
         <Container size="default">
           <FadeIn>
             <div className="max-w-3xl mx-auto">
@@ -150,8 +150,8 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Philosophy - Full Width Black Section */}
-      <section className="py-24 md:py-32 bg-black relative overflow-hidden">
+      {/* Philosophy / Values and Logic - Full Width Black Section */}
+      <section id="values-logic" className="py-24 md:py-32 bg-black relative overflow-hidden scroll-mt-20">
         {/* Animated gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
 
@@ -258,8 +258,50 @@ export default function AboutPage() {
         </Container>
       </section>
 
+      {/* Enabling You Section - 4D & Tech */}
+      <section id="enabling-you" className="py-24 md:py-32 bg-[#F7F6F5] scroll-mt-20">
+        <Container size="default">
+          <FadeIn>
+            <div className="max-w-3xl mx-auto">
+              <span className="text-red font-medium text-sm uppercase tracking-wider">
+                Our Approach
+              </span>
+              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
+                Enabling you
+              </h2>
+
+              <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* 4D Framework */}
+                <div className="bg-white p-8">
+                  <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-[#34323A] mb-4">
+                    4D Design Framework
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    With our focused Discovery Phase, we listen deeply, stay close to your purpose, and translate insights into clear direction. This creates quick value: stronger focus, shared understanding, and a concrete starting point.
+                  </p>
+                </div>
+
+                {/* Tech-forward */}
+                <div className="bg-white p-8">
+                  <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-[#34323A] mb-4">
+                    Tech-forward
+                  </h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    We integrate relevant technology in discovery and delivery, keeping AI in mind as internal support for learning, decision-making, and execution.
+                  </p>
+                </div>
+              </div>
+
+              <p className="mt-10 text-lg text-gray-600 leading-relaxed">
+                A key goal in our work is enablement. We want you to be more capable when we leave - better equipped to carry the work forward and become more self-sustaining.
+              </p>
+            </div>
+          </FadeIn>
+        </Container>
+      </section>
+
       {/* Contact Section */}
-      <section className="py-32 md:py-48 bg-[#F7F6F5]">
+      <section className="py-32 md:py-48 bg-white">
         <Container size="wide">
           {/* Header */}
           <FadeIn>
