@@ -370,28 +370,28 @@ export const en: TranslationKeys = {
     ctaButton: 'Get in touch',
     testimonials: [
       {
-        quote: 'Stinne is a gifted facilitator of life-changing conversations. She has a unique balance between empathy and results-orientation — creating a psychologically safe and energetic space that transforms both thinking and behaviour.',
-        author: 'Christina Juel Hegaard',
-        role: 'Global Head of Change Leadership & D&I',
-        company: 'Arla',
-      },
-      {
-        quote: "In working with Stinne, I've discovered how she combines professional insight, business understanding, and curiosity for technology. She has helped move me and my department — both humanly and professionally. It's always a pleasure being in her presence: good energy, humour, and high competence.",
+        quote: "In working with the good people at Significanz, I've discovered how they combine professional insight, business understanding, and curiosity for technology. The transistional design has helped move me and my department - both humanly and professionally. It's always a pleasure being in their presence: good energy, humour, and high competence.",
         author: 'Michael Warrer',
         role: 'CIO',
         company: 'NRGi',
+      },
+      {
+        quote: 'We have worked with Significanz through several long-term programmes. The executive and team coaching we have received has been precise, efficient, and has truly moved us forward as an organisation. I can only give Significanz my strongest recommendation.',
+        author: 'Thomas Højlt',
+        role: 'Deputy Director',
+        company: 'City of Copenhagen',
+      },
+      {
+        quote: 'Stinne is a gifted facilitator of life-changing conversations. She has a unique balance between empathy and results-orientation - creating a psychologically safe and energetic space that transforms both thinking and behaviour.',
+        author: 'Christina Juel Hegaard',
+        role: 'Global Head of Change Leadership & D&I',
+        company: 'Arla',
       },
       {
         quote: 'Stinne Enemærke Madsen draws on a vast background in psychology, psychotherapy, leadership, HR, and tech. She weaves these perspectives into forward-looking coaching that puts personal and professional development at the centre. You feel in competent hands.',
         author: 'Katja Iversen',
         role: 'CEO',
         company: 'UN Live',
-      },
-      {
-        quote: "We have worked with Significanz through several long-term programmes. Stinne's coaching has been precise, efficient, and has truly moved us forward as an organisation. I can only give Significanz my strongest recommendation.",
-        author: 'Thomas Højlt',
-        role: 'Deputy Director',
-        company: 'City of Copenhagen',
       },
     ],
   },
