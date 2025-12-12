@@ -47,7 +47,7 @@ export default function GalleryPage() {
                 {t.galleryPage.title}
               </span>
             </div>
-            <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl text-[#34323A] italic">
+            <h1 className="font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#34323A] italic">
               {t.galleryPage.caption}
             </h1>
           </FadeIn>

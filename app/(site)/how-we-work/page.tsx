@@ -65,14 +65,14 @@ export default function HowWeWorkPage() {
           transition={{ duration: 5, repeat: Infinity }}
         />
 
-        {/* Large ambient blobs */}
+        {/* Large ambient blobs - responsive sizes */}
         <motion.div
-          className="absolute -top-60 -left-60 w-[700px] h-[700px] rounded-full bg-gradient-to-br from-peach/30 to-transparent blur-[100px]"
+          className="absolute -top-20 -left-20 md:-top-40 md:-left-40 lg:-top-60 lg:-left-60 w-64 md:w-96 lg:w-[700px] h-64 md:h-96 lg:h-[700px] rounded-full bg-gradient-to-br from-peach/30 to-transparent blur-[60px] md:blur-[80px] lg:blur-[100px]"
           animate={{ scale: [1, 1.15, 1], opacity: [0.3, 0.5, 0.3] }}
           transition={{ duration: 12, repeat: Infinity }}
         />
         <motion.div
-          className="absolute -bottom-60 -right-60 w-[800px] h-[800px] rounded-full bg-gradient-to-tl from-cream/40 to-transparent blur-[120px]"
+          className="absolute -bottom-20 -right-20 md:-bottom-40 md:-right-40 lg:-bottom-60 lg:-right-60 w-72 md:w-[400px] lg:w-[800px] h-72 md:h-[400px] lg:h-[800px] rounded-full bg-gradient-to-tl from-cream/40 to-transparent blur-[60px] md:blur-[80px] lg:blur-[120px]"
           animate={{ scale: [1.1, 1, 1.1], opacity: [0.4, 0.2, 0.4] }}
           transition={{ duration: 15, repeat: Infinity }}
         />

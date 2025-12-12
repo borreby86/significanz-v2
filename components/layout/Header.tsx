@@ -33,7 +33,7 @@ export function Header() {
       <Container size="full">
         <nav className="relative flex items-center justify-between h-20">
           {/* Logo - switches from full logo to icon on scroll */}
-          <Link href="/" className="relative flex items-center w-[210px]">
+          <Link href="/" className="relative flex items-center w-[140px] sm:w-[170px] md:w-[210px]">
             <AnimatePresence mode="popLayout">
               {!scrolled ? (
                 <motion.div
@@ -48,7 +48,7 @@ export function Header() {
                     alt="Significanz"
                     width={300}
                     height={80}
-                    className="h-14 w-auto"
+                    className="h-10 sm:h-12 md:h-14 w-auto"
                     priority
                   />
                 </motion.div>
@@ -65,7 +65,7 @@ export function Header() {
                     alt="Significanz"
                     width={56}
                     height={56}
-                    className="h-14 w-auto"
+                    className="h-10 sm:h-12 md:h-14 w-auto"
                   />
                 </motion.div>
               )}
@@ -147,9 +147,9 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white z-40 md:hidden shadow-2xl"
+              className="fixed top-0 right-0 h-full w-72 sm:w-80 max-w-[90vw] bg-white z-40 md:hidden shadow-2xl"
             >
-              <div className="flex flex-col pt-24 px-8 gap-6">
+              <div className="flex flex-col pt-20 sm:pt-24 px-6 sm:px-8 gap-5 sm:gap-6">
                 {navigationConfig.map((item, index) => (
                   <MobileNavItem
                     key={item.key}

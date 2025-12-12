@@ -52,13 +52,13 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <h1 className="font-[family-name:var(--font-playfair)] text-white">
-              <span className="block text-7xl md:text-8xl lg:text-9xl leading-[0.9]">
+              <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.9]">
                 Significanz
               </span>
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentWord}
-                  className="block text-7xl md:text-8xl lg:text-9xl leading-[0.9] italic mt-2"
+                  className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.9] italic mt-2"
                   style={{ color: words[currentWord].color }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -197,9 +197,9 @@ function AboutUs() {
       <Container size="wide">
         {/* Large statement with mixed typography */}
         <div className="relative">
-          {/* Background year */}
+          {/* Background year - responsive */}
           <motion.div
-            className="absolute -top-20 -right-10 text-[20rem] md:text-[28rem] font-[family-name:var(--font-playfair)] text-[#34323A]/[0.03] leading-none select-none pointer-events-none"
+            className="absolute -top-10 right-0 md:-top-20 md:-right-10 text-[8rem] sm:text-[12rem] md:text-[20rem] lg:text-[28rem] font-[family-name:var(--font-playfair)] text-[#34323A]/[0.03] leading-none select-none pointer-events-none"
             initial={{ opacity: 0, x: 100 }}
             animate={isInView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 1.2 }}

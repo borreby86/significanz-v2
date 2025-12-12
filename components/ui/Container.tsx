@@ -19,7 +19,7 @@ export function Container({
   size = "default",
 }: ContainerProps) {
   return (
-    <div className={cn("mx-auto px-6 lg:px-8", sizes[size], className)}>
+    <div className={cn("mx-auto px-4 sm:px-6 md:px-8 lg:px-10", sizes[size], className)}>
       {children}
     </div>
   );

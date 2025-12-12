@@ -65,15 +65,15 @@ export default function ContactPage() {
         {/* Grain texture */}
         <div className="absolute inset-0 bg-noise opacity-[0.04] pointer-events-none z-10" />
 
-        {/* Decorative blobs */}
+        {/* Decorative blobs - responsive */}
         <motion.div
-          className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-peach blur-3xl"
+          className="absolute -top-16 -left-16 md:-top-32 md:-left-32 w-48 md:w-72 lg:w-96 h-48 md:h-72 lg:h-96 rounded-full bg-peach blur-2xl md:blur-3xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.4 }}
           transition={{ duration: 1.5 }}
         />
         <motion.div
-          className="absolute bottom-0 right-1/4 w-64 h-64 rounded-full bg-cream blur-3xl"
+          className="absolute bottom-0 right-1/4 w-32 md:w-48 lg:w-64 h-32 md:h-48 lg:h-64 rounded-full bg-cream blur-2xl md:blur-3xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.5 }}
           transition={{ duration: 1.5, delay: 0.3 }}
@@ -224,13 +224,13 @@ export default function ContactPage() {
       <GradientDivider fromColor="#FFFFFF" toColor="#FDF8F3" height={100} />
 
       {/* Form Section */}
-      <section className="py-24 md:py-32 bg-cream relative overflow-hidden">
-        {/* Warm blobs */}
+      <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-cream relative overflow-hidden">
+        {/* Warm blobs - responsive */}
         <motion.div
-          className="absolute -top-40 right-1/4 w-80 h-80 bg-peach rounded-full blur-3xl opacity-30"
+          className="absolute -top-20 md:-top-40 right-1/4 w-40 md:w-60 lg:w-80 h-40 md:h-60 lg:h-80 bg-peach rounded-full blur-2xl md:blur-3xl opacity-30"
         />
         <motion.div
-          className="absolute -bottom-20 -left-20 w-64 h-64 bg-warm-gray rounded-full blur-3xl opacity-50"
+          className="absolute -bottom-10 md:-bottom-20 -left-10 md:-left-20 w-32 md:w-48 lg:w-64 h-32 md:h-48 lg:h-64 bg-warm-gray rounded-full blur-2xl md:blur-3xl opacity-50"
         />
 
         {/* Grain texture */}
@@ -242,7 +242,7 @@ export default function ContactPage() {
               <span className="text-red font-medium text-sm uppercase tracking-wider">
                 {t.contactPage.sendMessage}
               </span>
-              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl text-black tracking-tight">
+              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-2xl sm:text-3xl md:text-4xl text-black tracking-tight">
                 {t.contactPage.startConversation}
               </h2>
               <p className="mt-4 text-gray-600 max-w-lg mx-auto">
@@ -253,7 +253,7 @@ export default function ContactPage() {
 
           <FadeIn delay={0.2}>
             <div className="max-w-xl mx-auto">
-              <div className="p-8 md:p-12 bg-white border border-warm-gray-dark shadow-lg relative overflow-hidden">
+              <div className="p-6 sm:p-8 md:p-10 lg:p-12 bg-white border border-warm-gray-dark shadow-lg relative overflow-hidden">
                 {/* Decorative corners */}
                 <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-red/30" />
                 <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-red/30" />
@@ -271,16 +271,16 @@ export default function ContactPage() {
       <GradientDivider fromColor="#FDF8F3" toColor="#000000" height={100} />
 
       {/* Alternative Contact - Dark Section */}
-      <section className="py-24 md:py-32 bg-black relative overflow-hidden">
+      <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-black relative overflow-hidden">
         {/* Animated gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
 
         {/* Grain texture */}
         <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none" />
 
-        {/* Red accent glow */}
+        {/* Red accent glow - responsive */}
         <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red/10 rounded-full blur-3xl"
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 md:w-72 lg:w-96 h-48 md:h-72 lg:h-96 bg-red/10 rounded-full blur-2xl md:blur-3xl"
           animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
           transition={{ duration: 6, repeat: Infinity }}
         />
@@ -291,7 +291,7 @@ export default function ContactPage() {
               <span className="text-red font-medium text-sm uppercase tracking-wider">
                 {t.contactPage.directContact}
               </span>
-              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-white tracking-tight">
+              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white tracking-tight">
                 {t.contactPage.preferEmail}
               </h2>
               <p className="mt-6 text-lg text-gray-400 max-w-xl mx-auto">

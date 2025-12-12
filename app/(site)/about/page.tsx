@@ -37,15 +37,15 @@ export default function AboutPage() {
         {/* Grain texture */}
         <div className="absolute inset-0 bg-noise opacity-[0.04] pointer-events-none z-10" />
 
-        {/* Decorative blobs */}
+        {/* Decorative blobs - responsive */}
         <motion.div
-          className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-peach blur-3xl"
+          className="absolute -top-16 -left-16 md:-top-32 md:-left-32 w-48 md:w-72 lg:w-96 h-48 md:h-72 lg:h-96 rounded-full bg-peach blur-2xl md:blur-3xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.4 }}
           transition={{ duration: 1.5 }}
         />
         <motion.div
-          className="absolute -bottom-20 right-1/4 w-64 h-64 rounded-full bg-cream blur-3xl"
+          className="absolute -bottom-10 right-1/4 w-32 md:w-48 lg:w-64 h-32 md:h-48 lg:h-64 rounded-full bg-cream blur-2xl md:blur-3xl"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.5 }}
           transition={{ duration: 1.5, delay: 0.3 }}
@@ -301,24 +301,24 @@ export default function AboutPage() {
       </section>
 
       {/* Contact Section */}
-      <section className="py-32 md:py-48 bg-white">
+      <section className="py-20 sm:py-28 md:py-36 lg:py-48 bg-white">
         <Container size="wide">
           {/* Header */}
           <FadeIn>
-            <div className="text-center mb-20">
+            <div className="text-center mb-12 sm:mb-16 md:mb-20">
               <span className="text-[#A12F63] font-medium text-sm uppercase tracking-[0.2em]">
                 Get in Touch
               </span>
-              <h2 className="mt-6 font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#34323A] italic">
+              <h2 className="mt-4 sm:mt-6 font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-[#34323A] italic">
                 Let&apos;s start a conversation
               </h2>
-              <p className="mt-8 text-xl text-[#34323A]/70 leading-relaxed max-w-2xl mx-auto">
+              <p className="mt-6 sm:mt-8 text-lg sm:text-xl text-[#34323A]/70 leading-relaxed max-w-2xl mx-auto">
                 Ready to create meaningful impact? We&apos;d love to hear from you. Share your challenges, and let&apos;s explore how we can help.
               </p>
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 md:gap-16 lg:gap-24">
             {/* Left - Contact Info */}
             <FadeIn className="lg:col-span-4">
               <div className="space-y-12">
@@ -345,7 +345,7 @@ export default function AboutPage() {
 
             {/* Right - Form */}
             <FadeIn delay={0.2} className="lg:col-span-8">
-              <form className="bg-white p-10 md:p-14 lg:p-16">
+              <form className="bg-white p-6 sm:p-8 md:p-10 lg:p-14">
                 <div className="space-y-8">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
