@@ -35,11 +35,7 @@ export function NavDropdown({ label, href, items, scrolled, t }: NavDropdownProp
     >
       {/* Main nav item */}
       <button
-        className={`text-sm transition-colors duration-300 flex items-center gap-1.5 ${
-          scrolled
-            ? "text-gray-600 hover:text-[#A12F63]"
-            : "text-white/80 hover:text-white"
-        }`}
+        className="text-sm transition-colors duration-300 flex items-center gap-1.5 text-gray-600 hover:text-[#A12F63]"
       >
         {label}
         <svg

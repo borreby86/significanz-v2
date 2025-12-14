@@ -31,25 +31,6 @@ function HowClientsExperienceUs() {
     },
   ];
 
-  const anchors = [
-    {
-      title: t.aboutPage.clientExperience.evidenceBased.title,
-      description: "A documented learning path capturing insights, decisions, and outcomes.",
-    },
-    {
-      title: t.aboutPage.clientExperience.visibleProgress.title,
-      description: "Baselines and development metrics, so progress can be seen and tracked.",
-    },
-    {
-      title: t.aboutPage.clientExperience.safetyFirst.title,
-      description: "We facilitate hard conversations with care.",
-    },
-    {
-      title: t.aboutPage.clientExperience.coCreation.title,
-      description: "Agreements and artefacts built with clients, not for them.",
-    },
-  ];
-
   return (
     <section ref={ref} className="py-24 md:py-32 bg-[#F7F6F5]">
       <Container size="wide">
@@ -91,30 +72,6 @@ function HowClientsExperienceUs() {
           ))}
         </div>
 
-        {/* Measurable anchors */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="bg-white p-8 md:p-12"
-        >
-          <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-[#34323A] mb-8">
-            Each engagement is guided by measurable anchors
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {anchors.map((anchor, index) => (
-              <div key={anchor.title} className="flex gap-4">
-                <div className="w-8 h-8 rounded-full bg-[#A12F63]/10 flex items-center justify-center flex-shrink-0">
-                  <span className="text-[#A12F63] font-medium text-sm">{index + 1}</span>
-                </div>
-                <div>
-                  <h4 className="font-medium text-[#34323A] mb-1">{anchor.title}</h4>
-                  <p className="text-[#34323A]/60 text-sm">{anchor.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </motion.div>
       </Container>
     </section>
   );
@@ -143,7 +100,7 @@ export default function ClientVoicesPage() {
       <HowClientsExperienceUs />
 
       {/* Testimonials */}
-      <section className="pb-24 md:pb-32">
+      <section className="py-24 md:py-32">
         <Container size="wide">
           <div className="space-y-16 md:space-y-24">
             {t.clientVoicesPage.testimonials.map((testimonial, index) => (
@@ -158,7 +115,7 @@ export default function ClientVoicesPage() {
                       index % 2 === 1 ? "lg:col-start-5" : ""
                     }`}
                   >
-                    <p className="font-[family-name:var(--font-playfair)] text-xl md:text-2xl lg:text-3xl text-black leading-relaxed">
+                    <p className="font-[family-name:var(--font-playfair)] text-lg md:text-xl lg:text-2xl text-black leading-relaxed">
                       &ldquo;{testimonial.quote}&rdquo;
                     </p>
                   </div>

@@ -1,14 +1,91 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { motion, useScroll, useTransform, useInView } from "motion/react";
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from "motion/react";
 import { SplitText } from "@/components/animations/SplitText";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { useTranslation } from "@/lib/i18n";
+
+// Our Edge data
+const ourEdgeItems = [
+  {
+    number: "01",
+    title: "Instant outcomes",
+    shortDesc: "Results from day one through deep listening.",
+    longDesc: "From day one, you and your organisation see progress. We listen carefully, identify what matters most, and translate it into clear actions. Early results create direction and momentum. The work stays practical and focused on your organisation's real needs, so value becomes visible quickly and can be built upon.",
+  },
+  {
+    number: "02",
+    title: "Creating Enablement",
+    shortDesc: "Self-sufficient clients who continue independently.",
+    longDesc: "We build lasting capability with you and your organisation. Through shared work, simple methods, and clear handovers, your organisation gains confidence and control. You and your organisation develop the ability to maintain momentum, make sound decisions, and improve step by step. The result is strength that continues independently.",
+  },
+  {
+    number: "03",
+    title: "Tech-forward",
+    shortDesc: "AI-integrated discovery and deployment.",
+    longDesc: "We integrate modern technology into your organisation's work. AI supports discovery, helps identify patterns, and accelerates delivery. Technology strengthens decision-making and execution across your organisation. This creates a smoother path from insight to implementation and improves speed, quality, and consistency.",
+  },
+  {
+    number: "04",
+    title: "Trusted partner",
+    shortDesc: "Deep listening. Kind challenges.",
+    longDesc: "We build trust with you and your organisation through attention, reliability, and integrity. Deep listening creates understanding, and respectful challenges bring clarity. We help you and your organisation surface what matters, agree priorities, and act with confidence. The partnership is steady, professional, and focused on meaningful progress.",
+  },
+];
+
+// Our Edge Card Component
+function OurEdgeCard({ item, index }: { item: typeof ourEdgeItems[0]; index: number }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <motion.div
+      className="relative bg-white p-8 md:p-10 cursor-pointer overflow-hidden"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      viewport={{ once: true }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      {/* Number */}
+      <span className="text-red text-sm font-medium tracking-wider mb-4 block">
+        {item.number}
+      </span>
+
+      {/* Title */}
+      <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#34323A] mb-4">
+        {item.title}
+      </h3>
+
+      {/* Description - toggles between short and long */}
+      <AnimatePresence mode="wait">
+        <motion.p
+          key={isHovered ? "long" : "short"}
+          className="text-gray-600 leading-relaxed"
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -10 }}
+          transition={{ duration: 0.3 }}
+        >
+          {isHovered ? item.longDesc : item.shortDesc}
+        </motion.p>
+      </AnimatePresence>
+
+      {/* Hover indicator line */}
+      <motion.div
+        className="absolute bottom-0 left-0 h-1 bg-red"
+        initial={{ width: 0 }}
+        animate={{ width: isHovered ? "100%" : 0 }}
+        transition={{ duration: 0.3 }}
+      />
+    </motion.div>
+  );
+}
 
 export default function AboutPage() {
   const { t } = useTranslation();
@@ -126,27 +203,50 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* About Us / Our Edge Section */}
-      <section id="our-edge" className="py-24 md:py-32 bg-white scroll-mt-20">
+      {/* Purpose Section */}
+      <section id="purpose" className="py-24 md:py-32 bg-white scroll-mt-20">
         <Container size="default">
           <FadeIn>
             <div className="max-w-3xl mx-auto">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
-                {t.aboutPage.aboutUsLabel}
+                Purpose
               </span>
               <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
-                {t.aboutPage.aboutUsTitle}
+                Creating meaningful impact
               </h2>
 
               <div className="mt-10 space-y-6 text-lg text-gray-600 leading-relaxed">
-                <p>{t.aboutPage.aboutUsParagraph1}</p>
-                <p>{t.aboutPage.aboutUsParagraph2}</p>
-                <p>{t.aboutPage.aboutUsParagraph3}</p>
-                <p>{t.aboutPage.aboutUsParagraph4}</p>
-                <p className="text-black font-medium">{t.aboutPage.aboutUsParagraph5}</p>
+                <p>Significanz is about helping leaders and organizations create meaningful impact so they can assume responsibility and take the right action at the right time.</p>
+                <p>We excel in enabling individuals, teams and organizations to combine the ability to act with the willingness of both the individual and the group to create meaningful impact.</p>
+                <p>Creating impactful actions that makes sense for the overall purpose of organization is at the core of everything we do. First things first - why is the business, organization or NGO in the first place - that&apos;s where we start in our discovery phase.</p>
+                <p className="text-black font-medium">We are coaches, facilitators, and leadership developers at heart.</p>
+                <p className="text-black font-medium">We create sustainable enablement for the benefit of leaders, teams, and organizations.</p>
               </div>
             </div>
           </FadeIn>
+        </Container>
+      </section>
+
+      {/* Our Edge Section */}
+      <section id="our-edge" className="py-24 md:py-32 bg-[#F7F6F5] scroll-mt-20">
+        <Container size="wide">
+          <FadeIn>
+            <div className="text-center mb-16">
+              <span className="text-red font-medium text-sm uppercase tracking-wider">
+                Our Edge
+              </span>
+              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
+                What sets us apart
+              </h2>
+            </div>
+          </FadeIn>
+
+          {/* 4 Wide Cards with Hover */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {ourEdgeItems.map((item, index) => (
+              <OurEdgeCard key={item.number} item={item} index={index} />
+            ))}
+          </div>
         </Container>
       </section>
 
@@ -169,13 +269,19 @@ export default function AboutPage() {
           <FadeIn>
             <div className="text-center">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
-                {t.aboutPage.ourPhilosophy}
+                Our Philosophy
               </span>
               <h2 className="mt-6 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-white tracking-tight">
-                {t.aboutPage.philosophyTitle}
+                Meaningful Impact
               </h2>
-              <p className="mt-6 text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                {t.aboutPage.philosophyDescription}
+              <p className="mt-4 text-xl text-gray-300 max-w-2xl mx-auto">
+                From &ldquo;Me to We&rdquo; — taking responsibility for the right actions.
+              </p>
+              <p className="mt-8 text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                True transformation happens when we move from &ldquo;Me to We&rdquo; - taking responsibility for the right actions at the right time on behalf of the organization. Our work is about creating those conditions — releasing the potential that already exists within people and organizations. We create the opportunities for people to act towards common goals through interactions that matter.
+              </p>
+              <p className="mt-6 text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
+                Significanz helps you cultivate the ability and willingness that enables people to take ownership and act in a meaningful way to ensure impact.
               </p>
             </div>
           </FadeIn>
@@ -197,7 +303,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: 0.1 }}
                   viewport={{ once: true }}
                 >
-                  {t.aboutPage.ability}
+                  Ability
                 </motion.span>
                 <motion.span
                   className="text-gray-600"
@@ -215,7 +321,7 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: 0.4 }}
                   viewport={{ once: true }}
                 >
-                  {t.aboutPage.willingness}
+                  Willingness
                 </motion.span>
                 <motion.span
                   className="text-gray-600"
@@ -233,11 +339,11 @@ export default function AboutPage() {
                   transition={{ duration: 0.5, delay: 0.7 }}
                   viewport={{ once: true }}
                 >
-                  {t.aboutPage.meaningfulImpact}
+                  Meaningful Impact
                 </motion.span>
               </div>
-              <p className="mt-10 text-gray-500 max-w-xl mx-auto">
-                {t.aboutPage.enablementDescription}
+              <p className="mt-10 text-gray-400 max-w-xl mx-auto font-medium">
+                Enablement is both our method and our measure of success.
               </p>
             </div>
           </FadeIn>
@@ -250,52 +356,10 @@ export default function AboutPage() {
                 &ldquo;
               </span>
               <p className="text-xl md:text-2xl text-gray-300 italic max-w-3xl mx-auto relative z-10">
-                &ldquo;{t.aboutPage.quote}&rdquo;
+                &ldquo;Stop asking for permission. Start taking meaningful action.&rdquo;
               </p>
-              <footer className="mt-6 text-red font-medium">— {t.aboutPage.quoteAuthor}</footer>
+              <footer className="mt-6 text-red font-medium">— Stinne Madsen</footer>
             </blockquote>
-          </FadeIn>
-        </Container>
-      </section>
-
-      {/* Enabling You Section - 4D & Tech */}
-      <section id="enabling-you" className="py-24 md:py-32 bg-[#F7F6F5] scroll-mt-20">
-        <Container size="default">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto">
-              <span className="text-red font-medium text-sm uppercase tracking-wider">
-                Our Approach
-              </span>
-              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
-                Enabling you
-              </h2>
-
-              <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* 4D Framework */}
-                <div className="bg-white p-8">
-                  <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-[#34323A] mb-4">
-                    4D Design Framework
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    With our focused Discovery Phase, we listen deeply, stay close to your purpose, and translate insights into clear direction. This creates quick value: stronger focus, shared understanding, and a concrete starting point.
-                  </p>
-                </div>
-
-                {/* Tech-forward */}
-                <div className="bg-white p-8">
-                  <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-[#34323A] mb-4">
-                    Tech-forward
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    We integrate relevant technology in discovery and delivery, keeping AI in mind as internal support for learning, decision-making, and execution.
-                  </p>
-                </div>
-              </div>
-
-              <p className="mt-10 text-lg text-gray-600 leading-relaxed">
-                A key goal in our work is enablement. We want you to be more capable when we leave - better equipped to carry the work forward and become more self-sustaining.
-              </p>
-            </div>
           </FadeIn>
         </Container>
       </section>

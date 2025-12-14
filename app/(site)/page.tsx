@@ -12,7 +12,6 @@ import { Header } from "@/components/layout/Header";
 function Hero() {
   const words = [
     { text: "Leadership", color: "#A12F63" },  // Nordic Berry (Red)
-    { text: "Growth", color: "#34323A" },      // Warm Charcoal
     { text: "Impact", color: "#A12F63" },      // Nordic Berry (Red)
     { text: "Change", color: "#EFEDEA" },      // Warm Mist
     { text: "Purpose", color: "#34323A" },     // Warm Charcoal
