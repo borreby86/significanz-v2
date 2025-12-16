@@ -34,19 +34,22 @@ export function NavDropdown({ label, href, items, scrolled, t }: NavDropdownProp
       onMouseLeave={handleMouseLeave}
     >
       {/* Main nav item */}
-      <button
-        className="text-sm transition-colors duration-300 flex items-center gap-1.5 text-gray-600 hover:text-[#A12F63]"
-      >
-        {label}
+      <div className="flex items-center gap-1.5">
+        <Link
+          href={href || '#'}
+          className="text-sm transition-colors duration-300 text-gray-600 hover:text-[#A12F63]"
+        >
+          {label}
+        </Link>
         <svg
-          className={`w-3 h-3 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          className={`w-3 h-3 transition-transform duration-200 text-gray-600 ${isOpen ? "rotate-180" : ""}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
         >
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
-      </button>
+      </div>
 
       {/* Dropdown menu */}
       <AnimatePresence>

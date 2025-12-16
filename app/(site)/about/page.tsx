@@ -176,7 +176,7 @@ export default function AboutPage() {
                 transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
               >
                 <Image
-                  src="/images/about/portrait.jpg"
+                  src="/images/photo til about siden.jpg"
                   alt={t.aboutPage.imageAlt}
                   fill
                   className="object-cover"

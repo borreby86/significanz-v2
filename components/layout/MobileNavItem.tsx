@@ -42,20 +42,30 @@ export function MobileNavItem({ item, t, index, onClose }: MobileNavItemProps) {
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.1 }}
     >
-      <button
-        className="w-full flex items-center justify-between text-2xl font-[family-name:var(--font-playfair)] text-[#34323A] hover:text-[#A12F63] transition-colors"
-        onClick={() => setExpanded(!expanded)}
-      >
-        {label}
-        <svg
-          className={`w-5 h-5 transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+      {/* Main item with link and dropdown toggle */}
+      <div className="flex items-center justify-between">
+        <Link
+          href={item.href || '#'}
+          className="text-2xl font-[family-name:var(--font-playfair)] text-[#34323A] hover:text-[#A12F63] transition-colors"
+          onClick={onClose}
         >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
+          {label}
+        </Link>
+        <button
+          className="p-2 text-[#34323A] hover:text-[#A12F63] transition-colors"
+          onClick={() => setExpanded(!expanded)}
+          aria-label="Toggle submenu"
+        >
+          <svg
+            className={`w-5 h-5 transition-transform duration-200 ${expanded ? "rotate-180" : ""}`}
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
 
       <AnimatePresence>
         {expanded && (

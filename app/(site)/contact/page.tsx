@@ -1,13 +1,11 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/animations/FadeIn";
-import { ContactForm } from "@/components/forms/ContactForm";
 import { motion, useInView } from "motion/react";
-import { SplitText } from "@/components/animations/SplitText";
-import { GradientDivider } from "@/components/ui/SectionDivider";
 import { useTranslation } from "@/lib/i18n";
 
 const contactMethods = [
@@ -24,26 +22,25 @@ const contactMethods = [
   },
   {
     icon: (
-      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+      <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
       </svg>
     ),
-    title: "Location",
-    description: "Denmark",
-    value: "Copenhagen",
-    href: null,
+    title: "LinkedIn",
+    description: "Connect with Stinne",
+    value: "Stinne Madsen",
+    href: "https://www.linkedin.com/in/stinne-madsen/",
   },
   {
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
       </svg>
     ),
-    title: "Global",
-    description: "Remote & On-site",
-    value: "Worldwide",
-    href: null,
+    title: "Phone",
+    description: "Mon-Fri, 9-17",
+    value: "+45 3175 3125",
+    href: "tel:+4531753125",
   },
 ];
 
@@ -51,279 +48,295 @@ export default function ContactPage() {
   const { t } = useTranslation();
   const heroRef = useRef<HTMLElement>(null);
   const heroInView = useInView(heroRef, { once: true });
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    company: "",
+    message: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+
+    // Simulate form submission
+    await new Promise(resolve => setTimeout(resolve, 1000));
+    setSubmitStatus("success");
+    setIsSubmitting(false);
+    setFormData({ name: "", email: "", company: "", message: "" });
+  };
 
   return (
     <>
-      {/* Hero - Full Width Split */}
+      {/* Hero - Full Width with Background Image */}
       <section
         ref={heroRef}
-        className="min-h-[70vh] flex items-center pt-20 relative overflow-hidden"
+        className="min-h-screen relative overflow-hidden"
       >
-        {/* Warm gradient background */}
-        <div className="absolute inset-0 bg-warm-radial pointer-events-none" />
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/hero/hero new.jpg"
+            alt="Copenhagen office environment"
+            fill
+            className="object-cover grayscale"
+            priority
+          />
+          {/* Overlay for readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/50 to-black/40" />
+        </div>
 
-        {/* Grain texture */}
-        <div className="absolute inset-0 bg-noise opacity-[0.04] pointer-events-none z-10" />
+        {/* Content */}
+        <Container size="wide" className="relative z-10 h-full">
+          <div className="min-h-screen flex items-center pt-32 pb-16">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center w-full">
+              {/* Left: Content */}
+              <div>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6 }}
+                >
+                  <span className="text-[#A12F63] font-medium text-sm uppercase tracking-wider">
+                    Contact
+                  </span>
+                </motion.div>
 
-        {/* Decorative blobs - responsive */}
-        <motion.div
-          className="absolute -top-16 -left-16 md:-top-32 md:-left-32 w-48 md:w-72 lg:w-96 h-48 md:h-72 lg:h-96 rounded-full bg-peach blur-2xl md:blur-3xl"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.4 }}
-          transition={{ duration: 1.5 }}
-        />
-        <motion.div
-          className="absolute bottom-0 right-1/4 w-32 md:w-48 lg:w-64 h-32 md:h-48 lg:h-64 rounded-full bg-cream blur-2xl md:blur-3xl"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 0.5 }}
-          transition={{ duration: 1.5, delay: 0.3 }}
-        />
+                <motion.h1
+                  className="mt-8 font-[family-name:var(--font-playfair)] text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight leading-[1.1] italic"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                >
+                  Get in touch
+                </motion.h1>
 
-        <Container size="wide" className="relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left: Content */}
-            <div>
+                <motion.p
+                  className="mt-8 text-xl md:text-2xl text-white/80 max-w-xl leading-relaxed"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  Ready to transform your leadership journey? Let's start a conversation.
+                </motion.p>
+              </div>
+
+              {/* Right: Contact Form */}
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6 }}
+                className="lg:ml-auto w-full max-w-md"
+                initial={{ opacity: 0, x: 50 }}
+                animate={heroInView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <span className="text-red font-medium text-sm uppercase tracking-wider">
-                  {t.contactPage.getInTouch}
-                </span>
-              </motion.div>
+                <div className="bg-white/95 backdrop-blur-sm p-8 md:p-10">
+                  <h2 className="font-[family-name:var(--font-playfair)] text-2xl text-[#34323A] mb-6">
+                    Send us a message
+                  </h2>
 
-              <h1 className="mt-4 font-[family-name:var(--font-playfair)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-black tracking-tight leading-[1.1]">
-                <SplitText splitType="words" delay={0.2} staggerDelay={0.1}>
-                  {t.contactPage.title}
-                </SplitText>
-              </h1>
-
-              <motion.div
-                className="mt-8 w-24 h-1 bg-red origin-left"
-                initial={{ scaleX: 0 }}
-                animate={heroInView ? { scaleX: 1 } : {}}
-                transition={{ duration: 1, delay: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-              />
-
-              <motion.p
-                className="mt-8 text-lg md:text-xl text-gray-600 max-w-xl leading-relaxed"
-                initial={{ opacity: 0, y: 30 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-              >
-                {t.contactPage.subtitle}
-              </motion.p>
-
-              {/* Contact methods */}
-              <motion.div
-                className="mt-12 space-y-4"
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6, delay: 0.8 }}
-              >
-                {contactMethods.map((method, index) => (
-                  <motion.div
-                    key={method.title}
-                    className="group"
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={heroInView ? { opacity: 1, x: 0 } : {}}
-                    transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
-                  >
-                    {method.href ? (
-                      <a
-                        href={method.href}
-                        className="flex items-center gap-4 p-4 bg-white/50 backdrop-blur-sm border border-warm-gray-dark hover:border-red hover:bg-white transition-all duration-300"
-                      >
-                        <span className="text-red group-hover:scale-110 transition-transform duration-300">
-                          {method.icon}
-                        </span>
-                        <div>
-                          <p className="font-medium text-black">{method.title}</p>
-                          <p className="text-sm text-gray-500">{method.description}</p>
-                        </div>
-                        <span className="ml-auto text-red font-medium">
-                          {method.value}
-                        </span>
-                      </a>
-                    ) : (
-                      <div className="flex items-center gap-4 p-4 bg-white/50 backdrop-blur-sm border border-warm-gray-dark">
-                        <span className="text-gray-400">
-                          {method.icon}
-                        </span>
-                        <div>
-                          <p className="font-medium text-black">{method.title}</p>
-                          <p className="text-sm text-gray-500">{method.description}</p>
-                        </div>
-                        <span className="ml-auto text-gray-600">
-                          {method.value}
-                        </span>
+                  {submitStatus === "success" ? (
+                    <div className="text-center py-8">
+                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
                       </div>
-                    )}
-                  </motion.div>
-                ))}
+                      <p className="text-[#34323A] font-medium">Thank you!</p>
+                      <p className="text-gray-600 mt-2">We'll get back to you soon.</p>
+                    </div>
+                  ) : (
+                    <form onSubmit={handleSubmit} className="space-y-5">
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Your name"
+                          value={formData.name}
+                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                          required
+                          className="w-full px-4 py-3 bg-[#F7F6F5] border border-gray-200 text-[#34323A] placeholder-gray-400 focus:outline-none focus:border-[#A12F63] transition-colors"
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="email"
+                          placeholder="Email address"
+                          value={formData.email}
+                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                          required
+                          className="w-full px-4 py-3 bg-[#F7F6F5] border border-gray-200 text-[#34323A] placeholder-gray-400 focus:outline-none focus:border-[#A12F63] transition-colors"
+                        />
+                      </div>
+                      <div>
+                        <input
+                          type="text"
+                          placeholder="Company (optional)"
+                          value={formData.company}
+                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                          className="w-full px-4 py-3 bg-[#F7F6F5] border border-gray-200 text-[#34323A] placeholder-gray-400 focus:outline-none focus:border-[#A12F63] transition-colors"
+                        />
+                      </div>
+                      <div>
+                        <textarea
+                          placeholder="Your message"
+                          rows={4}
+                          value={formData.message}
+                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                          required
+                          className="w-full px-4 py-3 bg-[#F7F6F5] border border-gray-200 text-[#34323A] placeholder-gray-400 focus:outline-none focus:border-[#A12F63] transition-colors resize-none"
+                        />
+                      </div>
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="w-full px-6 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        {isSubmitting ? "Sending..." : "Send message"}
+                      </button>
+                    </form>
+                  )}
+                </div>
               </motion.div>
             </div>
-
-            {/* Right: Decorative element */}
-            <motion.div
-              className="hidden lg:flex items-center justify-center"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={heroInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.4 }}
-            >
-              <div className="relative w-80 h-80">
-                {/* Animated circles */}
-                <motion.div
-                  className="absolute inset-0 border-2 border-red/20 rounded-full"
-                  animate={{ scale: [1, 1.1, 1], opacity: [0.3, 0.5, 0.3] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                />
-                <motion.div
-                  className="absolute inset-8 border-2 border-black/10 rounded-full"
-                  animate={{ scale: [1, 1.05, 1], opacity: [0.2, 0.4, 0.2] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
-                />
-                <motion.div
-                  className="absolute inset-16 border-2 border-red/30 rounded-full"
-                  animate={{ scale: [1, 1.08, 1], opacity: [0.4, 0.6, 0.4] }}
-                  transition={{ duration: 5, repeat: Infinity, delay: 1 }}
-                />
-
-                {/* Center content */}
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="text-center">
-                    <span className="text-6xl font-[family-name:var(--font-playfair)] text-red">S</span>
-                    <p className="mt-2 text-sm text-gray-500 uppercase tracking-wider">Significanz</p>
-                  </div>
-                </div>
-
-                {/* Floating dots */}
-                <motion.div
-                  className="absolute top-0 left-1/2 w-3 h-3 bg-red rounded-full"
-                  animate={{ y: [0, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                />
-                <motion.div
-                  className="absolute bottom-10 right-10 w-2 h-2 bg-black rounded-full"
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
-                />
-                <motion.div
-                  className="absolute top-1/4 left-0 w-2 h-2 bg-peach rounded-full"
-                  animate={{ x: [0, 10, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, delay: 1 }}
-                />
-              </div>
-            </motion.div>
           </div>
         </Container>
       </section>
 
-      {/* Gradient transition */}
-      <GradientDivider fromColor="#FFFFFF" toColor="#FDF8F3" height={100} />
+      {/* Contact Info Section */}
+      <section className="py-20 md:py-28 bg-[#F7F6F5]">
+        <Container size="wide">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Left: Contact Methods */}
+            <div>
+              <FadeIn>
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-12 h-px bg-[#A12F63]" />
+                  <span className="text-[#A12F63] text-sm font-medium uppercase tracking-[0.2em]">
+                    Reach out
+                  </span>
+                </div>
+                <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-[#34323A] italic mb-4">
+                  Let's connect
+                </h2>
+                <p className="text-lg text-[#34323A]/70 mb-10 max-w-md">
+                  We'd love to hear from you. Choose your preferred way to get in touch.
+                </p>
+              </FadeIn>
 
-      {/* Form Section */}
-      <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-cream relative overflow-hidden">
-        {/* Warm blobs - responsive */}
-        <motion.div
-          className="absolute -top-20 md:-top-40 right-1/4 w-40 md:w-60 lg:w-80 h-40 md:h-60 lg:h-80 bg-peach rounded-full blur-2xl md:blur-3xl opacity-30"
-        />
-        <motion.div
-          className="absolute -bottom-10 md:-bottom-20 -left-10 md:-left-20 w-32 md:w-48 lg:w-64 h-32 md:h-48 lg:h-64 bg-warm-gray rounded-full blur-2xl md:blur-3xl opacity-50"
-        />
-
-        {/* Grain texture */}
-        <div className="absolute inset-0 bg-noise opacity-[0.03] pointer-events-none" />
-
-        <Container size="default" className="relative z-10">
-          <FadeIn>
-            <div className="text-center mb-12">
-              <span className="text-red font-medium text-sm uppercase tracking-wider">
-                {t.contactPage.sendMessage}
-              </span>
-              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-2xl sm:text-3xl md:text-4xl text-black tracking-tight">
-                {t.contactPage.startConversation}
-              </h2>
-              <p className="mt-4 text-gray-600 max-w-lg mx-auto">
-                {t.contactPage.respondTime}
-              </p>
-            </div>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <div className="max-w-xl mx-auto">
-              <div className="p-6 sm:p-8 md:p-10 lg:p-12 bg-white border border-warm-gray-dark shadow-lg relative overflow-hidden">
-                {/* Decorative corners */}
-                <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-red/30" />
-                <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-red/30" />
-                <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-red/30" />
-                <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-red/30" />
-
-                <ContactForm />
+              <div className="space-y-4">
+                {contactMethods.map((method, index) => (
+                  <FadeIn key={method.title} delay={0.1 * index}>
+                    {method.href ? (
+                      <a
+                        href={method.href}
+                        target={method.href.startsWith("http") ? "_blank" : undefined}
+                        rel={method.href.startsWith("http") ? "noopener noreferrer" : undefined}
+                        className="group flex items-center gap-4 p-5 bg-white border border-[#34323A]/10 hover:border-[#A12F63] transition-all duration-300"
+                      >
+                        <span className="text-[#A12F63] group-hover:scale-110 transition-transform duration-300">
+                          {method.icon}
+                        </span>
+                        <div className="flex-1">
+                          <p className="font-medium text-[#34323A]">{method.title}</p>
+                          <p className="text-sm text-[#34323A]/50">{method.description}</p>
+                        </div>
+                        <span className="text-[#A12F63] font-medium">
+                          {method.value}
+                        </span>
+                      </a>
+                    ) : (
+                      <div className="flex items-center gap-4 p-5 bg-white border border-[#34323A]/10">
+                        <span className="text-[#34323A]/40">
+                          {method.icon}
+                        </span>
+                        <div className="flex-1">
+                          <p className="font-medium text-[#34323A]">{method.title}</p>
+                          <p className="text-sm text-[#34323A]/50">{method.description}</p>
+                        </div>
+                        <span className="text-[#34323A]/70">
+                          {method.value}
+                        </span>
+                      </div>
+                    )}
+                  </FadeIn>
+                ))}
               </div>
             </div>
-          </FadeIn>
+
+            {/* Right: Logo Icon */}
+            <FadeIn delay={0.3}>
+              <div className="flex items-center justify-center">
+                <motion.div
+                  className="relative w-64 h-64 md:w-80 md:h-80"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                >
+                  {/* Animated circles around logo */}
+                  <motion.div
+                    className="absolute inset-0 border border-[#A12F63]/20 rounded-full"
+                    animate={{ scale: [1, 1.1, 1], opacity: [0.2, 0.4, 0.2] }}
+                    transition={{ duration: 4, repeat: Infinity }}
+                  />
+                  <motion.div
+                    className="absolute inset-6 border border-[#34323A]/10 rounded-full"
+                    animate={{ scale: [1, 1.05, 1], opacity: [0.1, 0.3, 0.1] }}
+                    transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
+                  />
+
+                  {/* Logo Icon */}
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <Image
+                      src="/images/logo/Icon significanz BLACK.png"
+                      alt="Significanz"
+                      width={160}
+                      height={160}
+                      className="w-32 h-32 md:w-40 md:h-40 object-contain"
+                    />
+                  </div>
+
+                  {/* Floating dots */}
+                  <motion.div
+                    className="absolute top-4 left-1/2 w-2 h-2 bg-[#A12F63] rounded-full"
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                  <motion.div
+                    className="absolute bottom-8 right-8 w-1.5 h-1.5 bg-[#34323A] rounded-full"
+                    animate={{ y: [0, 8, 0] }}
+                    transition={{ duration: 2.5, repeat: Infinity, delay: 0.5 }}
+                  />
+                </motion.div>
+              </div>
+            </FadeIn>
+          </div>
         </Container>
       </section>
 
-      {/* Gradient transition */}
-      <GradientDivider fromColor="#FDF8F3" toColor="#000000" height={100} />
-
-      {/* Alternative Contact - Dark Section */}
-      <section className="py-16 sm:py-20 md:py-24 lg:py-32 bg-black relative overflow-hidden">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
-
-        {/* Grain texture */}
-        <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none" />
-
-        {/* Red accent glow - responsive */}
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 md:w-72 lg:w-96 h-48 md:h-72 lg:h-96 bg-red/10 rounded-full blur-2xl md:blur-3xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
-          transition={{ duration: 6, repeat: Infinity }}
-        />
-
-        <Container size="default" className="relative z-10">
+      {/* CTA Section */}
+      <section className="py-20 md:py-28 bg-[#34323A]">
+        <Container size="default">
           <FadeIn>
             <div className="text-center">
-              <span className="text-red font-medium text-sm uppercase tracking-wider">
-                {t.contactPage.directContact}
-              </span>
-              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-white tracking-tight">
-                {t.contactPage.preferEmail}
+              <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-white italic">
+                Ready to start your journey?
               </h2>
-              <p className="mt-6 text-lg text-gray-400 max-w-xl mx-auto">
-                {t.contactPage.reachUs}
+              <p className="mt-6 text-lg text-white/60 max-w-xl mx-auto">
+                Discover how we can help you and your organization reach new heights.
               </p>
-
-              {/* Email link */}
-              <motion.a
-                href="mailto:welcome@significanz.dk"
-                className="mt-8 inline-flex items-center gap-3 px-8 py-4 bg-white/5 backdrop-blur-sm border border-white/10 text-white hover:bg-red hover:border-red transition-all duration-300 group"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                <svg className="w-5 h-5 group-hover:scale-110 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                <span className="font-medium">welcome@significanz.dk</span>
-              </motion.a>
-
-              {/* Additional links */}
-              <div className="mt-12 flex flex-wrap gap-4 justify-center">
+              <div className="mt-10 flex flex-wrap gap-4 justify-center">
                 <Link
                   href="/about"
-                  className="text-gray-400 hover:text-red transition-colors duration-300"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-white text-[#34323A] font-medium hover:bg-[#F7F6F5] transition-colors"
                 >
-                  {t.contactPage.learnAboutUs}
+                  Learn about us
+                  <span className="text-xl">→</span>
                 </Link>
                 <Link
                   href="/4d"
-                  className="text-gray-400 hover:text-red transition-colors duration-300"
+                  className="inline-flex items-center gap-3 px-8 py-4 border border-white/30 text-white font-medium hover:bg-white/10 transition-colors"
                 >
-                  {t.contactPage.exploreFramework}
+                  Explore our framework
                 </Link>
               </div>
             </div>

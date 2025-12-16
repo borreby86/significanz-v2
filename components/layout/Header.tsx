@@ -142,9 +142,9 @@ export function Header() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
-              className="fixed top-0 right-0 h-full w-72 sm:w-80 max-w-[90vw] bg-white z-40 md:hidden shadow-2xl"
+              className="fixed top-0 right-0 h-screen w-72 sm:w-80 max-w-[90vw] bg-white z-40 md:hidden shadow-2xl overflow-y-auto"
             >
-              <div className="flex flex-col pt-20 sm:pt-24 px-6 sm:px-8 gap-5 sm:gap-6">
+              <div className="flex flex-col pt-24 px-6 sm:px-8 gap-5 sm:gap-6 pb-8">
                 {navigationConfig.map((item, index) => (
                   <MobileNavItem
                     key={item.key}

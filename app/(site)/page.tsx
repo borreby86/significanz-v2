@@ -12,9 +12,9 @@ import { Header } from "@/components/layout/Header";
 function Hero() {
   const words = [
     { text: "Leadership", color: "#A12F63" },  // Nordic Berry (Red)
-    { text: "Impact", color: "#A12F63" },      // Nordic Berry (Red)
-    { text: "Change", color: "#EFEDEA" },      // Warm Mist
-    { text: "Purpose", color: "#34323A" },     // Warm Charcoal
+    { text: "Growth", color: "#BFA27A" },      // Gold
+    { text: "Impact", color: "#F7F6F5" },      // White/Cream
+    { text: "Purpose", color: "#A12F63" },     // Nordic Berry (Red)
   ];
   const [currentWord, setCurrentWord] = useState(0);
 
@@ -478,21 +478,21 @@ function BeInspired() {
 
         {/* Cards grid - more neutral, subtle accent */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {/* Card 1 - The 4D Model */}
+          {/* Card 1 - What Sets Us Apart */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.3 }}
             className="group"
           >
-            <Link href="/4d">
+            <Link href="/about#our-edge">
               <div className="bg-[#EFEDEA] p-8 aspect-square flex flex-col hover:bg-[#E5E3E0] transition-colors">
-                <span className="text-[#A12F63] text-sm font-medium uppercase tracking-wider">{t.homepage.framework}</span>
+                <span className="text-[#A12F63] text-sm font-medium uppercase tracking-wider">{t.homepage.aboutUs}</span>
                 <h3 className="mt-2 font-[family-name:var(--font-playfair)] text-3xl text-[#34323A]">
-                  {t.homepage.the4DModel}
+                  What sets us apart
                 </h3>
                 <p className="mt-3 text-[#34323A]/70">
-                  {t.homepage.frameworkDescription}
+                  Discover our unique approach to leadership development.
                 </p>
                 <div className="mt-auto pt-8 flex justify-end">
                   <span className="text-[#34323A] group-hover:text-[#A12F63] transition-colors text-2xl">→</span>
