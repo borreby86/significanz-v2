@@ -313,36 +313,6 @@ export default function ContactPage() {
         </Container>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 md:py-28 bg-[#34323A]">
-        <Container size="default">
-          <FadeIn>
-            <div className="text-center">
-              <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-white italic">
-                Ready to start your journey?
-              </h2>
-              <p className="mt-6 text-lg text-white/60 max-w-xl mx-auto">
-                Discover how we can help you and your organization reach new heights.
-              </p>
-              <div className="mt-10 flex flex-wrap gap-4 justify-center">
-                <Link
-                  href="/about"
-                  className="inline-flex items-center gap-3 px-8 py-4 bg-white text-[#34323A] font-medium hover:bg-[#F7F6F5] transition-colors"
-                >
-                  Learn about us
-                  <span className="text-xl">→</span>
-                </Link>
-                <Link
-                  href="/4d"
-                  className="inline-flex items-center gap-3 px-8 py-4 border border-white/30 text-white font-medium hover:bg-white/10 transition-colors"
-                >
-                  Explore our framework
-                </Link>
-              </div>
-            </div>
-          </FadeIn>
-        </Container>
-      </section>
     </>
   );
 }
