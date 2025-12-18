@@ -390,53 +390,34 @@ function CTASection() {
   return (
     <section ref={ref} className="bg-[#BFA27A] py-20 md:py-32">
       <Container size="wide">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left - Text */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#34323A] italic">
-              {t.fourDPage.instantOutcomes}
-            </h2>
-            <p className="mt-6 text-xl md:text-2xl text-[#34323A]/80 leading-relaxed max-w-md">
-              {t.fourDPage.instantOutcomesDesc}
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#34323A] text-[#F7F6F5] font-medium hover:bg-[#5A1735] transition-colors"
-              >
-                {t.fourDPage.startDiscovery}
-                <span className="text-xl">→</span>
-              </Link>
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#34323A] text-[#34323A] font-medium hover:bg-[#34323A] hover:text-[#F7F6F5] transition-colors"
-              >
-                {t.fourDPage.aboutUs}
-              </Link>
-            </div>
-          </motion.div>
-
-          {/* Right - Illustration */}
-          <motion.div
-            className="flex justify-center"
-            initial={{ opacity: 0, x: 30 }}
-            animate={isInView ? { opacity: 1, x: 0 } : {}}
-            transition={{ duration: 0.8, delay: 0.2 }}
-          >
-            <svg viewBox="0 0 300 250" className="w-full max-w-sm h-auto">
-              {/* Simple abstract illustration */}
-              <circle cx="150" cy="125" r="80" fill="#34323A" opacity="0.1" />
-              <circle cx="100" cy="100" r="40" fill="#A12F63" />
-              <circle cx="180" cy="90" r="30" fill="#5A1735" />
-              <circle cx="160" cy="160" r="50" fill="#34323A" />
-              <path d="M80 180 Q150 220 220 180" fill="none" stroke="#34323A" strokeWidth="3" />
-            </svg>
-          </motion.div>
-        </div>
+        <motion.div
+          className="text-center max-w-2xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#34323A] italic">
+            {t.fourDPage.instantOutcomes}
+          </h2>
+          <p className="mt-6 text-xl md:text-2xl text-[#34323A]/80 leading-relaxed">
+            {t.fourDPage.instantOutcomesDesc}
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#34323A] text-[#F7F6F5] font-medium hover:bg-[#5A1735] transition-colors"
+            >
+              {t.fourDPage.startDiscovery}
+              <span className="text-xl">→</span>
+            </Link>
+            <Link
+              href="/about"
+              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#34323A] text-[#34323A] font-medium hover:bg-[#34323A] hover:text-[#F7F6F5] transition-colors"
+            >
+              {t.fourDPage.aboutUs}
+            </Link>
+          </div>
+        </motion.div>
       </Container>
     </section>
   );
