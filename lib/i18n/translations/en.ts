@@ -12,10 +12,11 @@ export const en: TranslationKeys = {
     collaboration: 'Collaboration',
     clients: 'Clients',
     // About dropdown items
-    ourEdge: 'Our edge',
-    valuesLogic: 'Values and logic',
-    enablingYou: 'Enabling you',
+    purpose: 'Purpose',
+    ourEdge: 'Our Edge',
+    ourPhilosophy: 'Our Philosophy',
     // Collaboration dropdown items
+    ourMethod: 'Our Method',
     strategicAdvisory: 'Strategic advisory',
     teamTransformation: 'Team transformation',
     leadershipDevelopment: 'Leadership Development',

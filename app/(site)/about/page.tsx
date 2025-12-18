@@ -9,6 +9,7 @@ import { motion, useScroll, useTransform, useInView, AnimatePresence } from "mot
 import { SplitText } from "@/components/animations/SplitText";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { useTranslation } from "@/lib/i18n";
+import { PurposeModel } from "@/components/diagrams/PurposeModel";
 
 // Our Edge data
 const ourEdgeItems = [
@@ -250,8 +251,36 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Philosophy / Values and Logic - Full Width Black Section */}
-      <section id="values-logic" className="py-24 md:py-32 bg-black relative overflow-hidden scroll-mt-20">
+      {/* The 5P's of Integrated Self-Leadership */}
+      <section className="py-24 md:py-32 bg-white scroll-mt-20">
+        <Container size="wide">
+          <FadeIn>
+            <div className="text-center mb-16">
+              <span className="text-red font-medium text-sm uppercase tracking-wider">
+                {t.aboutPage.ourFramework}
+              </span>
+              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
+                {t.aboutPage.fivePsTitle}
+              </h2>
+              <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
+                {t.aboutPage.fivePsDescription}
+              </p>
+            </div>
+          </FadeIn>
+
+          {/* 5P Model Diagram */}
+          <FadeIn delay={0.2}>
+            <PurposeModel
+              interactive={true}
+              showDecorations={true}
+              size="default"
+            />
+          </FadeIn>
+        </Container>
+      </section>
+
+      {/* Our Philosophy - Main Section Header */}
+      <section id="our-philosophy" className="py-24 md:py-32 bg-black relative overflow-hidden scroll-mt-20">
         {/* Animated gradient background */}
         <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
 
@@ -268,13 +297,10 @@ export default function AboutPage() {
         <Container size="wide" className="relative z-10">
           <FadeIn>
             <div className="text-center">
-              <span className="text-red font-medium text-sm uppercase tracking-wider">
+              <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white tracking-tight">
                 Our Philosophy
-              </span>
-              <h2 className="mt-6 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-white tracking-tight">
-                Meaningful Impact
-              </h2>
-              <p className="mt-4 text-xl text-gray-300 max-w-2xl mx-auto">
+              </h1>
+              <p className="mt-6 text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto">
                 From &ldquo;Me to We&rdquo; — taking responsibility for the right actions.
               </p>
               <p className="mt-8 text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">

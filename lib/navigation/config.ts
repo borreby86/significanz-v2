@@ -16,15 +16,16 @@ export const navigationConfig: NavigationConfig = [
     key: 'about',
     href: '/about',
     items: [
+      { key: 'purpose', href: '/about#purpose' },
       { key: 'ourEdge', href: '/about#our-edge' },
-      { key: 'valuesLogic', href: '/about#values-logic' },
-      { key: 'enablingYou', href: '/about#enabling-you' },
+      { key: 'ourPhilosophy', href: '/about#our-philosophy' },
     ],
   },
   {
     key: 'collaboration',
     href: '/collaborate',
     items: [
+      { key: 'ourMethod', href: '/our-method' },
       { key: 'strategicAdvisory', href: '/collaborate#strategic-advisory' },
       { key: 'teamTransformation', href: '/team-transformation' },
       { key: 'leadershipDevelopment', href: '/leadership-development' },

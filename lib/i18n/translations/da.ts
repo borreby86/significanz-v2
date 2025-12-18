@@ -12,10 +12,11 @@ export const da: TranslationKeys = {
     collaboration: 'Samarbejde',
     clients: 'Klienter',
     // About dropdown items
-    ourEdge: 'Vores fordel',
-    valuesLogic: 'Værdier og logik',
-    enablingYou: 'Enabler dig',
+    purpose: 'Formål',
+    ourEdge: 'Vores Fordel',
+    ourPhilosophy: 'Vores Filosofi',
     // Collaboration dropdown items
+    ourMethod: 'Vores Metode',
     strategicAdvisory: 'Strategisk rådgivning',
     teamTransformation: 'Team transformation',
     leadershipDevelopment: 'Ledelsesudvikling',

@@ -13,10 +13,11 @@ export interface TranslationKeys {
     collaboration: string;
     clients: string;
     // About dropdown items
+    purpose: string;
     ourEdge: string;
-    valuesLogic: string;
-    enablingYou: string;
+    ourPhilosophy: string;
     // Collaboration dropdown items
+    ourMethod: string;
     strategicAdvisory: string;
     teamTransformation: string;
     leadershipDevelopment: string;
