@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Container } from "@/components/ui/Container";
-import { LanguageToggle } from "@/components/ui/LanguageToggle";
 import { NavDropdown } from "./NavDropdown";
 import { MobileNavItem } from "./MobileNavItem";
 import { cn } from "@/lib/utils";
@@ -96,10 +95,8 @@ export function Header() {
             ))}
           </ul>
 
-          {/* Language Toggle */}
-          <div className="hidden md:flex items-center gap-6">
-            <LanguageToggle scrolled={scrolled} />
-          </div>
+          {/* Spacer for layout balance */}
+          <div className="hidden md:flex items-center gap-6 w-[100px]" />
 
           {/* Mobile menu button */}
           <button
@@ -154,14 +151,6 @@ export function Header() {
                     onClose={() => setMobileMenuOpen(false)}
                   />
                 ))}
-                <motion.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: navigationConfig.length * 0.1 }}
-                  className="mt-4"
-                >
-                  <LanguageToggle />
-                </motion.div>
               </div>
             </motion.div>
           </>
