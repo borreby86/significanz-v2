@@ -127,7 +127,7 @@ function OurDNA() {
           >
             <div className="relative aspect-[3/4] overflow-hidden">
               <Image
-                src="/images/gallery/OUR DNA.jpg"
+                src="/images/BIllede til forsiden.jpg"
                 alt="Our DNA"
                 fill
                 className="object-cover"

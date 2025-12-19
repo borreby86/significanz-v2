@@ -1,12 +1,10 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { motion, useInView } from "motion/react";
-import { useTranslation } from "@/lib/i18n";
 
 const contactMethods = [
   {
@@ -45,28 +43,8 @@ const contactMethods = [
 ];
 
 export default function ContactPage() {
-  const { t } = useTranslation();
   const heroRef = useRef<HTMLElement>(null);
   const heroInView = useInView(heroRef, { once: true });
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    company: "",
-    message: "",
-  });
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle");
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setSubmitStatus("success");
-    setIsSubmitting(false);
-    setFormData({ name: "", email: "", company: "", message: "" });
-  };
 
   return (
     <>
@@ -135,66 +113,27 @@ export default function ContactPage() {
                     Send us a message
                   </h2>
 
-                  {submitStatus === "success" ? (
-                    <div className="text-center py-8">
-                      <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                        <svg className="w-8 h-8 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                      </div>
-                      <p className="text-[#34323A] font-medium">Thank you!</p>
-                      <p className="text-gray-600 mt-2">We'll get back to you soon.</p>
+                  {/* Contact form temporarily disabled */}
+                  <div className="text-center py-8">
+                    <div className="w-16 h-16 bg-[#F7F6F5] rounded-full flex items-center justify-center mx-auto mb-4">
+                      <svg className="w-8 h-8 text-[#A12F63]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
                     </div>
-                  ) : (
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                      <div>
-                        <input
-                          type="text"
-                          placeholder="Your name"
-                          value={formData.name}
-                          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                          required
-                          className="w-full px-4 py-3 bg-[#F7F6F5] border border-gray-200 text-[#34323A] placeholder-gray-400 focus:outline-none focus:border-[#A12F63] transition-colors"
-                        />
-                      </div>
-                      <div>
-                        <input
-                          type="email"
-                          placeholder="Email address"
-                          value={formData.email}
-                          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                          required
-                          className="w-full px-4 py-3 bg-[#F7F6F5] border border-gray-200 text-[#34323A] placeholder-gray-400 focus:outline-none focus:border-[#A12F63] transition-colors"
-                        />
-                      </div>
-                      <div>
-                        <input
-                          type="text"
-                          placeholder="Company (optional)"
-                          value={formData.company}
-                          onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                          className="w-full px-4 py-3 bg-[#F7F6F5] border border-gray-200 text-[#34323A] placeholder-gray-400 focus:outline-none focus:border-[#A12F63] transition-colors"
-                        />
-                      </div>
-                      <div>
-                        <textarea
-                          placeholder="Your message"
-                          rows={4}
-                          value={formData.message}
-                          onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                          required
-                          className="w-full px-4 py-3 bg-[#F7F6F5] border border-gray-200 text-[#34323A] placeholder-gray-400 focus:outline-none focus:border-[#A12F63] transition-colors resize-none"
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className="w-full px-6 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
-                      >
-                        {isSubmitting ? "Sending..." : "Send message"}
-                      </button>
-                    </form>
-                  )}
+                    <p className="text-[#34323A] font-medium mb-2">Contact form coming soon</p>
+                    <p className="text-gray-600 mb-6">
+                      In the meantime, please reach out directly:
+                    </p>
+                    <a
+                      href="mailto:welcome@significanz.dk"
+                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors"
+                    >
+                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                      </svg>
+                      welcome@significanz.dk
+                    </a>
+                  </div>
                 </div>
               </motion.div>
             </div>
