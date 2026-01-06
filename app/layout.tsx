@@ -42,10 +42,10 @@ export const metadata: Metadata = {
     siteName: "Significanz",
     images: [
       {
-        url: "/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Significanz - Enabling Meaningful Impact",
+        url: "/images/logo/significanz navnetræk - warm charcoal.png",
+        width: 2143,
+        height: 533,
+        alt: "Significanz",
       },
     ],
   },
