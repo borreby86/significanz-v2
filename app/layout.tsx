@@ -40,14 +40,6 @@ export const metadata: Metadata = {
     locale: "en",
     url: "https://significanz.dk",
     siteName: "Significanz",
-    images: [
-      {
-        url: "/images/logo/Icon significanz BLACK.png",
-        width: 500,
-        height: 500,
-        alt: "Significanz",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
