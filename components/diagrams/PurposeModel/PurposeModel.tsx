@@ -17,7 +17,7 @@ const segments: Segment[] = [
     id: "professional",
     label: "Professional",
     description: "Your role, responsibilities, and professional growth. Aligning career aspirations with organizational impact.",
-    color: "#34323A",
+    color: "#34323A",      // Warm Charcoal
     hoverColor: "#4A484F",
     highlightColor: "#A12F63",
   },
@@ -25,25 +25,25 @@ const segments: Segment[] = [
     id: "private",
     label: "Private",
     description: "Your values, boundaries, and personal space. Understanding what matters most and protecting what's sacred.",
-    color: "#5a5a5a",
-    hoverColor: "#6b6b6b",
-    highlightColor: "#B84575",
+    color: "#5A1735",      // Deep Mulberry
+    hoverColor: "#7A2855",
+    highlightColor: "#A12F63",
   },
   {
     id: "personal",
     label: "Personal",
     description: "Your relationships, reflections, and self-awareness. Building meaningful connections and deepening self-knowledge.",
-    color: "#6b6b6b",
-    hoverColor: "#7d7d7d",
+    color: "#A12F63",      // Nordic Berry
+    hoverColor: "#B84575",
     highlightColor: "#C85585",
   },
   {
     id: "practice",
     label: "Practice",
     description: "Your daily habits, routines, and consistent actions. Turning intentions into sustainable behaviors.",
-    color: "#d0d0d0",
-    hoverColor: "#e0e0e0",
-    highlightColor: "#D86595",
+    color: "#BFA27A",      // Champagne Gold
+    hoverColor: "#CDB38B",
+    highlightColor: "#D8C49C",
   },
 ];
 
@@ -329,7 +329,7 @@ export function PurposeModel({
                     fill={
                       highlightedSegment
                         ? (isHighlighted ? "white" : "#999999")
-                        : (segment.id === "practice" ? "#34323A" : "white")
+                        : (segment.id === "practice" ? "#34323A" : "white")  // Dark text on gold, white on others
                     }
                     fontSize="13"
                     fontWeight="500"

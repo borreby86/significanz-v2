@@ -10,6 +10,7 @@ export const en: TranslationKeys = {
     contact: 'Contact',
     collaborate: 'Collaborate',
     collaboration: 'Collaboration',
+    ourServices: 'Our Services',
     clients: 'Clients',
     // About dropdown items
     purpose: 'Purpose',
@@ -393,6 +394,12 @@ export const en: TranslationKeys = {
         author: 'Katja Iversen',
         role: 'CEO',
         company: 'UN Live',
+      },
+      {
+        quote: "I have come to know Stinne during my time in Lundbeck, where we worked together in a region and a project. In addition, I have been a participant on a leadership training course developed and executed by Stinne. In my interactions with Stinne, I have always found her to be sharp and analytical. She is solution-oriented and idea rich. She forms clear opinions and has communication skills that allows her to explain herself in a crisp and concise way. Stinne is not afraid of asking the difficult questions and has very good empathy to know where to push and where to back off. It has been a pleasure working with her. The training course I participated in was the most original and well thought-through course I have had the pleasure to participate in. The course itself is for me a good reflection of Stinne as a person. The course was fast-paced, engaging and inspiring whilst the content and context followed a clear red line in everything from the venue, the external speakers to the dinners and evening activities.",
+        author: 'Rune Moesgaard',
+        role: 'Country Manager',
+        company: 'Lundbeck Japan',
       },
     ],
   },

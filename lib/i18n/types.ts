@@ -11,6 +11,7 @@ export interface TranslationKeys {
     contact: string;
     collaborate: string;
     collaboration: string;
+    ourServices: string;
     clients: string;
     // About dropdown items
     purpose: string;

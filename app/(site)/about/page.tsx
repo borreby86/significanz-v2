@@ -199,6 +199,16 @@ export default function AboutPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 1 }}
               />
+
+              {/* Founder caption */}
+              <motion.p
+                className="mt-4 text-center text-sm text-[#34323A]/60 font-medium"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 1.2 }}
+              >
+                Our founder Stinne Madsen
+              </motion.p>
             </div>
           </div>
         </Container>
@@ -279,229 +289,38 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* Our Philosophy - Main Section Header */}
+      {/* Philosophy Section - HIDDEN per client request */}
+      {/*
       <section id="our-philosophy" className="py-24 md:py-32 bg-black relative overflow-hidden scroll-mt-20">
-        {/* Animated gradient background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black" />
+        ... Philosophy content removed ...
+      </section>
+      */}
 
-        {/* Grain texture */}
-        <div className="absolute inset-0 bg-noise opacity-[0.05] pointer-events-none" />
-
-        {/* Red accent glow */}
-        <motion.div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-red/10 rounded-full blur-3xl"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
-          transition={{ duration: 6, repeat: Infinity }}
-        />
-
-        <Container size="wide" className="relative z-10">
+      {/* Contact Section - Email Only */}
+      <section className="py-20 sm:py-28 md:py-36 lg:py-48 bg-white">
+        <Container size="default">
           <FadeIn>
             <div className="text-center">
-              <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-white tracking-tight">
-                Our Philosophy
-              </h1>
-              <p className="mt-6 text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto">
-                From &ldquo;Me to We&rdquo; — taking responsibility for the right actions.
-              </p>
-              <p className="mt-8 text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
-                True transformation happens when we move from &ldquo;Me to We&rdquo; - taking responsibility for the right actions at the right time on behalf of the organization. Our work is about creating those conditions — releasing the potential that already exists within people and organizations. We create the opportunities for people to act towards common goals through interactions that matter.
-              </p>
-              <p className="mt-6 text-lg text-gray-400 max-w-3xl mx-auto leading-relaxed">
-                Significanz helps you cultivate the ability and willingness that enables people to take ownership and act in a meaningful way to ensure impact.
-              </p>
-            </div>
-          </FadeIn>
-
-          {/* Formula display */}
-          <FadeIn delay={0.2}>
-            <div className="mt-16 p-12 md:p-16 border border-white/10 backdrop-blur-sm text-center relative overflow-hidden">
-              {/* Decorative corners */}
-              <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-red/50" />
-              <div className="absolute top-0 right-0 w-8 h-8 border-t-2 border-r-2 border-red/50" />
-              <div className="absolute bottom-0 left-0 w-8 h-8 border-b-2 border-l-2 border-red/50" />
-              <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-red/50" />
-
-              <div className="inline-flex flex-wrap items-center justify-center gap-4 md:gap-8 text-2xl md:text-4xl lg:text-5xl font-[family-name:var(--font-playfair)]">
-                <motion.span
-                  className="text-white"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  Ability
-                </motion.span>
-                <motion.span
-                  className="text-gray-600"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.3 }}
-                  viewport={{ once: true }}
-                >
-                  &times;
-                </motion.span>
-                <motion.span
-                  className="text-white"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
-                  viewport={{ once: true }}
-                >
-                  Willingness
-                </motion.span>
-                <motion.span
-                  className="text-gray-600"
-                  initial={{ opacity: 0, scale: 0.5 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, delay: 0.6 }}
-                  viewport={{ once: true }}
-                >
-                  =
-                </motion.span>
-                <motion.span
-                  className="text-red"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.7 }}
-                  viewport={{ once: true }}
-                >
-                  Meaningful Impact
-                </motion.span>
-              </div>
-              <p className="mt-10 text-gray-400 max-w-xl mx-auto font-medium">
-                Enablement is both our method and our measure of success.
-              </p>
-            </div>
-          </FadeIn>
-
-          {/* Quote */}
-          <FadeIn delay={0.3}>
-            <blockquote className="mt-16 text-center relative">
-              {/* Large quote marks */}
-              <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-[100px] font-serif text-white/10 leading-none select-none">
-                &ldquo;
-              </span>
-              <p className="text-xl md:text-2xl text-gray-300 italic max-w-3xl mx-auto relative z-10">
-                &ldquo;Stop asking for permission. Start taking meaningful action.&rdquo;
-              </p>
-              <footer className="mt-6 text-red font-medium">— Stinne Madsen</footer>
-            </blockquote>
-          </FadeIn>
-        </Container>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-20 sm:py-28 md:py-36 lg:py-48 bg-white">
-        <Container size="wide">
-          {/* Header */}
-          <FadeIn>
-            <div className="text-center mb-12 sm:mb-16 md:mb-20">
               <span className="text-[#A12F63] font-medium text-sm uppercase tracking-[0.2em]">
                 Get in Touch
               </span>
-              <h2 className="mt-4 sm:mt-6 font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl text-[#34323A] italic">
+              <h2 className="mt-4 sm:mt-6 font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#34323A] italic">
                 Let&apos;s start a conversation
               </h2>
               <p className="mt-6 sm:mt-8 text-lg sm:text-xl text-[#34323A]/70 leading-relaxed max-w-2xl mx-auto">
-                Ready to create meaningful impact? We&apos;d love to hear from you. Share your challenges, and let&apos;s explore how we can help.
+                Ready to create meaningful impact? We&apos;d love to hear from you.
               </p>
+              <a
+                href="mailto:welcome@significanz.dk"
+                className="mt-10 inline-flex items-center gap-3 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                welcome@significanz.dk
+              </a>
             </div>
           </FadeIn>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 sm:gap-12 md:gap-16 lg:gap-24">
-            {/* Left - Contact Info */}
-            <FadeIn className="lg:col-span-4">
-              <div className="space-y-12">
-                <div>
-                  <p className="text-[#A12F63] text-sm font-medium uppercase tracking-[0.15em] mb-4">Email</p>
-                  <a href="mailto:welcome@significanz.dk" className="text-2xl md:text-3xl text-[#34323A] hover:text-[#A12F63] transition-colors font-[family-name:var(--font-playfair)]">
-                    welcome@significanz.dk
-                  </a>
-                </div>
-                <div>
-                  <p className="text-[#A12F63] text-sm font-medium uppercase tracking-[0.15em] mb-4">Location</p>
-                  <p className="text-2xl md:text-3xl text-[#34323A] font-[family-name:var(--font-playfair)]">
-                    Copenhagen, Denmark
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[#A12F63] text-sm font-medium uppercase tracking-[0.15em] mb-4">Connect</p>
-                  <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-2xl md:text-3xl text-[#34323A] hover:text-[#A12F63] transition-colors font-[family-name:var(--font-playfair)]">
-                    LinkedIn
-                  </a>
-                </div>
-              </div>
-            </FadeIn>
-
-            {/* Right - Form */}
-            <FadeIn delay={0.2} className="lg:col-span-8">
-              <form className="bg-white p-6 sm:p-8 md:p-10 lg:p-14">
-                <div className="space-y-8">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div>
-                      <label htmlFor="name" className="block text-sm font-medium text-[#34323A] mb-3 uppercase tracking-wider">
-                        Name
-                      </label>
-                      <input
-                        type="text"
-                        id="name"
-                        name="name"
-                        className="w-full px-0 py-4 border-0 border-b-2 border-[#34323A]/20 focus:border-[#A12F63] focus:outline-none transition-colors bg-transparent text-lg"
-                        placeholder="Your name"
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="email" className="block text-sm font-medium text-[#34323A] mb-3 uppercase tracking-wider">
-                        Email
-                      </label>
-                      <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        className="w-full px-0 py-4 border-0 border-b-2 border-[#34323A]/20 focus:border-[#A12F63] focus:outline-none transition-colors bg-transparent text-lg"
-                        placeholder="your@email.com"
-                      />
-                    </div>
-                  </div>
-
-                  <div>
-                    <label htmlFor="company" className="block text-sm font-medium text-[#34323A] mb-3 uppercase tracking-wider">
-                      Company
-                    </label>
-                    <input
-                      type="text"
-                      id="company"
-                      name="company"
-                      className="w-full px-0 py-4 border-0 border-b-2 border-[#34323A]/20 focus:border-[#A12F63] focus:outline-none transition-colors bg-transparent text-lg"
-                      placeholder="Your company"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-[#34323A] mb-3 uppercase tracking-wider">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      rows={6}
-                      className="w-full px-0 py-4 border-0 border-b-2 border-[#34323A]/20 focus:border-[#A12F63] focus:outline-none transition-colors bg-transparent resize-none text-lg"
-                      placeholder="Tell us about your challenges and goals..."
-                    />
-                  </div>
-
-                  <div className="pt-6">
-                    <button
-                      type="submit"
-                      className="px-12 py-5 bg-[#34323A] text-white font-medium hover:bg-[#A12F63] transition-colors text-lg tracking-wide"
-                    >
-                      Send Message
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </FadeIn>
-          </div>
         </Container>
       </section>
 

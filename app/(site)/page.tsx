@@ -11,10 +11,11 @@ import { Header } from "@/components/layout/Header";
 // Hero with full-width photo and rotating words with brand colors
 function Hero() {
   const words = [
-    { text: "Leadership", color: "#A12F63" },  // Nordic Berry (Red)
-    { text: "Growth", color: "#BFA27A" },      // Gold
-    { text: "Impact", color: "#F7F6F5" },      // White/Cream
-    { text: "Purpose", color: "#A12F63" },     // Nordic Berry (Red)
+    { text: "Key note", color: "#BFA27A" },                         // Champagne Gold
+    { text: "Exe coaching", color: "#F7F6F5" },                     // Soft White
+    { text: "Advisory", color: "#BFA27A" },                         // Champagne Gold
+    { text: "Strategic projects", color: "#F7F6F5" },               // Soft White
+    { text: "Teams and leadership development", color: "#BFA27A" }, // Champagne Gold
   ];
   const [currentWord, setCurrentWord] = useState(0);
 
@@ -51,7 +52,7 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <h1 className="font-[family-name:var(--font-playfair)] text-white">
-              <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.9]">
+              <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.9]" style={{ color: "#A12F63" }}>
                 Significanz
               </span>
               <AnimatePresence mode="wait">

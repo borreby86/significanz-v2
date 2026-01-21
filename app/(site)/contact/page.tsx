@@ -101,39 +101,34 @@ export default function ContactPage() {
                 </motion.p>
               </div>
 
-              {/* Right: Contact Form */}
+              {/* Right: Direct Contact Card */}
               <motion.div
                 className="lg:ml-auto w-full max-w-md"
                 initial={{ opacity: 0, x: 50 }}
                 animate={heroInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.4 }}
               >
-                <div className="bg-white/95 backdrop-blur-sm p-8 md:p-10">
-                  <h2 className="font-[family-name:var(--font-playfair)] text-2xl text-[#34323A] mb-6">
-                    Send us a message
-                  </h2>
-
-                  {/* Contact form temporarily disabled */}
-                  <div className="text-center py-8">
-                    <div className="w-16 h-16 bg-[#F7F6F5] rounded-full flex items-center justify-center mx-auto mb-4">
-                      <svg className="w-8 h-8 text-[#A12F63]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    <p className="text-[#34323A] font-medium mb-2">Contact form coming soon</p>
-                    <p className="text-gray-600 mb-6">
-                      In the meantime, please reach out directly:
-                    </p>
-                    <a
-                      href="mailto:welcome@significanz.dk"
-                      className="inline-flex items-center gap-2 px-6 py-3 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors"
-                    >
-                      <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                      welcome@significanz.dk
-                    </a>
+                <div className="bg-white/95 backdrop-blur-sm p-8 md:p-10 text-center">
+                  <div className="w-20 h-20 bg-[#A12F63]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <svg className="w-10 h-10 text-[#A12F63]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
                   </div>
+                  <h2 className="font-[family-name:var(--font-playfair)] text-3xl text-[#34323A] mb-4">
+                    Reach out directly
+                  </h2>
+                  <p className="text-[#34323A]/70 mb-8">
+                    We'd love to hear from you. Send us an email and let's start a conversation about your leadership journey.
+                  </p>
+                  <a
+                    href="mailto:welcome@significanz.dk"
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors text-lg"
+                  >
+                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                    welcome@significanz.dk
+                  </a>
                 </div>
               </motion.div>
             </div>

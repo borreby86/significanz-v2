@@ -5,15 +5,15 @@ import Link from "next/link";
 import { motion, useInView } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { useTranslation } from "@/lib/i18n";
+import { ServicesCarousel } from "@/components/sections/ServicesCarousel";
 
 // Hero Section
-function CollaborateHero() {
-  const { t } = useTranslation();
+function ServicesHero() {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={ref} className="min-h-[70vh] flex items-center pt-20 bg-[#F7F6F5]">
+    <section ref={ref} className="min-h-[60vh] flex items-center pt-20 bg-[#F7F6F5]">
       <Container size="wide">
         <motion.div
           className="max-w-4xl"
@@ -22,16 +22,13 @@ function CollaborateHero() {
           transition={{ duration: 0.8 }}
         >
           <span className="text-[#A12F63] text-sm font-medium uppercase tracking-wider">
-            {t.collaboratePage.deliveryModel}
+            What we offer
           </span>
           <h1 className="mt-4 font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#34323A] italic">
-            {t.collaboratePage.title}
+            Our Services
           </h1>
           <p className="mt-8 text-xl md:text-2xl text-[#34323A]/80 leading-relaxed max-w-3xl">
-            {t.collaboratePage.subtitle}
-          </p>
-          <p className="mt-4 text-lg text-[#34323A]/60 leading-relaxed max-w-2xl">
-            {t.collaboratePage.description}
+            We offer five distinct services to support leaders and organizations in creating meaningful impact.
           </p>
         </motion.div>
       </Container>
@@ -202,11 +199,37 @@ function CollaborateCTA() {
   );
 }
 
+// Services Section with Carousel
+function ServicesSection() {
+  const ref = useRef<HTMLElement>(null);
+  const isInView = useInView(ref, { once: true });
+
+  return (
+    <section ref={ref} className="py-24 md:py-32 bg-white">
+      <Container size="wide">
+        <motion.div
+          className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl text-[#34323A] italic text-center">
+            Explore our offerings
+          </h2>
+        </motion.div>
+
+        <ServicesCarousel />
+      </Container>
+    </section>
+  );
+}
+
 export default function CollaboratePage() {
   return (
     <>
-      <CollaborateHero />
-      <DeliveryModels />
+      <ServicesHero />
+      <ServicesSection />
+      {/* DeliveryModels hidden per client request */}
       <CollaborateCTA />
     </>
   );

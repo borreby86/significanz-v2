@@ -18,20 +18,11 @@ export const navigationConfig: NavigationConfig = [
     items: [
       { key: 'purpose', href: '/about#purpose' },
       { key: 'ourEdge', href: '/about#our-edge' },
-      { key: 'ourPhilosophy', href: '/about#our-philosophy' },
     ],
   },
   {
-    key: 'collaboration',
+    key: 'ourServices',
     href: '/collaborate',
-    items: [
-      { key: 'ourMethod', href: '/our-method' },
-      { key: 'strategicAdvisory', href: '/collaborate#strategic-advisory' },
-      { key: 'teamTransformation', href: '/team-transformation' },
-      { key: 'leadershipDevelopment', href: '/leadership-development' },
-      { key: 'executiveCoaching', href: '/executive-coaching' },
-      { key: 'keynotes', href: '/keynotes' },
-    ],
   },
   {
     key: 'gallery',

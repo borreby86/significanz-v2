@@ -10,6 +10,7 @@ export const da: TranslationKeys = {
     contact: 'Kontakt',
     collaborate: 'Samarbejd',
     collaboration: 'Samarbejde',
+    ourServices: 'Vores Services',
     clients: 'Klienter',
     // About dropdown items
     purpose: 'Formål',
