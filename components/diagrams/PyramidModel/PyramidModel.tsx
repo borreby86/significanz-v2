@@ -202,17 +202,17 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
                   y="410"
                   textAnchor="middle"
                   fill="white"
-                  fontSize="24"
+                  fontSize="26"
                   fontWeight="400"
                   fontFamily="var(--font-playfair)"
-                  letterSpacing="0.2em"
+                  fontStyle="italic"
                   animate={{
                     y: activeLevel === "awareness" ? -8 : 0,
                     opacity: activeLevel === "awareness" ? 1 : 0.8
                   }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 >
-                  AWARENESS
+                  Awareness
                 </motion.text>
               </motion.g>
 
@@ -253,17 +253,17 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
                   y="265"
                   textAnchor="middle"
                   fill="white"
-                  fontSize="22"
+                  fontSize="24"
                   fontWeight="400"
                   fontFamily="var(--font-playfair)"
-                  letterSpacing="0.2em"
+                  fontStyle="italic"
                   animate={{
                     y: activeLevel === "leverage" ? -8 : 0,
                     opacity: activeLevel === "leverage" ? 1 : 0.8
                   }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 >
-                  LEVERAGE
+                  Leverage
                 </motion.text>
               </motion.g>
 
@@ -310,41 +310,41 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
                 {/* Label */}
                 <motion.text
                   x="300"
-                  y="145"
+                  y="130"
                   textAnchor="middle"
                   fill="white"
-                  fontSize="18"
+                  fontSize="20"
                   fontWeight="400"
                   fontFamily="var(--font-playfair)"
-                  letterSpacing="0.1em"
+                  fontStyle="italic"
                   animate={{
                     y: activeLevel === "mastery" ? -10 : 0,
                     opacity: activeLevel === "mastery" ? 1 : 0.85
                   }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 >
-                  MASTERY
+                  Mastery
                 </motion.text>
               </motion.g>
             </svg>
           </motion.div>
         </motion.div>
 
-        {/* Overlay Info Card - Appears on top of pyramid */}
+        {/* Info Card - Appears on the right side */}
         <AnimatePresence mode="wait">
           {activeLevelData && (
             <motion.div
               key={activeLevelData.id}
-              initial={{ opacity: 0, scale: 0.92, y: 15 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.96, y: -10 }}
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
               transition={{
                 type: "spring",
                 stiffness: 400,
                 damping: 30,
                 mass: 0.8
               }}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-md z-20 pointer-events-none"
+              className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-[105%] w-80 z-20 pointer-events-none hidden lg:block"
             >
               <div
                 className="bg-white/95 backdrop-blur-md shadow-2xl p-8 md:p-10 border border-white/50"
