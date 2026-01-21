@@ -35,7 +35,7 @@ const pyramidLevels: PyramidLevel[] = [
     subtitle: "The Amplifier",
     description:
       "Using your position, relationships, and resources to multiply effectiveness and create impact.",
-    color: "#4A484F",
+    color: "#BFA27A",
     number: "02",
   },
   {
@@ -133,12 +133,12 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
                 </linearGradient>
 
                 <linearGradient id="leverageGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#5a585f" />
-                  <stop offset="100%" stopColor="#3a383f" />
+                  <stop offset="0%" stopColor="#D4BC94" />
+                  <stop offset="100%" stopColor="#A8895E" />
                 </linearGradient>
                 <linearGradient id="leverageGradHover" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#6a686f" />
-                  <stop offset="100%" stopColor="#4a484f" />
+                  <stop offset="0%" stopColor="#E5D0AA" />
+                  <stop offset="100%" stopColor="#BFA27A" />
                 </linearGradient>
 
                 <linearGradient id="masteryGrad" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -156,8 +156,8 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
                   <stop offset="100%" stopColor="#1a181f" />
                 </linearGradient>
                 <linearGradient id="leverageRight" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="#3a383f" />
-                  <stop offset="100%" stopColor="#2a282f" />
+                  <stop offset="0%" stopColor="#A8895E" />
+                  <stop offset="100%" stopColor="#8A7048" />
                 </linearGradient>
                 <linearGradient id="masteryRight" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#8B2854" />
