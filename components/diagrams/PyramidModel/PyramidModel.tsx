@@ -176,21 +176,21 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
               >
                 {/* Left face */}
                 <motion.path
-                  d="M30 480 L120 320 L300 320 L300 480 Z"
+                  d="M30 480 L128 320 L300 320 L300 480 Z"
                   fill={activeLevel === "awareness" ? "url(#awarenessGradHover)" : "url(#awarenessGrad)"}
                   animate={{ y: activeLevel === "awareness" ? -8 : 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 />
                 {/* Right face */}
                 <motion.path
-                  d="M300 320 L480 320 L570 480 L300 480 Z"
+                  d="M300 320 L472 320 L570 480 L300 480 Z"
                   fill={activeLevel === "awareness" ? "url(#awarenessGradHover)" : "url(#awarenessRight)"}
                   animate={{ y: activeLevel === "awareness" ? -8 : 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 />
                 {/* Top edge highlight */}
                 <motion.line
-                  x1="120" y1="320" x2="480" y2="320"
+                  x1="128" y1="320" x2="472" y2="320"
                   stroke="rgba(255,255,255,0.2)"
                   strokeWidth="1"
                   animate={{ y: activeLevel === "awareness" ? -8 : 0 }}
@@ -227,21 +227,21 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
               >
                 {/* Left face */}
                 <motion.path
-                  d="M120 320 L210 180 L300 180 L300 320 Z"
+                  d="M128 320 L214 180 L300 180 L300 320 Z"
                   fill={activeLevel === "leverage" ? "url(#leverageGradHover)" : "url(#leverageGrad)"}
                   animate={{ y: activeLevel === "leverage" ? -8 : 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 />
                 {/* Right face */}
                 <motion.path
-                  d="M300 180 L390 180 L480 320 L300 320 Z"
+                  d="M300 180 L386 180 L472 320 L300 320 Z"
                   fill={activeLevel === "leverage" ? "url(#leverageGradHover)" : "url(#leverageRight)"}
                   animate={{ y: activeLevel === "leverage" ? -8 : 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 />
                 {/* Top edge highlight */}
                 <motion.line
-                  x1="210" y1="180" x2="390" y2="180"
+                  x1="214" y1="180" x2="386" y2="180"
                   stroke="rgba(255,255,255,0.2)"
                   strokeWidth="1"
                   animate={{ y: activeLevel === "leverage" ? -8 : 0 }}
@@ -278,14 +278,14 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
               >
                 {/* Left face */}
                 <motion.path
-                  d="M210 180 L300 40 L300 180 Z"
+                  d="M214 180 L300 40 L300 180 Z"
                   fill={activeLevel === "mastery" ? "url(#masteryGradHover)" : "url(#masteryGrad)"}
                   animate={{ y: activeLevel === "mastery" ? -10 : 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
                 />
                 {/* Right face */}
                 <motion.path
-                  d="M300 40 L390 180 L300 180 Z"
+                  d="M300 40 L386 180 L300 180 Z"
                   fill={activeLevel === "mastery" ? "url(#masteryGradHover)" : "url(#masteryRight)"}
                   animate={{ y: activeLevel === "mastery" ? -10 : 0 }}
                   transition={{ type: "spring", stiffness: 300, damping: 25 }}
