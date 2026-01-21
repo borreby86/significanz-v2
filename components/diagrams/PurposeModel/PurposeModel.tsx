@@ -160,9 +160,9 @@ export function PurposeModel({
 
   return (
     <div ref={containerRef} className={`${className}`}>
-      <div className={`relative ${isCompact ? "max-w-[400px]" : "max-w-5xl"} mx-auto`}>
+      <div className={`relative ${isCompact ? "max-w-[400px]" : "max-w-3xl"} mx-auto flex items-center justify-center`}>
         {/* Model container */}
-        <div className="relative">
+        <div className="relative flex-shrink-0">
           {/* Decorative orbiting dots */}
           {showDecorations && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
@@ -456,81 +456,58 @@ export function PurposeModel({
           )}
         </div>
 
-        {/* Desktop tooltip section - only for interactive mode without custom hover handler */}
+        {/* Desktop Info Card - Appears on the right side */}
         {interactive && !onSegmentHover && (
-          <div className="hidden lg:block mt-8">
-            <AnimatePresence mode="wait">
-              {activeSegmentData ? (
-                <motion.div
-                  key={activeSegmentData.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="max-w-md mx-auto"
+          <AnimatePresence mode="wait">
+            {activeSegmentData && (
+              <motion.div
+                key={activeSegmentData.id}
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 30,
+                  mass: 0.8
+                }}
+                className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-[105%] w-72 z-20 pointer-events-none hidden lg:block"
+              >
+                <div
+                  className="bg-white/95 backdrop-blur-md shadow-2xl p-6 border border-gray-100"
+                  style={{
+                    boxShadow: `0 25px 60px -15px rgba(0,0,0,0.2), 0 0 0 1px ${activeSegmentData.color}20`
+                  }}
                 >
-                  <div className="bg-white shadow-2xl border border-gray-100 p-8 relative overflow-hidden">
-                    {/* Decorative accent */}
-                    <motion.div
-                      className="absolute top-0 left-0 bottom-0 w-1 bg-red"
-                      initial={{ scaleY: 0 }}
-                      animate={{ scaleY: 1 }}
-                      transition={{ duration: 0.4 }}
-                    />
+                  {/* Colored top accent */}
+                  <div
+                    className="absolute top-0 left-0 right-0 h-1"
+                    style={{ backgroundColor: activeSegmentData.color }}
+                  />
 
-                    <motion.span
-                      className="text-red font-medium text-xs uppercase tracking-[0.2em]"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.1 }}
-                    >
-                      Dimension
-                    </motion.span>
+                  <span
+                    className="text-xs uppercase tracking-[0.2em] font-medium"
+                    style={{ color: activeSegmentData.color }}
+                  >
+                    Dimension
+                  </span>
 
-                    <motion.h4
-                      className="mt-3 font-[family-name:var(--font-playfair)] text-2xl text-black"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.15 }}
-                    >
-                      {activeSegmentData.label}
-                    </motion.h4>
+                  <h4 className="mt-2 font-[family-name:var(--font-playfair)] text-2xl text-[#34323A] italic">
+                    {activeSegmentData.label}
+                  </h4>
 
-                    <motion.div
-                      className="mt-3 w-10 h-[2px] bg-red"
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.4, delay: 0.2 }}
-                    />
+                  <div
+                    className="mt-3 w-8 h-[2px]"
+                    style={{ backgroundColor: activeSegmentData.color }}
+                  />
 
-                    <motion.p
-                      className="mt-4 text-gray-600 leading-relaxed"
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.25 }}
-                    >
-                      {activeSegmentData.description}
-                    </motion.p>
-                  </div>
-                </motion.div>
-              ) : (
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  className="max-w-md mx-auto bg-gray-50 border border-gray-100 p-8 text-center"
-                >
-                  <div className="w-12 h-12 mx-auto rounded-full bg-gray-100 flex items-center justify-center mb-4">
-                    <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
-                    </svg>
-                  </div>
-                  <p className="text-gray-500 text-sm">
-                    Hover over the model to explore each dimension
+                  <p className="mt-3 text-[#34323A]/70 text-sm leading-relaxed">
+                    {activeSegmentData.description}
                   </p>
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         )}
 
         {/* Mobile tooltip - only for interactive mode */}
