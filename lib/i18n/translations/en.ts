@@ -11,6 +11,7 @@ export const en: TranslationKeys = {
     collaborate: 'Collaborate',
     collaboration: 'Collaboration',
     ourServices: 'Our Services',
+    models: 'Models',
     clients: 'Clients',
     // About dropdown items
     purpose: 'Purpose',

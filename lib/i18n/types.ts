@@ -12,6 +12,7 @@ export interface TranslationKeys {
     collaborate: string;
     collaboration: string;
     ourServices: string;
+    models: string;
     clients: string;
     // About dropdown items
     purpose: string;

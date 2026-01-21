@@ -11,6 +11,7 @@ export const da: TranslationKeys = {
     collaborate: 'Samarbejd',
     collaboration: 'Samarbejde',
     ourServices: 'Vores Services',
+    models: 'Modeller',
     clients: 'Klienter',
     // About dropdown items
     purpose: 'Formål',

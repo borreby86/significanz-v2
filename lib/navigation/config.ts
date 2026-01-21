@@ -25,6 +25,10 @@ export const navigationConfig: NavigationConfig = [
     href: '/collaborate',
   },
   {
+    key: 'models',
+    href: '/models',
+  },
+  {
     key: 'gallery',
     href: '/gallery',
   },
