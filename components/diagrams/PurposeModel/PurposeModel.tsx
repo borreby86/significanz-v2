@@ -331,9 +331,10 @@ export function PurposeModel({
                         ? (isHighlighted ? "white" : "#999999")
                         : (segment.id === "practice" ? "#34323A" : "white")  // Dark text on gold, white on others
                     }
-                    fontSize="13"
-                    fontWeight="500"
-                    fontFamily="var(--font-din-alternate)"
+                    fontSize="15"
+                    fontWeight="400"
+                    fontFamily="var(--font-playfair)"
+                    fontStyle="italic"
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{
                       opacity: highlightedSegment ? (isHighlighted ? 1 : 0.5) : 1,
@@ -412,9 +413,10 @@ export function PurposeModel({
               textAnchor="middle"
               dominantBaseline="middle"
               fill="white"
-              fontSize="24"
+              fontSize="22"
               fontWeight="400"
               fontFamily="var(--font-playfair)"
+              fontStyle="italic"
               initial={{ opacity: 0, y: 10 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 1 }}

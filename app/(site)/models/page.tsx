@@ -61,10 +61,10 @@ export default function ModelsPage() {
                 Integrated Self-Leadership
               </span>
               <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-[#34323A] tracking-tight">
-                The 4P's of Purpose
+                The 5P Model
               </h2>
               <p className="mt-6 text-lg text-[#34323A]/70 max-w-2xl mx-auto">
-                Self-leadership is the foundation of meaningful impact. Four dimensions that integrate around your core purpose.
+                Self-leadership is the foundation of meaningful impact. Five dimensions that integrate around your core purpose.
               </p>
             </div>
           </FadeIn>
