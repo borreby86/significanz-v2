@@ -13,14 +13,6 @@ export type NavigationConfig = NavItem[];
 
 export const navigationConfig: NavigationConfig = [
   {
-    key: 'about',
-    href: '/about',
-    items: [
-      { key: 'purpose', href: '/about#purpose' },
-      { key: 'ourEdge', href: '/about#our-edge' },
-    ],
-  },
-  {
     key: 'ourServices',
     href: '/collaborate',
   },
@@ -35,6 +27,15 @@ export const navigationConfig: NavigationConfig = [
   {
     key: 'clients',
     href: '/client-voices',
+  },
+  {
+    key: 'significanz',
+    href: '/about',
+    items: [
+      { key: 'ourPurpose', href: '/about#purpose' },
+      { key: 'ourEdge', href: '/about#our-edge' },
+      { key: 'ourFramework', href: '/about#framework' },
+    ],
   },
   {
     key: 'contact',

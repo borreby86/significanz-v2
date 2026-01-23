@@ -4,6 +4,7 @@ export interface TranslationKeys {
   // Navigation
   nav: {
     about: string;
+    significanz: string;
     howWeWork: string;
     fourD: string;
     gallery: string;
@@ -14,9 +15,11 @@ export interface TranslationKeys {
     ourServices: string;
     models: string;
     clients: string;
-    // About dropdown items
+    // Significanz dropdown items
+    ourPurpose: string;
     purpose: string;
     ourEdge: string;
+    ourFramework: string;
     ourPhilosophy: string;
     // Collaboration dropdown items
     ourMethod: string;

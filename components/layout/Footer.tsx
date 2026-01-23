@@ -16,11 +16,14 @@ export function Footer() {
             <h3 className="font-medium text-white mb-6">
               {t.footer.workWithUs}
             </h3>
-            <div className="space-y-2 text-gray-400 text-sm">
+            <div className="space-y-3 text-gray-400 text-sm">
               <a
                 href="mailto:welcome@significanz.dk"
-                className="block hover:text-white transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#A12F63] text-white text-sm font-medium hover:bg-[#8a2854] transition-colors"
               >
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
                 welcome@significanz.dk
               </a>
               <p>{t.footer.location}</p>

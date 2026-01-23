@@ -3,6 +3,7 @@ import type { TranslationKeys } from '../types';
 export const en: TranslationKeys = {
   nav: {
     about: 'About',
+    significanz: 'Significanz',
     howWeWork: 'How We Work',
     fourD: '4D',
     gallery: 'Gallery',
@@ -13,9 +14,11 @@ export const en: TranslationKeys = {
     ourServices: 'Our Services',
     models: 'Models',
     clients: 'Clients',
-    // About dropdown items
+    // Significanz dropdown items
+    ourPurpose: 'Our Purpose',
     purpose: 'Purpose',
     ourEdge: 'Our Edge',
+    ourFramework: 'Our Framework',
     ourPhilosophy: 'Our Philosophy',
     // Collaboration dropdown items
     ourMethod: 'Our Method',
