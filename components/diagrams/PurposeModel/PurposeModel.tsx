@@ -160,14 +160,14 @@ export function PurposeModel({
 
   return (
     <div ref={containerRef} className={`${className}`}>
-      <div className={`relative ${isCompact ? "max-w-[400px]" : "max-w-3xl"} mx-auto flex items-center justify-center`}>
+      <div className={`relative ${isCompact ? "max-w-[400px]" : "max-w-4xl"} mx-auto flex items-center justify-center`}>
         {/* Model container */}
         <div className="relative flex-shrink-0">
           {/* Decorative orbiting dots */}
           {showDecorations && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <motion.div
-                className="absolute w-[520px] h-[520px]"
+                className="absolute w-[620px] h-[620px]"
                 animate={{ rotate: 360 }}
                 transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
               >
@@ -178,7 +178,7 @@ export function PurposeModel({
                     style={{
                       top: "50%",
                       left: "50%",
-                      transform: `rotate(${angle}deg) translateY(-260px) translateX(-50%)`,
+                      transform: `rotate(${angle}deg) translateY(-310px) translateX(-50%)`,
                     }}
                     animate={{ scale: [1, 1.5, 1], opacity: [0.4, 0.8, 0.4] }}
                     transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
@@ -192,19 +192,19 @@ export function PurposeModel({
           {showDecorations && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <motion.div
-                className="absolute w-[480px] h-[480px] rounded-full border border-gray-200/50"
+                className="absolute w-[580px] h-[580px] rounded-full border border-gray-200/50"
                 initial={{ scale: 0, opacity: 0 }}
                 animate={isInView ? { scale: 1, opacity: 1 } : {}}
                 transition={{ duration: 1, delay: 0.2 }}
               />
               <motion.div
-                className="absolute w-[520px] h-[520px] rounded-full border border-gray-100/30"
+                className="absolute w-[620px] h-[620px] rounded-full border border-gray-100/30"
                 initial={{ scale: 0, opacity: 0 }}
                 animate={isInView ? { scale: 1, opacity: 1 } : {}}
                 transition={{ duration: 1.2, delay: 0.3 }}
               />
               <motion.div
-                className="absolute w-[560px] h-[560px] rounded-full border border-dashed border-gray-100/20"
+                className="absolute w-[660px] h-[660px] rounded-full border border-dashed border-gray-100/20"
                 animate={{ rotate: -360 }}
                 transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
                 initial={{ scale: 0, opacity: 0 }}
@@ -217,7 +217,7 @@ export function PurposeModel({
           {showDecorations && (
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <motion.div
-                className="absolute w-80 h-80 bg-red/5 rounded-full blur-3xl"
+                className="absolute w-96 h-96 bg-red/5 rounded-full blur-3xl"
                 animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
                 transition={{ duration: 4, repeat: Infinity }}
               />
@@ -227,7 +227,7 @@ export function PurposeModel({
           {/* SVG Diagram */}
           <motion.svg
             viewBox="0 0 400 400"
-            className={`w-full ${isCompact ? "max-w-[400px]" : "max-w-[500px]"} mx-auto relative z-10`}
+            className={`w-full ${isCompact ? "max-w-[400px]" : "max-w-[600px]"} mx-auto relative z-10`}
             initial={{ scale: 0.5, opacity: 0, rotate: -180 }}
             animate={isInView ? { scale: 1, opacity: 1, rotate: 0 } : {}}
             transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}

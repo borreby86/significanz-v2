@@ -64,7 +64,7 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
           >
             <svg
               viewBox="0 0 400 500"
-              className="w-full max-w-md mx-auto h-auto"
+              className="w-full max-w-xl mx-auto h-auto"
               style={{
                 filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))",
               }}
