@@ -63,7 +63,7 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
             transition={{ duration: 1 }}
           >
             <svg
-              viewBox="0 0 400 500"
+              viewBox="0 0 500 450"
               className="w-full max-w-xl mx-auto h-auto"
               style={{
                 filter: "drop-shadow(0 20px 40px rgba(0,0,0,0.1))",
@@ -99,30 +99,30 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
                 </linearGradient>
               </defs>
 
-              {/* AWARENESS - Bottom (y: 330 to 480) */}
+              {/* AWARENESS - Bottom (y: 300 to 430) */}
               <motion.g
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                <path d="M60 480 L107 330 L200 330 L200 480 Z" fill="url(#awarenessGradNew)" />
-                <path d="M200 330 L293 330 L340 480 L200 480 Z" fill="url(#awarenessRightNew)" />
-                <line x1="107" y1="330" x2="293" y2="330" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
-                <text x="200" y="418" textAnchor="middle" fill="white" fontSize="22" fontWeight="400" fontFamily="var(--font-playfair)" fontStyle="italic">
+                <path d="M50 430 L115 300 L250 300 L250 430 Z" fill="url(#awarenessGradNew)" />
+                <path d="M250 300 L385 300 L450 430 L250 430 Z" fill="url(#awarenessRightNew)" />
+                <line x1="115" y1="300" x2="385" y2="300" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+                <text x="250" y="380" textAnchor="middle" fill="white" fontSize="22" fontWeight="400" fontFamily="var(--font-playfair)" fontStyle="italic">
                   Awareness
                 </text>
               </motion.g>
 
-              {/* LEVERAGE - Middle (y: 180 to 330) */}
+              {/* LEVERAGE - Middle (y: 180 to 300) */}
               <motion.g
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.35 }}
               >
-                <path d="M107 330 L153 180 L200 180 L200 330 Z" fill="url(#leverageGradNew)" />
-                <path d="M200 180 L247 180 L293 330 L200 330 Z" fill="url(#leverageRightNew)" />
-                <line x1="153" y1="180" x2="247" y2="180" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
-                <text x="200" y="270" textAnchor="middle" fill="white" fontSize="20" fontWeight="400" fontFamily="var(--font-playfair)" fontStyle="italic">
+                <path d="M115 300 L175 180 L250 180 L250 300 Z" fill="url(#leverageGradNew)" />
+                <path d="M250 180 L325 180 L385 300 L250 300 Z" fill="url(#leverageRightNew)" />
+                <line x1="175" y1="180" x2="325" y2="180" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+                <text x="250" y="255" textAnchor="middle" fill="white" fontSize="20" fontWeight="400" fontFamily="var(--font-playfair)" fontStyle="italic">
                   Leverage
                 </text>
               </motion.g>
@@ -133,10 +133,10 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                <path d="M153 180 L200 30 L200 180 Z" fill="url(#masteryGradNew)" />
-                <path d="M200 30 L247 180 L200 180 Z" fill="url(#masteryRightNew)" />
-                <circle cx="200" cy="30" r="3" fill="white" opacity="0.7" />
-                <text x="200" y="120" textAnchor="middle" fill="white" fontSize="18" fontWeight="400" fontFamily="var(--font-playfair)" fontStyle="italic">
+                <path d="M175 180 L250 30 L250 180 Z" fill="url(#masteryGradNew)" />
+                <path d="M250 30 L325 180 L250 180 Z" fill="url(#masteryRightNew)" />
+                <circle cx="250" cy="30" r="3" fill="white" opacity="0.7" />
+                <text x="250" y="120" textAnchor="middle" fill="white" fontSize="18" fontWeight="400" fontFamily="var(--font-playfair)" fontStyle="italic">
                   Mastery
                 </text>
               </motion.g>
