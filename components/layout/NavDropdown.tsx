@@ -11,10 +11,13 @@ interface NavDropdownProps {
   href?: string;
   items: NavSubItem[];
   scrolled: boolean;
+  isHomepage: boolean;
+  pathname: string;
   t: TranslationKeys;
 }
 
-export function NavDropdown({ label, href, items, scrolled, t }: NavDropdownProps) {
+export function NavDropdown({ label, href, items, scrolled, isHomepage, pathname, t }: NavDropdownProps) {
+  const isActive = pathname === href || items.some((item) => pathname.startsWith(item.href.split('#')[0]));
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -37,12 +40,12 @@ export function NavDropdown({ label, href, items, scrolled, t }: NavDropdownProp
       <div className="flex items-center gap-1.5">
         <Link
           href={href || '#'}
-          className={`text-base transition-colors duration-300 hover:text-[#A12F63] ${scrolled ? "text-gray-600" : "text-white"}`}
+          className={`text-base transition-colors duration-300 hover:text-[#A12F63] ${isActive ? "text-[#A12F63]" : (scrolled || !isHomepage) ? "text-gray-600" : "text-white"}`}
         >
           {label}
         </Link>
         <svg
-          className={`w-3 h-3 transition-transform duration-200 ${scrolled ? "text-gray-600" : "text-white"} ${isOpen ? "rotate-180" : ""}`}
+          className={`w-3 h-3 transition-transform duration-200 ${isActive ? "text-[#A12F63]" : (scrolled || !isHomepage) ? "text-gray-600" : "text-white"} ${isOpen ? "rotate-180" : ""}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"

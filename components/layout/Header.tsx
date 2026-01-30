@@ -84,6 +84,8 @@ export function Header() {
                     href={item.href}
                     items={item.items}
                     scrolled={scrolled}
+                    isHomepage={isHomepage}
+                    pathname={pathname}
                     t={t}
                   />
                 ) : (
@@ -91,7 +93,9 @@ export function Header() {
                     href={item.href || '#'}
                     className={cn(
                       "text-base transition-colors duration-300 hover:text-[#A12F63]",
-                      (scrolled || !isHomepage) ? "text-gray-600" : "text-white"
+                      pathname === item.href
+                        ? "text-[#A12F63]"
+                        : (scrolled || !isHomepage) ? "text-gray-600" : "text-white"
                     )}
                   >
                     {t.nav[item.key as keyof typeof t.nav]}
