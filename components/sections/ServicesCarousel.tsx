@@ -94,6 +94,24 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
           </motion.div>
         ))}
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="flex flex-col items-center mt-16"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ delay: 0.8 }}
+      >
+        <span className="text-xs text-[#34323A]/40 uppercase tracking-[0.3em] mb-3">
+          Scroll
+        </span>
+        <motion.div
+          className="w-px h-12 bg-[#34323A]/20"
+          animate={{ scaleY: [1, 0.5, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          style={{ originY: 0 }}
+        />
+      </motion.div>
     </div>
   );
 }

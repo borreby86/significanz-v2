@@ -33,9 +33,9 @@ const segments: Segment[] = [
     id: "personal",
     label: "Personal",
     description: "Your relationships, reflections, and self-awareness. Building meaningful connections and deepening self-knowledge.",
-    color: "#A12F63",      // Nordic Berry
-    hoverColor: "#B84575",
-    highlightColor: "#C85585",
+    color: "#8B6B61",      // Warm Cocoa
+    hoverColor: "#9E7D73",
+    highlightColor: "#B08E84",
   },
   {
     id: "practice",
@@ -227,7 +227,7 @@ export function PurposeModel({
           {/* SVG Diagram */}
           <motion.svg
             viewBox="0 0 400 400"
-            className={`w-full ${isCompact ? "max-w-[400px]" : "max-w-[600px]"} mx-auto relative z-10`}
+            className={`w-full ${isCompact ? "max-w-[400px]" : "max-w-[650px]"} mx-auto relative z-10`}
             initial={{ scale: 0.5, opacity: 0, rotate: -180 }}
             animate={isInView ? { scale: 1, opacity: 1, rotate: 0 } : {}}
             transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
