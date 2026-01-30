@@ -265,7 +265,7 @@ export default function AboutPage() {
       </section>
 
       {/* The 5P's of Integrated Self-Leadership */}
-      <section className="py-24 md:py-32 bg-white scroll-mt-20">
+      <section id="framework" className="py-24 md:py-32 bg-white scroll-mt-20">
         <Container size="wide">
           <FadeIn>
             <div className="text-center mb-16">

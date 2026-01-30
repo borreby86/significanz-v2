@@ -160,7 +160,8 @@ export function PurposeModel({
 
   return (
     <div ref={containerRef} className={`${className}`}>
-      <div className={`relative ${isCompact ? "max-w-[400px]" : "max-w-4xl"} mx-auto flex items-center justify-center`}>
+      <div className={`relative ${isCompact ? "max-w-[400px]" : "max-w-6xl"} mx-auto`}>
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Model container */}
         <div className="relative flex-shrink-0">
           {/* Decorative orbiting dots */}
@@ -456,84 +457,55 @@ export function PurposeModel({
           )}
         </div>
 
-        {/* Desktop Info Card - Appears on the right side */}
-        {interactive && !onSegmentHover && (
-          <AnimatePresence mode="wait">
-            {activeSegmentData && (
-              <motion.div
-                key={activeSegmentData.id}
-                initial={{ opacity: 0, x: 30 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                transition={{
-                  type: "spring",
-                  stiffness: 400,
-                  damping: 30,
-                  mass: 0.8
-                }}
-                className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-[105%] w-72 z-20 pointer-events-none hidden lg:block"
-              >
-                <div
-                  className="bg-white/95 backdrop-blur-md shadow-2xl p-6 border border-gray-100"
-                  style={{
-                    boxShadow: `0 25px 60px -15px rgba(0,0,0,0.2), 0 0 0 1px ${activeSegmentData.color}20`
-                  }}
+        {/* Static Info Cards - always visible on right side */}
+        <div className="flex flex-col gap-6">
+          {segments.map((segment, index) => (
+            <motion.div
+              key={segment.id}
+              initial={{ opacity: 0, x: 30 }}
+              animate={isInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.3 + index * 0.15 }}
+              className={`relative bg-white shadow-lg border border-gray-100 p-6 md:p-8 transition-all duration-300 ${
+                activeSegment === segment.id ? "shadow-xl scale-[1.02]" : ""
+              }`}
+              onMouseEnter={() => handleSegmentEnter(segment.id)}
+              onMouseLeave={handleSegmentLeave}
+            >
+              {/* Colored left accent */}
+              <div
+                className="absolute top-0 left-0 bottom-0 w-1"
+                style={{ backgroundColor: segment.color }}
+              />
+
+              <div className="relative pl-2">
+                {/* Subtitle */}
+                <span
+                  className="text-xs uppercase tracking-[0.2em] font-medium"
+                  style={{ color: segment.color }}
                 >
-                  {/* Colored top accent */}
-                  <div
-                    className="absolute top-0 left-0 right-0 h-1"
-                    style={{ backgroundColor: activeSegmentData.color }}
-                  />
+                  Dimension
+                </span>
 
-                  <span
-                    className="text-xs uppercase tracking-[0.2em] font-medium"
-                    style={{ color: activeSegmentData.color }}
-                  >
-                    Dimension
-                  </span>
+                {/* Title */}
+                <h3 className="mt-1 font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#34323A] italic">
+                  {segment.label}
+                </h3>
 
-                  <h4 className="mt-2 font-[family-name:var(--font-playfair)] text-2xl text-[#34323A] italic">
-                    {activeSegmentData.label}
-                  </h4>
+                {/* Divider */}
+                <div
+                  className="mt-3 w-8 h-[2px]"
+                  style={{ backgroundColor: segment.color }}
+                />
 
-                  <div
-                    className="mt-3 w-8 h-[2px]"
-                    style={{ backgroundColor: activeSegmentData.color }}
-                  />
-
-                  <p className="mt-3 text-[#34323A]/70 text-sm leading-relaxed">
-                    {activeSegmentData.description}
-                  </p>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        )}
-
-        {/* Mobile tooltip - only for interactive mode */}
-        {interactive && !onSegmentHover && (
-          <AnimatePresence>
-            {activeSegmentData && (
-              <motion.div
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 5 }}
-                transition={{ duration: 0.2 }}
-                className="lg:hidden mt-8 w-full max-w-sm mx-auto"
-              >
-                <div className="bg-white shadow-xl border border-gray-100 p-5 text-center relative">
-                  <div className="absolute top-0 left-0 right-0 h-1 bg-red" />
-                  <h4 className="font-[family-name:var(--font-playfair)] text-lg text-black">
-                    {activeSegmentData.label}
-                  </h4>
-                  <p className="mt-2 text-gray-600 text-sm leading-relaxed">
-                    {activeSegmentData.description}
-                  </p>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        )}
+                {/* Description */}
+                <p className="mt-3 text-gray-600 text-sm md:text-base leading-relaxed">
+                  {segment.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+        </div>
       </div>
     </div>
   );
