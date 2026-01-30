@@ -99,115 +99,44 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
                 </linearGradient>
               </defs>
 
-              {/* AWARENESS - Bottom layer with gap */}
+              {/* AWARENESS - Bottom (y: 330 to 480) */}
               <motion.g
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
-                {/* Left face */}
-                <path
-                  d="M20 480 L90 330 L200 330 L200 480 Z"
-                  fill="url(#awarenessGradNew)"
-                />
-                {/* Right face */}
-                <path
-                  d="M200 330 L310 330 L380 480 L200 480 Z"
-                  fill="url(#awarenessRightNew)"
-                />
-                {/* Top edge highlight */}
-                <line
-                  x1="90" y1="330" x2="310" y2="330"
-                  stroke="rgba(255,255,255,0.4)"
-                  strokeWidth="1"
-                />
-                {/* Label */}
-                <text
-                  x="200"
-                  y="420"
-                  textAnchor="middle"
-                  fill="white"
-                  fontSize="22"
-                  fontWeight="400"
-                  fontFamily="var(--font-playfair)"
-                  fontStyle="italic"
-                >
+                <path d="M60 480 L107 330 L200 330 L200 480 Z" fill="url(#awarenessGradNew)" />
+                <path d="M200 330 L293 330 L340 480 L200 480 Z" fill="url(#awarenessRightNew)" />
+                <line x1="107" y1="330" x2="293" y2="330" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+                <text x="200" y="418" textAnchor="middle" fill="white" fontSize="22" fontWeight="400" fontFamily="var(--font-playfair)" fontStyle="italic">
                   Awareness
                 </text>
               </motion.g>
 
-              {/* LEVERAGE - Middle layer with gap */}
+              {/* LEVERAGE - Middle (y: 180 to 330) */}
               <motion.g
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.35 }}
               >
-                {/* Left face */}
-                <path
-                  d="M90 310 L145 180 L200 180 L200 310 Z"
-                  fill="url(#leverageGradNew)"
-                />
-                {/* Right face */}
-                <path
-                  d="M200 180 L255 180 L310 310 L200 310 Z"
-                  fill="url(#leverageRightNew)"
-                />
-                {/* Top edge highlight */}
-                <line
-                  x1="145" y1="180" x2="255" y2="180"
-                  stroke="rgba(255,255,255,0.4)"
-                  strokeWidth="1"
-                />
-                {/* Label */}
-                <text
-                  x="200"
-                  y="260"
-                  textAnchor="middle"
-                  fill="white"
-                  fontSize="20"
-                  fontWeight="400"
-                  fontFamily="var(--font-playfair)"
-                  fontStyle="italic"
-                >
+                <path d="M107 330 L153 180 L200 180 L200 330 Z" fill="url(#leverageGradNew)" />
+                <path d="M200 180 L247 180 L293 330 L200 330 Z" fill="url(#leverageRightNew)" />
+                <line x1="153" y1="180" x2="247" y2="180" stroke="rgba(255,255,255,0.3)" strokeWidth="1" />
+                <text x="200" y="270" textAnchor="middle" fill="white" fontSize="20" fontWeight="400" fontFamily="var(--font-playfair)" fontStyle="italic">
                   Leverage
                 </text>
               </motion.g>
 
-              {/* MASTERY - Top triangle with gap */}
+              {/* MASTERY - Top (y: 30 to 180) */}
               <motion.g
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.8, delay: 0.2 }}
               >
-                {/* Left face */}
-                <path
-                  d="M145 160 L200 40 L200 160 Z"
-                  fill="url(#masteryGradNew)"
-                />
-                {/* Right face */}
-                <path
-                  d="M200 40 L255 160 L200 160 Z"
-                  fill="url(#masteryRightNew)"
-                />
-                {/* Peak highlight */}
-                <circle
-                  cx="200"
-                  cy="40"
-                  r="4"
-                  fill="white"
-                  opacity="0.7"
-                />
-                {/* Label */}
-                <text
-                  x="200"
-                  y="115"
-                  textAnchor="middle"
-                  fill="white"
-                  fontSize="18"
-                  fontWeight="400"
-                  fontFamily="var(--font-playfair)"
-                  fontStyle="italic"
-                >
+                <path d="M153 180 L200 30 L200 180 Z" fill="url(#masteryGradNew)" />
+                <path d="M200 30 L247 180 L200 180 Z" fill="url(#masteryRightNew)" />
+                <circle cx="200" cy="30" r="3" fill="white" opacity="0.7" />
+                <text x="200" y="120" textAnchor="middle" fill="white" fontSize="18" fontWeight="400" fontFamily="var(--font-playfair)" fontStyle="italic">
                   Mastery
                 </text>
               </motion.g>
