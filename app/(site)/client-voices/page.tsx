@@ -32,10 +32,10 @@ function HowClientsExperienceUs() {
   ];
 
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-[#F7F6F5]">
+    <section ref={ref} className="py-24 md:py-32 bg-[#F7F6F5] relative">
       <Container size="wide">
         <motion.div
-          className="mb-16"
+          className="mb-16 relative"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
@@ -46,6 +46,23 @@ function HowClientsExperienceUs() {
           <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl text-[#34323A] italic">
             {t.aboutPage.clientExperienceTitle}
           </h2>
+
+          {/* Scroll indicator */}
+          <motion.div
+            className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-3"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.5 }}
+          >
+            <span className="text-[#BFA27A] text-xs uppercase tracking-[0.2em] font-medium rotate-90 origin-center whitespace-nowrap">
+              Scroll
+            </span>
+            <motion.div
+              className="w-px h-16 bg-gradient-to-b from-[#BFA27A] to-[#A12F63]"
+              animate={{ scaleY: [1, 0.6, 1], opacity: [1, 0.5, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+          </motion.div>
         </motion.div>
 
         {/* Experience cards */}

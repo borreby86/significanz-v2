@@ -230,9 +230,12 @@ export default function AboutPage() {
                 <p>Significanz is about helping leaders and organizations create meaningful impact so they can assume responsibility and take the right action at the right time.</p>
                 <p>We excel in enabling individuals, teams and organizations to combine the ability to act with the willingness of both the individual and the group to create meaningful impact.</p>
                 <p>Creating impactful actions that makes sense for the overall purpose of organization is at the core of everything we do. First things first - why is the business, organization or NGO in the first place - that&apos;s where we start in our discovery phase.</p>
-                <p className="text-black font-medium">We are coaches, facilitators, and leadership developers at heart.</p>
-                <p className="text-black font-medium">We create sustainable enablement for the benefit of leaders, teams, and organizations.</p>
               </div>
+
+              {/* Highlighted quote */}
+              <p className="mt-10 font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#A12F63] italic leading-relaxed">
+                We are coaches, facilitators, and leadership developers at heart.
+              </p>
             </div>
           </FadeIn>
         </Container>

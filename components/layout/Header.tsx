@@ -89,7 +89,10 @@ export function Header() {
                 ) : (
                   <Link
                     href={item.href || '#'}
-                    className="text-sm transition-colors duration-300 text-gray-600 hover:text-[#A12F63]"
+                    className={cn(
+                      "text-base transition-colors duration-300 hover:text-[#A12F63]",
+                      scrolled ? "text-gray-600" : "text-white"
+                    )}
                   >
                     {t.nav[item.key as keyof typeof t.nav]}
                   </Link>

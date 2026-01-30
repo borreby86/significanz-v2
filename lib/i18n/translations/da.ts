@@ -3,6 +3,7 @@ import type { TranslationKeys } from '../types';
 export const da: TranslationKeys = {
   nav: {
     about: 'Om os',
+    significanz: 'Significanz',
     howWeWork: 'Sådan arbejder vi',
     fourD: '4D',
     gallery: 'Galleri',
@@ -13,9 +14,11 @@ export const da: TranslationKeys = {
     ourServices: 'Vores Services',
     models: 'Modeller',
     clients: 'Klienter',
-    // About dropdown items
+    // Significanz dropdown items
+    ourPurpose: 'Vores Formål',
     purpose: 'Formål',
     ourEdge: 'Vores Fordel',
+    ourFramework: 'Vores Framework',
     ourPhilosophy: 'Vores Filosofi',
     // Collaboration dropdown items
     ourMethod: 'Vores Metode',

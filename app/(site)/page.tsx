@@ -11,11 +11,8 @@ import { Header } from "@/components/layout/Header";
 // Hero with full-width photo and rotating words with brand colors
 function Hero() {
   const words = [
-    { text: "Key note", color: "#BFA27A" },                         // Champagne Gold
-    { text: "Exe coaching", color: "#F7F6F5" },                     // Soft White
-    { text: "Advisory", color: "#BFA27A" },                         // Champagne Gold
-    { text: "Strategic projects", color: "#F7F6F5" },               // Soft White
-    { text: "Teams and leadership development", color: "#BFA27A" }, // Champagne Gold
+    { text: "Executive Coaching", color: "#BFA27A" },              // Champagne Gold
+    { text: "Team & Leadership Development", color: "#F7F6F5" },   // Soft White
   ];
   const [currentWord, setCurrentWord] = useState(0);
 
@@ -34,11 +31,11 @@ function Hero() {
           src="/images/hero/hero new.jpg"
           alt="Office environment with Copenhagen lakes view"
           fill
-          className="object-cover grayscale"
+          className="object-cover grayscale object-[center_70%]"
           priority
         />
-        {/* Subtle overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
+        {/* Overlay with blur for text readability - positions text over water */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/60 backdrop-blur-[2px]" />
       </div>
 
       {/* Content */}
@@ -52,18 +49,18 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <h1 className="font-[family-name:var(--font-playfair)] text-white">
-              <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.9]" style={{ color: "#A12F63" }}>
+              <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.9] text-white">
                 Significanz
               </span>
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentWord}
-                  className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.9] italic mt-2"
+                  className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-[1.1] italic mt-4"
                   style={{ color: words[currentWord].color }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
                 >
                   {words[currentWord].text}
                 </motion.span>
