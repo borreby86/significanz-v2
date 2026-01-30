@@ -115,7 +115,7 @@ export default function ContactPage() {
                     src="/images/hero/hero new.jpg"
                     alt="Professional leadership coaching"
                     fill
-                    className="object-cover"
+                    className="object-cover grayscale"
                     priority
                   />
                   {/* Gradient overlay */}
