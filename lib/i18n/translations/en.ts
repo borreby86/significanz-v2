@@ -19,6 +19,7 @@ export const en: TranslationKeys = {
     purpose: 'Purpose',
     ourEdge: 'Our Edge',
     ourFramework: 'Our Framework',
+    masteryFramework: 'Mastery Framework',
     ourPhilosophy: 'Our Philosophy',
     // Collaboration dropdown items
     ourMethod: 'Our Method',

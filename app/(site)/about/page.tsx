@@ -10,6 +10,7 @@ import { SplitText } from "@/components/animations/SplitText";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { useTranslation } from "@/lib/i18n";
 import { PurposeModel } from "@/components/diagrams/PurposeModel";
+import { PyramidModel, pyramidLevels } from "@/components/diagrams/PyramidModel";
 
 // Our Edge data
 const ourEdgeItems = [
@@ -264,24 +265,36 @@ export default function AboutPage() {
         </Container>
       </section>
 
-      {/* The 5P's of Integrated Self-Leadership */}
+      {/* Our Frameworks */}
       <section id="framework" className="py-24 md:py-32 bg-white scroll-mt-20">
         <Container size="wide">
+          {/* Overarching intro */}
           <FadeIn>
-            <div className="text-center mb-16">
+            <div className="text-center mb-20">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
                 {t.aboutPage.ourFramework}
               </span>
               <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
-                {t.aboutPage.fivePsTitle}
+                Our Frameworks
               </h2>
-              <p className="mt-6 text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
+                Our approach is built around visual frameworks that guide our work together. These models provide a shared language for the leadership journey — from self-awareness to lasting mastery.
+              </p>
+            </div>
+          </FadeIn>
+
+          {/* 5P Model */}
+          <FadeIn>
+            <div className="text-center mb-12">
+              <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl lg:text-4xl text-black tracking-tight">
+                {t.aboutPage.fivePsTitle}
+              </h3>
+              <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
                 {t.aboutPage.fivePsDescription}
               </p>
             </div>
           </FadeIn>
 
-          {/* 5P Model Diagram */}
           <FadeIn delay={0.2}>
             <PurposeModel
               interactive={true}
@@ -289,6 +302,49 @@ export default function AboutPage() {
               size="default"
             />
           </FadeIn>
+
+          {/* Divider */}
+          <div className="my-24 md:my-32 flex justify-center">
+            <div className="w-24 h-[2px] bg-gray-200" />
+          </div>
+
+          {/* Mastery Framework (Pyramid) */}
+          <div id="mastery-framework" className="scroll-mt-20">
+            <FadeIn>
+              <div className="text-center mb-12">
+                <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl lg:text-4xl text-black tracking-tight">
+                  Awareness • Leverage • Mastery
+                </h3>
+                <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                  True mastery emerges when deep self-awareness combines with strategic leverage to create lasting, transformative impact.
+                </p>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={0.2}>
+              <PyramidModel />
+            </FadeIn>
+
+            {/* Level descriptions */}
+            <FadeIn delay={0.3}>
+              <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+                {pyramidLevels.map((level) => (
+                  <div key={level.id} className="text-center">
+                    <div
+                      className="w-10 h-1 mx-auto mb-4"
+                      style={{ backgroundColor: level.color }}
+                    />
+                    <h4 className="font-[family-name:var(--font-playfair)] text-xl text-[#34323A]">
+                      {level.title}
+                    </h4>
+                    <p className="mt-2 text-sm text-gray-600 leading-relaxed">
+                      {level.description}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </FadeIn>
+          </div>
         </Container>
       </section>
 

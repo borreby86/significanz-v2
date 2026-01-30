@@ -19,6 +19,7 @@ export const da: TranslationKeys = {
     purpose: 'Formål',
     ourEdge: 'Vores Fordel',
     ourFramework: 'Vores Framework',
+    masteryFramework: 'Mastery Framework',
     ourPhilosophy: 'Vores Filosofi',
     // Collaboration dropdown items
     ourMethod: 'Vores Metode',

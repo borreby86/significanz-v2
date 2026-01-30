@@ -20,6 +20,7 @@ export interface TranslationKeys {
     purpose: string;
     ourEdge: string;
     ourFramework: string;
+    masteryFramework: string;
     ourPhilosophy: string;
     // Collaboration dropdown items
     ourMethod: string;
