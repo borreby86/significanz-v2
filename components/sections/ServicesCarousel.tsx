@@ -110,116 +110,68 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
 
   return (
     <div className={`relative ${className}`}>
-      {/* Desktop: Show multiple cards */}
+      {/* Desktop: 2x2 grid with Advisory center */}
       <div className="hidden md:block">
-        <div className="relative overflow-hidden">
-          {/* Navigation arrows */}
-          <button
-            onClick={() => setActiveIndex((prev) => Math.max(0, prev - 1))}
-            className={`absolute left-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white shadow-lg flex items-center justify-center hover:bg-[#F7F6F5] transition-colors ${activeIndex === 0 ? "opacity-50 cursor-not-allowed" : ""}`}
-            disabled={activeIndex === 0}
-          >
-            <svg className="w-6 h-6 text-[#34323A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button
-            onClick={() => setActiveIndex((prev) => Math.min(orderedServices.length - 1, prev + 1))}
-            className={`absolute right-4 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-white shadow-lg flex items-center justify-center hover:bg-[#F7F6F5] transition-colors ${activeIndex === orderedServices.length - 1 ? "opacity-50 cursor-not-allowed" : ""}`}
-            disabled={activeIndex === orderedServices.length - 1}
-          >
-            <svg className="w-6 h-6 text-[#34323A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+        <div className="relative">
+          {/* 2x2 Grid */}
+          <div className="grid grid-cols-2 gap-1">
+            {/* Top-left: Executive Coaching */}
+            <div className="bg-[#A12F63]/80 p-10 min-h-[300px] flex flex-col">
+              <h3 className="font-[family-name:var(--font-playfair)] text-2xl lg:text-3xl text-white italic">
+                {services[0].title}
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-white/80">
+                {services[0].description}
+              </p>
+            </div>
 
-          {/* Cards container */}
-          <div className="flex justify-center items-stretch gap-6 px-16 py-8">
-            {orderedServices.map((service, index) => {
-              const isActive = index === activeIndex;
-              const isAdjacent = Math.abs(index - activeIndex) === 1;
-              const isVisible = Math.abs(index - activeIndex) <= 1;
+            {/* Top-right: Keynotes */}
+            <div className="bg-[#A12F63] p-10 min-h-[300px] flex flex-col">
+              <h3 className="font-[family-name:var(--font-playfair)] text-2xl lg:text-3xl text-white italic">
+                {services[1].title}
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-white/80">
+                {services[1].description}
+              </p>
+            </div>
 
-              if (!isVisible) return null;
+            {/* Bottom-left: Teams & Leadership */}
+            <div className="bg-[#5A1735] p-10 min-h-[300px] flex flex-col">
+              <h3 className="font-[family-name:var(--font-playfair)] text-2xl lg:text-3xl text-white italic">
+                {services[4].title}
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-white/80">
+                {services[4].description}
+              </p>
+            </div>
 
-              return (
-                <motion.div
-                  key={service.id}
-                  className={`relative flex-shrink-0 w-[360px] cursor-pointer ${isActive ? "z-10" : "z-0"}`}
-                  initial={false}
-                  animate={{
-                    scale: isActive ? 1 : 0.9,
-                    opacity: isActive ? 1 : 0.6,
-                  }}
-                  transition={{ duration: 0.3 }}
-                  onClick={() => goToSlide(index)}
-                >
-                  <div
-                    className={`h-full p-8 transition-all duration-300 ${
-                      isActive
-                        ? service.id === "advisory"
-                          ? "bg-[#A12F63] text-white"
-                          : "bg-white shadow-xl"
-                        : "bg-[#F7F6F5]"
-                    }`}
-                  >
-                    {/* Featured badge for Advisory */}
-                    {service.id === "advisory" && isActive && (
-                      <span className="absolute top-4 right-4 text-xs uppercase tracking-wider text-white/70 font-medium">
-                        Featured
-                      </span>
-                    )}
+            {/* Bottom-right: Strategic Projects */}
+            <div className="bg-[#BFA27A] p-10 min-h-[300px] flex flex-col">
+              <h3 className="font-[family-name:var(--font-playfair)] text-2xl lg:text-3xl text-[#34323A] italic">
+                {services[3].title}
+              </h3>
+              <p className="mt-4 text-sm leading-relaxed text-[#34323A]/70">
+                {services[3].description}
+              </p>
+            </div>
+          </div>
 
-                    <h3
-                      className={`font-[family-name:var(--font-playfair)] text-2xl ${
-                        isActive && service.id === "advisory" ? "text-white" : "text-[#34323A]"
-                      }`}
-                    >
-                      {service.title}
-                    </h3>
-
-                    <p
-                      className={`mt-4 text-sm leading-relaxed ${
-                        isActive && service.id === "advisory" ? "text-white/90" : "text-[#34323A]/70"
-                      }`}
-                    >
-                      {service.description}
-                    </p>
-
-                    {isActive && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="mt-6"
-                      >
-                        <p
-                          className={`text-xs uppercase tracking-wider font-medium mb-3 ${
-                            service.id === "advisory" ? "text-white/70" : "text-[#A12F63]"
-                          }`}
-                        >
-                          {detailsTypeLabels[service.detailsType]}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                          {service.details.map((detail, i) => (
-                            <span
-                              key={i}
-                              className={`text-xs px-2 py-1 ${
-                                service.id === "advisory"
-                                  ? "bg-white/20 text-white"
-                                  : "bg-[#F7F6F5] text-[#34323A]/70"
-                              }`}
-                            >
-                              {detail}
-                            </span>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </div>
-                </motion.div>
-              );
-            })}
+          {/* Center: Advisory overlay */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+            <motion.div
+              className="bg-[#34323A] text-white w-52 h-52 lg:w-60 lg:h-60 rounded-full flex flex-col items-center justify-center text-center shadow-2xl pointer-events-auto"
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <h3 className="font-[family-name:var(--font-playfair)] text-2xl lg:text-3xl italic">
+                {services[2].title}
+              </h3>
+              <p className="mt-2 text-white/60 text-xs leading-relaxed max-w-[160px]">
+                Strategic sparring when you need clarity and a steady way forward.
+              </p>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -306,8 +258,8 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
         </p>
       </div>
 
-      {/* Dots indicator */}
-      <div className="flex justify-center gap-2 mt-8">
+      {/* Dots indicator - mobile only */}
+      <div className="flex md:hidden justify-center gap-2 mt-8">
         {orderedServices.map((service, index) => (
           <button
             key={service.id}
@@ -323,6 +275,24 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
           />
         ))}
       </div>
+
+      {/* Scroll indicator - below services */}
+      <motion.div
+        className="flex flex-col items-center mt-16"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.8 }}
+      >
+        <span className="text-xs text-[#34323A]/40 uppercase tracking-[0.3em] mb-3">
+          Scroll
+        </span>
+        <motion.div
+          className="w-px h-12 bg-[#34323A]/20"
+          animate={{ scaleY: [1, 0.5, 1] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          style={{ originY: 0 }}
+        />
+      </motion.div>
     </div>
   );
 }

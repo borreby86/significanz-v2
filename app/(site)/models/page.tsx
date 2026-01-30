@@ -45,9 +45,7 @@ export default function ModelsPage() {
           </FadeIn>
 
           <FadeIn delay={0.2}>
-            <div className="max-w-2xl mx-auto">
-              <PyramidModel />
-            </div>
+            <PyramidModel />
           </FadeIn>
         </Container>
       </section>

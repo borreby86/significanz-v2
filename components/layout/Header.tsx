@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { NavDropdown } from "./NavDropdown";
 import { MobileNavItem } from "./MobileNavItem";
@@ -15,6 +16,8 @@ export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { t } = useTranslation();
+  const pathname = usePathname();
+  const isHomepage = pathname === "/";
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -26,7 +29,7 @@ export function Header() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        scrolled ? "bg-white/90 backdrop-blur-sm" : "bg-transparent"
+        (scrolled || !isHomepage) ? "bg-white/90 backdrop-blur-sm" : "bg-transparent"
       )}
     >
       <Container size="full">
@@ -107,13 +110,13 @@ export function Header() {
             <div
               className={cn(
                 "w-6 h-0.5 transition-all duration-300",
-                mobileMenuOpen ? "bg-black rotate-45 translate-y-1" : scrolled ? "bg-black" : "bg-white"
+                mobileMenuOpen ? "bg-black rotate-45 translate-y-1" : (scrolled || !isHomepage) ? "bg-black" : "bg-white"
               )}
             />
             <div
               className={cn(
                 "w-6 h-0.5 mt-1.5 transition-all duration-300",
-                mobileMenuOpen ? "bg-black -rotate-45 -translate-y-0.5" : scrolled ? "bg-black" : "bg-white"
+                mobileMenuOpen ? "bg-black -rotate-45 -translate-y-0.5" : (scrolled || !isHomepage) ? "bg-black" : "bg-white"
               )}
             />
           </button>

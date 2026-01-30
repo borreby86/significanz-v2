@@ -96,27 +96,28 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      {/* Centered layout with overlay card */}
-      <div className="relative max-w-5xl mx-auto">
-        {/* 3D Pyramid */}
-        <motion.div
-          className="relative"
-          style={{ perspective: "1000px" }}
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ duration: 1 }}
-        >
-          <motion.div
-            style={{
-              rotateX,
-              rotateY,
-              transformStyle: "preserve-3d",
-            }}
-          >
-            {/* Connected Pyramid SVG */}
-            <svg
-              viewBox="0 0 600 520"
-              className="w-full h-auto"
+      {/* 50/50 Layout: Pyramid left, Cards right */}
+      <div className="max-w-6xl mx-auto">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
+          {/* Left: Pyramid - 50% */}
+          <div className="w-full lg:w-1/2">
+            <motion.div
+              className="relative"
+              style={{ perspective: "1000px" }}
+              initial={{ opacity: 0 }}
+              animate={isInView ? { opacity: 1 } : {}}
+              transition={{ duration: 1 }}
+            >
+              <motion.div
+                style={{
+                  rotateX,
+                  rotateY,
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                <svg
+                  viewBox="0 0 600 520"
+                  className="w-full h-auto"
               style={{
                 filter: "drop-shadow(0 25px 50px rgba(0,0,0,0.15))",
               }}
@@ -326,91 +327,78 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
                   Mastery
                 </motion.text>
               </motion.g>
-            </svg>
-          </motion.div>
-        </motion.div>
+                </svg>
+              </motion.div>
+            </motion.div>
+          </div>
 
-        {/* Info Card - Appears on the right side */}
-        <AnimatePresence mode="wait">
-          {activeLevelData && (
-            <motion.div
-              key={activeLevelData.id}
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: 20 }}
-              transition={{
-                type: "spring",
-                stiffness: 400,
-                damping: 30,
-                mass: 0.8
-              }}
-              className="absolute top-1/2 right-0 -translate-y-1/2 translate-x-[105%] w-80 z-20 pointer-events-none hidden lg:block"
-            >
-              <div
-                className="bg-white/95 backdrop-blur-md shadow-2xl p-8 md:p-10 border border-white/50"
+          {/* Right: Info Cards - 50% */}
+          <div className="w-full lg:w-1/2 flex flex-col gap-4">
+            {pyramidLevels.slice().reverse().map((level, index) => (
+              <motion.div
+                key={level.id}
+                className="relative bg-white shadow-md p-6 md:p-8 border border-gray-100 overflow-hidden transition-all duration-300 cursor-pointer"
                 style={{
-                  boxShadow: `0 25px 60px -15px rgba(0,0,0,0.25), 0 0 0 1px ${activeLevelData.color}20`
+                  boxShadow: activeLevel === level.id
+                    ? `0 20px 50px -12px rgba(0,0,0,0.2), 0 0 0 1px ${level.color}30`
+                    : undefined
                 }}
+                initial={{ opacity: 0, x: 30 }}
+                animate={isInView ? {
+                  opacity: 1,
+                  x: 0,
+                  scale: activeLevel === level.id ? 1.02 : 1,
+                } : {}}
+                transition={{
+                  opacity: { duration: 0.6, delay: 0.3 + index * 0.15 },
+                  x: { duration: 0.6, delay: 0.3 + index * 0.15 },
+                  scale: { type: "spring", stiffness: 300, damping: 25 },
+                }}
+                onMouseEnter={() => setActiveLevel(level.id)}
+                onMouseLeave={() => setActiveLevel(null)}
               >
-                {/* Colored top accent */}
+                {/* Colored left accent */}
                 <div
-                  className="absolute top-0 left-0 right-0 h-1"
-                  style={{ backgroundColor: activeLevelData.color }}
+                  className="absolute top-0 left-0 bottom-0 w-1"
+                  style={{ backgroundColor: level.color }}
                 />
 
-                {/* Number */}
-                <span
-                  className="absolute top-4 right-6 text-7xl font-[family-name:var(--font-playfair)] leading-none select-none"
-                  style={{ color: `${activeLevelData.color}15` }}
-                >
-                  {activeLevelData.number}
-                </span>
-
-                <div className="relative">
-                  {/* Subtitle */}
+                <div className="pl-4 flex items-start gap-5">
+                  {/* Number */}
                   <span
-                    className="text-xs uppercase tracking-[0.3em] font-medium"
-                    style={{ color: activeLevelData.color }}
+                    className="text-5xl font-[family-name:var(--font-playfair)] leading-none select-none flex-shrink-0"
+                    style={{ color: `${level.color}25` }}
                   >
-                    {activeLevelData.subtitle}
+                    {level.number}
                   </span>
 
-                  {/* Title */}
-                  <h3 className="mt-2 font-[family-name:var(--font-playfair)] text-4xl text-black tracking-tight">
-                    {activeLevelData.title}
-                  </h3>
-
-                  {/* Divider */}
-                  <div
-                    className="mt-4 w-10 h-[2px]"
-                    style={{ backgroundColor: activeLevelData.color }}
-                  />
-
-                  {/* Description */}
-                  <p className="mt-4 text-gray-600 text-base leading-relaxed">
-                    {activeLevelData.description}
-                  </p>
+                  <div>
+                    {/* Subtitle */}
+                    <span
+                      className="text-xs uppercase tracking-[0.2em] font-medium"
+                      style={{ color: level.color }}
+                    >
+                      {level.subtitle}
+                    </span>
+                    {/* Title */}
+                    <h3 className="mt-1 font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#34323A] tracking-tight italic">
+                      {level.title}
+                    </h3>
+                    {/* Divider */}
+                    <div
+                      className="mt-3 w-8 h-[2px]"
+                      style={{ backgroundColor: level.color }}
+                    />
+                    {/* Description */}
+                    <p className="mt-3 text-[#34323A]/70 text-sm leading-relaxed">
+                      {level.description}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
-        {/* Hint text when no selection */}
-        <AnimatePresence>
-          {!activeLevel && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="absolute bottom-4 left-1/2 -translate-x-1/2 text-center"
-            >
-              <p className="text-gray-400 text-sm">
-                Hover over each level to learn more
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );
