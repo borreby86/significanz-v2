@@ -278,7 +278,7 @@ export default function AboutPage() {
                 Our Frameworks
               </h2>
               <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-                Our approach is built around visual frameworks that guide our work together. These models provide a shared language for the leadership journey — from self-awareness to lasting mastery.
+                At Significanz, we use two core frameworks to anchor every engagement. They give leaders and teams a shared language — making the invisible visible, so conversations become clearer, decisions sharper, and progress easier to sustain. Whether we are coaching an individual executive or transforming a leadership team, these models turn abstract development into something concrete you can act on.
               </p>
             </div>
           </FadeIn>
@@ -323,26 +323,6 @@ export default function AboutPage() {
 
             <FadeIn delay={0.2}>
               <PyramidModel />
-            </FadeIn>
-
-            {/* Level descriptions */}
-            <FadeIn delay={0.3}>
-              <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-                {pyramidLevels.map((level) => (
-                  <div key={level.id} className="text-center">
-                    <div
-                      className="w-10 h-1 mx-auto mb-4"
-                      style={{ backgroundColor: level.color }}
-                    />
-                    <h4 className="font-[family-name:var(--font-playfair)] text-xl text-[#34323A]">
-                      {level.title}
-                    </h4>
-                    <p className="mt-2 text-sm text-gray-600 leading-relaxed">
-                      {level.description}
-                    </p>
-                  </div>
-                ))}
-              </div>
             </FadeIn>
           </div>
         </Container>
