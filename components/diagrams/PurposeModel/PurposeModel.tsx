@@ -17,7 +17,7 @@ const segments: Segment[] = [
     id: "professional",
     label: "Professional",
     description: "Your role, responsibilities, and professional growth. Aligning career aspirations with organizational impact.",
-    color: "#34323A",      // Warm Charcoal
+    color: "#34323A",
     hoverColor: "#4A484F",
     highlightColor: "#A12F63",
   },
@@ -25,7 +25,7 @@ const segments: Segment[] = [
     id: "private",
     label: "Private",
     description: "Your values, boundaries, and personal space. Understanding what matters most and protecting what's sacred.",
-    color: "#5A1735",      // Deep Mulberry
+    color: "#5A1735",
     hoverColor: "#7A2855",
     highlightColor: "#A12F63",
   },
@@ -33,7 +33,7 @@ const segments: Segment[] = [
     id: "personal",
     label: "Personal",
     description: "Your relationships, reflections, and self-awareness. Building meaningful connections and deepening self-knowledge.",
-    color: "#8B6B61",      // Warm Cocoa
+    color: "#8B6B61",
     hoverColor: "#9E7D73",
     highlightColor: "#B08E84",
   },
@@ -41,28 +41,20 @@ const segments: Segment[] = [
     id: "practice",
     label: "Practice",
     description: "Your daily habits, routines, and consistent actions. Turning intentions into sustainable behaviors.",
-    color: "#BFA27A",      // Champagne Gold
+    color: "#BFA27A",
     hoverColor: "#CDB38B",
     highlightColor: "#D8C49C",
   },
 ];
 
-// SVG arc path generator for donut segments
 function describeArc(
-  cx: number,
-  cy: number,
-  innerRadius: number,
-  outerRadius: number,
-  startAngle: number,
-  endAngle: number
+  cx: number, cy: number, innerRadius: number, outerRadius: number, startAngle: number, endAngle: number
 ): string {
   const startOuter = polarToCartesian(cx, cy, outerRadius, endAngle);
   const endOuter = polarToCartesian(cx, cy, outerRadius, startAngle);
   const startInner = polarToCartesian(cx, cy, innerRadius, endAngle);
   const endInner = polarToCartesian(cx, cy, innerRadius, startAngle);
-
   const largeArcFlag = endAngle - startAngle <= 180 ? "0" : "1";
-
   return [
     "M", startOuter.x, startOuter.y,
     "A", outerRadius, outerRadius, 0, largeArcFlag, 0, endOuter.x, endOuter.y,
@@ -80,7 +72,6 @@ function polarToCartesian(cx: number, cy: number, radius: number, angleInDegrees
   };
 }
 
-// Get text position for segment labels
 function getTextPosition(cx: number, cy: number, radius: number, startAngle: number, endAngle: number) {
   const midAngle = (startAngle + endAngle) / 2;
   return polarToCartesian(cx, cy, radius, midAngle);
@@ -104,6 +95,7 @@ export function PurposeModel({
   onSegmentHover,
 }: PurposeModelProps) {
   const [activeSegment, setActiveSegment] = useState<string | null>(null);
+  const [expandedCard, setExpandedCard] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-10% 0px" });
 
@@ -134,23 +126,15 @@ export function PurposeModel({
     { start: 270 + gap / 2, end: 360 - gap / 2 },
   ];
 
-  const activeSegmentData = segments.find((s) => s.id === activeSegment);
   const isCompact = size === "compact";
 
-  // Get the fill color for a segment
   const getSegmentFill = (segment: Segment, isActive: boolean) => {
-    // If there's a highlighted segment, only show that one in color
     if (highlightedSegment) {
-      if (segment.id === highlightedSegment) {
-        return segment.highlightColor;
-      }
-      return "#E5E5E5"; // Dimmed color for non-highlighted
+      return segment.id === highlightedSegment ? segment.highlightColor : "#E5E5E5";
     }
-    // Normal hover behavior
     return isActive ? segment.hoverColor : segment.color;
   };
 
-  // Get opacity for segment
   const getSegmentOpacity = (segment: Segment) => {
     if (highlightedSegment) {
       return segment.id === highlightedSegment ? 1 : 0.4;
@@ -158,358 +142,314 @@ export function PurposeModel({
     return 1;
   };
 
+  // Card positions: top-right, bottom-right, bottom-left, top-left
+  // Matching segment order: Professional (top-right), Private (bottom-right), Personal (bottom-left), Practice (top-left)
+  const cardLayout: { side: "left" | "right"; vAlign: "top" | "bottom" }[] = [
+    { side: "right", vAlign: "top" },
+    { side: "right", vAlign: "bottom" },
+    { side: "left", vAlign: "bottom" },
+    { side: "left", vAlign: "top" },
+  ];
+
   return (
     <div ref={containerRef} className={`${className}`}>
       <div className={`relative ${isCompact ? "max-w-[400px]" : "max-w-6xl"} mx-auto`}>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        {/* Model container */}
-        <div className="relative flex-shrink-0">
-          {/* Decorative orbiting dots */}
-          {showDecorations && (
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <motion.div
-                className="absolute w-[620px] h-[620px]"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-              >
-                {[0, 90, 180, 270].map((angle, i) => (
-                  <motion.div
-                    key={angle}
-                    className="absolute w-2 h-2 bg-red/40 rounded-full"
-                    style={{
-                      top: "50%",
-                      left: "50%",
-                      transform: `rotate(${angle}deg) translateY(-310px) translateX(-50%)`,
-                    }}
-                    animate={{ scale: [1, 1.5, 1], opacity: [0.4, 0.8, 0.4] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: i * 0.5 }}
+        {/* Main layout: cards on left, diagram center, cards on right */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-6 lg:gap-10 items-center">
+
+          {/* Left side cards (Practice top-left, Personal bottom-left) */}
+          <div className="hidden lg:flex flex-col gap-6 justify-center">
+            {[3, 2].map((segIndex) => {
+              const segment = segments[segIndex];
+              const isExpanded = expandedCard === segment.id;
+              return (
+                <motion.div
+                  key={segment.id}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.4 + segIndex * 0.1 }}
+                  className="relative bg-white border border-gray-100 px-5 py-4 transition-shadow duration-300 hover:shadow-md"
+                  onMouseEnter={() => handleSegmentEnter(segment.id)}
+                  onMouseLeave={handleSegmentLeave}
+                >
+                  <div
+                    className="absolute top-0 left-0 bottom-0 w-1"
+                    style={{ backgroundColor: segment.color }}
                   />
-                ))}
-              </motion.div>
-            </div>
-          )}
+                  <div className="pl-3">
+                    <h3 className="font-[family-name:var(--font-playfair)] text-lg text-[#34323A] italic">
+                      {segment.label}
+                    </h3>
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.p
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="text-gray-600 text-sm leading-relaxed overflow-hidden"
+                        >
+                          <span className="block pt-2">{segment.description}</span>
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                    <button
+                      onClick={() => setExpandedCard(isExpanded ? null : segment.id)}
+                      className="mt-2 text-xs uppercase tracking-wider font-medium cursor-pointer"
+                      style={{ color: segment.color }}
+                    >
+                      {isExpanded ? "Close" : "Learn more"}
+                    </button>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
 
-          {/* Outer decorative rings */}
-          {showDecorations && (
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <motion.div
-                className="absolute w-[580px] h-[580px] rounded-full border border-gray-200/50"
-                initial={{ scale: 0, opacity: 0 }}
-                animate={isInView ? { scale: 1, opacity: 1 } : {}}
-                transition={{ duration: 1, delay: 0.2 }}
-              />
-              <motion.div
-                className="absolute w-[620px] h-[620px] rounded-full border border-gray-100/30"
-                initial={{ scale: 0, opacity: 0 }}
-                animate={isInView ? { scale: 1, opacity: 1 } : {}}
-                transition={{ duration: 1.2, delay: 0.3 }}
-              />
-              <motion.div
-                className="absolute w-[660px] h-[660px] rounded-full border border-dashed border-gray-100/20"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 120, repeat: Infinity, ease: "linear" }}
-                initial={{ scale: 0, opacity: 0 }}
-                style={isInView ? { scale: 1, opacity: 1 } : {}}
-              />
-            </div>
-          )}
-
-          {/* Pulsing background glow */}
-          {showDecorations && (
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-              <motion.div
-                className="absolute w-96 h-96 bg-red/5 rounded-full blur-3xl"
-                animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
-                transition={{ duration: 4, repeat: Infinity }}
-              />
-            </div>
-          )}
-
-          {/* SVG Diagram */}
-          <motion.svg
-            viewBox="0 0 400 400"
-            className={`w-full ${isCompact ? "max-w-[400px]" : "max-w-[650px]"} mx-auto relative z-10`}
-            initial={{ scale: 0.5, opacity: 0, rotate: -180 }}
-            animate={isInView ? { scale: 1, opacity: 1, rotate: 0 } : {}}
-            transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
-          >
-            {/* Definitions for effects */}
-            <defs>
-              <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-                <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-              <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-                <feDropShadow dx="0" dy="4" stdDeviation="8" floodOpacity="0.15" />
-              </filter>
-              <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#B84575" />
-                <stop offset="100%" stopColor="#A12F63" />
-              </linearGradient>
-              <radialGradient id="centerGlow" cx="30%" cy="30%">
-                <stop offset="0%" stopColor="#C85585" />
-                <stop offset="100%" stopColor="#A12F63" />
-              </radialGradient>
-            </defs>
-
-            {/* Rotating background circle */}
+          {/* Center: SVG diagram */}
+          <div className="relative flex-shrink-0">
             {showDecorations && (
-              <motion.circle
-                cx={cx}
-                cy={cy}
-                r={outerRadius + 15}
-                fill="none"
-                stroke="url(#centerGradient)"
-                strokeWidth="1"
-                strokeDasharray="8 8"
-                opacity={0.2}
-                animate={{ rotate: 360 }}
-                transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                style={{ transformOrigin: "center" }}
-              />
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <motion.div
+                  className="absolute w-96 h-96 bg-red/5 rounded-full blur-3xl"
+                  animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                />
+              </div>
             )}
 
-            {/* Segments */}
-            {segments.map((segment, index) => {
-              const angles = segmentAngles[index];
-              const path = describeArc(cx, cy, innerRadius, outerRadius, angles.start, angles.end);
-              const isActive = activeSegment === segment.id;
-              const isHighlighted = highlightedSegment === segment.id;
-              const textPos = getTextPosition(cx, cy, (innerRadius + outerRadius) / 2, angles.start, angles.end);
-
-              return (
-                <g key={segment.id}>
-                  {/* Segment path */}
-                  <motion.path
-                    d={path}
-                    fill={getSegmentFill(segment, isActive)}
-                    className={interactive ? "cursor-pointer" : ""}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{
-                      opacity: getSegmentOpacity(segment),
-                      scale: (isActive || isHighlighted) ? 1.05 : 1,
-                      filter: (isActive || isHighlighted) ? "url(#shadow)" : "none",
-                    }}
-                    transition={{
-                      opacity: { duration: 0.6, delay: 0.3 + index * 0.15 },
-                      scale: { duration: 0.3, ease: "easeOut" },
-                    }}
-                    onMouseEnter={() => handleSegmentEnter(segment.id)}
-                    onMouseLeave={handleSegmentLeave}
-                    style={{ transformOrigin: "center" }}
-                  />
-
-                  {/* Segment hover/highlight glow */}
-                  <AnimatePresence>
-                    {(isActive || isHighlighted) && (
-                      <motion.path
-                        d={path}
-                        fill="none"
-                        stroke="#A12F63"
-                        strokeWidth="2"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.6 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        filter="url(#glow)"
-                        style={{ pointerEvents: "none" }}
-                      />
-                    )}
-                  </AnimatePresence>
-
-                  {/* Segment label */}
-                  <motion.text
-                    x={textPos.x}
-                    y={textPos.y}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    className="pointer-events-none select-none"
-                    fill={
-                      highlightedSegment
-                        ? (isHighlighted ? "white" : "#999999")
-                        : (segment.id === "practice" ? "#34323A" : "white")  // Dark text on gold, white on others
-                    }
-                    fontSize="15"
-                    fontWeight="400"
-                    fontFamily="var(--font-playfair)"
-                    fontStyle="italic"
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{
-                      opacity: highlightedSegment ? (isHighlighted ? 1 : 0.5) : 1,
-                      scale: (isActive || isHighlighted) ? 1.1 : 1,
-                    }}
-                    transition={{
-                      opacity: { duration: 0.4, delay: 0.8 + index * 0.1 },
-                      scale: { duration: 0.2 }
-                    }}
-                  >
-                    {segment.label}
-                  </motion.text>
-                </g>
-              );
-            })}
-
-            {/* Inner white ring */}
-            <motion.circle
-              cx={cx}
-              cy={cy}
-              r={innerRadius}
-              fill="white"
-              initial={{ scale: 0 }}
-              animate={isInView ? { scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
-            />
-
-            {/* Center circle with gradient */}
-            <motion.circle
-              cx={cx}
-              cy={cy}
-              r={innerRadius - 8}
-              fill="url(#centerGlow)"
-              initial={{ scale: 0 }}
-              animate={isInView ? { scale: 1 } : {}}
-              transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-            />
-
-            {/* Pulsing ring around center */}
-            <motion.circle
-              cx={cx}
-              cy={cy}
-              r={innerRadius - 8}
-              fill="none"
-              stroke="white"
-              strokeWidth="2"
-              initial={{ scale: 0, opacity: 0 }}
-              animate={isInView ? {
-                scale: [1, 1.1, 1],
-                opacity: [0.5, 0.2, 0.5]
-              } : {}}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                delay: 1
-              }}
-            />
-
-            {/* White decorative ring */}
-            <motion.circle
-              cx={cx}
-              cy={cy}
-              r={innerRadius - 3}
-              fill="none"
-              stroke="white"
-              strokeWidth="5"
-              initial={{ pathLength: 0, opacity: 0 }}
-              animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
-              transition={{ duration: 1, delay: 0.8 }}
-            />
-
-            {/* Purpose text */}
-            <motion.text
-              x={cx}
-              y={cy}
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fill="white"
-              fontSize="22"
-              fontWeight="400"
-              fontFamily="var(--font-playfair)"
-              fontStyle="italic"
-              initial={{ opacity: 0, y: 10 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 1 }}
+            <motion.svg
+              viewBox="0 0 400 400"
+              className={`w-full ${isCompact ? "max-w-[300px]" : "max-w-[420px]"} mx-auto relative z-10`}
+              initial={{ scale: 0.5, opacity: 0, rotate: -180 }}
+              animate={isInView ? { scale: 1, opacity: 1, rotate: 0 } : {}}
+              transition={{ duration: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              Purpose
-            </motion.text>
+              <defs>
+                <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+                  <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+                  <feMerge>
+                    <feMergeNode in="coloredBlur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+                <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feDropShadow dx="0" dy="4" stdDeviation="8" floodOpacity="0.15" />
+                </filter>
+                <linearGradient id="centerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" stopColor="#B84575" />
+                  <stop offset="100%" stopColor="#A12F63" />
+                </linearGradient>
+                <radialGradient id="centerGlow" cx="30%" cy="30%">
+                  <stop offset="0%" stopColor="#C85585" />
+                  <stop offset="100%" stopColor="#A12F63" />
+                </radialGradient>
+              </defs>
 
-            {/* Decorative dots around center */}
-            {[0, 60, 120, 180, 240, 300].map((angle, i) => {
-              const pos = polarToCartesian(cx, cy, innerRadius - 20, angle);
-              return (
+              {showDecorations && (
                 <motion.circle
-                  key={angle}
-                  cx={pos.x}
-                  cy={pos.y}
-                  r="2"
-                  fill="white"
-                  opacity={0.4}
-                  initial={{ scale: 0 }}
-                  animate={isInView ? { scale: [0, 1, 0.8] } : {}}
-                  transition={{ duration: 0.4, delay: 1.2 + i * 0.1 }}
+                  cx={cx} cy={cy} r={outerRadius + 15}
+                  fill="none" stroke="url(#centerGradient)" strokeWidth="1" strokeDasharray="8 8" opacity={0.2}
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+                  style={{ transformOrigin: "center" }}
                 />
+              )}
+
+              {segments.map((segment, index) => {
+                const angles = segmentAngles[index];
+                const path = describeArc(cx, cy, innerRadius, outerRadius, angles.start, angles.end);
+                const isActive = activeSegment === segment.id;
+                const isHighlighted = highlightedSegment === segment.id;
+                const textPos = getTextPosition(cx, cy, (innerRadius + outerRadius) / 2, angles.start, angles.end);
+
+                return (
+                  <g key={segment.id}>
+                    <motion.path
+                      d={path}
+                      fill={getSegmentFill(segment, isActive)}
+                      className={interactive ? "cursor-pointer" : ""}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{
+                        opacity: getSegmentOpacity(segment),
+                        scale: (isActive || isHighlighted) ? 1.05 : 1,
+                        filter: (isActive || isHighlighted) ? "url(#shadow)" : "none",
+                      }}
+                      transition={{
+                        opacity: { duration: 0.6, delay: 0.3 + index * 0.15 },
+                        scale: { duration: 0.3, ease: "easeOut" },
+                      }}
+                      onMouseEnter={() => handleSegmentEnter(segment.id)}
+                      onMouseLeave={handleSegmentLeave}
+                      style={{ transformOrigin: "center" }}
+                    />
+                    <AnimatePresence>
+                      {(isActive || isHighlighted) && (
+                        <motion.path
+                          d={path} fill="none" stroke="#A12F63" strokeWidth="2"
+                          initial={{ opacity: 0 }} animate={{ opacity: 0.6 }} exit={{ opacity: 0 }}
+                          transition={{ duration: 0.2 }} filter="url(#glow)"
+                          style={{ pointerEvents: "none" }}
+                        />
+                      )}
+                    </AnimatePresence>
+                    <motion.text
+                      x={textPos.x} y={textPos.y} textAnchor="middle" dominantBaseline="middle"
+                      className="pointer-events-none select-none"
+                      fill={
+                        highlightedSegment
+                          ? (isHighlighted ? "white" : "#999999")
+                          : (segment.id === "practice" ? "#34323A" : "white")
+                      }
+                      fontSize="15" fontWeight="400" fontFamily="var(--font-playfair)" fontStyle="italic"
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{
+                        opacity: highlightedSegment ? (isHighlighted ? 1 : 0.5) : 1,
+                        scale: (isActive || isHighlighted) ? 1.1 : 1,
+                      }}
+                      transition={{
+                        opacity: { duration: 0.4, delay: 0.8 + index * 0.1 },
+                        scale: { duration: 0.2 }
+                      }}
+                    >
+                      {segment.label}
+                    </motion.text>
+                  </g>
+                );
+              })}
+
+              <motion.circle cx={cx} cy={cy} r={innerRadius} fill="white"
+                initial={{ scale: 0 }} animate={isInView ? { scale: 1 } : {}}
+                transition={{ duration: 0.6, delay: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+              />
+              <motion.circle cx={cx} cy={cy} r={innerRadius - 8} fill="url(#centerGlow)"
+                initial={{ scale: 0 }} animate={isInView ? { scale: 1 } : {}}
+                transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+              />
+              <motion.circle cx={cx} cy={cy} r={innerRadius - 8} fill="none" stroke="white" strokeWidth="2"
+                initial={{ scale: 0, opacity: 0 }}
+                animate={isInView ? { scale: [1, 1.1, 1], opacity: [0.5, 0.2, 0.5] } : {}}
+                transition={{ duration: 3, repeat: Infinity, delay: 1 }}
+              />
+              <motion.circle cx={cx} cy={cy} r={innerRadius - 3} fill="none" stroke="white" strokeWidth="5"
+                initial={{ pathLength: 0, opacity: 0 }}
+                animate={isInView ? { pathLength: 1, opacity: 1 } : {}}
+                transition={{ duration: 1, delay: 0.8 }}
+              />
+              <motion.text x={cx} y={cy} textAnchor="middle" dominantBaseline="middle"
+                fill="white" fontSize="22" fontWeight="400" fontFamily="var(--font-playfair)" fontStyle="italic"
+                initial={{ opacity: 0, y: 10 }} animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 1 }}
+              >
+                Purpose
+              </motion.text>
+              {[0, 60, 120, 180, 240, 300].map((angle, i) => {
+                const pos = polarToCartesian(cx, cy, innerRadius - 20, angle);
+                return (
+                  <motion.circle key={angle} cx={pos.x} cy={pos.y} r="2" fill="white" opacity={0.4}
+                    initial={{ scale: 0 }} animate={isInView ? { scale: [0, 1, 0.8] } : {}}
+                    transition={{ duration: 0.4, delay: 1.2 + i * 0.1 }}
+                  />
+                );
+              })}
+            </motion.svg>
+          </div>
+
+          {/* Right side cards (Professional top-right, Private bottom-right) */}
+          <div className="hidden lg:flex flex-col gap-6 justify-center">
+            {[0, 1].map((segIndex) => {
+              const segment = segments[segIndex];
+              const isExpanded = expandedCard === segment.id;
+              return (
+                <motion.div
+                  key={segment.id}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={isInView ? { opacity: 1, x: 0 } : {}}
+                  transition={{ duration: 0.6, delay: 0.4 + segIndex * 0.1 }}
+                  className="relative bg-white border border-gray-100 px-5 py-4 transition-shadow duration-300 hover:shadow-md"
+                  onMouseEnter={() => handleSegmentEnter(segment.id)}
+                  onMouseLeave={handleSegmentLeave}
+                >
+                  <div
+                    className="absolute top-0 left-0 bottom-0 w-1"
+                    style={{ backgroundColor: segment.color }}
+                  />
+                  <div className="pl-3">
+                    <h3 className="font-[family-name:var(--font-playfair)] text-lg text-[#34323A] italic">
+                      {segment.label}
+                    </h3>
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.p
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3 }}
+                          className="text-gray-600 text-sm leading-relaxed overflow-hidden"
+                        >
+                          <span className="block pt-2">{segment.description}</span>
+                        </motion.p>
+                      )}
+                    </AnimatePresence>
+                    <button
+                      onClick={() => setExpandedCard(isExpanded ? null : segment.id)}
+                      className="mt-2 text-xs uppercase tracking-wider font-medium cursor-pointer"
+                      style={{ color: segment.color }}
+                    >
+                      {isExpanded ? "Close" : "Learn more"}
+                    </button>
+                  </div>
+                </motion.div>
               );
             })}
-          </motion.svg>
-
-          {/* Instruction text - only for interactive mode on mobile */}
-          {interactive && (
-            <motion.p
-              className="text-center text-sm text-gray-400 mt-6 lg:hidden"
-              initial={{ opacity: 0 }}
-              animate={isInView ? { opacity: 1 } : {}}
-              transition={{ delay: 1.5 }}
-            >
-              Tap each dimension to explore
-            </motion.p>
-          )}
+          </div>
         </div>
 
-        {/* Static Info Cards - always visible on right side */}
-        <div className="flex flex-col gap-6">
-          {segments.map((segment, index) => (
-            <motion.div
-              key={segment.id}
-              initial={{ opacity: 0, x: 30 }}
-              animate={isInView ? { opacity: 1, x: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 + index * 0.15 }}
-              className={`relative bg-white shadow-lg border border-gray-100 p-6 md:p-8 transition-all duration-300 ${
-                activeSegment === segment.id ? "shadow-xl scale-[1.02]" : ""
-              }`}
-              onMouseEnter={() => handleSegmentEnter(segment.id)}
-              onMouseLeave={handleSegmentLeave}
-            >
-              {/* Colored left accent */}
-              <div
-                className="absolute top-0 left-0 bottom-0 w-1"
-                style={{ backgroundColor: segment.color }}
-              />
-
-              <div className="relative pl-2">
-                {/* Subtitle */}
-                <span
-                  className="text-xs uppercase tracking-[0.2em] font-medium"
-                  style={{ color: segment.color }}
-                >
-                  Dimension
-                </span>
-
-                {/* Title */}
-                <h3 className="mt-1 font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#34323A] italic">
+        {/* Mobile: stacked cards below */}
+        <div className="lg:hidden mt-8 grid grid-cols-2 gap-4">
+          {segments.map((segment, index) => {
+            const isExpanded = expandedCard === segment.id;
+            return (
+              <motion.div
+                key={segment.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                className="relative bg-white border border-gray-100 px-4 py-3"
+                onMouseEnter={() => handleSegmentEnter(segment.id)}
+                onMouseLeave={handleSegmentLeave}
+              >
+                <div className="absolute top-0 left-0 right-0 h-[2px]" style={{ backgroundColor: segment.color }} />
+                <h3 className="font-[family-name:var(--font-playfair)] text-base text-[#34323A] italic">
                   {segment.label}
                 </h3>
-
-                {/* Divider */}
-                <div
-                  className="mt-3 w-8 h-[2px]"
-                  style={{ backgroundColor: segment.color }}
-                />
-
-                {/* Description */}
-                <p className="mt-3 text-gray-600 text-sm md:text-base leading-relaxed">
-                  {segment.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </div>
+                <AnimatePresence>
+                  {isExpanded && (
+                    <motion.p
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="text-gray-600 text-sm leading-relaxed overflow-hidden"
+                    >
+                      <span className="block pt-2">{segment.description}</span>
+                    </motion.p>
+                  )}
+                </AnimatePresence>
+                <button
+                  onClick={() => setExpandedCard(isExpanded ? null : segment.id)}
+                  className="mt-1 text-xs uppercase tracking-wider font-medium cursor-pointer"
+                  style={{ color: segment.color }}
+                >
+                  {isExpanded ? "Close" : "Learn more"}
+                </button>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </div>
   );
 }
 
-// Export segments data for use in other components
 export { segments };

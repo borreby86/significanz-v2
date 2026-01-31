@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
@@ -86,6 +86,85 @@ function OurEdgeCard({ item, index }: { item: typeof ourEdgeItems[0]; index: num
         transition={{ duration: 0.3 }}
       />
     </motion.div>
+  );
+}
+
+// Expandable framework card
+function FrameworkCard({
+  title,
+  description,
+  accentColor,
+  bg = "bg-white",
+  children,
+}: {
+  title: string;
+  description: string;
+  accentColor: string;
+  bg?: string;
+  children: React.ReactNode;
+}) {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <FadeIn>
+      <div className={`${bg} border border-gray-100 overflow-hidden`}>
+        {/* Collapsed header — always visible */}
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-full text-left px-8 md:px-12 py-8 md:py-10 flex items-center justify-between gap-6 group cursor-pointer"
+        >
+          <div className="flex-1">
+            <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#34323A] tracking-tight">
+              {title}
+            </h3>
+            <p className="mt-2 text-gray-600 max-w-2xl">
+              {description}
+            </p>
+          </div>
+          <div className="shrink-0 flex items-center gap-3">
+            <span className="text-sm text-gray-400 hidden sm:block">
+              {isOpen ? "Close" : "Explore"}
+            </span>
+            <motion.div
+              animate={{ rotate: isOpen ? 45 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-gray-400 transition-colors"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-500">
+                <line x1="7" y1="1" x2="7" y2="13" />
+                <line x1="1" y1="7" x2="13" y2="7" />
+              </svg>
+            </motion.div>
+          </div>
+        </button>
+
+        {/* Accent line */}
+        <motion.div
+          className="h-[2px]"
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: isOpen ? 1 : 0 }}
+          transition={{ duration: 0.4 }}
+          style={{ backgroundColor: accentColor, transformOrigin: "left" }}
+        />
+
+        {/* Expandable content */}
+        <AnimatePresence>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
+              className="overflow-hidden"
+            >
+              <div className="px-8 md:px-12 py-10 md:py-16">
+                {children}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </FadeIn>
   );
 }
 
@@ -283,47 +362,32 @@ export default function AboutPage() {
             </div>
           </FadeIn>
 
-          {/* 5P Model */}
-          <FadeIn>
-            <div className="text-center mb-12">
-              <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl lg:text-4xl text-black tracking-tight">
-                {t.aboutPage.fivePsTitle}
-              </h3>
-              <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                {t.aboutPage.fivePsDescription}
-              </p>
+          {/* Framework cards */}
+          <div className="space-y-6">
+            {/* 5P Model card */}
+            <FrameworkCard
+              title={t.aboutPage.fivePsTitle}
+              description={t.aboutPage.fivePsDescription}
+              accentColor="#A12F63"
+            >
+              <PurposeModel
+                interactive={true}
+                showDecorations={true}
+                size="default"
+              />
+            </FrameworkCard>
+
+            {/* Mastery Framework card */}
+            <div id="mastery-framework" className="scroll-mt-20">
+              <FrameworkCard
+                title="Awareness · Leverage · Mastery"
+                description="True mastery emerges when deep self-awareness combines with strategic leverage to create lasting, transformative impact."
+                accentColor="#BFA27A"
+                bg="bg-[#FAFAF8]"
+              >
+                <PyramidModel />
+              </FrameworkCard>
             </div>
-          </FadeIn>
-
-          <FadeIn delay={0.2}>
-            <PurposeModel
-              interactive={true}
-              showDecorations={true}
-              size="default"
-            />
-          </FadeIn>
-
-          {/* Divider */}
-          <div className="my-24 md:my-32 flex justify-center">
-            <div className="w-24 h-[2px] bg-gray-200" />
-          </div>
-
-          {/* Mastery Framework (Pyramid) */}
-          <div id="mastery-framework" className="scroll-mt-20">
-            <FadeIn>
-              <div className="text-center mb-12">
-                <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl lg:text-4xl text-black tracking-tight">
-                  Awareness • Leverage • Mastery
-                </h3>
-                <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                  True mastery emerges when deep self-awareness combines with strategic leverage to create lasting, transformative impact.
-                </p>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.2}>
-              <PyramidModel />
-            </FadeIn>
           </div>
         </Container>
       </section>
