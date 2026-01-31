@@ -51,11 +51,7 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
   const isInView = useInView(containerRef, { once: true, margin: "-5% 0px" });
 
   // Cards in order: Mastery (top), Leverage (mid), Awareness (bottom)
-  const cardPositions = [
-    { level: pyramidLevels[2], top: "5%" },
-    { level: pyramidLevels[1], top: "38%" },
-    { level: pyramidLevels[0], top: "68%" },
-  ];
+  const cardOrder = [pyramidLevels[2], pyramidLevels[1], pyramidLevels[0]];
 
   return (
     <div ref={containerRef} className={`relative ${className}`}>
@@ -144,20 +140,18 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
                 <path d="M175 180 L250 30 L250 180 Z" fill="url(#masteryGrad)" />
                 <path d="M250 30 L325 180 L250 180 Z" fill="url(#masteryRight)" />
                 <circle cx="250" cy="30" r="3" fill="white" opacity="0.7" />
-                <text x="250" y="120" textAnchor="middle" fill="white" fontSize="18" fontWeight="400" fontFamily="var(--font-playfair)" fontStyle="italic">
+                <text x="250" y="135" textAnchor="middle" fill="white" fontSize="18" fontWeight="400" fontFamily="var(--font-playfair)" fontStyle="italic">
                   Mastery
                 </text>
               </motion.g>
             </svg>
           </motion.div>
 
-          {/* Info cards — aligned to each layer */}
-          <div className="relative flex-1 self-stretch">
-            {cardPositions.map(({ level, top }, index) => (
+          {/* Info cards — evenly spaced alongside pyramid */}
+          <div className="flex-1 flex flex-col justify-between py-2">
+            {cardOrder.map((level, index) => (
               <motion.div
                 key={level.id}
-                className="absolute left-0 right-0"
-                style={{ top }}
                 initial={{ opacity: 0, x: 30 }}
                 animate={isInView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.3 + index * 0.15 }}
