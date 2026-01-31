@@ -107,7 +107,10 @@ function FrameworkCard({
 
   return (
     <FadeIn>
-      <div className={`${bg} border border-gray-100 overflow-hidden`}>
+      <div className={`${bg} border border-gray-100 overflow-hidden transition-shadow duration-300 hover:shadow-lg`}>
+        {/* Accent line top — always visible */}
+        <div className="h-[3px]" style={{ backgroundColor: accentColor }} />
+
         {/* Collapsed header — always visible */}
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -122,30 +125,35 @@ function FrameworkCard({
             </p>
           </div>
           <div className="shrink-0 flex items-center gap-3">
-            <span className="text-sm text-gray-400 hidden sm:block">
-              {isOpen ? "Close" : "Explore"}
-            </span>
+            <motion.span
+              className="text-sm font-medium hidden sm:block"
+              style={{ color: accentColor }}
+              animate={{ x: isOpen ? 0 : [0, 4, 0] }}
+              transition={isOpen ? {} : { duration: 1.5, repeat: Infinity, repeatDelay: 2 }}
+            >
+              {isOpen ? "Close" : "Explore →"}
+            </motion.span>
             <motion.div
               animate={{ rotate: isOpen ? 45 : 0 }}
               transition={{ duration: 0.3 }}
-              className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center group-hover:border-gray-400 transition-colors"
+              className="w-10 h-10 rounded-full flex items-center justify-center transition-colors"
+              style={{
+                borderWidth: 2,
+                borderStyle: "solid",
+                borderColor: isOpen ? accentColor : "#E5E7EB",
+                backgroundColor: isOpen ? accentColor : "transparent",
+              }}
             >
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" className="text-gray-500">
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5"
+                className="transition-colors"
+                style={{ color: isOpen ? "white" : "#6B7280" }}
+              >
                 <line x1="7" y1="1" x2="7" y2="13" />
                 <line x1="1" y1="7" x2="13" y2="7" />
               </svg>
             </motion.div>
           </div>
         </button>
-
-        {/* Accent line */}
-        <motion.div
-          className="h-[2px]"
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: isOpen ? 1 : 0 }}
-          transition={{ duration: 0.4 }}
-          style={{ backgroundColor: accentColor, transformOrigin: "left" }}
-        />
 
         {/* Expandable content */}
         <AnimatePresence>
@@ -399,18 +407,28 @@ export default function AboutPage() {
       </section>
       */}
 
-      {/* Contact Section - Email Only */}
-      <section className="py-20 sm:py-28 md:py-36 lg:py-48 bg-white">
-        <Container size="default">
+      {/* Contact Section with workshop background */}
+      <section className="relative py-20 sm:py-28 md:py-36 lg:py-48 overflow-hidden">
+        {/* Background image — black & white */}
+        <Image
+          src="/images/workshop.jpeg"
+          alt="Leadership workshop in progress"
+          fill
+          className="object-cover grayscale"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/70" />
+
+        <Container size="default" className="relative z-10">
           <FadeIn>
             <div className="text-center">
-              <span className="text-[#A12F63] font-medium text-sm uppercase tracking-[0.2em]">
+              <span className="text-[#D4A574] font-medium text-sm uppercase tracking-[0.2em]">
                 Get in Touch
               </span>
-              <h2 className="mt-4 sm:mt-6 font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#34323A] italic">
+              <h2 className="mt-4 sm:mt-6 font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white italic">
                 Let&apos;s start a conversation
               </h2>
-              <p className="mt-6 sm:mt-8 text-lg sm:text-xl text-[#34323A]/70 leading-relaxed max-w-2xl mx-auto">
+              <p className="mt-6 sm:mt-8 text-lg sm:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto">
                 Ready to create meaningful impact? We&apos;d love to hear from you.
               </p>
               <a
