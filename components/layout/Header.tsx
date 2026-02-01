@@ -33,49 +33,72 @@ export function Header() {
       )}
     >
       <Container size="full">
-        <nav className="relative flex items-center justify-between h-20">
-          {/* Logo - switches from full logo to icon on scroll */}
-          <Link href="/" className="relative flex items-center w-[140px] sm:w-[170px] md:w-[210px]">
-            <AnimatePresence mode="popLayout">
-              {!scrolled ? (
-                <motion.div
-                  key="full-logo"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Image
-                    src="/images/logo/significanz navnetræk - warm charcoal.png"
-                    alt="Significanz"
-                    width={300}
-                    height={80}
-                    className="h-10 sm:h-12 md:h-14 w-auto"
-                    priority
-                  />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="icon-logo"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                >
-                  <Image
-                    src="/images/logo/Icon significanz BLACK.png"
-                    alt="Significanz"
-                    width={56}
-                    height={56}
-                    className="h-10 sm:h-12 md:h-14 w-auto"
-                  />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </Link>
+        {/* Stacked: logo on top, nav below - collapses on scroll */}
+        <nav className="relative flex flex-col items-center">
+          {/* Logo row */}
+          <div className="flex items-center justify-between w-full h-14 md:h-auto md:justify-center md:pt-5">
+            <Link href="/" className="relative flex items-center">
+              <AnimatePresence mode="popLayout">
+                {!scrolled ? (
+                  <motion.div
+                    key="full-logo"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Image
+                      src="/images/logo/significanz navnetræk - warm charcoal.png"
+                      alt="Significanz"
+                      width={300}
+                      height={80}
+                      className="h-7 sm:h-8 md:h-9 w-auto"
+                      priority
+                    />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="icon-logo"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Image
+                      src="/images/logo/Icon significanz BLACK.png"
+                      alt="Significanz"
+                      width={56}
+                      height={56}
+                      className="h-7 sm:h-8 md:h-9 w-auto"
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </Link>
 
-          {/* Desktop Navigation */}
-          <ul className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-10">
+            {/* Mobile menu button */}
+            <button
+              className="md:hidden p-2 relative z-50"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label="Toggle menu"
+            >
+              <div
+                className={cn(
+                  "w-6 h-0.5 transition-all duration-300",
+                  mobileMenuOpen ? "bg-black rotate-45 translate-y-1" : (scrolled || !isHomepage) ? "bg-black" : "bg-white"
+                )}
+              />
+              <div
+                className={cn(
+                  "w-6 h-0.5 mt-1.5 transition-all duration-300",
+                  mobileMenuOpen ? "bg-black -rotate-45 -translate-y-0.5" : (scrolled || !isHomepage) ? "bg-black" : "bg-white"
+                )}
+              />
+            </button>
+          </div>
+
+          {/* Nav row - centered below logo */}
+          <ul className="hidden md:flex items-center gap-10 pb-4 pt-3">
             {navigationConfig.map((item) => (
               <li key={item.key}>
                 {item.items ? (
@@ -92,10 +115,10 @@ export function Header() {
                   <Link
                     href={item.href || '#'}
                     className={cn(
-                      "text-base transition-colors duration-300 hover:text-[#A12F63]",
+                      "text-sm tracking-[0.04em] transition-colors duration-300 hover:text-[#A12F63]",
                       pathname === item.href
                         ? "text-[#A12F63]"
-                        : (scrolled || !isHomepage) ? "text-gray-600" : "text-white"
+                        : (scrolled || !isHomepage) ? "text-[#34323A]/70" : "text-white/90"
                     )}
                   >
                     {t.nav[item.key as keyof typeof t.nav]}
@@ -104,29 +127,6 @@ export function Header() {
               </li>
             ))}
           </ul>
-
-          {/* Spacer for layout balance */}
-          <div className="hidden md:flex items-center gap-6 w-[100px]" />
-
-          {/* Mobile menu button */}
-          <button
-            className="md:hidden p-2 relative z-50"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label="Toggle menu"
-          >
-            <div
-              className={cn(
-                "w-6 h-0.5 transition-all duration-300",
-                mobileMenuOpen ? "bg-black rotate-45 translate-y-1" : (scrolled || !isHomepage) ? "bg-black" : "bg-white"
-              )}
-            />
-            <div
-              className={cn(
-                "w-6 h-0.5 mt-1.5 transition-all duration-300",
-                mobileMenuOpen ? "bg-black -rotate-45 -translate-y-0.5" : (scrolled || !isHomepage) ? "bg-black" : "bg-white"
-              )}
-            />
-          </button>
         </nav>
       </Container>
 

@@ -40,12 +40,12 @@ export function NavDropdown({ label, href, items, scrolled, isHomepage, pathname
       <div className="flex items-center gap-1.5">
         <Link
           href={href || '#'}
-          className={`text-base transition-colors duration-300 hover:text-[#A12F63] ${isActive ? "text-[#A12F63]" : (scrolled || !isHomepage) ? "text-gray-600" : "text-white"}`}
+          className={`text-sm tracking-[0.04em] transition-colors duration-300 hover:text-[#A12F63] ${isActive ? "text-[#A12F63]" : (scrolled || !isHomepage) ? "text-[#34323A]/70" : "text-white/90"}`}
         >
           {label}
         </Link>
         <svg
-          className={`w-3 h-3 transition-transform duration-200 ${isActive ? "text-[#A12F63]" : (scrolled || !isHomepage) ? "text-gray-600" : "text-white"} ${isOpen ? "rotate-180" : ""}`}
+          className={`w-3 h-3 transition-transform duration-200 ${isActive ? "text-[#A12F63]" : (scrolled || !isHomepage) ? "text-[#34323A]/70" : "text-white/90"} ${isOpen ? "rotate-180" : ""}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
