@@ -153,7 +153,7 @@ export function CustomCursor() {
       >
         <div
           className={`
-            w-10 h-10 rounded-full border-2 border-[#A12F63]/40
+            w-10 h-10 rounded-full border-2 border-[#34323A]/50
             flex items-center justify-center
             transition-colors duration-200
             ${cursorState.isHovering ? "bg-white/10" : "bg-transparent"}
