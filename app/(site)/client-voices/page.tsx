@@ -16,7 +16,7 @@ function HowClientsExperienceUs() {
   const experiences = [
     {
       title: "Calm, yet challenging",
-      description: "We create space for clarity — while still asking the questions that help progress happen.",
+      description: "We create space for clarity -while still asking the questions that help progress happen.",
       color: "#A12F63",
     },
     {

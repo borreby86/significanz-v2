@@ -281,7 +281,7 @@ function StickyScrollSection() {
                 >
                   <div className="w-12 h-[1px] bg-red/50" />
                   <span className="text-red font-medium text-xs uppercase tracking-[0.25em]">
-                    {t.howWeWorkPage.fourDimensions} — {String(currentSegmentIndex + 1).padStart(2, "0")}
+                    {t.howWeWorkPage.fourDimensions} -{String(currentSegmentIndex + 1).padStart(2, "0")}
                   </span>
                 </motion.div>
 

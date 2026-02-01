@@ -157,7 +157,7 @@ export const da: TranslationKeys = {
     title: '4D Modellen',
     subtitle: 'Fra stagnation til meningsfuld handling.',
     ourMethod: 'Vores metode',
-    methodDescription: 'Organisatorisk impact er målet — enablement er vejen.',
+    methodDescription: 'Organisatorisk impact er målet -enablement er vejen.',
     keyOutcomes: 'Resultater',
     phase: 'Fase',
     fourPhases: 'De fire faser',
@@ -239,7 +239,7 @@ export const da: TranslationKeys = {
     purposeDescription: 'Muliggør evnen og viljen til at skabe meningsfuld impact.',
     ourPhilosophy: 'Vores Filosofi',
     philosophyTitle: 'Meningsfuld Impact',
-    philosophyDescription: 'Fra "Mig til Vi" — at tage ansvar for de rigtige handlinger.',
+    philosophyDescription: 'Fra "Mig til Vi" -at tage ansvar for de rigtige handlinger.',
     ability: 'Evne',
     willingness: 'Vilje',
     meaningfulImpact: 'Meningsfuld Impact',
@@ -252,17 +252,17 @@ export const da: TranslationKeys = {
       peopleContribute: {
         title: 'Mennesker vil bidrage',
         description: 'Alle har potentialet til at gøre en meningsfuld forskel.',
-        label: 'Vores Logik — 01',
+        label: 'Vores Logik -01',
       },
       bothAnd: {
         title: 'Både-og tænkning',
         description: 'Omfavn kompleksitet. Gå videre end enten-eller.',
-        label: 'Vores Logik — 02',
+        label: 'Vores Logik -02',
       },
       integratedSelf: {
         title: 'Integreret selvledelse',
         description: '5P-rammen for holistisk vækst.',
-        label: 'Vores Logik — 03',
+        label: 'Vores Logik -03',
       },
     },
     ourFramework: 'Vores Framework',
@@ -377,13 +377,13 @@ export const da: TranslationKeys = {
     ctaButton: 'Kontakt os',
     testimonials: [
       {
-        quote: 'Stinne er en begavet facilitator af livsændrende samtaler. Hun har en unik balance mellem empati og resultatorientering — skaber et psykologisk trygt og energisk rum, der transformerer både tænkning og adfærd.',
+        quote: 'Stinne er en begavet facilitator af livsændrende samtaler. Hun har en unik balance mellem empati og resultatorientering -skaber et psykologisk trygt og energisk rum, der transformerer både tænkning og adfærd.',
         author: 'Christina Juel Hegaard',
         role: 'Global Head of Change Leadership & D&I',
         company: 'Arla',
       },
       {
-        quote: 'I arbejdet med Stinne har jeg opdaget, hvordan hun kombinerer professionel indsigt, forretningsforståelse og nysgerrighed for teknologi. Hun har hjulpet med at flytte mig og min afdeling — både menneskeligt og professionelt. Det er altid en fornøjelse at være i hendes nærvær: god energi, humor og høj kompetence.',
+        quote: 'I arbejdet med Stinne har jeg opdaget, hvordan hun kombinerer professionel indsigt, forretningsforståelse og nysgerrighed for teknologi. Hun har hjulpet med at flytte mig og min afdeling -både menneskeligt og professionelt. Det er altid en fornøjelse at være i hendes nærvær: god energi, humor og høj kompetence.',
         author: 'Michael Warrer',
         role: 'CIO',
         company: 'NRGi',
@@ -470,7 +470,7 @@ export const da: TranslationKeys = {
   collaboratePage: {
     title: 'Samarbejd med os',
     subtitle: 'Vores leveringsmodel er både praktisk og strategisk.',
-    description: 'Den hjælper dig med at vælge det rigtige format — og viser hvordan udvikling kan skalere fra individet til hele organisationen.',
+    description: 'Den hjælper dig med at vælge det rigtige format -og viser hvordan udvikling kan skalere fra individet til hele organisationen.',
     deliveryModel: 'Leveringsmodel',
     individuals: {
       scale: '1:1',
@@ -493,7 +493,7 @@ export const da: TranslationKeys = {
     coherentEnablement: {
       scale: '1:Alle',
       title: 'Sammenhængende enablement i skala',
-      description: 'Når ambitionen er organisationsomfattende, forbinder vi niveauer til én samlet tilgang — så ledelse, samarbejde og kultur forstærker hinanden over tid.',
+      description: 'Når ambitionen er organisationsomfattende, forbinder vi niveauer til én samlet tilgang -så ledelse, samarbejde og kultur forstærker hinanden over tid.',
     },
     ctaTitle: 'Klar til at udforske?',
     ctaButton: 'Kontakt os',

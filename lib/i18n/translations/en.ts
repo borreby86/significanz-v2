@@ -157,7 +157,7 @@ export const en: TranslationKeys = {
     title: 'The 4D Model',
     subtitle: 'From stagnation to meaningful action.',
     ourMethod: 'Our Method',
-    methodDescription: 'Organizational impact is the goal — enablement is the path.',
+    methodDescription: 'Organizational impact is the goal -enablement is the path.',
     keyOutcomes: 'Outcomes',
     phase: 'Phase',
     fourPhases: 'The four phases',
@@ -239,7 +239,7 @@ export const en: TranslationKeys = {
     purposeDescription: 'Enabling the ability and willingness to create meaningful impact.',
     ourPhilosophy: 'Our Philosophy',
     philosophyTitle: 'Meaningful Impact',
-    philosophyDescription: 'From "Me to We" — taking responsibility for the right actions.',
+    philosophyDescription: 'From "Me to We" -taking responsibility for the right actions.',
     ability: 'Ability',
     willingness: 'Willingness',
     meaningfulImpact: 'Meaningful Impact',
@@ -252,17 +252,17 @@ export const en: TranslationKeys = {
       peopleContribute: {
         title: 'People want to contribute',
         description: 'Everyone has the potential to make a meaningful difference.',
-        label: 'Our Logic — 01',
+        label: 'Our Logic -01',
       },
       bothAnd: {
         title: 'BothAnd thinking',
         description: 'Embrace complexity. Move beyond either/or.',
-        label: 'Our Logic — 02',
+        label: 'Our Logic -02',
       },
       integratedSelf: {
         title: 'Integrated self-leadership',
         description: "The 5P's framework for holistic growth.",
-        label: 'Our Logic — 03',
+        label: 'Our Logic -03',
       },
     },
     ourFramework: 'Our Framework',
@@ -476,7 +476,7 @@ export const en: TranslationKeys = {
   collaboratePage: {
     title: 'Collaborate with us',
     subtitle: 'Our delivery model is both practical and strategic.',
-    description: 'It helps you choose the right format — and it shows how development can scale from the individual to the whole organization.',
+    description: 'It helps you choose the right format -and it shows how development can scale from the individual to the whole organization.',
     deliveryModel: 'Delivery Model',
     individuals: {
       scale: '1:1',
@@ -499,7 +499,7 @@ export const en: TranslationKeys = {
     coherentEnablement: {
       scale: '1:All',
       title: 'Coherent enablement at scale',
-      description: 'When the ambition is organization-wide, we connect levels into one joined-up approach — so leadership, collaboration, and culture reinforce each other over time.',
+      description: 'When the ambition is organization-wide, we connect levels into one joined-up approach -so leadership, collaboration, and culture reinforce each other over time.',
     },
     ctaTitle: 'Ready to explore?',
     ctaButton: 'Get in touch',

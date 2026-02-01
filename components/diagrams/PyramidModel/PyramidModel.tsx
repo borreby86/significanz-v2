@@ -57,7 +57,7 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
     <div ref={containerRef} className={`relative ${className}`}>
       <div className="relative max-w-6xl mx-auto">
         <div className="flex items-center gap-10 lg:gap-16">
-          {/* Pyramid — 60% width */}
+          {/* Pyramid -60% width */}
           <motion.div
             className="w-[60%] shrink-0"
             initial={{ opacity: 0 }}
@@ -72,7 +72,7 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
               }}
             >
               <defs>
-                {/* Awareness — warm terracotta/sand */}
+                {/* Awareness -warm terracotta/sand */}
                 <linearGradient id="awarenessGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#D9A87A" />
                   <stop offset="100%" stopColor="#C9956A" />
@@ -82,7 +82,7 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
                   <stop offset="100%" stopColor="#B8845A" />
                 </linearGradient>
 
-                {/* Leverage — champagne gold */}
+                {/* Leverage -champagne gold */}
                 <linearGradient id="leverageGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#D4BC94" />
                   <stop offset="100%" stopColor="#BFA27A" />
@@ -92,7 +92,7 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
                   <stop offset="100%" stopColor="#A8895E" />
                 </linearGradient>
 
-                {/* Mastery — nordic berry */}
+                {/* Mastery -nordic berry */}
                 <linearGradient id="masteryGrad" x1="0%" y1="0%" x2="0%" y2="100%">
                   <stop offset="0%" stopColor="#C85585" />
                   <stop offset="100%" stopColor="#A12F63" />
@@ -147,7 +147,7 @@ export function PyramidModel({ className = "" }: PyramidModelProps) {
             </svg>
           </motion.div>
 
-          {/* Info cards — evenly spaced alongside pyramid */}
+          {/* Info cards -evenly spaced alongside pyramid */}
           <div className="flex-1 flex flex-col justify-between py-2">
             {cardOrder.map((level, index) => (
               <motion.div

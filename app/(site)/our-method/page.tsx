@@ -12,7 +12,7 @@ const phases = [
     number: "01",
     name: "Discover",
     tagline: "The Why",
-    shortDesc: "We Discover what truly matters — the few actions that will make the greatest difference.",
+    shortDesc: "We Discover what truly matters -the few actions that will make the greatest difference.",
     longDesc: "We Discover by listening deeply and observing carefully. Together, we identify what truly matters: the few actions that will create real movement, beyond symptoms and assumptions. Discovery includes context, power dynamics, strengths, friction points, and the everyday behaviours that shape outcomes.",
     color: "#BFA27A", // Champagne Gold
   },
@@ -22,7 +22,7 @@ const phases = [
     name: "Define",
     tagline: "The What",
     shortDesc: "We Define shared language, direction, and the transformations required.",
-    longDesc: "We Define shared language, direction, and transformation. This is where clarity is built: what needs to change, why it matters now, and what \"better\" looks like in practice. Definition makes alignment possible — across leaders, teams, and stakeholders.",
+    longDesc: "We Define shared language, direction, and transformation. This is where clarity is built: what needs to change, why it matters now, and what \"better\" looks like in practice. Definition makes alignment possible -across leaders, teams, and stakeholders.",
     color: "#A12F63", // Nordic Berry
   },
   {
@@ -30,8 +30,8 @@ const phases = [
     number: "03",
     name: "Design",
     tagline: "The How",
-    shortDesc: "We Design the interactions that matter most — where insight turns into behaviour.",
-    longDesc: "We Design the interactions that matter most. We shape the right rhythm of meetings, workshops, coaching, facilitation, and learning moments — tailored to your reality. Design is where insight becomes practical: clear choices, concrete behaviours, and visible progress.",
+    shortDesc: "We Design the interactions that matter most -where insight turns into behaviour.",
+    longDesc: "We Design the interactions that matter most. We shape the right rhythm of meetings, workshops, coaching, facilitation, and learning moments -tailored to your reality. Design is where insight becomes practical: clear choices, concrete behaviours, and visible progress.",
     color: "#5A1735", // Deep Mulberry
   },
   {
@@ -40,7 +40,7 @@ const phases = [
     name: "Deploy",
     tagline: "Delivery",
     shortDesc: "We Deploy together, evaluating progress and adjusting along the way.",
-    longDesc: "We Deploy with you. We test changes in real conditions, evaluate what works, and adapt fast. Deployment is not a handover — it's shared execution with reflection built in, so you gain the confidence and capability to continue independently.",
+    longDesc: "We Deploy with you. We test changes in real conditions, evaluate what works, and adapt fast. Deployment is not a handover -it's shared execution with reflection built in, so you gain the confidence and capability to continue independently.",
     color: "#34323A", // Warm Charcoal
   },
 ];
@@ -297,7 +297,7 @@ function PhasesSection() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          4D allows us to work with clarity, momentum, and care — always grounded in real situations and measurable progress.
+          4D allows us to work with clarity, momentum, and care -always grounded in real situations and measurable progress.
         </motion.p>
       </Container>
     </section>

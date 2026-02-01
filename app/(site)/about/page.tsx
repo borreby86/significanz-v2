@@ -108,10 +108,10 @@ function FrameworkCard({
   return (
     <FadeIn>
       <div className={`${bg} border border-gray-100 overflow-hidden transition-shadow duration-300 hover:shadow-lg`}>
-        {/* Accent line top — always visible */}
+        {/* Accent line top -always visible */}
         <div className="h-[3px]" style={{ backgroundColor: accentColor }} />
 
-        {/* Collapsed header — always visible */}
+        {/* Collapsed header -always visible */}
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="w-full text-left px-8 md:px-12 py-8 md:py-10 flex items-center justify-between gap-6 group cursor-pointer"
@@ -365,7 +365,7 @@ export default function AboutPage() {
                 Our Frameworks
               </h2>
               <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-                At Significanz, we use two core frameworks to anchor every engagement. They give leaders and teams a shared language — making the invisible visible, so conversations become clearer, decisions sharper, and progress easier to sustain. Whether we are coaching an individual executive or transforming a leadership team, these models turn abstract development into something concrete you can act on.
+                At Significanz, we use two core frameworks to anchor every engagement. They give leaders and teams a shared language -making the invisible visible, so conversations become clearer, decisions sharper, and progress easier to sustain. Whether we are coaching an individual executive or transforming a leadership team, these models turn abstract development into something concrete you can act on.
               </p>
             </div>
           </FadeIn>
@@ -409,7 +409,7 @@ export default function AboutPage() {
 
       {/* Contact Section with workshop background */}
       <section className="relative py-20 sm:py-28 md:py-36 lg:py-48 overflow-hidden">
-        {/* Background image — black & white */}
+        {/* Background image -black & white */}
         <Image
           src="/images/workshop.jpeg"
           alt="Leadership workshop in progress"
