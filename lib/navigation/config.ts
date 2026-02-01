@@ -31,7 +31,6 @@ export const navigationConfig: NavigationConfig = [
       { key: 'ourPurpose', href: '/about#purpose' },
       { key: 'ourEdge', href: '/about#our-edge' },
       { key: 'ourFramework', href: '/about#framework' },
-      { key: 'masteryFramework', href: '/about#mastery-framework' },
     ],
   },
   {

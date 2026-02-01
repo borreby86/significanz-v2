@@ -8,32 +8,37 @@ interface Service {
   title: string;
   description: string;
   color: string;
+  textDark?: boolean;
 }
 
 const gridServices: Service[] = [
   {
     id: "executive-coaching",
     title: "Executive coaching",
-    description: "A confidential space to think clearly and act with confidence. We work with your real situations—decisions, stakeholder conversations, dilemmas—and turn insight into practical next steps.",
+    description: "A confidential space to think clearly and act with confidence.\nWe work with your real situations - decisions, stakeholder conversations, dilemmas - and turn insight into practical next steps.",
     color: "#BFA27A", // Champagne Gold
+    textDark: false,
   },
   {
     id: "keynotes",
     title: "Keynotes",
     description: "Inspiration with a point. Keynotes that give people energy, shared language, and a clear \"what now.\" Great for kick-offs, leadership days, and change moments.",
-    color: "#A12F63", // Nordic Berry
+    color: "#34323A", // Charcoal
+    textDark: false,
   },
   {
     id: "teams-leadership",
     title: "Teams and leadership development",
-    description: "Stronger leadership and teamwork—built into everyday work. We create shared language, practical tools, and habits that improve decisions, feedback, and collaboration.",
+    description: "Stronger leadership and teamwork - built into everyday work.\nWe create shared language, practical tools, and habits that improve decisions, feedback, and collaboration.",
     color: "#5A1735", // Deep Mulberry
+    textDark: false,
   },
   {
     id: "strategic-projects",
     title: "Strategic projects",
-    description: "Hands-on support for our existing key clients when it matters and it can't wait. We bring structure, pace, and the right conversations—so decisions get made.",
-    color: "#BFA27A", // Champagne Gold
+    description: "Hands-on support for our existing key clients when it matters and it can't wait. We bring structure, pace, and the right conversations - so decisions get made.",
+    color: "#A12F63", // Nordic Berry
+    textDark: false,
   },
 ];
 
@@ -41,7 +46,7 @@ const advisory: Service = {
   id: "advisory",
   title: "Advisory",
   description: "Strategic sparring when you need clarity and a steady way forward.",
-  color: "#34323A", // Warm Charcoal
+  color: "#EFEDEA", // Warm Mist
 };
 
 interface ServicesCarouselProps {
@@ -56,24 +61,27 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
     <div ref={ref} className={`${className}`}>
       {/* 2x2 Grid with Advisory center overlay */}
       <div className="relative">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {gridServices.map((service, index) => (
-            <motion.div
-              key={service.id}
-              className="p-8 md:p-10 flex flex-col min-h-[280px]"
-              style={{ backgroundColor: service.color }}
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-            >
-              <h3 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl text-[#F7F6F5] italic">
-                {service.title}
-              </h3>
-              <p className="mt-4 text-[#F7F6F5]/80 leading-relaxed flex-grow">
-                {service.description}
-              </p>
-            </motion.div>
-          ))}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {gridServices.map((service, index) => {
+            const isRightColumn = index % 2 === 1;
+            return (
+              <motion.div
+                key={service.id}
+                className={`p-8 md:p-10 flex flex-col min-h-[280px] ${isRightColumn ? "md:text-right" : ""}`}
+                style={{ backgroundColor: service.color }}
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+              >
+                <h3 className={`font-[family-name:var(--font-playfair)] text-3xl md:text-4xl italic ${service.textDark ? "text-[#34323A]" : "text-[#F7F6F5]"}`}>
+                  {service.title}
+                </h3>
+                <p className={`mt-4 leading-relaxed flex-grow whitespace-pre-line ${service.textDark ? "text-[#34323A]/70" : "text-[#F7F6F5]/80"}`}>
+                  {service.description}
+                </p>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Advisory - centered square overlay */}
@@ -85,10 +93,10 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
           transition={{ duration: 0.6, delay: 0.4 }}
         >
           <div className="px-4">
-            <h3 className="font-[family-name:var(--font-playfair)] text-2xl lg:text-3xl text-[#F7F6F5] italic">
+            <h3 className="font-[family-name:var(--font-playfair)] text-2xl lg:text-3xl text-[#34323A] italic">
               {advisory.title}
             </h3>
-            <p className="mt-2 text-[#F7F6F5]/70 text-xs lg:text-sm leading-relaxed">
+            <p className="mt-2 text-[#34323A]/70 text-xs lg:text-sm leading-relaxed">
               {advisory.description}
             </p>
           </div>
@@ -102,32 +110,15 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.4 }}
         >
-          <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-[#F7F6F5] italic">
+          <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-[#34323A] italic">
             {advisory.title}
           </h3>
-          <p className="mt-4 text-[#F7F6F5]/80 leading-relaxed flex-grow">
+          <p className="mt-4 text-[#34323A]/70 leading-relaxed flex-grow">
             Strategic sparring when you need clarity and a steady way forward. We help you sharpen direction, stress-test choices, and prepare the conversations that create buy-in.
           </p>
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="flex flex-col items-center mt-16"
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : {}}
-        transition={{ delay: 0.8 }}
-      >
-        <span className="text-xs text-[#34323A]/40 uppercase tracking-[0.3em] mb-3">
-          Scroll
-        </span>
-        <motion.div
-          className="w-px h-12 bg-[#34323A]/20"
-          animate={{ scaleY: [1, 0.5, 1] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          style={{ originY: 0 }}
-        />
-      </motion.div>
     </div>
   );
 }

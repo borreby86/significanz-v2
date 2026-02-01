@@ -32,41 +32,30 @@ function HowClientsExperienceUs() {
   ];
 
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-[#F7F6F5] relative">
+    <section ref={ref} className="pt-32 pb-24 md:pt-40 md:pb-32 bg-[#F7F6F5]">
       <Container size="wide">
         <motion.div
-          className="mb-16 relative"
+          className="mb-8"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <span className="text-[#A12F63] text-sm font-medium uppercase tracking-wider">
-            {t.aboutPage.workingTogether}
-          </span>
-          <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl text-[#34323A] italic">
-            {t.aboutPage.clientExperienceTitle}
-          </h2>
-
-          {/* Scroll indicator */}
-          <motion.div
-            className="absolute right-0 top-1/2 -translate-y-1/2 hidden md:flex flex-col items-center gap-3"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : {}}
-            transition={{ delay: 0.5 }}
-          >
-            <span className="text-[#BFA27A] text-xs uppercase tracking-[0.2em] font-medium rotate-90 origin-center whitespace-nowrap">
-              Scroll
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-12 h-px bg-[#A12F63]" />
+            <span className="text-[#A12F63] text-sm font-medium uppercase tracking-[0.2em]">
+              {t.aboutPage.workingTogether}
             </span>
-            <motion.div
-              className="w-px h-16 bg-gradient-to-b from-[#BFA27A] to-[#A12F63]"
-              animate={{ scaleY: [1, 0.6, 1], opacity: [1, 0.5, 1] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-            />
-          </motion.div>
+          </div>
+          <h1 className="font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#34323A] italic">
+            {t.aboutPage.clientExperienceTitle}
+          </h1>
+          <p className="mt-6 text-lg md:text-xl text-[#34323A]/70 leading-relaxed max-w-3xl">
+            {t.clientVoicesPage.impactDescription}
+          </p>
         </motion.div>
 
         {/* Experience cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
           {experiences.map((exp, index) => (
             <motion.div
               key={exp.title}
@@ -89,6 +78,24 @@ function HowClientsExperienceUs() {
           ))}
         </div>
 
+        {/* Scroll indicator */}
+        <motion.div
+          className="flex flex-col items-center mt-16"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : {}}
+          transition={{ delay: 0.8 }}
+        >
+          <span className="text-xs text-[#34323A]/40 uppercase tracking-[0.3em] mb-3">
+            Scroll
+          </span>
+          <motion.div
+            className="w-px h-12 bg-gradient-to-b from-[#BFA27A] to-[#A12F63]"
+            animate={{ scaleY: [1, 0.5, 1] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            style={{ originY: 0 }}
+          />
+        </motion.div>
+
       </Container>
     </section>
   );
@@ -99,26 +106,23 @@ export default function ClientVoicesPage() {
 
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-16 md:pt-40 md:pb-24">
-        <Container size="default">
-          <FadeIn>
-            <h1 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl text-black tracking-tight text-center">
-              {t.clientVoicesPage.title}
-            </h1>
-            <p className="mt-6 text-lg text-gray-600 text-center max-w-2xl mx-auto">
-              {t.clientVoicesPage.impactDescription}
-            </p>
-          </FadeIn>
-        </Container>
-      </section>
-
       {/* How Clients Experience Us */}
       <HowClientsExperienceUs />
 
       {/* Testimonials */}
       <section className="py-24 md:py-32">
         <Container size="wide">
+          <FadeIn>
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-px bg-[#A12F63]" />
+              <span className="text-[#A12F63] text-sm font-medium uppercase tracking-[0.2em]">
+                In their words
+              </span>
+            </div>
+            <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-[#34323A] italic mb-16 md:mb-24">
+              {t.clientVoicesPage.title}
+            </h2>
+          </FadeIn>
           <div className="space-y-16 md:space-y-24">
             {t.clientVoicesPage.testimonials.map((testimonial, index) => (
               <FadeIn key={testimonial.author} delay={index * 0.1}>

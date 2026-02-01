@@ -13,21 +13,23 @@ function ServicesHero() {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section ref={ref} className="min-h-[60vh] flex items-center pt-20 bg-[#F7F6F5]">
+    <section ref={ref} className="pt-32 pb-12 md:pt-40 md:pb-16">
       <Container size="wide">
         <motion.div
-          className="max-w-4xl"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <span className="text-[#A12F63] text-sm font-medium uppercase tracking-wider">
-            What we offer
-          </span>
-          <h1 className="mt-4 font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#34323A] italic">
-            Our Services
+          <div className="flex items-center gap-4 mb-4">
+            <div className="w-12 h-px bg-[#A12F63]" />
+            <span className="text-[#A12F63] text-sm font-medium uppercase tracking-[0.2em]">
+              What we offer
+            </span>
+          </div>
+          <h1 className="font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#34323A] italic">
+            Explore our services
           </h1>
-          <p className="mt-8 text-xl md:text-2xl text-[#34323A]/80 leading-relaxed max-w-3xl">
+          <p className="mt-6 text-lg md:text-xl text-[#34323A]/70 leading-relaxed max-w-3xl">
             We offer five distinct services to support leaders and organizations in creating meaningful impact.
           </p>
         </motion.div>
@@ -201,23 +203,9 @@ function CollaborateCTA() {
 
 // Services Section with Carousel
 function ServicesSection() {
-  const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { once: true });
-
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-white">
+    <section className="pb-24 md:pb-32">
       <Container size="wide">
-        <motion.div
-          className="mb-12"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl text-[#34323A] italic text-center">
-            Explore our offerings
-          </h2>
-        </motion.div>
-
         <ServicesCarousel />
       </Container>
     </section>
