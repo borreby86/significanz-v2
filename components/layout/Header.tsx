@@ -115,7 +115,7 @@ export function Header() {
                   <Link
                     href={item.href || '#'}
                     className={cn(
-                      "text-sm tracking-[0.04em] transition-colors duration-300 hover:text-[#A12F63]",
+                      "text-base tracking-[0.04em] transition-colors duration-300 hover:text-[#A12F63]",
                       pathname === item.href
                         ? "text-[#A12F63]"
                         : (scrolled || !isHomepage) ? "text-[#34323A]/70" : "text-white/90"

@@ -40,7 +40,7 @@ export function NavDropdown({ label, href, items, scrolled, isHomepage, pathname
       <div className="flex items-center gap-1.5">
         <Link
           href={href || '#'}
-          className={`text-sm tracking-[0.04em] transition-colors duration-300 hover:text-[#A12F63] ${isActive ? "text-[#A12F63]" : (scrolled || !isHomepage) ? "text-[#34323A]/70" : "text-white/90"}`}
+          className={`text-base tracking-[0.04em] transition-colors duration-300 hover:text-[#A12F63] ${isActive ? "text-[#A12F63]" : (scrolled || !isHomepage) ? "text-[#34323A]/70" : "text-white/90"}`}
         >
           {label}
         </Link>
