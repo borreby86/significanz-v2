@@ -136,9 +136,9 @@ export function CustomCursor() {
         }
       `}</style>
 
-      {/* Outer ring - follows slower */}
+      {/* Outer ring - follows slower (hidden when pointer) */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-[9999]"
         style={{
           x: ringX,
           y: ringY,
@@ -146,14 +146,14 @@ export function CustomCursor() {
           translateY: "-50%",
         }}
         animate={{
-          scale: cursorState.isHovering ? 2 : cursorState.isPointer ? 1.5 : 1,
-          opacity: isVisible ? 1 : 0,
+          scale: cursorState.isPointer ? 0 : (cursorState.isHovering ? 2 : 1),
+          opacity: isVisible && !cursorState.isPointer ? 1 : 0,
         }}
         transition={{ duration: 0.2 }}
       >
         <div
           className={`
-            w-10 h-10 rounded-full border-2 border-white
+            w-10 h-10 rounded-full border-2 border-[#A12F63]/40
             flex items-center justify-center
             transition-colors duration-200
             ${cursorState.isHovering ? "bg-white/10" : "bg-transparent"}
@@ -172,9 +172,27 @@ export function CustomCursor() {
         </div>
       </motion.div>
 
-      {/* Inner dot - follows faster */}
+      {/* Berry arrow cursor - visible when hovering interactive elements */}
       <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] mix-blend-difference"
+        className="fixed top-0 left-0 pointer-events-none z-[9999]"
+        style={{
+          x: cursorX,
+          y: cursorY,
+        }}
+        animate={{
+          scale: cursorState.isPointer ? 1 : 0,
+          opacity: isVisible && cursorState.isPointer ? 1 : 0,
+        }}
+        transition={{ duration: 0.15 }}
+      >
+        <svg width="20" height="24" viewBox="0 0 20 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L1 17L5.5 13L9.5 22L12.5 20.5L8.5 12L14 11L1 1Z" fill="#A12F63" stroke="white" strokeWidth="1.5" strokeLinejoin="round" />
+        </svg>
+      </motion.div>
+
+      {/* Inner dot - follows faster (hidden when pointer) */}
+      <motion.div
+        className="fixed top-0 left-0 pointer-events-none z-[9999]"
         style={{
           x: cursorX,
           y: cursorY,
@@ -183,11 +201,11 @@ export function CustomCursor() {
         }}
         animate={{
           scale: cursorState.isPointer ? 0 : 1,
-          opacity: isVisible ? 1 : 0,
+          opacity: isVisible && !cursorState.isPointer ? 1 : 0,
         }}
         transition={{ duration: 0.15 }}
       >
-        <div className="w-2 h-2 bg-white rounded-full" />
+        <div className="w-2 h-2 bg-[#A12F63] rounded-full" />
       </motion.div>
     </>
   );
