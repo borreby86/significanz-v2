@@ -11,12 +11,11 @@ import { Header } from "@/components/layout/Header";
 // Hero with full-width photo and rotating words with brand colors
 function Hero() {
   const words = [
-    { text: "Executive Coaching", color: "#A12F63" },              // Berry
-    { text: "Team & Leadership Development", color: "#BFA27A" },   // Champagne Gold
-    { text: "Executive Coaching", color: "#5A1735" },              // Mulberry
-    { text: "Team & Leadership Development", color: "#EFEDEA" },   // Warm Mist
-    { text: "Executive Coaching", color: "#F7F6F5" },              // Soft White
-    { text: "Team & Leadership Development", color: "#A12F63" },   // Berry
+    { text: "Keynote", color: "#A12F63" },                         // Berry
+    { text: "Executive Coaching", color: "#BFA27A" },              // Champagne Gold
+    { text: "Advisory", color: "#5A1735" },                        // Mulberry
+    { text: "Strategic Projects", color: "#EFEDEA" },              // Warm Mist
+    { text: "Teams & Leadership Development", color: "#F7F6F5" },  // Soft White
   ];
   const [currentWord, setCurrentWord] = useState(0);
 
