@@ -15,14 +15,14 @@ function Hero() {
     { text: "Executive Coaching", color: "#BFA27A" },              // Champagne Gold
     { text: "Advisory", color: "#5A1735" },                        // Mulberry
     { text: "Strategic Projects", color: "#EFEDEA" },              // Warm Mist
-    { text: "Teams & Leadership Development", color: "#F7F6F5" },  // Soft White
+    { text: "Teams & Leadership Development", color: "#BFA27A" },  // Champagne Gold
   ];
   const [currentWord, setCurrentWord] = useState(0);
 
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentWord((prev) => (prev + 1) % words.length);
-    }, 2500);
+    }, 2700);
     return () => clearInterval(interval);
   }, [words.length]);
 
