@@ -75,13 +75,17 @@ function Hero() {
 
         {/* Scroll indicator */}
         <motion.div
-          className="pb-8 flex justify-center"
+          className="pb-8 flex flex-col items-center gap-3"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
         >
+          <span className="text-xs tracking-[0.3em] uppercase" style={{ color: "#A12F63" }}>
+            Scroll
+          </span>
           <motion.div
-            className="w-px h-16 bg-white/40"
+            className="w-px h-16"
+            style={{ backgroundColor: "#A12F63" }}
             animate={{ scaleY: [1, 0.5, 1] }}
             transition={{ duration: 2, repeat: Infinity }}
           />
