@@ -27,16 +27,16 @@ const gridServices: Service[] = [
     textDark: false,
   },
   {
-    id: "teams-leadership",
-    title: "Teams and leadership development",
-    description: "Stronger leadership and teamwork - built into everyday work.\nWe create shared language, practical tools, and habits that improve decisions, feedback, and collaboration.",
+    id: "team-transition",
+    title: "Team transition",
+    description: "We help teams align expectations, strengthen trust, and establish clear ways of working so they can move forward together.",
     color: "#5A1735", // Deep Mulberry
     textDark: false,
   },
   {
-    id: "strategic-projects",
-    title: "Strategic projects",
-    description: "Hands-on support for our existing key clients when it matters and it can't wait. We bring structure, pace, and the right conversations - so decisions get made.",
+    id: "leadership-development",
+    title: "Leadership development",
+    description: "Practical leadership development focused on real situations leaders face. We strengthen decision making, communication, and stakeholder management so leaders create clarity, direction, and sustainable performance.",
     color: "#A12F63", // Nordic Berry
     textDark: false,
   },
