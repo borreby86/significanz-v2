@@ -199,7 +199,7 @@ export const en: TranslationKeys = {
       teams: {
         title: 'Teams',
         scale: '1:More',
-        description: 'Team development.',
+        description: 'Team transition and leadership development.',
       },
       organizations: {
         title: 'Organizations',
