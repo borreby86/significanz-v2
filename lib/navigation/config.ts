@@ -13,25 +13,32 @@ export type NavigationConfig = NavItem[];
 
 export const navigationConfig: NavigationConfig = [
   {
-    key: 'ourServices',
-    href: '/collaborate',
+    key: 'about',
+    href: '/about',
+    items: [
+      { key: 'purpose', href: '/about#purpose' },
+      { key: 'whatSetsUsApart', href: '/about#our-edge' },
+      { key: 'howWeWork', href: '/about#framework' },
+    ],
   },
   {
-    key: 'gallery',
-    href: '/gallery',
+    key: 'ourServices',
+    href: '/collaborate',
+    items: [
+      { key: 'executiveCoaching', href: '/executive-coaching' },
+      { key: 'keynotes', href: '/keynotes' },
+      { key: 'teamPerformance', href: '/team-performance' },
+      { key: 'leadershipDevelopment', href: '/leadership-development' },
+      { key: 'strategicAdvisory', href: '/strategic-advisory' },
+    ],
   },
   {
     key: 'clients',
     href: '/client-voices',
   },
   {
-    key: 'significanz',
-    href: '/about',
-    items: [
-      { key: 'ourPurpose', href: '/about#purpose' },
-      { key: 'ourEdge', href: '/about#our-edge' },
-      { key: 'ourFramework', href: '/about#framework' },
-    ],
+    key: 'gallery',
+    href: '/gallery',
   },
   {
     key: 'contact',

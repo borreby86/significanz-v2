@@ -6,16 +6,16 @@ import Image from "next/image";
 import { motion, useInView, AnimatePresence } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { useTranslation } from "@/lib/i18n";
-import { Header } from "@/components/layout/Header";
+import { ContactButton } from "@/components/ui/ContactButton";
 
 // Hero with full-width photo and rotating words with brand colors
 function Hero() {
   const words = [
     { text: "Keynote", color: "#A12F63" },                         // Berry
-    { text: "Executive Coaching", color: "#BFA27A" },              // Champagne Gold
-    { text: "Advisory", color: "#5A1735" },                        // Mulberry
-    { text: "Strategic Projects", color: "#EFEDEA" },              // Warm Mist
-    { text: "Teams & Leadership Development", color: "#BFA27A" },  // Champagne Gold
+    { text: "Leadership Development", color: "#BFA27A" },          // Champagne Gold
+    { text: "Executive Coaching", color: "#5A1735" },              // Mulberry
+    { text: "Strategic Advisory", color: "#EFEDEA" },              // Warm Mist
+    { text: "Team Performance", color: "#BFA27A" },                // Champagne Gold
   ];
   const [currentWord, setCurrentWord] = useState(0);
 
@@ -55,10 +55,13 @@ function Hero() {
               <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.9] text-white">
                 Significanz
               </span>
+              <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-wide text-white/80 mt-4">
+                Creating meaningful impact
+              </span>
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentWord}
-                  className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-[1.1] italic mt-4"
+                  className="block text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl leading-[1.1] italic mt-3"
                   style={{ color: words[currentWord].color }}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -572,13 +575,12 @@ function GetInTouch() {
               {t.homepage.contactDescription}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
-              <Link
-                href="/contact"
+              <ContactButton
                 className="inline-flex items-center gap-3 px-8 py-4 bg-[#F7F6F5] text-[#34323A] font-medium hover:bg-[#EFEDEA] transition-colors"
               >
                 {t.homepage.contactUs}
                 <span className="text-xl">→</span>
-              </Link>
+              </ContactButton>
               <Link
                 href="/about"
                 className="inline-flex items-center gap-3 px-8 py-4 border border-[#F7F6F5]/30 text-[#F7F6F5] font-medium hover:bg-[#F7F6F5]/10 transition-colors"

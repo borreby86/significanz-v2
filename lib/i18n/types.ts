@@ -15,17 +15,19 @@ export interface TranslationKeys {
     ourServices: string;
     models: string;
     clients: string;
-    // Significanz dropdown items
+    // About dropdown items
     ourPurpose: string;
     purpose: string;
+    whatSetsUsApart: string;
     ourEdge: string;
     ourFramework: string;
     masteryFramework: string;
     ourPhilosophy: string;
-    // Collaboration dropdown items
+    // Services dropdown items
     ourMethod: string;
     strategicAdvisory: string;
     teamTransformation: string;
+    teamPerformance: string;
     leadershipDevelopment: string;
     executiveCoaching: string;
     keynotes: string;
@@ -276,6 +278,7 @@ export interface TranslationKeys {
       author: string;
       role: string;
       company: string;
+      services?: string[];
     }>;
   };
 

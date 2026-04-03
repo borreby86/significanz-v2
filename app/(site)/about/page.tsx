@@ -22,7 +22,7 @@ const ourEdgeItems = [
   },
   {
     number: "02",
-    title: "Creating Enablement",
+    title: "Creating enablement",
     shortDesc: "Self-sufficient clients who continue independently.",
     longDesc: "We build lasting capability with you and your organisation. Through shared work, simple methods, and clear handovers, your organisation gains confidence and control. You and your organisation develop the ability to maintain momentum, make sound decisions, and improve step by step. The result is strength that continues independently.",
   },
@@ -295,10 +295,32 @@ export default function AboutPage() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 1.2 }}
               >
-                Our founder Stinne Madsen
+                Founder and CEO of Significanz
               </motion.p>
             </div>
           </div>
+        </Container>
+      </section>
+
+      {/* Stinne Madsen Bio Section */}
+      <section className="py-24 md:py-32 bg-[#F7F6F5]">
+        <Container size="default">
+          <FadeIn>
+            <div className="max-w-3xl mx-auto">
+              <span className="text-red font-medium text-sm uppercase tracking-wider">
+                Founder
+              </span>
+              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
+                Stinne Madsen
+              </h2>
+              <p className="mt-2 text-lg text-[#A12F63] font-medium">
+                Founder and CEO of Significanz
+              </p>
+              <p className="mt-8 text-lg text-gray-600 leading-relaxed">
+                With a Master&apos;s degree in Economics, Law &amp; Sociology and a degree in Psychotherapy, Stinne brings a rare combination of academic depth and real-world leadership experience. Over 15+ years as an executive coach, she has worked across complex global organisations, from pharma to tech, having held senior roles including Country Manager for Ireland &amp; the UK and Head of HR Europe. Since 2001, she has partnered with 50+ companies to unlock leadership potential and drive meaningful change.
+              </p>
+            </div>
+          </FadeIn>
         </Container>
       </section>
 
@@ -330,15 +352,15 @@ export default function AboutPage() {
       </section>
 
       {/* Our Edge Section */}
-      <section id="our-edge" className="py-24 md:py-32 bg-[#F7F6F5] scroll-mt-20">
+      <section id="our-edge" className="py-24 md:py-32 bg-white scroll-mt-20">
         <Container size="wide">
           <FadeIn>
             <div className="text-center mb-16">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
-                Our Edge
+                What sets us apart
               </span>
               <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
-                What sets us apart
+                Every solution we build is engineered around your exact needs, not adapted from someone else&apos;s.
               </h2>
             </div>
           </FadeIn>
@@ -359,14 +381,11 @@ export default function AboutPage() {
           <FadeIn>
             <div className="text-center mb-20">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
-                {t.aboutPage.ourFramework}
+                How we work
               </span>
-              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
-                Our Frameworks
+              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight max-w-4xl mx-auto">
+                At Significanz, we use three core frameworks to give leaders and teams a shared language, turning the invisible visible in every engagement.
               </h2>
-              <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-                At Significanz, we use two core frameworks to anchor every engagement. They give leaders and teams a shared language -making the invisible visible, so conversations become clearer, decisions sharper, and progress easier to sustain. Whether we are coaching an individual executive or transforming a leadership team, these models turn abstract development into something concrete you can act on.
-              </p>
             </div>
           </FadeIn>
 
@@ -388,7 +407,7 @@ export default function AboutPage() {
             {/* Mastery Framework card */}
             <div id="mastery-framework" className="scroll-mt-20">
               <FrameworkCard
-                title="Awareness · Leverage · Mastery"
+                title="The Mastery Triangle"
                 description="True mastery emerges when deep self-awareness combines with strategic leverage to create lasting, transformative impact."
                 accentColor="#BFA27A"
                 bg="bg-[#FAFAF8]"
@@ -396,52 +415,23 @@ export default function AboutPage() {
                 <PyramidModel />
               </FrameworkCard>
             </div>
-          </div>
-        </Container>
-      </section>
 
-      {/* Philosophy Section - HIDDEN per client request */}
-      {/*
-      <section id="our-philosophy" className="py-24 md:py-32 bg-black relative overflow-hidden scroll-mt-20">
-        ... Philosophy content removed ...
-      </section>
-      */}
-
-      {/* Contact Section with workshop background */}
-      <section className="relative py-20 sm:py-28 md:py-36 lg:py-48 overflow-hidden">
-        {/* Background image -black & white */}
-        <Image
-          src="/images/workshop.jpeg"
-          alt="Leadership workshop in progress"
-          fill
-          className="object-cover grayscale"
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-black/70" />
-
-        <Container size="default" className="relative z-10">
-          <FadeIn>
-            <div className="text-center">
-              <span className="text-[#D4A574] font-medium text-sm uppercase tracking-[0.2em]">
-                Get in Touch
-              </span>
-              <h2 className="mt-4 sm:mt-6 font-[family-name:var(--font-playfair)] text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white italic">
-                Let&apos;s start a conversation
-              </h2>
-              <p className="mt-6 sm:mt-8 text-lg sm:text-xl text-white/70 leading-relaxed max-w-2xl mx-auto">
-                Ready to create meaningful impact? We&apos;d love to hear from you.
-              </p>
-              <a
-                href="mailto:welcome@significanz.dk"
-                className="mt-10 inline-flex items-center gap-3 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors"
+            {/* 4D Model - Expandable placeholder */}
+            <div id="4d-framework" className="scroll-mt-20">
+              <FrameworkCard
+                title="The 4D Model"
+                description="A structured approach to organizational transformation through four phases: Discover, Define, Design, and Deploy."
+                accentColor="#34323A"
+                bg="bg-white"
               >
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                </svg>
-                welcome@significanz.dk
-              </a>
+                <div className="text-center py-8">
+                  <p className="text-gray-500 italic">
+                    Content for the 4D Model framework is being prepared. Check back soon for details on our Discover, Define, Design, and Deploy methodology.
+                  </p>
+                </div>
+              </FrameworkCard>
             </div>
-          </FadeIn>
+          </div>
         </Container>
       </section>
 

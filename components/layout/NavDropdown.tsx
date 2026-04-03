@@ -17,7 +17,10 @@ interface NavDropdownProps {
 }
 
 export function NavDropdown({ label, href, items, scrolled, isHomepage, pathname, t }: NavDropdownProps) {
-  const isActive = pathname === href || items.some((item) => pathname.startsWith(item.href.split('#')[0]));
+  const isActive = pathname === href || items.some((item) => {
+    const itemPath = item.href.split('#')[0];
+    return itemPath && pathname === itemPath || pathname.startsWith(item.href.split('#')[0] + '/');
+  });
   const [isOpen, setIsOpen] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -40,7 +43,7 @@ export function NavDropdown({ label, href, items, scrolled, isHomepage, pathname
       <div className="flex items-center gap-1.5">
         <Link
           href={href || '#'}
-          className={`text-base tracking-[0.04em] transition-colors duration-300 hover:text-[#A12F63] ${isActive ? "text-[#A12F63]" : (scrolled || !isHomepage) ? "text-[#34323A]/70" : "text-white/90"}`}
+          className={`text-base tracking-[0.04em] transition-colors duration-300 hover:text-[#A12F63] ${isActive ? "text-[#A12F63] font-medium" : (scrolled || !isHomepage) ? "text-[#34323A]/70" : "text-white/90"}`}
         >
           {label}
         </Link>

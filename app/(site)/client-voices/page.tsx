@@ -3,9 +3,9 @@
 import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 import { Container } from "@/components/ui/Container";
-import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { useTranslation } from "@/lib/i18n";
+import { ContactButton } from "@/components/ui/ContactButton";
 
 // How Clients Experience Us Section
 function HowClientsExperienceUs() {
@@ -157,6 +157,18 @@ export default function ClientVoicesPage() {
                         {testimonial.role}
                       </p>
                       <p className="text-red text-sm">{testimonial.company}</p>
+                      {testimonial.services && testimonial.services.length > 0 && (
+                        <div className={`flex flex-wrap gap-2 mt-3 ${index % 2 === 1 ? "lg:justify-end" : ""}`}>
+                          {testimonial.services.map((service) => (
+                            <span
+                              key={service}
+                              className="text-[10px] font-medium uppercase tracking-wider px-2.5 py-1 bg-[#F7F6F5] text-[#34323A]/60 border border-[#34323A]/10"
+                            >
+                              {service}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </blockquote>
@@ -178,11 +190,9 @@ export default function ClientVoicesPage() {
                 {t.clientVoicesPage.ctaDescription}
               </p>
               <div className="mt-10">
-                <a href="mailto:welcome@significanz.dk">
-                  <Button variant="accent" size="lg">
-                    {t.clientVoicesPage.ctaButton}
-                  </Button>
-                </a>
+                <ContactButton className="px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors">
+                  {t.clientVoicesPage.ctaButton}
+                </ContactButton>
               </div>
             </div>
           </FadeIn>

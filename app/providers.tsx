@@ -4,6 +4,8 @@ import { ReactNode, useEffect } from "react";
 import Lenis from "lenis";
 import { LanguageProvider } from "@/lib/i18n";
 import { CustomCursor } from "@/components/ui/CustomCursor";
+import { ContactFormProvider } from "@/lib/contact-form-context";
+import { FloatingContactForm } from "@/components/forms/FloatingContactForm";
 
 export function Providers({ children }: { children: ReactNode }) {
   useEffect(() => {
@@ -25,8 +27,11 @@ export function Providers({ children }: { children: ReactNode }) {
 
   return (
     <LanguageProvider>
-      <CustomCursor />
-      {children}
+      <ContactFormProvider>
+        <CustomCursor />
+        {children}
+        <FloatingContactForm />
+      </ContactFormProvider>
     </LanguageProvider>
   );
 }

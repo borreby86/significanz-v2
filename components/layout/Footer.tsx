@@ -28,7 +28,7 @@ export function Footer() {
               </a>
               <p>{t.footer.location}</p>
               <Link
-                href="/contact"
+                href="/privacy-policy"
                 className="block hover:text-white transition-colors mt-4"
               >
                 {t.footer.privacyPolicy}

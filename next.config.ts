@@ -5,11 +5,6 @@ const nextConfig: NextConfig = {
     return [
       // Redirect old URLs from Google to homepage
       {
-        source: '/executive-coaching',
-        destination: '/',
-        permanent: true,
-      },
-      {
         source: '/integrated-leadership',
         destination: '/',
         permanent: true,
@@ -22,6 +17,11 @@ const nextConfig: NextConfig = {
       {
         source: '/cross-culture-integration',
         destination: '/',
+        permanent: true,
+      },
+      {
+        source: '/team-transformation',
+        destination: '/team-performance',
         permanent: true,
       },
     ];

@@ -14,17 +14,19 @@ export const da: TranslationKeys = {
     ourServices: 'Vores Services',
     models: 'Modeller',
     clients: 'Klienter',
-    // Significanz dropdown items
+    // About dropdown items
     ourPurpose: 'Vores Formål',
     purpose: 'Formål',
+    whatSetsUsApart: 'Det der adskiller os',
     ourEdge: 'Vores Fordel',
     ourFramework: 'Vores Framework',
     masteryFramework: 'Mastery Framework',
     ourPhilosophy: 'Vores Filosofi',
-    // Collaboration dropdown items
+    // Services dropdown items
     ourMethod: 'Vores Metode',
     strategicAdvisory: 'Strategisk rådgivning',
     teamTransformation: 'Team transformation',
+    teamPerformance: 'Team Performance',
     leadershipDevelopment: 'Ledelsesudvikling',
     executiveCoaching: 'Executive Coaching',
     keynotes: 'Keynotes',

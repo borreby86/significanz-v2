@@ -6,6 +6,7 @@ import { motion, useInView } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { useTranslation } from "@/lib/i18n";
 import { ServicesCarousel } from "@/components/sections/ServicesCarousel";
+import { ContactButton } from "@/components/ui/ContactButton";
 
 // Hero Section
 function ServicesHero() {
@@ -188,13 +189,12 @@ function CollaborateCTA() {
           <p className="mt-6 text-xl text-white/70 max-w-2xl mx-auto">
             Let&apos;s explore how we can support your leadership journey.
           </p>
-          <Link
-            href="/contact"
+          <ContactButton
             className="mt-10 inline-flex items-center gap-3 px-8 py-4 bg-white text-[#34323A] hover:bg-[#F7F6F5] transition-colors font-medium"
           >
             {t.collaboratePage.ctaButton}
             <span className="text-xl">→</span>
-          </Link>
+          </ContactButton>
         </motion.div>
       </Container>
     </section>
