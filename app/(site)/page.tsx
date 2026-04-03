@@ -52,10 +52,7 @@ function Hero() {
             transition={{ duration: 0.8, delay: 0.3 }}
           >
             <h1 className="font-[family-name:var(--font-playfair)] text-white">
-              <span className="block text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl leading-[0.9] text-white">
-                Significanz
-              </span>
-              <span className="block text-lg sm:text-xl md:text-2xl lg:text-3xl tracking-wide text-white/80 mt-4">
+              <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] text-white">
                 Creating meaningful impact
               </span>
               <AnimatePresence mode="wait">

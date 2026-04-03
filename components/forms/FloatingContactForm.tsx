@@ -58,54 +58,51 @@ export function FloatingContactForm() {
 
   return (
     <>
-      {/* Floating bubble button */}
+      {/* Floating button */}
       <motion.button
         onClick={toggle}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full bg-[#A12F63] text-white shadow-lg hover:bg-[#8a2854] transition-colors flex items-center justify-center"
+        className="fixed bottom-6 right-6 z-50 px-7 py-4 rounded-full bg-[#A12F63] text-white shadow-lg hover:bg-[#8a2854] transition-colors flex items-center justify-center gap-2 text-base font-medium tracking-wide"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Open contact form"
       >
         <AnimatePresence mode="wait">
           {isOpen ? (
-            <motion.svg
+            <motion.span
               key="close"
-              className="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              initial={{ rotate: -90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: 90, opacity: 0 }}
+              className="flex items-center gap-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            </motion.svg>
+              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+              Close
+            </motion.span>
           ) : (
-            <motion.svg
-              key="chat"
-              className="w-6 h-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-              initial={{ rotate: 90, opacity: 0 }}
-              animate={{ rotate: 0, opacity: 1 }}
-              exit={{ rotate: -90, opacity: 0 }}
+            <motion.span
+              key="open"
+              className="flex items-center gap-2"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </motion.svg>
+              Get in touch
+            </motion.span>
           )}
         </AnimatePresence>
       </motion.button>
 
-      {/* Form panel */}
+      {/* Form panel - slides in from right */}
       <AnimatePresence>
         {isOpen && (
           <>
-            {/* Backdrop for mobile */}
+            {/* Backdrop */}
             <motion.div
-              className="fixed inset-0 bg-black/30 z-40 md:hidden"
+              className="fixed inset-0 bg-black/30 z-40"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -113,24 +110,35 @@ export function FloatingContactForm() {
             />
 
             <motion.div
-              className="fixed bottom-24 right-6 z-50 w-[calc(100vw-3rem)] max-w-[420px] bg-[#1a1a1a] shadow-2xl overflow-hidden"
-              initial={{ opacity: 0, y: 20, scale: 0.95 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.95 }}
-              transition={{ duration: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
+              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-[480px] bg-[#1a1a1a] shadow-2xl overflow-y-auto flex flex-col justify-center"
+              initial={{ opacity: 0, x: "100%" }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: "100%" }}
+              transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
             >
+              {/* Close button inside panel */}
+              <button
+                onClick={close}
+                className="absolute top-6 right-6 text-white/50 hover:text-white transition-colors"
+                aria-label="Close"
+              >
+                <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+
               {/* Header */}
-              <div className="px-8 pt-8 pb-4">
-                <h3 className="font-[family-name:var(--font-playfair)] text-2xl text-white">
+              <div className="px-10 pt-10 pb-6">
+                <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-white">
                   Get in touch
-                </h3>
-                <p className="mt-1 text-sm text-white/50">
+                </h2>
+                <p className="mt-3 text-base text-white/50">
                   We&apos;d love to hear from you.
                 </p>
               </div>
 
               {status === "success" ? (
-                <div className="px-8 pb-8 text-center">
+                <div className="px-10 pb-10 text-center">
                   <div className="py-8">
                     <div className="w-16 h-16 rounded-full bg-[#A12F63]/20 mx-auto mb-4 flex items-center justify-center">
                       <svg className="w-8 h-8 text-[#A12F63]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -148,7 +156,7 @@ export function FloatingContactForm() {
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="px-8 pb-8 space-y-5">
+                <form onSubmit={handleSubmit} className="px-10 pb-10 space-y-5">
                   {/* Name & Email side by side */}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
