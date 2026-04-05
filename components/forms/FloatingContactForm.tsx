@@ -111,7 +111,7 @@ export function FloatingContactForm() {
             />
 
             <motion.div
-              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-[480px] bg-[#A12F63]/75 backdrop-blur-lg shadow-2xl overflow-y-auto flex flex-col justify-center"
+              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-[480px] bg-[#A12F63]/65 backdrop-blur-lg shadow-2xl overflow-y-auto flex flex-col justify-center"
               initial={{ opacity: 0, x: "100%" }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: "100%" }}
