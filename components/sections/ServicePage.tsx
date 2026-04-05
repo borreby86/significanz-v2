@@ -7,50 +7,48 @@ import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { ContactButton } from "@/components/ui/ContactButton";
 
-// Service type icon component
+// Person silhouette path (head + shoulders)
+const personPath = (cx: number, cy: number, scale = 1) => `
+  M ${cx} ${cy - 5 * scale}
+  a ${3 * scale} ${3 * scale} 0 1 0 0.01 0
+  M ${cx - 4.5 * scale} ${cy + 4 * scale}
+  a ${6 * scale} ${6 * scale} 0 0 1 ${9 * scale} 0
+`;
+
+// Service type icon component — person silhouettes for clarity
 function ServiceTypeIcon({ type }: { type: "1:1" | "1:More" | "1:Many" }) {
   if (type === "1:1") {
+    // Two people facing each other with a subtle connection line
     return (
-      <svg viewBox="0 0 64 32" className="w-16 h-8">
-        <circle cx="10" cy="16" r="8" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="10" cy="16" r="3" fill="currentColor" />
-        <text x="24" y="20" fontSize="12" fill="currentColor" fontWeight="bold">:</text>
-        <circle cx="38" cy="16" r="8" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="38" cy="16" r="3" fill="currentColor" />
+      <svg viewBox="0 0 56 28" className="w-14 h-7">
+        <path d={personPath(14, 14)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d={personPath(42, 14)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="22" y1="14" x2="34" y2="14" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" opacity="0.5" />
       </svg>
     );
   }
   if (type === "1:More") {
+    // One person + small team (3 people grouped)
     return (
-      <svg viewBox="0 0 80 32" className="w-20 h-8">
-        <circle cx="10" cy="16" r="8" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="10" cy="16" r="3" fill="currentColor" />
-        <text x="24" y="20" fontSize="12" fill="currentColor" fontWeight="bold">:</text>
-        <circle cx="42" cy="16" r="6" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="42" cy="16" r="2" fill="currentColor" />
-        <circle cx="56" cy="10" r="6" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="56" cy="10" r="2" fill="currentColor" />
-        <circle cx="56" cy="22" r="6" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        <circle cx="56" cy="22" r="2" fill="currentColor" />
+      <svg viewBox="0 0 72 28" className="w-[72px] h-7">
+        <path d={personPath(12, 14)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="20" y1="14" x2="30" y2="14" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" opacity="0.5" />
+        <path d={personPath(40, 14, 0.85)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d={personPath(52, 14, 0.85)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <path d={personPath(64, 14, 0.85)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
       </svg>
     );
   }
-  // 1:Many
+  // 1:Many — one person + large audience (5 people in two rows)
   return (
-    <svg viewBox="0 0 80 32" className="w-20 h-8">
-      <circle cx="10" cy="16" r="8" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="10" cy="16" r="3" fill="currentColor" />
-      <text x="24" y="20" fontSize="12" fill="currentColor" fontWeight="bold">:</text>
-      <circle cx="42" cy="8" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="42" cy="8" r="1.5" fill="currentColor" />
-      <circle cx="54" cy="8" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="54" cy="8" r="1.5" fill="currentColor" />
-      <circle cx="42" cy="24" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="42" cy="24" r="1.5" fill="currentColor" />
-      <circle cx="54" cy="24" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="54" cy="24" r="1.5" fill="currentColor" />
-      <circle cx="66" cy="16" r="5" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="66" cy="16" r="1.5" fill="currentColor" />
+    <svg viewBox="0 0 84 28" className="w-[84px] h-7">
+      <path d={personPath(12, 14)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+      <line x1="20" y1="14" x2="30" y2="14" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" opacity="0.5" />
+      <path d={personPath(38, 10, 0.7)} fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <path d={personPath(49, 10, 0.7)} fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <path d={personPath(60, 10, 0.7)} fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <path d={personPath(43, 20, 0.7)} fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
+      <path d={personPath(55, 20, 0.7)} fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
     </svg>
   );
 }
