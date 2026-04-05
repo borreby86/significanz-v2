@@ -86,15 +86,15 @@ export function ServicePageLayout({
             transition={{ duration: 0.8 }}
           >
             {/* Service type badge */}
-            <div className="flex items-center gap-4 mb-6">
-              <div className="text-[#34323A]/60">
+            <div className="mb-6 inline-flex flex-col items-center gap-1.5 px-4 py-3 border border-[#34323A]/10 rounded">
+              <div style={{ color: accentColor }}>
                 <ServiceTypeIcon type={serviceType} />
               </div>
               <span
-                className="text-sm font-medium uppercase tracking-wider"
+                className="text-[10px] font-medium uppercase tracking-widest"
                 style={{ color: accentColor }}
               >
-                {serviceType} — {serviceLabel}
+                {serviceLabel}
               </span>
             </div>
 

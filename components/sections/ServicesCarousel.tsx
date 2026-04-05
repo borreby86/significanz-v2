@@ -98,7 +98,7 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
                       className={`text-[10px] font-medium uppercase tracking-[2px] whitespace-nowrap ${service.textDark ? "text-[#34323A]/50" : "text-[#F7F6F5]/60"}`}
                       style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
                     >
-                      {service.serviceType} — {service.serviceLabel}
+                      {service.serviceType} - {service.serviceLabel}
                     </span>
                   </div>
                   <div className={`p-8 md:p-10 flex flex-col flex-grow ${isRightColumn ? "md:text-right" : ""}`}>
@@ -164,7 +164,7 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
                 className="text-[#34323A]/50 text-[10px] font-medium uppercase tracking-[2px] whitespace-nowrap"
                 style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
               >
-                {advisory.serviceType} — {advisory.serviceLabel}
+                {advisory.serviceType} - {advisory.serviceLabel}
               </span>
             </div>
             <div className="p-8 flex flex-col flex-grow">
