@@ -86,25 +86,32 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
             return (
               <Link key={service.id} href={service.href}>
                 <motion.div
-                  className={`p-8 md:p-10 flex flex-col min-h-[280px] group cursor-pointer transition-opacity hover:opacity-95 ${isRightColumn ? "md:text-right" : ""}`}
+                  className={`relative flex min-h-[280px] group cursor-pointer transition-opacity hover:opacity-95 overflow-hidden`}
                   style={{ backgroundColor: service.color }}
                   initial={{ opacity: 0, y: 30 }}
                   animate={isInView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                 >
-                  {/* Service type badge */}
-                  <span className={`text-xs font-medium uppercase tracking-wider mb-3 ${service.textDark ? "text-[#34323A]/50" : "text-[#F7F6F5]/60"}`}>
-                    {service.serviceType} — {service.serviceLabel}
-                  </span>
-                  <h3 className={`font-[family-name:var(--font-playfair)] text-3xl md:text-4xl italic ${service.textDark ? "text-[#34323A]" : "text-[#F7F6F5]"}`}>
-                    {service.title}
-                  </h3>
-                  <p className={`mt-4 leading-relaxed flex-grow whitespace-pre-line ${service.textDark ? "text-[#34323A]/70" : "text-[#F7F6F5]/80"}`}>
-                    {service.description}
-                  </p>
-                  <span className={`mt-4 text-sm font-medium group-hover:underline ${service.textDark ? "text-[#A12F63]" : "text-[#F7F6F5]/90"}`}>
-                    Read more →
-                  </span>
+                  {/* Vertical service type sidebar */}
+                  <div className={`w-8 flex-shrink-0 flex items-center justify-center ${service.textDark ? "bg-black/5" : "bg-white/10"}`}>
+                    <span
+                      className={`text-[10px] font-medium uppercase tracking-[2px] whitespace-nowrap ${service.textDark ? "text-[#34323A]/50" : "text-[#F7F6F5]/60"}`}
+                      style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+                    >
+                      {service.serviceType} — {service.serviceLabel}
+                    </span>
+                  </div>
+                  <div className={`p-8 md:p-10 flex flex-col flex-grow ${isRightColumn ? "md:text-right" : ""}`}>
+                    <h3 className={`font-[family-name:var(--font-playfair)] text-3xl md:text-4xl italic ${service.textDark ? "text-[#34323A]" : "text-[#F7F6F5]"}`}>
+                      {service.title}
+                    </h3>
+                    <p className={`mt-4 leading-relaxed flex-grow whitespace-pre-line ${service.textDark ? "text-[#34323A]/70" : "text-[#F7F6F5]/80"}`}>
+                      {service.description}
+                    </p>
+                    <span className={`mt-4 text-sm font-medium group-hover:underline ${service.textDark ? "text-[#A12F63]" : "text-[#F7F6F5]/90"}`}>
+                      Read more →
+                    </span>
+                  </div>
                 </motion.div>
               </Link>
             );
@@ -114,22 +121,30 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
         {/* Strategic Advisory - centered square overlay */}
         <Link href={advisory.href} className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10">
           <motion.div
-            className="w-40 h-40 lg:w-48 lg:h-48 flex items-center justify-center text-center group cursor-pointer transition-opacity hover:opacity-95"
+            className="w-40 h-40 lg:w-48 lg:h-48 relative flex overflow-hidden text-center group cursor-pointer transition-opacity hover:opacity-95"
             style={{ backgroundColor: advisory.color }}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <div className="px-4">
-              <span className="text-[#34323A]/50 text-[10px] font-medium uppercase tracking-wider block mb-1">
-                {advisory.serviceType} — {advisory.serviceLabel}
+            {/* Vertical service type sidebar */}
+            <div className="w-6 flex-shrink-0 flex items-center justify-center bg-black/5">
+              <span
+                className="text-[#34323A]/50 text-[9px] font-medium uppercase tracking-[2px] whitespace-nowrap"
+                style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+              >
+                1:1
               </span>
-              <h3 className="font-[family-name:var(--font-playfair)] text-2xl lg:text-3xl text-[#34323A] italic">
-                {advisory.title}
-              </h3>
-              <p className="mt-2 text-[#34323A]/70 text-xs lg:text-sm leading-relaxed">
-                {advisory.description}
-              </p>
+            </div>
+            <div className="flex-grow flex items-center justify-center px-3">
+              <div>
+                <h3 className="font-[family-name:var(--font-playfair)] text-2xl lg:text-3xl text-[#34323A] italic">
+                  {advisory.title}
+                </h3>
+                <p className="mt-2 text-[#34323A]/70 text-xs lg:text-sm leading-relaxed">
+                  {advisory.description}
+                </p>
+              </div>
             </div>
           </motion.div>
         </Link>
@@ -137,24 +152,32 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
         {/* Strategic Advisory - mobile (full width card) */}
         <Link href={advisory.href} className="md:hidden block">
           <motion.div
-            className="mt-4 p-8 flex flex-col min-h-[200px] group cursor-pointer"
+            className="mt-4 relative flex min-h-[200px] group cursor-pointer overflow-hidden"
             style={{ backgroundColor: advisory.color }}
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            <span className="text-[#34323A]/50 text-xs font-medium uppercase tracking-wider mb-3">
-              {advisory.serviceType} — {advisory.serviceLabel}
-            </span>
-            <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-[#34323A] italic">
-              {advisory.title}
-            </h3>
-            <p className="mt-4 text-[#34323A]/70 leading-relaxed flex-grow">
-              Strategic sparring when you need clarity and a steady way forward. We help you sharpen direction, stress-test choices, and prepare the conversations that create buy-in.
-            </p>
-            <span className="mt-4 text-sm font-medium text-[#A12F63] group-hover:underline">
-              Read more →
-            </span>
+            {/* Vertical service type sidebar */}
+            <div className="w-8 flex-shrink-0 flex items-center justify-center bg-black/5">
+              <span
+                className="text-[#34323A]/50 text-[10px] font-medium uppercase tracking-[2px] whitespace-nowrap"
+                style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
+              >
+                {advisory.serviceType} — {advisory.serviceLabel}
+              </span>
+            </div>
+            <div className="p-8 flex flex-col flex-grow">
+              <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-[#34323A] italic">
+                {advisory.title}
+              </h3>
+              <p className="mt-4 text-[#34323A]/70 leading-relaxed flex-grow">
+                Strategic sparring when you need clarity and a steady way forward. We help you sharpen direction, stress-test choices, and prepare the conversations that create buy-in.
+              </p>
+              <span className="mt-4 text-sm font-medium text-[#A12F63] group-hover:underline">
+                Read more →
+              </span>
+            </div>
           </motion.div>
         </Link>
       </div>

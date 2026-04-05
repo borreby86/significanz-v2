@@ -300,7 +300,7 @@ export const en: TranslationKeys = {
         description: 'Results from day one through deep listening.',
       },
       creatingEnablement: {
-        title: 'Creating Enablement',
+        title: 'Creating enablement',
         description: 'Self-sufficient clients who continue independently.',
       },
       techForward: {
