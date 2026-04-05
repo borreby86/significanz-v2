@@ -157,14 +157,18 @@ export function ServicePageLayout({
                     className="p-8 md:p-10 lg:mt-0"
                     style={{ backgroundColor: accentColor }}
                   >
-                    <span className="text-sm font-medium uppercase tracking-wider text-white/70">
+                    <span className="text-sm font-medium uppercase tracking-wider text-[#BFA27A]">
                       Client case
                     </span>
                     <div className="mt-6 space-y-6">
                       {clientCase.map((paragraph, index) => (
                         <p
                           key={index}
-                          className="text-base md:text-lg text-white/90 leading-relaxed italic font-[family-name:var(--font-playfair)]"
+                          className={`text-base md:text-lg leading-relaxed ${
+                            index === 0
+                              ? "italic font-[family-name:var(--font-playfair)] text-white"
+                              : "text-white/75"
+                          }`}
                         >
                           {paragraph}
                         </p>
