@@ -111,7 +111,7 @@ export function FloatingContactForm() {
             />
 
             <motion.div
-              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-[480px] bg-[#A12F63] shadow-2xl overflow-y-auto flex flex-col justify-center"
+              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-[480px] bg-[#A12F63]/90 backdrop-blur-md shadow-2xl overflow-y-auto flex flex-col justify-center"
               initial={{ opacity: 0, x: "100%" }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: "100%" }}
@@ -141,8 +141,8 @@ export function FloatingContactForm() {
               {status === "success" ? (
                 <div className="px-10 pb-10 text-center">
                   <div className="py-8">
-                    <div className="w-16 h-16 rounded-full bg-[#A12F63]/20 mx-auto mb-4 flex items-center justify-center">
-                      <svg className="w-8 h-8 text-[#A12F63]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <div className="w-16 h-16 rounded-full bg-white/20 mx-auto mb-4 flex items-center justify-center">
+                      <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                       </svg>
                     </div>
@@ -150,7 +150,7 @@ export function FloatingContactForm() {
                     <p className="text-white/60 text-sm">We&apos;ll get back to you soon.</p>
                     <button
                       onClick={handleReset}
-                      className="mt-6 text-sm text-[#A12F63] hover:text-[#BFA27A] transition-colors"
+                      className="mt-6 text-sm text-white/80 hover:text-white transition-colors underline"
                     >
                       Send another message
                     </button>
@@ -161,7 +161,7 @@ export function FloatingContactForm() {
                   {/* Name & Email side by side */}
                   <div className="grid grid-cols-2 gap-4">
                     <div>
-                      <label className="block text-[10px] font-medium text-white/40 uppercase tracking-[0.15em] mb-2">
+                      <label className="block text-[10px] font-medium text-white/60 uppercase tracking-[0.15em] mb-2">
                         Name
                       </label>
                       <input
@@ -170,11 +170,11 @@ export function FloatingContactForm() {
                         value={formState.name}
                         onChange={(e) => setFormState((s) => ({ ...s, name: e.target.value }))}
                         placeholder="Your name"
-                        className="w-full bg-transparent border-b border-white/20 text-white text-sm py-2 placeholder:text-white/30 focus:border-[#A12F63] focus:outline-none transition-colors"
+                        className="w-full bg-white/15 rounded px-3 border-b border-white/30 text-white text-sm py-2.5 placeholder:text-white/40 focus:border-white focus:bg-white/20 focus:outline-none transition-colors"
                       />
                     </div>
                     <div>
-                      <label className="block text-[10px] font-medium text-white/40 uppercase tracking-[0.15em] mb-2">
+                      <label className="block text-[10px] font-medium text-white/60 uppercase tracking-[0.15em] mb-2">
                         Email
                       </label>
                       <input
@@ -183,14 +183,14 @@ export function FloatingContactForm() {
                         value={formState.email}
                         onChange={(e) => setFormState((s) => ({ ...s, email: e.target.value }))}
                         placeholder="your@email.com"
-                        className="w-full bg-transparent border-b border-white/20 text-white text-sm py-2 placeholder:text-white/30 focus:border-[#A12F63] focus:outline-none transition-colors"
+                        className="w-full bg-white/15 rounded px-3 border-b border-white/30 text-white text-sm py-2.5 placeholder:text-white/40 focus:border-white focus:bg-white/20 focus:outline-none transition-colors"
                       />
                     </div>
                   </div>
 
                   {/* Company */}
                   <div>
-                    <label className="block text-[10px] font-medium text-white/40 uppercase tracking-[0.15em] mb-2">
+                    <label className="block text-[10px] font-medium text-white/60 uppercase tracking-[0.15em] mb-2">
                       Company
                     </label>
                     <input
@@ -198,23 +198,23 @@ export function FloatingContactForm() {
                       value={formState.company}
                       onChange={(e) => setFormState((s) => ({ ...s, company: e.target.value }))}
                       placeholder="Your company"
-                      className="w-full bg-transparent border-b border-white/20 text-white text-sm py-2 placeholder:text-white/30 focus:border-[#A12F63] focus:outline-none transition-colors"
+                      className="w-full bg-white/15 rounded px-3 border-b border-white/30 text-white text-sm py-2.5 placeholder:text-white/40 focus:border-white focus:bg-white/20 focus:outline-none transition-colors"
                     />
                   </div>
 
                   {/* Service dropdown */}
                   <div>
-                    <label className="block text-[10px] font-medium text-white/40 uppercase tracking-[0.15em] mb-2">
+                    <label className="block text-[10px] font-medium text-white/60 uppercase tracking-[0.15em] mb-2">
                       Service
                     </label>
                     <select
                       value={formState.service}
                       onChange={(e) => setFormState((s) => ({ ...s, service: e.target.value }))}
-                      className="w-full bg-transparent border-b border-white/20 text-white text-sm py-2 focus:border-[#A12F63] focus:outline-none transition-colors appearance-none cursor-pointer"
+                      className="w-full bg-white/15 rounded px-3 border-b border-white/30 text-white text-sm py-2.5 focus:border-white focus:bg-white/20 focus:outline-none transition-colors appearance-none cursor-pointer"
                     >
-                      <option value="" className="bg-[#1a1a1a]">Select a service (optional)</option>
+                      <option value="" className="bg-[#5A1735]">Select a service (optional)</option>
                       {services.map((service) => (
-                        <option key={service} value={service} className="bg-[#1a1a1a]">
+                        <option key={service} value={service} className="bg-[#5A1735]">
                           {service}
                         </option>
                       ))}
@@ -223,7 +223,7 @@ export function FloatingContactForm() {
 
                   {/* Message */}
                   <div>
-                    <label className="block text-[10px] font-medium text-white/40 uppercase tracking-[0.15em] mb-2">
+                    <label className="block text-[10px] font-medium text-white/60 uppercase tracking-[0.15em] mb-2">
                       Message
                     </label>
                     <textarea
@@ -232,7 +232,7 @@ export function FloatingContactForm() {
                       value={formState.message}
                       onChange={(e) => setFormState((s) => ({ ...s, message: e.target.value }))}
                       placeholder="Tell us about your challenges and goals..."
-                      className="w-full bg-transparent border-b border-white/20 text-white text-sm py-2 placeholder:text-white/30 focus:border-[#A12F63] focus:outline-none transition-colors resize-none"
+                      className="w-full bg-white/15 rounded px-3 border-b border-white/30 text-white text-sm py-2.5 placeholder:text-white/40 focus:border-white focus:bg-white/20 focus:outline-none transition-colors resize-none"
                     />
                   </div>
 
@@ -244,7 +244,7 @@ export function FloatingContactForm() {
                   <button
                     type="submit"
                     disabled={status === "submitting"}
-                    className="w-full py-3 bg-[#A12F63] text-white font-medium text-sm hover:bg-[#8a2854] transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full py-3 bg-white text-[#A12F63] font-semibold text-sm rounded hover:bg-white/90 transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === "submitting" ? "Sending..." : "Send message"}
                   </button>
