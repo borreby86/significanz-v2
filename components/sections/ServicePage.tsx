@@ -119,62 +119,59 @@ export function ServicePageLayout({
         </Container>
       </section>
 
-      {/* Results Section */}
+      {/* Results & Client Case Section */}
       {results && results.length > 0 && (
         <section className="py-20 md:py-28 bg-[#F7F6F5]">
-          <Container size="default">
+          <Container size="wide">
             <FadeIn>
-              <div className="max-w-3xl">
-                <span
-                  className="text-sm font-medium uppercase tracking-wider"
-                  style={{ color: accentColor }}
-                >
-                  Results
-                </span>
-                <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl text-[#34323A] tracking-tight">
-                  What you can expect
-                </h2>
-                <ul className="mt-10 space-y-5">
-                  {results.map((result, index) => (
-                    <li key={index} className="flex items-start gap-4">
-                      <span
-                        className="mt-2 w-2 h-2 rounded-full shrink-0"
-                        style={{ backgroundColor: accentColor }}
-                      />
-                      <span className="text-lg text-[#34323A]/80 leading-relaxed">
-                        {result}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </FadeIn>
-          </Container>
-        </section>
-      )}
-
-      {/* Client Case Section */}
-      {clientCase && clientCase.length > 0 && (
-        <section className="py-20 md:py-28 bg-white">
-          <Container size="default">
-            <FadeIn>
-              <div className="max-w-3xl">
-                <span
-                  className="text-sm font-medium uppercase tracking-wider"
-                  style={{ color: accentColor }}
-                >
-                  Client case
-                </span>
-                <div className="mt-6 space-y-6">
-                  {clientCase.map((paragraph, index) => (
-                    <p
-                      key={index}
-                      className="text-lg text-[#34323A]/70 leading-relaxed italic font-[family-name:var(--font-playfair)]"
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                {/* Results - left column */}
+                <div>
+                  <span
+                    className="text-sm font-medium uppercase tracking-wider"
+                    style={{ color: accentColor }}
+                  >
+                    Results
+                  </span>
+                  <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl text-[#34323A] tracking-tight">
+                    What you can expect
+                  </h2>
+                  <ul className="mt-10 space-y-5">
+                    {results.map((result, index) => (
+                      <li key={index} className="flex items-start gap-4">
+                        <span
+                          className="mt-2 w-2 h-2 rounded-full shrink-0"
+                          style={{ backgroundColor: accentColor }}
+                        />
+                        <span className="text-lg text-[#34323A]/80 leading-relaxed">
+                          {result}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+
+                {/* Client Case - right column in colored box */}
+                {clientCase && clientCase.length > 0 && (
+                  <div
+                    className="p-8 md:p-10 lg:mt-0"
+                    style={{ backgroundColor: accentColor }}
+                  >
+                    <span className="text-sm font-medium uppercase tracking-wider text-white/70">
+                      Client case
+                    </span>
+                    <div className="mt-6 space-y-6">
+                      {clientCase.map((paragraph, index) => (
+                        <p
+                          key={index}
+                          className="text-base md:text-lg text-white/90 leading-relaxed italic font-[family-name:var(--font-playfair)]"
+                        >
+                          {paragraph}
+                        </p>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </FadeIn>
           </Container>
