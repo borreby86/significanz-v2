@@ -170,7 +170,7 @@ export function FloatingContactForm() {
                         value={formState.name}
                         onChange={(e) => setFormState((s) => ({ ...s, name: e.target.value }))}
                         placeholder="Your name"
-                        className="w-full bg-transparent border-b border-white/30 text-white text-sm py-2 placeholder:text-white/40 focus:border-[#BFA27A] focus:outline-none transition-colors"
+                        className="w-full bg-transparent border-b border-white/30 text-white text-sm py-2 placeholder:text-white/40 focus:border-[#BFA27A] outline-none focus:ring-1 focus:ring-[#BFA27A] transition-colors"
                       />
                     </div>
                     <div>
@@ -183,7 +183,7 @@ export function FloatingContactForm() {
                         value={formState.email}
                         onChange={(e) => setFormState((s) => ({ ...s, email: e.target.value }))}
                         placeholder="your@email.com"
-                        className="w-full bg-transparent border-b border-white/30 text-white text-sm py-2 placeholder:text-white/40 focus:border-[#BFA27A] focus:outline-none transition-colors"
+                        className="w-full bg-transparent border-b border-white/30 text-white text-sm py-2 placeholder:text-white/40 focus:border-[#BFA27A] outline-none focus:ring-1 focus:ring-[#BFA27A] transition-colors"
                       />
                     </div>
                   </div>
@@ -198,7 +198,7 @@ export function FloatingContactForm() {
                       value={formState.company}
                       onChange={(e) => setFormState((s) => ({ ...s, company: e.target.value }))}
                       placeholder="Your company"
-                      className="w-full bg-transparent border-b border-white/30 text-white text-sm py-2 placeholder:text-white/40 focus:border-[#BFA27A] focus:outline-none transition-colors"
+                      className="w-full bg-transparent border-b border-white/30 text-white text-sm py-2 placeholder:text-white/40 focus:border-[#BFA27A] outline-none focus:ring-1 focus:ring-[#BFA27A] transition-colors"
                     />
                   </div>
 
@@ -210,7 +210,7 @@ export function FloatingContactForm() {
                     <select
                       value={formState.service}
                       onChange={(e) => setFormState((s) => ({ ...s, service: e.target.value }))}
-                      className="w-full bg-transparent border-b border-white/30 text-white text-sm py-2 focus:border-[#BFA27A] focus:outline-none transition-colors appearance-none cursor-pointer"
+                      className="w-full bg-transparent border-b border-white/30 text-white text-sm py-2 focus:border-[#BFA27A] outline-none focus:ring-1 focus:ring-[#BFA27A] transition-colors appearance-none cursor-pointer"
                     >
                       <option value="" className="bg-[#A12F63]">Select a service (optional)</option>
                       {services.map((service) => (
@@ -232,7 +232,7 @@ export function FloatingContactForm() {
                       value={formState.message}
                       onChange={(e) => setFormState((s) => ({ ...s, message: e.target.value }))}
                       placeholder="Tell us about your challenges and goals..."
-                      className="w-full bg-transparent border-b border-white/30 text-white text-sm py-2 placeholder:text-white/40 focus:border-[#BFA27A] focus:outline-none transition-colors resize-none"
+                      className="w-full bg-transparent border-b border-white/30 text-white text-sm py-2 placeholder:text-white/40 focus:border-[#BFA27A] outline-none focus:ring-1 focus:ring-[#BFA27A] transition-colors resize-none"
                     />
                   </div>
 
