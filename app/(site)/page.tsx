@@ -573,7 +573,7 @@ function GetInTouch() {
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
               <ContactButton
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[#F7F6F5] text-[#34323A] font-medium hover:bg-[#EFEDEA] transition-colors"
+                className="inline-flex items-center gap-3 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors"
               >
                 {t.homepage.contactUs}
                 <span className="text-xl">→</span>

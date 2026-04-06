@@ -259,6 +259,24 @@ export default function AboutPage() {
                 >
                   {t.aboutPage.heroDescription}
                 </motion.p>
+
+                {/* Scroll indicator - berry vertical line with SCROLL label */}
+                <motion.div
+                  className="hidden lg:flex flex-col items-center gap-3 mt-16 w-fit"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.8, delay: 1.2 }}
+                >
+                  <span className="text-xs tracking-[0.3em] uppercase" style={{ color: "#A12F63" }}>
+                    Scroll
+                  </span>
+                  <motion.div
+                    className="w-px h-16"
+                    style={{ backgroundColor: "#A12F63" }}
+                    animate={{ scaleY: [1, 0.5, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
+                </motion.div>
               </motion.div>
 
               {/* Panel B: Stinne bio - absolutely positioned over panel A */}
@@ -332,7 +350,7 @@ export default function AboutPage() {
       <section id="purpose" className="py-24 md:py-32 bg-white scroll-mt-20">
         <Container size="default">
           <FadeIn>
-            <div className="max-w-3xl mx-auto">
+            <div className="max-w-3xl mx-auto text-center">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
                 Purpose
               </span>
@@ -348,7 +366,7 @@ export default function AboutPage() {
 
               {/* Highlighted quote */}
               <p className="mt-10 font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#A12F63] italic leading-relaxed">
-                We are coaches, facilitators, and leadership developers at heart.
+                We are coaches, facilitators, and<br />leadership developers at heart.
               </p>
             </div>
           </FadeIn>
@@ -356,10 +374,8 @@ export default function AboutPage() {
       </section>
 
       {/* Our Edge Section */}
-      <section id="our-edge" className="py-24 md:py-32 scroll-mt-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-warm-radial pointer-events-none" />
-        <div className="absolute inset-0 bg-noise opacity-[0.04] pointer-events-none" />
-        <Container size="wide" className="relative z-10">
+      <section id="our-edge" className="py-24 md:py-32 scroll-mt-20 bg-[#F7F6F5]">
+        <Container size="wide">
           <FadeIn>
             <div className="text-center mb-16">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
