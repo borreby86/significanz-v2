@@ -7,8 +7,7 @@ export default function TeamPerformancePage() {
     <ServicePageLayout
       title="Team Performance"
       description="We help teams align expectations, strengthen trust, and establish clear ways of working so they can move forward together."
-      serviceType="1:More"
-      serviceLabel="Teams"
+      serviceTypes={["1:More"]}
       accentColor="#5A1735"
       results={[
         "Faster time-to-productivity after reorg/change",

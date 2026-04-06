@@ -7,57 +7,38 @@ import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { ContactButton } from "@/components/ui/ContactButton";
 
-// Person silhouette path (head + shoulders)
-const personPath = (cx: number, cy: number, scale = 1) => `
-  M ${cx} ${cy - 5 * scale}
-  a ${3 * scale} ${3 * scale} 0 1 0 0.01 0
-  M ${cx - 4.5 * scale} ${cy + 4 * scale}
-  a ${6 * scale} ${6 * scale} 0 0 1 ${9 * scale} 0
-`;
+type ServiceType = "1:1" | "1:More" | "1:Many";
 
-// Service type icon component — person silhouettes for clarity
-function ServiceTypeIcon({ type }: { type: "1:1" | "1:More" | "1:Many" }) {
-  if (type === "1:1") {
-    // Two people facing each other with a subtle connection line
-    return (
-      <svg viewBox="0 0 56 28" className="w-14 h-7">
-        <path d={personPath(14, 14)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d={personPath(42, 14)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <line x1="22" y1="14" x2="34" y2="14" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" opacity="0.5" />
-      </svg>
-    );
-  }
-  if (type === "1:More") {
-    // One person + small team (3 people grouped)
-    return (
-      <svg viewBox="0 0 72 28" className="w-[72px] h-7">
-        <path d={personPath(12, 14)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <line x1="20" y1="14" x2="30" y2="14" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" opacity="0.5" />
-        <path d={personPath(40, 14, 0.85)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d={personPath(52, 14, 0.85)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <path d={personPath(64, 14, 0.85)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      </svg>
-    );
-  }
-  // 1:Many — one person + large audience (5 people in two rows)
+// Each service type has its own color and label
+const serviceTypeMeta: Record<ServiceType, { label: string; bg: string }> = {
+  "1:1": { label: "Individuals", bg: "#BFA27A" },
+  "1:More": { label: "Teams", bg: "#A12F63" },
+  "1:Many": { label: "Organizations", bg: "#5A1735" },
+};
+
+function ServiceTypeBadges({ types }: { types: ServiceType[] }) {
   return (
-    <svg viewBox="0 0 84 28" className="w-[84px] h-7">
-      <path d={personPath(12, 14)} fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-      <line x1="20" y1="14" x2="30" y2="14" stroke="currentColor" strokeWidth="1" strokeDasharray="2 2" opacity="0.5" />
-      <path d={personPath(38, 10, 0.7)} fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      <path d={personPath(49, 10, 0.7)} fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      <path d={personPath(60, 10, 0.7)} fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      <path d={personPath(43, 20, 0.7)} fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-      <path d={personPath(55, 20, 0.7)} fill="none" stroke="currentColor" strokeWidth="1.3" strokeLinecap="round" />
-    </svg>
+    <div className="mb-6 flex flex-wrap items-center gap-2">
+      {types.map((type) => {
+        const meta = serviceTypeMeta[type];
+        return (
+          <span
+            key={type}
+            className="inline-flex items-center px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white"
+            style={{ backgroundColor: meta.bg }}
+          >
+            {type} {meta.label}
+          </span>
+        );
+      })}
+    </div>
   );
 }
 
 interface ServicePageProps {
   title: string;
   description: string;
-  serviceType: "1:1" | "1:More" | "1:Many";
-  serviceLabel: string;
+  serviceTypes: ServiceType[];
   accentColor: string;
   results?: string[];
   clientCase?: string[];
@@ -66,8 +47,7 @@ interface ServicePageProps {
 export function ServicePageLayout({
   title,
   description,
-  serviceType,
-  serviceLabel,
+  serviceTypes,
   accentColor,
   results,
   clientCase,
@@ -85,13 +65,8 @@ export function ServicePageLayout({
             animate={heroInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
           >
-            {/* Service type badge */}
-            <div className="mb-6 inline-flex items-center gap-3 px-4 py-1.5 bg-[#A12F63] text-[#BFA27A]">
-              <ServiceTypeIcon type={serviceType} />
-              <span className="text-xs font-medium uppercase tracking-widest">
-                {serviceType} - {serviceLabel}
-              </span>
-            </div>
+            {/* Service type badges */}
+            <ServiceTypeBadges types={serviceTypes} />
 
             <h1 className="font-[family-name:var(--font-playfair)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-[#34323A] tracking-tight">
               {title}

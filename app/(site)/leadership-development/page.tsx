@@ -7,8 +7,7 @@ export default function LeadershipDevelopmentPage() {
     <ServicePageLayout
       title="Leadership Development"
       description="Practical leadership development focused on real situations leaders face. We strengthen decision making, communication, and stakeholder management so leaders create clarity, direction, and sustainable performance."
-      serviceType="1:More"
-      serviceLabel="Teams"
+      serviceTypes={["1:More", "1:1"]}
       accentColor="#A12F63"
       results={[
         "Stronger leadership capabilities across the organization",

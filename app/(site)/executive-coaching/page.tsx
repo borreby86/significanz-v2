@@ -7,8 +7,7 @@ export default function ExecutiveCoachingPage() {
     <ServicePageLayout
       title="Executive Coaching"
       description="A confidential space to think clearly and act with confidence. We work with your real situations – decisions, stakeholder conversations, dilemmas – and turn insight into practical next steps."
-      serviceType="1:1"
-      serviceLabel="Individuals"
+      serviceTypes={["1:1"]}
       accentColor="#BFA27A"
       results={[
         "Clearer and more confident leadership decisions",

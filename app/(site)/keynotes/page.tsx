@@ -7,8 +7,7 @@ export default function KeynotesPage() {
     <ServicePageLayout
       title="Keynotes"
       description={'Inspiration with a point. Keynotes that give people energy, shared language, and a clear "what now." Great for kick-offs, leadership days, and change moments.'}
-      serviceType="1:Many"
-      serviceLabel="Organizations"
+      serviceTypes={["1:Many"]}
       accentColor="#34323A"
       results={[
         "Fresh perspectives on leadership and collaboration",
