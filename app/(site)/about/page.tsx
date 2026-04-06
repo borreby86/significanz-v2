@@ -12,6 +12,103 @@ import { useTranslation } from "@/lib/i18n";
 import { PurposeModel } from "@/components/diagrams/PurposeModel";
 import { PyramidModel, pyramidLevels } from "@/components/diagrams/PyramidModel";
 
+// 4D Model phases
+const phases = [
+  {
+    number: "01",
+    name: "Discover",
+    tagline: "The Why",
+    shortDesc: "We Discover what truly matters — the few actions that will make the greatest difference.",
+    longDesc: "We Discover by listening deeply and observing carefully. Together, we identify what truly matters: the few actions that will create real movement, beyond symptoms and assumptions. Discovery includes context, power dynamics, strengths, friction points, and the everyday behaviours that shape outcomes.",
+    color: "#BFA27A",
+  },
+  {
+    number: "02",
+    name: "Define",
+    tagline: "The What",
+    shortDesc: "We Define shared language, direction, and the transformations required.",
+    longDesc: "We Define shared language, direction, and transformation. This is where clarity is built: what needs to change, why it matters now, and what \"better\" looks like in practice. Definition makes alignment possible — across leaders, teams, and stakeholders.",
+    color: "#A12F63",
+  },
+  {
+    number: "03",
+    name: "Design",
+    tagline: "The How",
+    shortDesc: "We Design the interactions that matter most — where insight turns into behaviour.",
+    longDesc: "We Design the interactions that matter most. We shape the right rhythm of meetings, workshops, coaching, facilitation, and learning moments — tailored to your reality. Design is where insight becomes practical: clear choices, concrete behaviours, and visible progress.",
+    color: "#5A1735",
+  },
+  {
+    number: "04",
+    name: "Deploy",
+    tagline: "Delivery",
+    shortDesc: "We Deploy together, evaluating progress and adjusting along the way.",
+    longDesc: "We Deploy with you. We test changes in real conditions, evaluate what works, and adapt fast. Deployment is not a handover — it's shared execution with reflection built in, so you gain the confidence and capability to continue independently.",
+    color: "#34323A",
+  },
+];
+
+// 4D Phase Card with read-more toggle
+function PhaseCard({ phase }: { phase: typeof phases[0] }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const textColor = "#FFFFFF";
+  const mutedColor = "rgba(255,255,255,0.75)";
+
+  return (
+    <motion.div
+      className="p-8 md:p-10 flex flex-col"
+      style={{ backgroundColor: phase.color, color: textColor }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+    >
+      <span className="text-xs tracking-wider uppercase" style={{ color: mutedColor }}>
+        Phase {phase.number}
+      </span>
+      <h4 className="mt-3 font-[family-name:var(--font-playfair)] text-4xl md:text-5xl italic">
+        {phase.name}
+      </h4>
+      <p className="mt-1 text-sm" style={{ color: mutedColor }}>
+        {phase.tagline}
+      </p>
+      <p className="mt-5 leading-relaxed" style={{ color: mutedColor }}>
+        {phase.shortDesc}
+      </p>
+
+      <AnimatePresence initial={false}>
+        {isOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.4, ease: [0.25, 0.1, 0.25, 1] }}
+            className="overflow-hidden"
+          >
+            <div
+              className="mt-5 pt-5 border-t leading-relaxed"
+              style={{ borderColor: mutedColor, color: mutedColor }}
+            >
+              {phase.longDesc}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="mt-6 text-sm font-medium flex items-center gap-2 self-start cursor-pointer hover:opacity-80 transition-opacity"
+        style={{ color: textColor }}
+      >
+        {isOpen ? "Read less" : "Read more"}
+        <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
+          ↓
+        </motion.span>
+      </button>
+    </motion.div>
+  );
+}
+
 // Our Edge data
 const ourEdgeItems = [
   {
@@ -452,10 +549,10 @@ export default function AboutPage() {
                 accentColor="#34323A"
                 bg="bg-white"
               >
-                <div className="text-center py-8">
-                  <p className="text-gray-500 italic">
-                    Content for the 4D Model framework is being prepared. Check back soon for details on our Discover, Define, Design, and Deploy methodology.
-                  </p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {phases.map((phase) => (
+                    <PhaseCard key={phase.number} phase={phase} />
+                  ))}
                 </div>
               </FrameworkCard>
             </div>

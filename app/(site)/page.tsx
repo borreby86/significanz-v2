@@ -55,6 +55,9 @@ function Hero() {
               <span className="block text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-[0.95] text-white">
                 Creating meaningful impact
               </span>
+              <span className="block text-xl sm:text-2xl md:text-3xl lg:text-4xl italic text-white/60 mt-4">
+                through
+              </span>
               <AnimatePresence mode="wait">
                 <motion.span
                   key={currentWord}
