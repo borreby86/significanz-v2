@@ -9,11 +9,11 @@ import { ContactButton } from "@/components/ui/ContactButton";
 
 type ServiceType = "1:1" | "1:More" | "1:Many";
 
-// Each service type has its own color and label
-const serviceTypeMeta: Record<ServiceType, { label: string; bg: string }> = {
-  "1:1": { label: "Individuals", bg: "#BFA27A" },
-  "1:More": { label: "Teams", bg: "#A12F63" },
-  "1:Many": { label: "Organizations", bg: "#5A1735" },
+// Each service type has a primary (type code) and secondary (label) color
+const serviceTypeMeta: Record<ServiceType, { label: string; primary: string; secondary: string }> = {
+  "1:1": { label: "Individuals", primary: "#BFA27A", secondary: "#34323A" },
+  "1:More": { label: "Teams", primary: "#A12F63", secondary: "#BFA27A" },
+  "1:Many": { label: "Organizations", primary: "#5A1735", secondary: "#A12F63" },
 };
 
 function ServiceTypeBadges({ types }: { types: ServiceType[] }) {
@@ -22,13 +22,20 @@ function ServiceTypeBadges({ types }: { types: ServiceType[] }) {
       {types.map((type) => {
         const meta = serviceTypeMeta[type];
         return (
-          <span
-            key={type}
-            className="inline-flex items-center px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white"
-            style={{ backgroundColor: meta.bg }}
-          >
-            {type} {meta.label}
-          </span>
+          <div key={type} className="inline-flex items-center">
+            <span
+              className="inline-flex items-center px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white"
+              style={{ backgroundColor: meta.primary }}
+            >
+              {type}
+            </span>
+            <span
+              className="inline-flex items-center px-2.5 py-1 text-[10px] font-medium uppercase tracking-widest text-white"
+              style={{ backgroundColor: meta.secondary }}
+            >
+              {meta.label}
+            </span>
+          </div>
         );
       })}
     </div>
