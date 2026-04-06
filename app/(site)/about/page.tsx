@@ -186,17 +186,22 @@ export default function AboutPage() {
     offset: ["start start", "end start"],
   });
 
-  const heroImageY = useTransform(scrollYProgress, [0, 1], [0, 150]);
-  const heroImageScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
-  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
+  const heroImageScale = useTransform(scrollYProgress, [0, 1], [1, 1.08]);
+  // Crossfade: hero text visible 0–0.35, bio text visible 0.45–1
+  const heroTextOpacity = useTransform(scrollYProgress, [0, 0.25, 0.4], [1, 1, 0]);
+  const heroTextY = useTransform(scrollYProgress, [0, 0.4], [0, -40]);
+  const bioTextOpacity = useTransform(scrollYProgress, [0.35, 0.5, 1], [0, 1, 1]);
+  const bioTextY = useTransform(scrollYProgress, [0.35, 0.5], [40, 0]);
 
   return (
     <>
-      {/* Hero - Full Screen Split Layout */}
+      {/* Hero - Cinematic scroll: hero text crossfades into Stinne bio while image stays pinned */}
       <section
         ref={heroRef}
-        className="min-h-screen flex items-center pt-20 relative overflow-hidden"
+        className="relative"
+        style={{ height: "220vh" }}
       >
+        <div className="sticky top-0 h-screen flex items-center pt-20 overflow-hidden">
         {/* Warm gradient background */}
         <div className="absolute inset-0 bg-warm-radial pointer-events-none" />
 
@@ -219,47 +224,77 @@ export default function AboutPage() {
 
         <Container size="wide" className="relative z-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-            {/* Left: Content */}
-            <motion.div style={{ opacity: heroOpacity }}>
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.6 }}
-              >
-                <span className="text-red font-medium text-sm uppercase tracking-wider">
-                  {t.aboutPage.label}
-                </span>
+            {/* Left: Crossfading text panels (hero ↔ bio) */}
+            <div className="relative">
+              {/* Panel A: Hero text */}
+              <motion.div style={{ opacity: heroTextOpacity, y: heroTextY }}>
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.6 }}
+                >
+                  <span className="text-red font-medium text-sm uppercase tracking-wider">
+                    {t.aboutPage.label}
+                  </span>
+                </motion.div>
+
+                <h1 className="mt-4 font-[family-name:var(--font-playfair)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-black tracking-tight leading-[1.1]">
+                  <SplitText splitType="words" delay={0.2} staggerDelay={0.1}>
+                    {t.aboutPage.heroTitle}
+                  </SplitText>
+                </h1>
+
+                <motion.div
+                  className="mt-8 w-24 h-1 bg-red origin-left"
+                  initial={{ scaleX: 0 }}
+                  animate={heroInView ? { scaleX: 1 } : {}}
+                  transition={{ duration: 1, delay: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+                />
+
+                <motion.p
+                  className="mt-8 text-lg md:text-xl text-gray-600 max-w-xl leading-relaxed"
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+                >
+                  {t.aboutPage.heroDescription}
+                </motion.p>
               </motion.div>
 
-              <h1 className="mt-4 font-[family-name:var(--font-playfair)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-black tracking-tight leading-[1.1]">
-                <SplitText splitType="words" delay={0.2} staggerDelay={0.1}>
-                  {t.aboutPage.heroTitle}
-                </SplitText>
-              </h1>
-
+              {/* Panel B: Stinne bio - absolutely positioned over panel A */}
               <motion.div
-                className="mt-8 w-24 h-1 bg-red origin-left"
-                initial={{ scaleX: 0 }}
-                animate={heroInView ? { scaleX: 1 } : {}}
-                transition={{ duration: 1, delay: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-              />
-
-              <motion.p
-                className="mt-8 text-lg md:text-xl text-gray-600 max-w-xl leading-relaxed"
-                initial={{ opacity: 0, y: 30 }}
-                animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.8, delay: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
+                className="absolute inset-0"
+                style={{ opacity: bioTextOpacity, y: bioTextY }}
               >
-                {t.aboutPage.heroDescription}
-              </motion.p>
+                <span className="text-red font-medium text-sm uppercase tracking-wider">
+                  Founder
+                </span>
+                <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-black tracking-tight leading-[1.1]">
+                  Stinne Madsen
+                </h2>
+                <p className="mt-3 text-base md:text-lg text-[#A12F63] font-medium">
+                  Founder and CEO of Significanz
+                </p>
+                <div className="mt-6 w-24 h-1 bg-red" />
+                <div className="mt-6 space-y-4 text-base md:text-lg text-gray-700 leading-relaxed max-w-xl">
+                  <p>
+                    With a Master&apos;s degree in <span className="text-[#34323A] font-medium">Economics, Law &amp; Sociology</span> and a degree in <span className="text-[#34323A] font-medium">Psychotherapy</span>, Stinne brings a rare combination of academic depth and real-world leadership experience.
+                  </p>
+                  <p>
+                    Over <span className="text-[#A12F63] font-medium">15+ years</span> as an executive coach, she has worked across complex global organisations — from pharma to tech — including senior roles as <span className="text-[#34323A] font-medium">Country Manager for Ireland &amp; the UK</span> and <span className="text-[#34323A] font-medium">Head of HR Europe</span>.
+                  </p>
+                  <p>
+                    Since 2001, she has partnered with <span className="text-[#A12F63] font-medium">50+ companies</span> to unlock leadership potential and drive meaningful change.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
 
-            </motion.div>
-
-            {/* Right: Image with parallax */}
+            {/* Right: Pinned image */}
             <div className="relative">
               <motion.div
                 className="aspect-[4/5] relative overflow-hidden"
-                style={{ y: heroImageY, scale: heroImageScale }}
+                style={{ scale: heroImageScale }}
                 initial={{ opacity: 0, clipPath: "inset(0 100% 0 0)" }}
                 animate={{ opacity: 1, clipPath: "inset(0 0% 0 0)" }}
                 transition={{ duration: 1.2, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
@@ -287,41 +322,10 @@ export default function AboutPage() {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.8, delay: 1 }}
               />
-
-              {/* Founder caption */}
-              <motion.p
-                className="mt-4 text-center text-sm text-[#34323A]/60 font-medium"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.6, delay: 1.2 }}
-              >
-                Founder and CEO of Significanz
-              </motion.p>
             </div>
           </div>
         </Container>
-      </section>
-
-      {/* Stinne Madsen Bio Section */}
-      <section className="py-24 md:py-32 bg-[#F7F6F5]">
-        <Container size="default">
-          <FadeIn>
-            <div className="max-w-3xl mx-auto">
-              <span className="text-red font-medium text-sm uppercase tracking-wider">
-                Founder
-              </span>
-              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
-                Stinne Madsen
-              </h2>
-              <p className="mt-2 text-lg text-[#A12F63] font-medium">
-                Founder and CEO of Significanz
-              </p>
-              <p className="mt-8 text-lg text-gray-600 leading-relaxed">
-                With a Master&apos;s degree in Economics, Law &amp; Sociology and a degree in Psychotherapy, Stinne brings a rare combination of academic depth and real-world leadership experience. Over 15+ years as an executive coach, she has worked across complex global organisations, from pharma to tech, having held senior roles including Country Manager for Ireland &amp; the UK and Head of HR Europe. Since 2001, she has partnered with 50+ companies to unlock leadership potential and drive meaningful change.
-              </p>
-            </div>
-          </FadeIn>
-        </Container>
+        </div>
       </section>
 
       {/* Purpose Section */}
@@ -352,16 +356,21 @@ export default function AboutPage() {
       </section>
 
       {/* Our Edge Section */}
-      <section id="our-edge" className="py-24 md:py-32 bg-white scroll-mt-20">
-        <Container size="wide">
+      <section id="our-edge" className="py-24 md:py-32 scroll-mt-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-warm-radial pointer-events-none" />
+        <div className="absolute inset-0 bg-noise opacity-[0.04] pointer-events-none" />
+        <Container size="wide" className="relative z-10">
           <FadeIn>
             <div className="text-center mb-16">
               <span className="text-red font-medium text-sm uppercase tracking-wider">
                 What sets us apart
               </span>
               <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
-                Every solution we build is engineered around your exact needs, not adapted from someone else&apos;s.
+                Solutions built for you
               </h2>
+              <p className="mt-6 text-lg md:text-xl text-gray-600 leading-relaxed lg:whitespace-nowrap">
+                Every solution we build is engineered around your exact needs, not adapted from someone else&apos;s.
+              </p>
             </div>
           </FadeIn>
 
@@ -383,9 +392,12 @@ export default function AboutPage() {
               <span className="text-red font-medium text-sm uppercase tracking-wider">
                 How we work
               </span>
-              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight max-w-4xl mx-auto">
-                At Significanz, we use three core frameworks to give leaders and teams a shared language, turning the invisible visible in every engagement.
+              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
+                Turning the invisible visible
               </h2>
+              <p className="mt-6 text-lg md:text-xl text-gray-600 leading-relaxed max-w-3xl mx-auto">
+                At Significanz, we use three core frameworks to give leaders and teams a shared language, turning the invisible visible in every engagement.
+              </p>
             </div>
           </FadeIn>
 
