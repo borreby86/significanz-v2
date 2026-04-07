@@ -158,15 +158,30 @@ export default function ClientVoicesPage() {
                       </p>
                       <p className="text-red text-sm">{testimonial.company}</p>
                       {testimonial.services && testimonial.services.length > 0 && (
-                        <div className={`flex flex-wrap gap-2 mt-3 ${index % 2 === 1 ? "lg:justify-end" : ""}`}>
-                          {testimonial.services.map((service) => (
-                            <span
-                              key={service}
-                              className="text-[10px] font-medium uppercase tracking-wider px-2.5 py-1 bg-[#F7F6F5] text-[#34323A]/60 border border-[#34323A]/10"
-                            >
-                              {service}
-                            </span>
-                          ))}
+                        <div className={`mt-4 ${index % 2 === 1 ? "lg:text-right" : ""}`}>
+                          <p className="text-[10px] font-medium uppercase tracking-[2px] text-[#34323A]/50 mb-2">
+                            Service Delivered
+                          </p>
+                          <div className={`flex flex-wrap gap-2 ${index % 2 === 1 ? "lg:justify-end" : ""}`}>
+                            {testimonial.services.map((service) => (
+                              <span
+                                key={service}
+                                className="inline-flex items-stretch"
+                                style={{ boxShadow: "0 4px 12px rgba(0,0,0,0.15)" }}
+                              >
+                                <span
+                                  className="w-2"
+                                  style={{ backgroundColor: "#BFA27A" }}
+                                />
+                                <span
+                                  className="px-3 py-1 text-[10px] font-medium uppercase tracking-widest text-white"
+                                  style={{ backgroundColor: "#A12F63" }}
+                                >
+                                  {service}
+                                </span>
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       )}
                     </div>
