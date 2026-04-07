@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode, useEffect } from "react";
+import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import { LanguageProvider } from "@/lib/i18n";
 import { CustomCursor } from "@/components/ui/CustomCursor";
@@ -8,6 +9,8 @@ import { ContactFormProvider } from "@/lib/contact-form-context";
 import { FloatingContactForm } from "@/components/forms/FloatingContactForm";
 
 export function Providers({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const hideFloatingForm = pathname === "/contact";
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -30,7 +33,7 @@ export function Providers({ children }: { children: ReactNode }) {
       <ContactFormProvider>
         <CustomCursor />
         {children}
-        <FloatingContactForm />
+        {!hideFloatingForm && <FloatingContactForm />}
       </ContactFormProvider>
     </LanguageProvider>
   );

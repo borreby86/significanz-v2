@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { motion, useInView } from "motion/react";
+import { ContactFormPanel } from "@/components/forms/ContactFormPanel";
 
 export default function ContactPage() {
   const heroRef = useRef<HTMLElement>(null);
@@ -14,140 +15,92 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* Hero Section - Split Design */}
+      {/* Hero Section - Bright split: image+title left, form right */}
       <section
         ref={heroRef}
-        className="min-h-screen relative overflow-hidden bg-[#34323A]"
+        className="relative overflow-hidden bg-[#F7F6F5] min-h-screen flex items-stretch pt-20"
       >
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }} />
-        </div>
-
-        {/* Animated gradient orbs */}
+        {/* Soft warm decorative blobs */}
         <motion.div
-          className="absolute top-20 right-20 w-96 h-96 rounded-full bg-[#A12F63]/20 blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.2, 0.3, 0.2],
-          }}
-          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -top-32 -left-32 w-96 h-96 rounded-full bg-[#BFA27A]/30 blur-3xl pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
         />
         <motion.div
-          className="absolute bottom-20 left-20 w-80 h-80 rounded-full bg-[#BFA27A]/20 blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.2, 0.3, 0.2],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute -bottom-32 right-0 w-[28rem] h-[28rem] rounded-full bg-[#A12F63]/15 blur-3xl pointer-events-none"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5, delay: 0.3 }}
         />
 
-        <Container size="wide" className="relative z-10 h-full">
-          <div className="min-h-screen flex items-center py-32">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center w-full">
-              {/* Left: Content */}
-              <div>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.6 }}
-                  className="flex items-center gap-4 mb-8"
-                >
-                  <div className="w-12 h-px bg-[#A12F63]" />
-                  <span className="text-[#A12F63] font-medium text-sm uppercase tracking-[0.2em]">
-                    Let's Connect
-                  </span>
-                </motion.div>
+        {/* Full-bleed background image */}
+        <motion.div
+          className="absolute inset-0 overflow-hidden"
+          initial={{ opacity: 0, scale: 1.05 }}
+          animate={heroInView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ duration: 1.4, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          <Image
+            src="/images/hero/hero new.jpg"
+            alt="Professional leadership coaching"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Dark gradient so left text is readable on the lighter sky */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#34323A]/85 via-[#34323A]/60 to-[#34323A]/30" />
+        </motion.div>
 
-                <motion.h1
-                  className="font-[family-name:var(--font-playfair)] text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight leading-[1.05]"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.2 }}
-                >
-                  Start a{" "}
-                  <span className="italic text-[#BFA27A]">meaningful</span>{" "}
-                  conversation
-                </motion.h1>
-
-                <motion.p
-                  className="mt-8 text-xl md:text-2xl text-white/70 max-w-xl leading-relaxed"
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.4 }}
-                >
-                  Ready to explore how we can support your leadership journey? We'd love to hear from you.
-                </motion.p>
-
-                {/* Email CTA */}
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.6 }}
-                  className="mt-12"
-                >
-                  <a
-                    href="mailto:welcome@significanz.dk"
-                    className="group inline-flex items-center gap-4 px-8 py-5 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-all duration-300 text-lg"
-                  >
-                    <svg className="w-6 h-6 transition-transform group-hover:scale-110" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    welcome@significanz.dk
-                    <span className="text-xl transition-transform group-hover:translate-x-1">→</span>
-                  </a>
-                </motion.div>
-              </div>
-
-              {/* Right: Image with overlay card */}
+        <Container size="wide" className="relative z-10 w-full">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center min-h-screen py-24">
+            {/* Left: heading over the image */}
+            <div className="lg:col-span-7">
               <motion.div
-                className="relative"
-                initial={{ opacity: 0, x: 50 }}
-                animate={heroInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 1, delay: 0.4 }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6 }}
+                className="flex items-center gap-4 mb-6"
               >
-                {/* Main image container */}
-                <div className="relative aspect-[4/5] overflow-hidden">
-                  <Image
-                    src="/images/hero/hero new.jpg"
-                    alt="Professional leadership coaching"
-                    fill
-                    className="object-cover grayscale"
-                    priority
-                  />
-                  {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#34323A]/60 via-transparent to-transparent" />
-                </div>
-
-                {/* Floating card */}
-                <motion.div
-                  className="absolute -bottom-8 -left-8 bg-white p-6 md:p-8 max-w-xs shadow-2xl"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={heroInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.8, delay: 0.8 }}
-                >
-                  <div className="w-10 h-10 bg-[#A12F63]/10 rounded-full flex items-center justify-center mb-4">
-                    <svg className="w-5 h-5 text-[#A12F63]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <p className="text-[#34323A] font-medium">Based in Copenhagen</p>
-                  <p className="text-[#34323A]/60 text-sm mt-1">Working with leaders globally</p>
-                </motion.div>
-
-                {/* Decorative element */}
-                <motion.div
-                  className="absolute -top-4 -right-4 w-24 h-24 border-2 border-[#BFA27A]/30"
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={heroInView ? { opacity: 1, scale: 1 } : {}}
-                  transition={{ duration: 0.6, delay: 1 }}
-                />
+                <div className="w-12 h-px bg-[#BFA27A]" />
+                <span className="text-[#BFA27A] font-medium text-sm uppercase tracking-[0.2em]">
+                  Let&apos;s Connect
+                </span>
               </motion.div>
+
+              <motion.h1
+                className="font-[family-name:var(--font-playfair)] text-5xl sm:text-6xl md:text-7xl lg:text-8xl text-white tracking-tight leading-[0.95]"
+                initial={{ opacity: 0, y: 30 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                Start a<br />
+                <span className="italic text-[#BFA27A]">meaningful</span>
+                <br />
+                conversation
+              </motion.h1>
+
+              <motion.p
+                className="mt-8 text-lg md:text-xl text-white/80 max-w-xl leading-relaxed"
+                initial={{ opacity: 0, y: 30 }}
+                animate={heroInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                Ready to explore how we can support your leadership journey?
+                <br />
+                We&apos;d love to hear from you.
+              </motion.p>
             </div>
+
+            {/* Right: Form as a contained box */}
+            <motion.div
+              className="lg:col-span-5"
+              initial={{ opacity: 0, x: 40 }}
+              animate={heroInView ? { opacity: 1, x: 0 } : {}}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <ContactFormPanel variant="solid" />
+            </motion.div>
           </div>
         </Container>
       </section>
