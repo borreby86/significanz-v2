@@ -293,10 +293,10 @@ export default function AboutPage() {
 
   return (
     <>
-      {/* Hero - Cinematic scroll: hero text crossfades into Stinne bio while image stays pinned */}
+      {/* Hero - Desktop: cinematic scroll crossfade. Mobile: static stacked layout below. */}
       <section
         ref={heroRef}
-        className="relative"
+        className="relative hidden lg:block"
         style={{ height: "220vh" }}
       >
         <div className="sticky top-0 h-screen flex items-center pt-20 overflow-hidden">
@@ -444,6 +444,74 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Mobile hero (static) */}
+      <section className="lg:hidden relative pt-28 pb-16 overflow-hidden">
+        <div className="absolute inset-0 bg-warm-radial pointer-events-none" />
+        <div className="absolute inset-0 bg-noise opacity-[0.04] pointer-events-none z-10" />
+        <motion.div
+          className="absolute -top-16 -left-16 w-48 h-48 rounded-full bg-peach blur-2xl"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.4 }}
+          transition={{ duration: 1.5 }}
+        />
+        <motion.div
+          className="absolute -bottom-10 right-1/4 w-32 h-32 rounded-full bg-cream blur-2xl"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.5 }}
+          transition={{ duration: 1.5, delay: 0.3 }}
+        />
+        <Container size="wide" className="relative z-10">
+          <span className="text-red font-medium text-sm uppercase tracking-wider">
+            {t.aboutPage.label}
+          </span>
+          <h1 className="mt-4 font-[family-name:var(--font-playfair)] text-4xl sm:text-5xl text-black tracking-tight leading-[1.1]">
+            {t.aboutPage.heroTitle}
+          </h1>
+          <div className="mt-6 w-24 h-1 bg-red" />
+          <p className="mt-6 text-lg text-gray-600 leading-relaxed">
+            {t.aboutPage.heroDescription}
+          </p>
+          <div className="mt-10 relative aspect-[4/5] max-w-sm mx-auto overflow-hidden">
+            <Image
+              src="/images/photo til about siden.jpg"
+              alt={t.aboutPage.imageAlt}
+              fill
+              className="object-cover"
+              sizes="100vw"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent" />
+          </div>
+        </Container>
+      </section>
+
+      {/* Mobile founder bio (static) */}
+      <section className="lg:hidden py-16 bg-white">
+        <Container size="wide">
+          <span className="text-red font-medium text-sm uppercase tracking-wider">
+            Founder
+          </span>
+          <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-4xl sm:text-5xl text-black tracking-tight leading-[1.1]">
+            Stinne Madsen
+          </h2>
+          <p className="mt-3 text-base text-[#A12F63] font-medium">
+            Founder and CEO of Significanz
+          </p>
+          <div className="mt-6 w-24 h-1 bg-red" />
+          <div className="mt-6 space-y-4 text-base text-gray-700 leading-relaxed">
+            <p>
+              With a Master&apos;s degree in <span className="text-[#34323A] font-medium">Economics, Law &amp; Sociology</span> and a degree in <span className="text-[#34323A] font-medium">Psychotherapy</span>, Stinne brings a rare combination of academic depth and real-world leadership experience.
+            </p>
+            <p>
+              Over <span className="text-[#A12F63] font-medium">15+ years</span> as an executive coach, she has worked across complex global organisations — from pharma to tech — including senior roles as <span className="text-[#34323A] font-medium">Country Manager for Ireland &amp; the UK</span> and <span className="text-[#34323A] font-medium">Head of HR Europe</span>.
+            </p>
+            <p>
+              Since 2001, she has partnered with <span className="text-[#A12F63] font-medium">50+ companies</span> to unlock leadership potential and drive meaningful change.
+            </p>
+          </div>
+        </Container>
+      </section>
+
       {/* Meet Our Team */}
       <section id="team" className="py-24 md:py-32 bg-[#F7F6F5] scroll-mt-20">
         <Container size="wide">
@@ -517,7 +585,7 @@ export default function AboutPage() {
               <div className="group">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
-                    src="/images/Alberthe.png"
+                    src="/images/Alberthe.jpg"
                     alt="Alberthe Siff Næser"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"

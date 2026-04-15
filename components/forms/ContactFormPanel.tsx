@@ -92,7 +92,7 @@ export function ContactFormPanel({
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="px-8 md:px-10 pb-10 space-y-5">
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-4">
             <div>
               <label className="block text-[10px] font-medium text-[#BFA27A] uppercase tracking-[0.15em] mb-2">
                 Name

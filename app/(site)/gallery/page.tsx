@@ -58,10 +58,10 @@ export default function GalleryPage() {
       {/* Gallery Grid - Postcard style */}
       <section className="pb-24 md:pb-32">
         <Container size="wide">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 sm:gap-6 md:gap-8">
             {galleryImages.map((image, index) => (
               <FadeIn key={image.id} delay={index * 0.03}>
-                <div className="bg-white p-3 md:p-4 shadow-md hover:shadow-xl transition-shadow duration-300 group cursor-pointer">
+                <div className="bg-white p-2 sm:p-3 md:p-4 shadow-md hover:shadow-xl transition-shadow duration-300 group cursor-pointer">
                   <div className="aspect-square relative overflow-hidden">
                     <Image
                       src={image.src}
