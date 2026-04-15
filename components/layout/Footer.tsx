@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { useTranslation } from "@/lib/i18n";
+import { useConsent } from "@/lib/consent-context";
 
 export function Footer() {
   const { t } = useTranslation();
+  const { openPreferences } = useConsent();
 
   return (
     <footer className="bg-[#1a1a1a] text-white py-16 md:py-20">
@@ -33,6 +35,13 @@ export function Footer() {
               >
                 {t.footer.privacyPolicy}
               </Link>
+              <button
+                type="button"
+                onClick={openPreferences}
+                className="block text-left hover:text-white transition-colors cursor-pointer"
+              >
+                Cookie preferences
+              </button>
             </div>
           </div>
 

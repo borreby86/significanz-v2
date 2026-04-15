@@ -6,7 +6,10 @@ import Lenis from "lenis";
 import { LanguageProvider } from "@/lib/i18n";
 import { CustomCursor } from "@/components/ui/CustomCursor";
 import { ContactFormProvider } from "@/lib/contact-form-context";
+import { ConsentProvider } from "@/lib/consent-context";
 import { FloatingContactForm } from "@/components/forms/FloatingContactForm";
+import { CookieConsent } from "@/components/layout/CookieConsent";
+import { Analytics } from "@/components/layout/Analytics";
 
 export function Providers({ children }: { children: ReactNode }) {
   const pathname = usePathname();
@@ -30,11 +33,15 @@ export function Providers({ children }: { children: ReactNode }) {
 
   return (
     <LanguageProvider>
-      <ContactFormProvider>
-        <CustomCursor />
-        {children}
-        {!hideFloatingForm && <FloatingContactForm />}
-      </ContactFormProvider>
+      <ConsentProvider>
+        <ContactFormProvider>
+          <CustomCursor />
+          {children}
+          {!hideFloatingForm && <FloatingContactForm />}
+          <CookieConsent />
+          <Analytics />
+        </ContactFormProvider>
+      </ConsentProvider>
     </LanguageProvider>
   );
 }
