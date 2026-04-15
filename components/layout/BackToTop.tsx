@@ -30,7 +30,7 @@ export function BackToTop() {
           transition={{ duration: 0.25, ease: [0.25, 0.1, 0.25, 1] }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="fixed bottom-28 right-6 z-50 w-16 h-16 rounded-full bg-[#A12F63] text-white shadow-lg hover:bg-[#5A1735] transition-colors flex items-center justify-center cursor-pointer"
+          className="fixed bottom-28 right-6 z-50 w-16 h-16 rounded-full bg-[#A12F63]/75 backdrop-blur-sm text-white shadow-lg hover:bg-[#5A1735]/90 transition-colors flex items-center justify-center cursor-pointer"
         >
           <svg
             width="20"
