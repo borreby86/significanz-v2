@@ -211,9 +211,8 @@ Payload CMS 3.x
 
 ### Integrations
 - **Booking**: Cal.com or Calendly embed
-- **Forms**: React Hook Form + Zod + Resend
+- **Forms**: Formspark (client-side POST to submit-form.com)
 - **Analytics**: Vercel Analytics + Google Analytics 4
-- **Email**: Resend for transactional emails
 
 ---
 
@@ -852,8 +851,8 @@ PAYLOAD_SECRET=
 # Site
 NEXT_PUBLIC_SITE_URL=https://significanz.dk
 
-# Email
-RESEND_API_KEY=
+# Forms
+NEXT_PUBLIC_FORMSPARK_ID=
 
 # Analytics
 NEXT_PUBLIC_GA_ID=

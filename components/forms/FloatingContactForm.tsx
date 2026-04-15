@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { useContactForm } from "@/lib/contact-form-context";
+import { submitContactForm } from "@/lib/formspark";
 
 const services = [
   "Executive Coaching",
@@ -28,19 +29,7 @@ export function FloatingContactForm() {
     setStatus("submitting");
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formState.name,
-          email: formState.email,
-          company: formState.company || undefined,
-          message: formState.service
-            ? `[Service: ${formState.service}]\n\n${formState.message}`
-            : formState.message,
-        }),
-      });
-
+      const res = await submitContactForm(formState);
       if (res.ok) {
         setStatus("success");
         setFormState({ name: "", email: "", company: "", service: "", message: "" });
@@ -61,7 +50,7 @@ export function FloatingContactForm() {
       {/* Floating button - round circle with speech bubble icon */}
       <motion.button
         onClick={toggle}
-        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-[#A12F63] text-white shadow-lg hover:bg-[#8a2854] transition-colors flex items-center justify-center"
+        className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full bg-[#A12F63]/75 backdrop-blur-sm text-white shadow-lg hover:bg-[#8a2854]/90 transition-colors flex items-center justify-center"
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         aria-label="Open contact form"
@@ -248,6 +237,14 @@ export function FloatingContactForm() {
                   >
                     {status === "submitting" ? "Sending..." : "Send message"}
                   </button>
+
+                  <p className="text-xs text-white/60 mt-3 leading-relaxed">
+                    By submitting this form, your data will be processed by Formspark (EU) to handle your enquiry. See our{" "}
+                    <a href="/privacy-policy" className="underline hover:text-white transition-colors">
+                      Privacy Policy
+                    </a>{" "}
+                    for details.
+                  </p>
                 </form>
               )}
             </motion.div>

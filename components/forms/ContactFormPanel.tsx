@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { submitContactForm } from "@/lib/formspark";
 
 const services = [
   "Executive Coaching",
@@ -35,18 +36,7 @@ export function ContactFormPanel({
     e.preventDefault();
     setStatus("submitting");
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: formState.name,
-          email: formState.email,
-          company: formState.company || undefined,
-          message: formState.service
-            ? `[Service: ${formState.service}]\n\n${formState.message}`
-            : formState.message,
-        }),
-      });
+      const res = await submitContactForm(formState);
       if (res.ok) {
         setStatus("success");
         setFormState({ name: "", email: "", company: "", service: "", message: "" });
@@ -177,6 +167,14 @@ export function ContactFormPanel({
           >
             {status === "submitting" ? "Sending..." : "Send message"}
           </button>
+
+          <p className="text-xs text-white/60 mt-3 leading-relaxed">
+            By submitting this form, your data will be processed by Formspark (EU) to handle your enquiry. See our{" "}
+            <a href="/privacy-policy" className="underline hover:text-white transition-colors">
+              Privacy Policy
+            </a>{" "}
+            for details.
+          </p>
         </form>
       )}
     </div>
