@@ -4,6 +4,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
+import { ContactButton } from "@/components/ui/ContactButton";
 import { motion, useInView } from "motion/react";
 import { useTranslation } from "@/lib/i18n";
 
@@ -414,13 +415,10 @@ function CTASection() {
             {t.fourDPage.instantOutcomesDesc}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors"
-            >
-              {t.fourDPage.startDiscovery}
+            <ContactButton className="inline-flex items-center gap-3 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors">
+              Get in touch
               <span className="text-xl">→</span>
-            </Link>
+            </ContactButton>
             <Link
               href="/about"
               className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#F7F6F5] text-[#F7F6F5] font-medium hover:bg-[#F7F6F5] hover:text-[#34323A] transition-colors"

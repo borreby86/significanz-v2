@@ -216,8 +216,9 @@ export default function ClientVoicesPage() {
                 {t.clientVoicesPage.ctaDescription}
               </p>
               <div className="mt-10">
-                <ContactButton className="px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors">
-                  {t.clientVoicesPage.ctaButton}
+                <ContactButton className="inline-flex items-center gap-3 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors">
+                  Get in touch
+                  <span className="text-xl">→</span>
                 </ContactButton>
               </div>
             </div>

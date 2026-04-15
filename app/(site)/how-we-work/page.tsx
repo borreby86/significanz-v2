@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { ContactButton } from "@/components/ui/ContactButton";
 import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence, useInView } from "motion/react";
 import { SplitText } from "@/components/animations/SplitText";
 import { PurposeModel, segments } from "@/components/diagrams/PurposeModel";
@@ -704,11 +705,10 @@ function CTASection() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.9 }}
           >
-            <Link href="/contact">
-              <Button variant="accent" size="lg" data-cursor="pointer">
-                {t.howWeWorkPage.startConversation}
-              </Button>
-            </Link>
+            <ContactButton className="inline-flex items-center gap-3 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors">
+              Get in touch
+              <span className="text-xl">→</span>
+            </ContactButton>
           </motion.div>
 
           {/* Decorative bottom dots */}

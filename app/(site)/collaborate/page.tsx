@@ -201,9 +201,9 @@ function CollaborateCTA() {
             Let&apos;s explore how we can support your leadership journey.
           </p>
           <ContactButton
-            className="mt-10 inline-flex items-center gap-3 px-8 py-4 bg-white text-[#34323A] hover:bg-[#F7F6F5] transition-colors font-medium"
+            className="mt-10 inline-flex items-center gap-3 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors"
           >
-            {t.collaboratePage.ctaButton}
+            Get in touch
             <span className="text-xl">→</span>
           </ContactButton>
         </motion.div>

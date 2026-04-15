@@ -2,9 +2,9 @@
 
 import { useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/animations/FadeIn";
+import { ContactButton } from "@/components/ui/ContactButton";
 import { motion, useInView, AnimatePresence } from "motion/react";
 import { useTranslation } from "@/lib/i18n";
 
@@ -394,12 +394,10 @@ function CTASection() {
               Ready to create meaningful impact? We&apos;d love to hear from you.
             </p>
             <div className="mt-10 flex flex-wrap gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-3 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors"
-              >
-                welcome@significanz.dk
-              </Link>
+              <ContactButton className="inline-flex items-center gap-3 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors">
+                Get in touch
+                <span className="text-xl">→</span>
+              </ContactButton>
             </div>
           </div>
         </FadeIn>
