@@ -460,27 +460,27 @@ export default function AboutPage() {
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 max-w-5xl mx-auto">
-            {/* Alberthe */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 lg:gap-12 max-w-6xl mx-auto">
+            {/* Stinne */}
             <FadeIn>
               <div className="group">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
-                    src="/images/Alberthe.png"
-                    alt="Alberthe Siff Næser"
+                    src="/images/photo til about siden.jpg"
+                    alt="Stinne Madsen"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
                 <div className="mt-6">
                   <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#34323A] tracking-tight">
-                    Alberthe Siff Næser
+                    Stinne Madsen
                   </h3>
                   <div className="mt-3 w-12 h-[2px] bg-red" />
                   <p className="mt-5 text-base md:text-lg text-gray-700 leading-relaxed">
-                    Certified psychotherapist and HR development consultant with a background in policing, bringing over a decade of experience supporting people and leading organisational change, with a focus on trauma, resilience, and growth.
+                    Founder and CEO of Significanz. Executive coach and strategic advisor with 15+ years partnering with leaders across pharma, tech, and global organisations. Combining an academic background in economics, law, sociology, and psychotherapy with senior executive experience, she translates strategy into leadership development that works in practice.
                   </p>
                 </div>
               </div>
@@ -495,7 +495,7 @@ export default function AboutPage() {
                     alt="Søren Mollerup"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
@@ -506,6 +506,31 @@ export default function AboutPage() {
                   <div className="mt-3 w-12 h-[2px] bg-red" />
                   <p className="mt-5 text-base md:text-lg text-gray-700 leading-relaxed">
                     Leadership development consultant and facilitator who designs impactful programmes to strengthen collaboration, drive organisational change, and help leaders build sustainable, high-performing cultures.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Alberthe */}
+            <FadeIn>
+              <div className="group">
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <Image
+                    src="/images/Alberthe.png"
+                    alt="Alberthe Siff Næser"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                </div>
+                <div className="mt-6">
+                  <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#34323A] tracking-tight">
+                    Alberthe Siff Næser
+                  </h3>
+                  <div className="mt-3 w-12 h-[2px] bg-red" />
+                  <p className="mt-5 text-base md:text-lg text-gray-700 leading-relaxed">
+                    Certified psychotherapist and HR development consultant with a background in policing, bringing over a decade of experience supporting people and leading organisational change, with a focus on trauma, resilience, and growth.
                   </p>
                 </div>
               </div>
