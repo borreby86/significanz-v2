@@ -17,6 +17,7 @@ export const da: TranslationKeys = {
     // About dropdown items
     ourPurpose: 'Vores Formål',
     purpose: 'Formål',
+    ourTeam: 'Vores Team',
     whatSetsUsApart: 'Det der adskiller os',
     ourEdge: 'Vores Fordel',
     ourFramework: 'Vores Framework',

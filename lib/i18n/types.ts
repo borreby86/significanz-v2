@@ -18,6 +18,7 @@ export interface TranslationKeys {
     // About dropdown items
     ourPurpose: string;
     purpose: string;
+    ourTeam: string;
     whatSetsUsApart: string;
     ourEdge: string;
     ourFramework: string;

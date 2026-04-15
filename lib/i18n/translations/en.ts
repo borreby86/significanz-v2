@@ -17,7 +17,8 @@ export const en: TranslationKeys = {
     // About dropdown items
     ourPurpose: 'Our Purpose',
     purpose: 'Purpose',
-    whatSetsUsApart: 'What sets us apart',
+    ourTeam: 'Our Team',
+    whatSetsUsApart: 'What Sets Us Apart',
     ourEdge: 'Our Edge',
     ourFramework: 'Our Framework',
     masteryFramework: 'Mastery Framework',

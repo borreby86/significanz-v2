@@ -17,6 +17,7 @@ export const navigationConfig: NavigationConfig = [
     href: '/about',
     items: [
       { key: 'purpose', href: '/about#purpose' },
+      { key: 'ourTeam', href: '/about#team' },
       { key: 'whatSetsUsApart', href: '/about#our-edge' },
       { key: 'howWeWork', href: '/about#framework' },
     ],

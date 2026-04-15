@@ -480,7 +480,7 @@ export default function AboutPage() {
                   </h3>
                   <div className="mt-3 w-12 h-[2px] bg-red" />
                   <p className="mt-5 text-base md:text-lg text-gray-700 leading-relaxed">
-                    Founder and CEO of Significanz. Executive coach and strategic advisor with 15+ years partnering with leaders across pharma, tech, and global organisations. Combining an academic background in economics, law, sociology, and psychotherapy with senior executive experience, she translates strategy into leadership development that works in practice.
+                    Founder and CEO of Significanz. Executive coach and strategic advisor with 15+ years translating strategy into leadership development that works in practice across global organisations.
                   </p>
                 </div>
               </div>
