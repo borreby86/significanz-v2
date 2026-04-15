@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import { motion, useInView } from "motion/react";
 import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/animations/FadeIn";
@@ -194,8 +195,18 @@ export default function ClientVoicesPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 md:py-32 bg-black text-white">
-        <Container size="default">
+      <section className="relative py-24 md:py-32 bg-black text-white overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/workshop.jpeg"
+            alt=""
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-black/80" />
+        </div>
+        <Container size="default" className="relative z-10">
           <FadeIn>
             <div className="text-center">
               <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl tracking-tight">

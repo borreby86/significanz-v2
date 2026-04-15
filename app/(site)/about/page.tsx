@@ -443,6 +443,77 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* Meet Our Team */}
+      <section id="team" className="py-24 md:py-32 bg-[#F7F6F5] scroll-mt-20">
+        <Container size="wide">
+          <FadeIn>
+            <div className="text-center mb-16">
+              <span className="text-red font-medium text-sm uppercase tracking-wider">
+                Our team
+              </span>
+              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-black tracking-tight">
+                Meet Our Team
+              </h2>
+              <p className="mt-6 text-lg md:text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                Experienced practitioners who bring depth, range, and care to every engagement.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 max-w-5xl mx-auto">
+            {/* Alberthe */}
+            <FadeIn>
+              <div className="group">
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <Image
+                    src="/images/Alberthe.png"
+                    alt="Alberthe Siff Næser"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                </div>
+                <div className="mt-6">
+                  <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#34323A] tracking-tight">
+                    Alberthe Siff Næser
+                  </h3>
+                  <div className="mt-3 w-12 h-[2px] bg-red" />
+                  <p className="mt-5 text-base md:text-lg text-gray-700 leading-relaxed">
+                    Certified psychotherapist and HR development consultant with a background in policing, bringing over a decade of experience supporting people and leading organisational change, with a focus on trauma, resilience, and growth.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Søren */}
+            <FadeIn>
+              <div className="group">
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <Image
+                    src="/images/Soren.jpg"
+                    alt="Søren Mollerup"
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                </div>
+                <div className="mt-6">
+                  <h3 className="font-[family-name:var(--font-playfair)] text-2xl md:text-3xl text-[#34323A] tracking-tight">
+                    Søren Mollerup
+                  </h3>
+                  <div className="mt-3 w-12 h-[2px] bg-red" />
+                  <p className="mt-5 text-base md:text-lg text-gray-700 leading-relaxed">
+                    Leadership development consultant and facilitator who designs impactful programmes to strengthen collaboration, drive organisational change, and help leaders build sustainable, high-performing cultures.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </Container>
+      </section>
+
       {/* Purpose Section */}
       <section id="purpose" className="py-24 md:py-32 bg-white scroll-mt-20">
         <Container size="default">
@@ -557,6 +628,43 @@ export default function AboutPage() {
               </FrameworkCard>
             </div>
           </div>
+        </Container>
+      </section>
+
+      {/* CTA */}
+      <section className="relative py-24 md:py-32 bg-[#34323A] overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/workshop.jpeg"
+            alt=""
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-[#34323A]/85" />
+        </div>
+        <Container size="default" className="relative z-10">
+          <FadeIn>
+            <div className="text-center">
+              <span className="text-[#BFA27A] font-medium text-sm uppercase tracking-[0.2em]">
+                Get in touch
+              </span>
+              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl text-[#F7F6F5] italic tracking-tight">
+                Let&apos;s start a conversation
+              </h2>
+              <p className="mt-6 text-lg text-[#F7F6F5]/70 max-w-xl mx-auto">
+                Ready to create meaningful impact? We&apos;d love to hear from you.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-4 justify-center">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors"
+                >
+                  welcome@significanz.dk
+                </Link>
+              </div>
+            </div>
+          </FadeIn>
         </Container>
       </section>
 

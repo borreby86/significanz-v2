@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { FadeIn } from "@/components/animations/FadeIn";
 import { useTranslation } from "@/lib/i18n";
@@ -74,6 +75,43 @@ export default function GalleryPage() {
               </FadeIn>
             ))}
           </div>
+        </Container>
+      </section>
+
+      {/* CTA */}
+      <section className="relative py-24 md:py-32 bg-[#34323A] overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/workshop.jpeg"
+            alt=""
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-[#34323A]/85" />
+        </div>
+        <Container size="default" className="relative z-10">
+          <FadeIn>
+            <div className="text-center">
+              <span className="text-[#BFA27A] font-medium text-sm uppercase tracking-[0.2em]">
+                Get in touch
+              </span>
+              <h2 className="mt-4 font-[family-name:var(--font-playfair)] text-4xl md:text-5xl lg:text-6xl text-[#F7F6F5] italic tracking-tight">
+                Let&apos;s start a conversation
+              </h2>
+              <p className="mt-6 text-lg text-[#F7F6F5]/70 max-w-xl mx-auto">
+                Ready to create meaningful impact? We&apos;d love to hear from you.
+              </p>
+              <div className="mt-10 flex flex-wrap gap-4 justify-center">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-3 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors"
+                >
+                  welcome@significanz.dk
+                </Link>
+              </div>
+            </div>
+          </FadeIn>
         </Container>
       </section>
     </>

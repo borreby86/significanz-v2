@@ -559,8 +559,19 @@ function GetInTouch() {
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section ref={ref} className="bg-[#34323A] py-24 md:py-32">
-      <Container size="wide">
+    <section ref={ref} className="relative bg-[#34323A] py-24 md:py-32 overflow-hidden">
+      {/* Background photo */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/workshop.jpeg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-[#34323A]/85" />
+      </div>
+      <Container size="wide" className="relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left - Text */}
           <motion.div

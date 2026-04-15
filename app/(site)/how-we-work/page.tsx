@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
@@ -565,14 +566,26 @@ function CTASection() {
       ref={sectionRef}
       className="py-40 md:py-56 bg-black relative overflow-hidden"
     >
-      {/* Animated gradient background */}
+      {/* Background photo */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/workshop.jpeg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-black/80" />
+      </div>
+
+      {/* Animated gradient overlay */}
       <motion.div
-        className="absolute inset-0"
+        className="absolute inset-0 mix-blend-multiply"
         animate={{
           background: [
-            "radial-gradient(ellipse at 30% 50%, rgba(30,30,30,1) 0%, rgba(0,0,0,1) 70%)",
-            "radial-gradient(ellipse at 70% 50%, rgba(30,30,30,1) 0%, rgba(0,0,0,1) 70%)",
-            "radial-gradient(ellipse at 30% 50%, rgba(30,30,30,1) 0%, rgba(0,0,0,1) 70%)",
+            "radial-gradient(ellipse at 30% 50%, rgba(30,30,30,0.4) 0%, rgba(0,0,0,0.7) 70%)",
+            "radial-gradient(ellipse at 70% 50%, rgba(30,30,30,0.4) 0%, rgba(0,0,0,0.7) 70%)",
+            "radial-gradient(ellipse at 30% 50%, rgba(30,30,30,0.4) 0%, rgba(0,0,0,0.7) 70%)",
           ],
         }}
         transition={{ duration: 12, repeat: Infinity, ease: "linear" }}

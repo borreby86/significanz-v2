@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { motion, useInView } from "motion/react";
@@ -388,31 +389,41 @@ function CTASection() {
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section ref={ref} className="bg-[#BFA27A] py-20 md:py-32">
-      <Container size="wide">
+    <section ref={ref} className="relative bg-[#34323A] py-20 md:py-32 overflow-hidden">
+      <div className="absolute inset-0">
+        <Image
+          src="/images/workshop.jpeg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-[#34323A]/85" />
+      </div>
+      <Container size="wide" className="relative z-10">
         <motion.div
           className="text-center max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
         >
-          <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#34323A] italic">
+          <h2 className="font-[family-name:var(--font-playfair)] text-5xl md:text-6xl lg:text-7xl text-[#F7F6F5] italic">
             {t.fourDPage.instantOutcomes}
           </h2>
-          <p className="mt-6 text-xl md:text-2xl text-[#34323A]/80 leading-relaxed">
+          <p className="mt-6 text-xl md:text-2xl text-[#F7F6F5]/80 leading-relaxed">
             {t.fourDPage.instantOutcomesDesc}
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#34323A] text-[#F7F6F5] font-medium hover:bg-[#5A1735] transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#A12F63] text-white font-medium hover:bg-[#8a2854] transition-colors"
             >
               {t.fourDPage.startDiscovery}
               <span className="text-xl">→</span>
             </Link>
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#34323A] text-[#34323A] font-medium hover:bg-[#34323A] hover:text-[#F7F6F5] transition-colors"
+              className="inline-flex items-center gap-2 px-8 py-4 border-2 border-[#F7F6F5] text-[#F7F6F5] font-medium hover:bg-[#F7F6F5] hover:text-[#34323A] transition-colors"
             >
               {t.fourDPage.aboutUs}
             </Link>

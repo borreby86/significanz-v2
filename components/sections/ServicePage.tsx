@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "motion/react";
 import { Container } from "@/components/ui/Container";
@@ -158,8 +159,18 @@ export function ServicePageLayout({
       )}
 
       {/* CTA */}
-      <section className="py-20 md:py-28 bg-[#34323A]">
-        <Container size="default">
+      <section className="relative py-20 md:py-28 bg-[#34323A] overflow-hidden">
+        <div className="absolute inset-0">
+          <Image
+            src="/images/workshop.jpeg"
+            alt=""
+            fill
+            className="object-cover"
+            sizes="100vw"
+          />
+          <div className="absolute inset-0 bg-[#34323A]/85" />
+        </div>
+        <Container size="default" className="relative z-10">
           <FadeIn>
             <div className="text-center">
               <h2 className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl lg:text-5xl text-white italic">

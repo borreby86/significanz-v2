@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { motion, useInView } from "motion/react";
 import { Container } from "@/components/ui/Container";
@@ -175,8 +176,18 @@ function CollaborateCTA() {
   const isInView = useInView(ref, { once: true, margin: "-10%" });
 
   return (
-    <section ref={ref} className="py-24 md:py-32 bg-[#34323A]">
-      <Container size="wide">
+    <section ref={ref} className="relative py-24 md:py-32 bg-[#34323A] overflow-hidden">
+      <div className="absolute inset-0">
+        <Image
+          src="/images/workshop.jpeg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-[#34323A]/85" />
+      </div>
+      <Container size="wide" className="relative z-10">
         <motion.div
           className="text-center"
           initial={{ opacity: 0, y: 30 }}
