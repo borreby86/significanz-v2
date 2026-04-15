@@ -467,7 +467,7 @@ export default function AboutPage() {
               <div className="group">
                 <div className="relative aspect-[4/5] overflow-hidden">
                   <Image
-                    src="/images/photo til about siden.jpg"
+                    src="/images/gallery/Stinne Madsen.jpg"
                     alt="Stinne Madsen"
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
