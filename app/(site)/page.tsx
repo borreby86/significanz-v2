@@ -566,7 +566,7 @@ function GetInTouch() {
           src="/images/workshop.jpeg"
           alt=""
           fill
-          className="object-cover"
+          className="object-cover grayscale"
           sizes="100vw"
         />
         <div className="absolute inset-0 bg-[#34323A]/85" />

@@ -12,10 +12,21 @@ export function Footer() {
   return (
     <footer className="bg-[#1a1a1a] text-white py-16 md:py-20">
       <Container size="wide">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 items-start">
-          {/* Left - Contact info */}
-          <div>
-            <h3 className="font-medium text-white mb-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 items-start">
+          {/* Logo - first on mobile, centered middle column on desktop */}
+          <div className="order-1 md:order-2 text-center md:pt-2">
+            <Link
+              href="/"
+              className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl tracking-tight hover:text-gray-300 transition-colors inline-block"
+            >
+              Significanz
+            </Link>
+            <div className="mt-6 mx-auto h-px w-16 bg-gray-700 md:hidden" />
+          </div>
+
+          {/* Contact info - second on mobile, left column on desktop */}
+          <div className="order-2 md:order-1">
+            <h3 className="font-medium text-white mb-5">
               {t.footer.workWithUs}
             </h3>
             <div className="space-y-3 text-gray-400 text-sm">
@@ -45,19 +56,9 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Center - Logo */}
-          <div className="text-center">
-            <Link
-              href="/"
-              className="font-[family-name:var(--font-playfair)] text-3xl md:text-4xl tracking-tight hover:text-gray-300 transition-colors inline-block"
-            >
-              Significanz
-            </Link>
-          </div>
-
-          {/* Right - Social */}
-          <div className="md:text-right">
-            <h3 className="font-medium text-white mb-6">
+          {/* Social - third on mobile, right column on desktop */}
+          <div className="order-3 md:text-right">
+            <h3 className="font-medium text-white mb-5">
               {t.footer.followUs}
             </h3>
             <div className="flex gap-3 md:justify-end">
@@ -75,7 +76,7 @@ export function Footer() {
               </a>
             </div>
             <p className="mt-6 text-gray-500 text-sm">
-              {new Date().getFullYear()}, Significanz
+              © {new Date().getFullYear()}, Significanz
             </p>
           </div>
         </div>
