@@ -54,34 +54,36 @@ export function ContactFormPanel({
       : "bg-[#A12F63] w-full h-full min-h-full justify-start";
 
   return (
-    <div className={`${wrapperClass} flex flex-col`}>
-      <div className={`px-8 md:px-12 ${variant === "embedded" ? "pt-28 lg:pt-36" : "pt-12"} pb-6`}>
-        <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-white">
-          {title}
-        </h2>
-        <p className="mt-3 text-base text-white/60">{subtitle}</p>
-      </div>
-
+    <div className={`${wrapperClass} flex flex-col ${status === "success" ? "flex-1" : ""}`}>
       {status === "success" ? (
-        <div className="px-8 md:px-10 pb-10 text-center">
-          <div className="py-8">
-            <div className="w-16 h-16 rounded-full bg-[#BFA27A]/30 mx-auto mb-4 flex items-center justify-center">
-              <svg className="w-8 h-8 text-[#BFA27A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-              </svg>
-            </div>
-            <h4 className="text-white text-lg font-medium mb-2">Thank you!</h4>
-            <p className="text-white/60 text-sm">We&apos;ll get back to you soon.</p>
-            <button
-              onClick={() => setStatus("idle")}
-              className="mt-6 text-sm text-[#BFA27A] hover:text-[#BFA27A]/80 transition-colors"
-            >
-              Send another message
-            </button>
+        <div className="flex-1 flex flex-col items-center justify-center text-center px-8 md:px-10 py-16 min-h-[480px]">
+          <div className="w-20 h-20 rounded-full bg-[#BFA27A]/30 mb-8 flex items-center justify-center">
+            <svg className="w-10 h-10 text-[#BFA27A]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+            </svg>
           </div>
+          <h3 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-white mb-4">
+            Thank you!
+          </h3>
+          <p className="text-white/70 text-base md:text-lg max-w-sm">
+            We&apos;ll get back to you soon.
+          </p>
+          <button
+            onClick={() => setStatus("idle")}
+            className="mt-10 text-sm text-[#BFA27A] hover:text-[#BFA27A]/80 transition-colors underline underline-offset-4"
+          >
+            Send another message
+          </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="px-8 md:px-10 pb-10 space-y-5">
+        <>
+          <div className={`px-8 md:px-12 ${variant === "embedded" ? "pt-28 lg:pt-36" : "pt-12"} pb-6`}>
+            <h2 className="font-[family-name:var(--font-playfair)] text-4xl md:text-5xl text-white">
+              {title}
+            </h2>
+            <p className="mt-3 text-base text-white/60">{subtitle}</p>
+          </div>
+          <form onSubmit={handleSubmit} className="px-8 md:px-10 pb-10 space-y-5">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-4">
             <div>
               <label className="block text-[10px] font-medium text-[#BFA27A] uppercase tracking-[0.15em] mb-2">
@@ -176,6 +178,7 @@ export function ContactFormPanel({
             for details.
           </p>
         </form>
+        </>
       )}
     </div>
   );
