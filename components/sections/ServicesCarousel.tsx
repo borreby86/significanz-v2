@@ -61,7 +61,7 @@ function HorizontalPillBadge({ type, align = "start" }: { type: ServiceTypeCode;
   const meta = serviceTypeMeta[type];
   return (
     <div
-      className={`inline-flex items-center mb-4 ${align === "end" ? "self-end" : "self-start"}`}
+      className={`inline-flex items-center mb-4 self-start ${align === "end" ? "md:self-end" : "md:self-start"}`}
       style={{ boxShadow: "0 4px 12px rgba(0,0,0,0.25)" }}
     >
       <span
@@ -168,7 +168,7 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
                     <p className={`mt-4 leading-relaxed flex-grow whitespace-pre-line ${service.textDark ? "text-[#34323A]/70" : "text-[#F7F6F5]/80"}`}>
                       {service.description}
                     </p>
-                    <span className={`mt-4 text-sm font-medium group-hover:underline ${isRightColumn ? "self-end" : "self-start"} ${service.textDark ? "text-[#A12F63]" : "text-[#F7F6F5]/90"}`}>
+                    <span className={`mt-4 text-sm font-medium group-hover:underline self-start ${isRightColumn ? "md:self-end" : "md:self-start"} ${service.textDark ? "text-[#A12F63]" : "text-[#F7F6F5]/90"}`}>
                       Read more →
                     </span>
                   </div>
@@ -203,29 +203,21 @@ export function ServicesCarousel({ className = "" }: ServicesCarouselProps) {
         {/* Strategic Advisory - mobile (full width card) */}
         <Link href={advisory.href} className="md:hidden block">
           <motion.div
-            className="mt-4 relative flex min-h-[200px] group cursor-pointer overflow-hidden"
+            className="mt-4 relative flex flex-col min-h-[200px] group cursor-pointer overflow-hidden"
             style={{ backgroundColor: advisory.color }}
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.4 }}
           >
-            {/* Vertical service type sidebar */}
-            <div className="w-8 flex-shrink-0 flex items-center justify-center bg-black/5">
-              <span
-                className="text-[#34323A]/50 text-[10px] font-medium uppercase tracking-[2px] whitespace-nowrap"
-                style={{ writingMode: "vertical-rl", transform: "rotate(180deg)" }}
-              >
-                {advisory.serviceType} - {advisory.serviceLabel}
-              </span>
-            </div>
             <div className="p-8 flex flex-col flex-grow">
+              <HorizontalPillBadge type={advisory.serviceType} align="start" />
               <h3 className="font-[family-name:var(--font-playfair)] text-3xl text-[#34323A] italic">
                 {advisory.title}
               </h3>
               <p className="mt-4 text-[#34323A]/70 leading-relaxed flex-grow">
                 Strategic sparring when you need clarity and a steady way forward. We help you sharpen direction, stress-test choices, and prepare the conversations that create buy-in.
               </p>
-              <span className="mt-4 text-sm font-medium text-[#A12F63] group-hover:underline">
+              <span className="mt-4 text-sm font-medium text-[#A12F63] group-hover:underline self-start">
                 Read more →
               </span>
             </div>
