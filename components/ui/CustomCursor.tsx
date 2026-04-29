@@ -29,12 +29,12 @@ export function CustomCursor() {
   const mouseY = useMotionValue(-100);
 
   // Smoothed cursor position with spring physics
-  const springConfig = { damping: 25, stiffness: 400, mass: 0.5 };
+  const springConfig = { damping: 28, stiffness: 700, mass: 0.3 };
   const cursorX = useSpring(mouseX, springConfig);
   const cursorY = useSpring(mouseY, springConfig);
 
   // Slower spring for the outer ring
-  const ringSpringConfig = { damping: 30, stiffness: 200, mass: 0.8 };
+  const ringSpringConfig = { damping: 32, stiffness: 350, mass: 0.5 };
   const ringX = useSpring(mouseX, ringSpringConfig);
   const ringY = useSpring(mouseY, ringSpringConfig);
 
