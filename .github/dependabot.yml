@@ -1,0 +1,26 @@
+# Dependabot holder afhængigheder opdateret automatisk.
+# Sikkerhedsrettelser kommer som PR'er med det samme (når "Dependabot security
+# updates" er slået til under Settings → Code security). Almindelige
+# opdateringer samles i én PR om ugen, så det ikke drukner i PR'er.
+version: 2
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "07:00"
+      timezone: "Europe/Copenhagen"
+    open-pull-requests-limit: 5
+    groups:
+      next-og-react:
+        patterns: ["next", "eslint-config-next", "react", "react-dom", "@types/react", "@types/react-dom"]
+        update-types: ["minor", "patch"]
+      alt-andet:
+        patterns: ["*"]
+        exclude-patterns: ["next", "eslint-config-next", "react", "react-dom", "@types/react", "@types/react-dom"]
+        update-types: ["minor", "patch"]
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "monthly"
